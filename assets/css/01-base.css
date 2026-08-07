@@ -1,0 +1,81 @@
+/* ==========================================================
+   01 · BASE
+   Vidro, tipografia, espaçamento das seções, botões e
+   a animação de entrada. Vale para todos os blocos.
+   ========================================================== */
+
+/* ---------- vidro ---------- */
+.glass{
+  background:var(--glass-bg);
+  backdrop-filter:blur(26px) saturate(180%);
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+  border:1px solid var(--glass-line);
+  border-radius:var(--r);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),
+             inset 0 -1px 0 rgba(255,255,255,.05),
+             0 22px 50px -20px rgba(0,0,0,.75);
+}
+
+/* ---------- estrutura ---------- */
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+section{padding:96px 0}
+h1,h2,h3,.plan-price,.stat{font-family:'Archivo',sans-serif;letter-spacing:-.028em;line-height:1.08}
+h2{font-size:clamp(30px,4.4vw,45px);font-weight:700}
+h3{font-size:20px;font-weight:700;letter-spacing:-.015em;line-height:1.3}
+p{color:var(--muted)}
+/* Amarelo em vez de vermelho: o vermelho sobre o fundo escuro dava ~4,3:1
+   de contraste e reprovava no mínimo AA para texto pequeno. Este dá ~11,9:1. */
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;
+  letter-spacing:.20em;text-transform:uppercase;color:var(--lamp);margin-bottom:18px}
+.eyebrow::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--lamp);box-shadow:0 0 10px 1px var(--lamp);
+  margin-right:10px;vertical-align:middle;position:relative;top:-1px}
+.lead{font-size:18px;max-width:62ch}
+.section-head{margin-bottom:52px;max-width:70ch}
+.section-head p{margin-top:16px}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:15.5px;letter-spacing:-.01em;
+  padding:15px 28px;border-radius:100px;text-decoration:none;cursor:pointer;
+  border:1px solid transparent;
+  /* Sem isto, a borda transparente recebe o INÍCIO do degradê repetido e
+     aparece uma listra clara de 1px na direita do botão. */
+  background-origin:border-box;background-repeat:no-repeat;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+/* Degradê quente no lugar do vermelho cheio: vermelho sozinho lê como alerta,
+   e este é justamente o botão que a pessoa precisa querer clicar. O texto vira
+   escuro porque branco desaparece na ponta creme do degradê. */
+/* Sem brilho `inset`: numa pílula ele contorna as duas pontas arredondadas
+   e vira um anel claro em volta do botão, em vez do reflexo de topo. */
+.btn-primary{background:var(--grad);
+  color:var(--ink);
+  box-shadow:0 12px 34px -10px rgba(var(--warm-rgb),.75)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 42px -10px rgba(var(--warm-rgb),.92)}
+.btn-ghost{background:rgba(255,255,255,.07);color:var(--text);border-color:var(--glass-line);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.btn-ghost:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--glow);outline-offset:3px;border-radius:100px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .75s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:620px){
+  .hero h1 em{white-space:normal}
+}
+@media(max-width:1250px){
+  section{padding:80px 0}
+  .section-head{margin-bottom:42px}
+  h2{font-size:clamp(28px,3.6vw,40px)}
+}
+@media(max-width:900px){
+  .g3,.g2{grid-template-columns:1fr}
+  section{padding:72px 0}
+  .hero{padding:150px 0 72px}
+  .final{padding:48px 26px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}

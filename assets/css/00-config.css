@@ -1,0 +1,155 @@
+/* ==========================================================
+   00 · CONFIGURAÇÕES GLOBAIS
+   Cores da marca, fundo do site e o holofote.
+   Mexer aqui muda a página inteira de uma vez.
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   TESTE DE PALETA
+   Só existe UM bloco :root ativo por vez. Para trocar a cara do
+   site inteiro, comente o bloco ativo e descomente outro.
+   No VS Code: selecionar o bloco e apertar Ctrl + K, Ctrl + C
+   para comentar; Ctrl + K, Ctrl + U para descomentar.
+   ---------------------------------------------------------- */
+
+
+/* ===== PALETA A · ÂMBAR E VERMELHO ===== */
+/*
+:root{
+  --ink:#04101C;        --ink-rgb:4,16,28;
+  --sea:#0A2036;        --sea-rgb:10,32,54;
+  --red:#E0342F;        --red-rgb:224,52,47;
+  --red-deep:#A41F22;
+  --lamp:#FFC24B;       --lamp-rgb:255,194,75;
+  --glow:#FFE7B4;       --glow-rgb:255,231,180;
+  --warm-mid:#F5A623;
+  --warm:#F0813A;       --warm-rgb:240,129,58;
+  --warm-deep:#E8532F;
+  --alert:#FF5A54;
+  --text:#F1F6FA;
+  --muted:#9BB1C6;
+  --glass-bg:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+  --glass-line:rgba(255,255,255,.17);
+  --r:26px;
+  --maxw:1120px;
+}
+*/
+
+
+/* ===== PALETA 1 · LIMA ELÉTRICA (atual) ===== */
+:root{
+  --ink:#0A0B0A;        --ink-rgb:10,11,10;
+  --sea:#14171A;        --sea-rgb:20,23,26;
+  --red:#D6362A;        --red-rgb:214,54,42;
+  --red-deep:#8E2118;
+  --lamp:#C2F53D;       --lamp-rgb:194,245,61;
+  --glow:#E8FFB0;       --glow-rgb:232,255,176;
+  --warm-mid:#AFEB2A;
+  --warm:#9BE01F;       --warm-rgb:155,224,31;
+  --warm-deep:#6FBF10;
+  --alert:#FF6B5C;
+  --text:#F4F7F0;
+  --muted:#9BA69A;
+  --glass-bg:linear-gradient(160deg,rgba(255,255,255,.11),rgba(255,255,255,.035));
+  --glass-line:rgba(255,255,255,.15);
+  --r:26px;
+  --maxw:1120px;
+}
+
+
+/* ===== PALETA 3 · MONOCROMÁTICO ===== */
+/*
+:root{
+  --ink:#0A0A0A;        --ink-rgb:10,10,10;
+  --sea:#151515;        --sea-rgb:21,21,21;
+  --red:#FF3B30;        --red-rgb:255,59,48;
+  --red-deep:#B3251C;
+  --lamp:#FFFFFF;       --lamp-rgb:255,255,255;
+  --glow:#FFFFFF;       --glow-rgb:255,255,255;
+  --warm-mid:#E4E4E4;
+  --warm:#CFCFCF;       --warm-rgb:207,207,207;
+  --warm-deep:#A8A8A8;
+  --alert:#FF5A4E;
+  --text:#FAFAFA;
+  --muted:#8A8A8A;
+  --glass-bg:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
+  --glass-line:rgba(255,255,255,.16);
+  --r:26px;
+  --maxw:1120px;
+}
+*/
+
+
+/* ===== PALETA 4 · CHAMPANHE ===== */
+/*
+:root{
+  --ink:#0B0A08;        --ink-rgb:11,10,8;
+  --sea:#17140E;        --sea-rgb:23,20,14;
+  --red:#C0392B;        --red-rgb:192,57,43;
+  --red-deep:#8A2820;
+  --lamp:#E7C87A;       --lamp-rgb:231,200,122;
+  --glow:#F6EBCF;       --glow-rgb:246,235,207;
+  --warm-mid:#DDB863;
+  --warm:#D4A94E;       --warm-rgb:212,169,78;
+  --warm-deep:#B08630;
+  --alert:#E3705F;
+  --text:#F7F4EE;
+  --muted:#A9A090;
+  --glass-bg:linear-gradient(160deg,rgba(255,255,255,.11),rgba(255,255,255,.035));
+  --glass-line:rgba(255,255,255,.16);
+  --r:26px;
+  --maxw:1120px;
+}
+*/
+
+
+/* Degradê quente da marca — botões, tarjas e o lado "Depois".
+   Montado a partir das variáveis acima, então acompanha a paleta ativa. */
+:root{
+  --grad:linear-gradient(115deg,var(--glow),var(--lamp) 34%,var(--warm) 70%,var(--warm-deep));
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  position:relative;
+  background:var(--ink);
+  color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ---------- atmosfera de fundo ---------- */
+.bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:
+  radial-gradient(820px 520px at 50% -6%,rgba(var(--lamp-rgb),.20),transparent 64%),
+  radial-gradient(1100px 760px at 84% 6%,rgba(var(--red-rgb),.15),transparent 62%),
+  radial-gradient(1200px 900px at 10% 34%,rgba(var(--sea-rgb),.95),transparent 66%),
+  var(--ink);}
+.bg::after{content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(circle at 50% 0%,#000,transparent 72%);}
+
+/* holofote — elemento-assinatura */
+.beam-stage{position:absolute;top:0;left:0;width:100%;height:1080px;
+  overflow:hidden;z-index:-1;pointer-events:none;
+  mask-image:linear-gradient(to bottom,#000 0%,#000 52%,transparent 96%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 52%,transparent 96%);}
+.beam{position:absolute;top:-56vh;left:50%;width:150vw;height:150vw;
+  transform:translateX(-50%);
+  background:conic-gradient(from 0deg,
+    transparent 0deg,
+    rgba(var(--lamp-rgb),.19) 6deg,
+    rgba(var(--glow-rgb),.13) 12deg,
+    rgba(var(--red-rgb),.11) 19deg,
+    transparent 32deg,
+    transparent 360deg);
+  mask-image:radial-gradient(circle at 50% 50%,#000 4%,rgba(0,0,0,.55) 34%,transparent 66%);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 4%,rgba(0,0,0,.55) 34%,transparent 66%);
+  animation:sweep 28s linear infinite;}
+@keyframes sweep{to{transform:translateX(-50%) rotate(360deg)}}
