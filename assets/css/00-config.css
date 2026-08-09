@@ -108,6 +108,13 @@
    Montado a partir das variáveis acima, então acompanha a paleta ativa. */
 :root{
   --grad:linear-gradient(115deg,var(--glow),var(--lamp) 34%,var(--warm) 70%,var(--warm-deep));
+
+  /* Medalhas. Ficam FORA dos blocos de paleta de propósito: ouro, prata e
+     bronze são as mesmas cores em qualquer esquema. Usadas no cursor e
+     nas bordas dos três degraus do pódio, no BLOCO 08. */
+  --ouro:#F5C542;       --ouro-rgb:245,197,66;
+  --prata:#C8D0D6;      --prata-rgb:200,208,214;
+  --bronze:#B87A4B;     --bronze-rgb:184,122,75;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -124,32 +131,32 @@ body{
   overflow-x:hidden;
 }
 
-/* ---------- atmosfera de fundo ---------- */
+/* ---------- atmosfera de fundo ----------
+   Tudo aqui é FIXO na janela, então vale para a página inteira, em qualquer
+   altura da rolagem. Antes o facho era absoluto e só existia nos primeiros
+   1080px do documento, o que dava a impressão de luz presa no topo. */
 .bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:
-  radial-gradient(820px 520px at 50% -6%,rgba(var(--lamp-rgb),.20),transparent 64%),
-  radial-gradient(1100px 760px at 84% 6%,rgba(var(--red-rgb),.15),transparent 62%),
-  radial-gradient(1200px 900px at 10% 34%,rgba(var(--sea-rgb),.95),transparent 66%),
+  radial-gradient(900px 600px at 50% -10%,rgba(var(--lamp-rgb),.10),transparent 62%),
+  radial-gradient(1000px 720px at 12% 18%,rgba(var(--sea-rgb),.80),transparent 62%),
+  radial-gradient(900px 640px at 88% 82%,rgba(var(--sea-rgb),.55),transparent 60%),
   var(--ink);}
+/* Grade de pontos na página toda, esmaecendo de leve para baixo */
 .bg::after{content:'';position:absolute;inset:0;
-  background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
   background-size:34px 34px;
-  mask-image:radial-gradient(circle at 50% 0%,#000,transparent 72%);}
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.95),rgba(0,0,0,.30));
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.95),rgba(0,0,0,.30));}
 
-/* holofote — elemento-assinatura */
-.beam-stage{position:absolute;top:0;left:0;width:100%;height:1080px;
-  overflow:hidden;z-index:-1;pointer-events:none;
-  mask-image:linear-gradient(to bottom,#000 0%,#000 52%,transparent 96%);
-  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 52%,transparent 96%);}
-.beam{position:absolute;top:-56vh;left:50%;width:150vw;height:150vw;
-  transform:translateX(-50%);
-  background:conic-gradient(from 0deg,
-    transparent 0deg,
-    rgba(var(--lamp-rgb),.19) 6deg,
-    rgba(var(--glow-rgb),.13) 12deg,
-    rgba(var(--red-rgb),.11) 19deg,
-    transparent 32deg,
-    transparent 360deg);
-  mask-image:radial-gradient(circle at 50% 50%,#000 4%,rgba(0,0,0,.55) 34%,transparent 66%);
-  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 4%,rgba(0,0,0,.55) 34%,transparent 66%);
-  animation:sweep 28s linear infinite;}
-@keyframes sweep{to{transform:translateX(-50%) rotate(360deg)}}
+/* ---------- aurora — elemento-assinatura ----------
+   Três manchas nas cores da marca, num quadrado bem maior que a tela, girando
+   devagar. O giro é UMA transformação só, então é barato para o navegador,
+   mesmo com todos os cards de vidro por cima. */
+.beam-stage{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.beam{position:absolute;top:50%;left:50%;width:190vmax;height:190vmax;
+  transform:translate(-50%,-50%);
+  background:
+    radial-gradient(38% 38% at 32% 30%,rgba(var(--lamp-rgb),.15),transparent 70%),
+    radial-gradient(36% 36% at 70% 42%,rgba(var(--red-rgb),.13),transparent 70%),
+    radial-gradient(32% 32% at 50% 70%,rgba(var(--warm-rgb),.11),transparent 70%);
+  animation:aurora 70s linear infinite;}
+@keyframes aurora{to{transform:translate(-50%,-50%) rotate(360deg)}}

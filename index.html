@@ -22,10 +22,14 @@
      00-config  cores da marca, fundo e o holofote
      01-base    vidro, tipografia, botões
      02-blocos  cada bloco do site
+
+     O ?v= no fim de cada arquivo força o navegador a buscar a versão nova
+     em vez de usar a que ele guardou. Sempre que o CSS ou o JS mudar,
+     esse número sobe.
      ───────────────────────────────────────────────────── -->
-<link rel="stylesheet" href="assets/css/00-config.css">
-<link rel="stylesheet" href="assets/css/01-base.css">
-<link rel="stylesheet" href="assets/css/02-blocos.css">
+<link rel="stylesheet" href="assets/css/00-config.css?v=11">
+<link rel="stylesheet" href="assets/css/01-base.css?v=11">
+<link rel="stylesheet" href="assets/css/02-blocos.css?v=11">
 </head>
 <body>
 
@@ -71,14 +75,14 @@
     <div class="section-head rv">
       <p class="eyebrow">O que fazemos</p>
       <h2>Três frentes que trabalham juntas.</h2>
-      <p class="lead">Separadas, cada uma entrega um pedaço. Juntas, uma alimenta a outra: o anúncio leva a pessoa até o perfil, o perfil convence, e a busca traz quem já estava procurando.</p>
+      <p class="lead">Cada uma resolve um momento diferente da mesma decisão. O Meta alcança quem ainda nem sabe que precisa de você. O Google faz você aparecer para quem já está procurando agora. E o Google Meu Negócio é o que decide se essa pessoa liga para você ou para o concorrente logo abaixo.</p>
     </div>
     <div class="grid g3">
 
       <article class="card glass rv">
         <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
         <h3>Tráfego no Google</h3>
-        <p>Aparecer no momento exato em que alguém digita o que você vende. É a demanda que já existe, e ela vai para quem estiver na frente.</p>
+        <p>Quem digita no Google já decidiu que quer. Só não decidiu de quem. É essa segunda decisão que a gente disputa por você.</p>
         <ul>
           <li>Pesquisa de palavras-chave do seu mercado</li>
           <li>Campanhas de Pesquisa e Performance Max</li>
@@ -89,7 +93,7 @@
       <article class="card glass rv">
         <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M9 10l5 2-5 2z"/></svg></div>
         <h3>Tráfego no Meta</h3>
-        <p>Instagram e Facebook para quem ainda não está procurando você. É onde se cria desejo e se constrói a lembrança da marca.</p>
+        <p>No Instagram a pessoa não está te procurando. Ela te vê enquanto passa o dedo na tela, sem pensar em comprar nada. Semanas depois, quando precisar, é o seu nome que ela lembra.</p>
         <ul>
           <li>Públicos frios, quentes e remarketing</li>
           <li>Roteiro e direção dos criativos</li>
@@ -100,7 +104,7 @@
       <article class="card glass rv">
         <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></div>
         <h3>Google Meu Negócio</h3>
-        <p>O perfil que aparece no Maps e ao lado da busca. É gratuito, quase ninguém cuida, e ele decide quem recebe a ligação.</p>
+        <p>É a sua porta de entrada no Google. Aparece no Maps e ao lado da busca, com foto, avaliação, botão de ligar e o link do seu site, tudo na mesma tela. É ali que a pessoa para de pesquisar e escolhe.</p>
         <ul>
           <li>Otimização de categorias, serviços e descrição</li>
           <li>Fotos, posts e atualização semanal</li>
@@ -119,7 +123,7 @@
   <div class="wrap">
     <div class="section-head rv" style="text-align:center;margin-left:auto;margin-right:auto">
       <p class="eyebrow">A transformação</p>
-      <h2>O que muda quando alguém cuida disso.</h2>
+      <h2>O que muda quando <em>alguém cuida disso.</em></h2>
     </div>
 
     <!-- Os títulos das colunas são o interruptor. O config.js troca a classe
@@ -159,38 +163,38 @@
   <div class="wrap">
     <div class="section-head rv">
       <p class="eyebrow">Prova social</p>
-      <h2>Print do painel, período e contexto.</h2>
-      <p class="lead">Todo número aqui vem de uma conta real que gerenciamos, com a imagem do painel do lado. Se quiser ver o relatório completo de qualquer um deles, é só pedir na conversa.</p>
+      <h2>Quem já está no degrau mais alto.</h2>
+      <p class="lead">Cada imagem abaixo é uma busca real, feita na cidade do cliente. Quem está em primeiro é quem trabalha com a gente. É exatamente o lugar onde o seu concorrente aparece hoje.</p>
     </div>
     <div class="grid g3">
 
       <article class="card glass proof rv">
-        <div class="proof-frame"><span>Substituir pelo print do painel</span></div>
+        <div class="proof-frame"><span>Trocar pelo print da busca no Google, com o cliente em primeiro</span></div>
         <div class="proof-body">
-          <p class="stat" data-placeholder="1">00×</p>
-          <h3>Trocar pelo resultado real</h3>
-          <p>Uma linha explicando o que foi feito e o que mudou para o cliente.</p>
-          <p class="proof-meta">Segmento · Cidade · período</p>
+          <p class="stat" data-placeholder="1">1º</p>
+          <h3>Nome do cliente</h3>
+          <p>Busca: "o termo que ele queria disputar"</p>
+          <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
         </div>
       </article>
 
       <article class="card glass proof rv">
-        <div class="proof-frame"><span>Substituir pelo print do painel</span></div>
+        <div class="proof-frame"><span>Trocar pelo print da busca no Google, com o cliente em primeiro</span></div>
         <div class="proof-body">
-          <p class="stat" data-placeholder="1">00×</p>
-          <h3>Trocar pelo resultado real</h3>
-          <p>Uma linha explicando o que foi feito e o que mudou para o cliente.</p>
-          <p class="proof-meta">Segmento · Cidade · período</p>
+          <p class="stat" data-placeholder="1">1º</p>
+          <h3>Nome do cliente</h3>
+          <p>Busca: "o termo que ele queria disputar"</p>
+          <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
         </div>
       </article>
 
       <article class="card glass proof rv">
-        <div class="proof-frame"><span>Substituir pelo print do painel</span></div>
+        <div class="proof-frame"><span>Trocar pelo print da busca no Google, com o cliente em primeiro</span></div>
         <div class="proof-body">
-          <p class="stat" data-placeholder="1">00×</p>
-          <h3>Trocar pelo resultado real</h3>
-          <p>Uma linha explicando o que foi feito e o que mudou para o cliente.</p>
-          <p class="proof-meta">Segmento · Cidade · período</p>
+          <p class="stat" data-placeholder="1">1º</p>
+          <h3>Nome do cliente</h3>
+          <p>Busca: "o termo que ele queria disputar"</p>
+          <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
         </div>
       </article>
 
@@ -207,7 +211,7 @@
     <div class="section-head rv">
       <p class="eyebrow">Como funciona</p>
       <h2>Do primeiro contato ao primeiro relatório.</h2>
-      <p class="lead">A ordem importa: cada etapa depende da anterior. É por isso que ela está numerada.</p>
+      <p class="lead">O que acontece depois que você manda a primeira mensagem.</p>
     </div>
     <div class="steps">
 
@@ -215,15 +219,15 @@
         <div class="step-n">01</div>
         <div>
           <h3>Diagnóstico gratuito</h3>
-          <p>Olhamos seu perfil no Google Meu Negócio, quem aparece na sua frente no Maps e o que seus concorrentes anunciam. Você recebe isso mesmo que não feche conosco.</p>
+          <p>Você manda o nome e a cidade da sua empresa. Em até 24h devolvemos um relatório com mais de 20 pontos do seu perfil no Google, cada um marcado como bom, razoável ou fraco. Você recebe mesmo que não feche com a gente.</p>
         </div>
       </article>
 
       <article class="step glass rv">
         <div class="step-n">02</div>
         <div>
-          <h3>Plano e verba</h3>
-          <p>Definimos quais frentes entram, quanto vai para anúncio e qual meta faz sentido para o seu ticket. Sem prometer número que a sua verba não sustenta.</p>
+          <h3>Reunião e plano</h3>
+          <p>Passamos o relatório ponto a ponto e mostramos ao vivo em que posição você aparece na sua região e quem está na sua frente. É ali que decidimos quais frentes entram e quanto você coloca em anúncio. Se a conta não fechar para o seu caso, a gente diz isso em vez de vender.</p>
         </div>
       </article>
 
@@ -231,7 +235,7 @@
         <div class="step-n">03</div>
         <div>
           <h3>Estruturação</h3>
-          <p>Contas, pixel, rastreamento de conversão e perfil do Google Meu Negócio arrumados antes de subir campanha. Sem medição, otimizar é chute.</p>
+          <p>Arrumamos o seu perfil no Google e deixamos as contas medindo quantos contatos cada anúncio traz. Isso vem antes de qualquer campanha, porque sem medir não dá para melhorar.</p>
         </div>
       </article>
 
@@ -239,7 +243,7 @@
         <div class="step-n">04</div>
         <div>
           <h3>Operação e relatório</h3>
-          <p>Ajustes contínuos, testes de criativo e oferta. Você acompanha por relatório e fala direto com quem opera a conta, não com atendimento.</p>
+          <p>Campanhas no ar, com ajuste toda semana. Você recebe relatório e fala direto com quem mexe na sua conta, não com atendimento.</p>
         </div>
       </article>
 
@@ -279,16 +283,18 @@
     <div class="section-head rv">
       <p class="eyebrow">Planos</p>
       <h2>Escolha por quantas frentes você quer disputar.</h2>
-      <p class="lead">Os valores abaixo são da gestão. A verba de anúncio é separada e vai direto para o Google e para o Meta. Você paga na sua própria conta e vê cada centavo.</p>
+      <p class="lead">Dá para começar por uma frente só. Mas é a soma das três que tira o seu concorrente do primeiro lugar.</p>
     </div>
     <div class="grid g3">
 
-      <div class="plan-wrap rv">
+      <!-- A ordem aqui segue o preço. Quem reordena para o formato de pódio
+           é o CSS, e só no computador — no celular a lista continua subindo. -->
+      <div class="plan-wrap lugar-3 rv">
         <article class="plan glass">
           <p class="plan-name">Essencial</p>
           <p class="plan-for">Para quem quer começar por um canal só e validar antes de crescer.</p>
-          <p class="plan-price">R$ 1.000<small>/mês</small></p>
-          <p class="plan-ads">+ verba de anúncio</p>
+          <p class="plan-price">R$ 990<small>/mês</small></p>
+          <p class="plan-ads"><strong>A verba de anúncio não está inclusa.</strong>Você paga direto ao Google e ao Meta, na sua própria conta.</p>
           <ul>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>1 frente: Google <em>ou</em> Meta</li>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>Estruturação e rastreamento</li>
@@ -301,12 +307,12 @@
         </article>
       </div>
 
-      <div class="plan-wrap rv">
+      <div class="plan-wrap lugar-2 rv">
         <article class="plan glass">
           <p class="plan-name">Crescimento</p>
           <p class="plan-for">Para quem já anuncia e quer somar a busca local ao alcance das redes.</p>
-          <p class="plan-price">R$ 1.500<small>/mês</small></p>
-          <p class="plan-ads">+ verba de anúncio</p>
+          <p class="plan-price">R$ 1.590<small>/mês</small></p>
+          <p class="plan-ads"><strong>A verba de anúncio não está inclusa.</strong>Você paga direto ao Google e ao Meta, na sua própria conta.</p>
           <ul>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>2 frentes: Google + Meta</li>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>Otimização inicial do Google Meu Negócio</li>
@@ -319,15 +325,18 @@
         </article>
       </div>
 
-      <div class="plan-wrap rv">
-        <span class="plan-tag">Mais escolhido</span>
+      <div class="plan-wrap lugar-1 rv">
         <article class="plan glass featured">
+          <!-- A tarja fica DENTRO do card de propósito: assim ela acompanha
+               o movimento dele ao passar o cursor, em vez de ficar parada. -->
+          <span class="plan-tag">Mais escolhido</span>
           <p class="plan-name">Performance</p>
           <p class="plan-for">Para quem quer as três frentes disputadas e uma presença completa.</p>
-          <p class="plan-price">R$ 2.000<small>/mês</small></p>
-          <p class="plan-ads">+ verba de anúncio</p>
+          <p class="plan-de">de <s>R$ 2.500</s> por</p><!-- TROCAR: só use se R$ 2.500 for o valor real de tabela -->
+          <p class="plan-price">R$ 2.090<small>/mês</small></p>
+          <p class="plan-ads"><strong>A verba de anúncio não está inclusa.</strong>Você paga direto ao Google e ao Meta, na sua própria conta.</p>
           <ul>
-            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>3 frentes: Google + Meta + Meu Negócio</li>
+            <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>3 frentes: Google + Meta + Google Meu Negócio</li>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>Gestão mensal do perfil e das avaliações</li>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg><strong>Site de apresentação incluso</strong></li>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>Relatório quinzenal + reunião mensal</li>
@@ -424,7 +433,7 @@
       <span class="final-mark" aria-hidden="true">PÓDIO</span>
       <p class="eyebrow">Vamos conversar?</p>
       <h2>Você não precisa aparecer para todo mundo. <em>Precisa aparecer para quem está procurando agora.</em></h2>
-      <p>Mande o nome da sua empresa e a cidade. Devolvemos uma análise do seu perfil no Google Meu Negócio, com o que está faltando e quem está aparecendo na sua frente. Sem custo e sem compromisso.</p>
+      <p>Mande o nome da sua empresa e a cidade. Em até 24h você recebe um relatório do seu perfil no Google, sem custo e sem compromisso. E na conversa a gente mostra ao vivo em que posição você aparece na sua região e quem está na sua frente.</p>
       <a href="#" data-wa="diagnostico" class="btn btn-primary">Pedir meu diagnóstico gratuito</a>
     </div>
   </div>
@@ -491,6 +500,6 @@
   <span>Falar no WhatsApp</span>
 </a>
 
-<script src="assets/js/config.js"></script>
+<script src="assets/js/config.js?v=11"></script>
 </body>
 </html>

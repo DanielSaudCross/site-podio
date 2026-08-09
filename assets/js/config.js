@@ -50,19 +50,26 @@ document.addEventListener('DOMContentLoaded', () => {
   aoRolar();
   window.addEventListener('scroll', aoRolar, { passive: true });
 
-  /* Bloco Antes / Depois: os próprios títulos são o interruptor.
-     Nada é escondido — só troca qual coluna está acesa. */
+  /* Bloco Antes / Depois: passar o cursor por uma coluna já a acende.
+     Nada é escondido — só troca qual das duas está em destaque. */
   const transformacao = document.querySelector('.ad');
   if (transformacao) {
     const colunas = transformacao.querySelectorAll('.ad-col');
-    colunas.forEach((coluna) => {
-      coluna.querySelector('.ad-tab').addEventListener('click', () => {
-        colunas.forEach((c) => {
-          const acesa = c === coluna;
-          c.classList.toggle('ativa', acesa);
-          c.querySelector('.ad-tab').setAttribute('aria-pressed', acesa);
-        });
+
+    const acender = (escolhida) => {
+      colunas.forEach((c) => {
+        const acesa = c === escolhida;
+        c.classList.toggle('ativa', acesa);
+        c.querySelector('.ad-tab').setAttribute('aria-pressed', acesa);
       });
+    };
+
+    colunas.forEach((coluna) => {
+      /* No computador, o cursor basta. O clique continua valendo para o
+         celular, onde cursor não existe, e o foco para quem usa teclado. */
+      coluna.addEventListener('mouseenter', () => acender(coluna));
+      coluna.addEventListener('focusin',    () => acender(coluna));
+      coluna.querySelector('.ad-tab').addEventListener('click', () => acender(coluna));
     });
   }
 
@@ -79,8 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ----------------------------------------------------------
-     Holofote: um brilho que segue o mouse com um atraso leve.
-     O cursor normal continua ali — isto só acompanha ele.
+     Cursor próprio: um ponto de ouro no lugar da seta, e um anel
+     que vem atrás com um atraso leve.
+     O ponto acompanha o mouse na hora. Só o anel é que se atrasa —
+     é o que dá a sensação de rastro sem parecer travamento.
      Não liga no celular (não existe mouse) nem para quem pediu
      menos animação nas preferências do sistema.
      ---------------------------------------------------------- */
@@ -88,29 +97,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const querMenosMovimento = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   if (temMouse && !querMenosMovimento) {
-    const luz = document.createElement('div');
-    luz.className = 'holofote';
-    luz.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(luz);
+    const ponto = document.createElement('div');
+    const anel  = document.createElement('div');
+    ponto.className = 'cursor-ponto';
+    anel.className  = 'cursor-anel';
+    [ponto, anel].forEach((el) => {
+      el.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(el);
+    });
+
+    /* Só agora a seta do sistema pode sumir: os substitutos já existem. */
+    document.documentElement.classList.add('cursor-proprio');
 
     let alvoX = 0, alvoY = 0;   /* onde o mouse está */
-    let luzX = 0,  luzY = 0;    /* onde a luz está, correndo atrás */
+    let anelX = 0, anelY = 0;   /* onde o anel está, correndo atrás */
+
+    const posicionar = (el, x, y) => {
+      el.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+    };
 
     document.addEventListener('mousemove', (e) => {
       alvoX = e.clientX;
       alvoY = e.clientY;
-      luz.classList.add('acesa');
-      /* Cresce quando passa por cima de algo clicável */
-      luz.classList.toggle('perto', !!e.target.closest('a,button,summary,.plan,.card'));
+      posicionar(ponto, alvoX, alvoY);   /* sem atraso nenhum */
+      ponto.classList.add('acesa');
+      anel.classList.add('acesa');
+
+      /* Só o anel abre sobre o que é clicável. O ponto nunca muda. */
+      anel.classList.toggle('perto', !!(e.target.closest &&
+        e.target.closest('a,button,summary,input,select,textarea,.plan,.card')));
     });
 
-    document.addEventListener('mouseleave', () => luz.classList.remove('acesa'));
+    document.addEventListener('mouseleave', () => {
+      ponto.classList.remove('acesa');
+      anel.classList.remove('acesa');
+    });
 
-    /* 0.18 = o quanto ela alcança o mouse a cada quadro. Menor, mais preguiçosa. */
+    /* 0.35 = o quanto o anel alcança o ponto a cada quadro.
+       Maior, mais colado. Menor, mais preguiçoso. Antes era 0.18. */
     (function seguir() {
-      luzX += (alvoX - luzX) * 0.18;
-      luzY += (alvoY - luzY) * 0.18;
-      luz.style.transform = `translate(${luzX}px, ${luzY}px) translate(-50%, -50%)`;
+      anelX += (alvoX - anelX) * 0.35;
+      anelY += (alvoY - anelY) * 0.35;
+      posicionar(anel, anelX, anelY);
       requestAnimationFrame(seguir);
     })();
   }

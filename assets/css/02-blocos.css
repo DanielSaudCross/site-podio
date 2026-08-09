@@ -103,26 +103,40 @@
 .grid{display:grid;gap:20px}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g2{grid-template-columns:repeat(2,1fr)}
-.card{padding:34px}
+/* O opacity mantém os .75s da animação de entrada; o resto responde ao cursor.
+   Aqui o .rv está no mesmo elemento, então as duas transições convivem. */
+.card{padding:34px;position:relative;
+  transition:opacity .75s cubic-bezier(.2,.7,.3,1),
+             transform .3s cubic-bezier(.2,.7,.3,1),
+             box-shadow .3s ease,border-color .3s ease}
+/* Levanta, cresce e acende em ouro. Vale também para os cards de resultado
+   do BLOCO 05, que usam a mesma classe .card. */
+.card:hover{z-index:3;transform:translateY(-8px) scale(1.035);
+  border-color:rgba(var(--ouro-rgb),.90);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.05),
+             0 30px 70px -26px rgba(var(--ouro-rgb),.60)}
 .card h3{margin-bottom:12px}
 .card p{font-size:15.5px}
+/* O ícone fica parado de propósito: com o card inteiro crescendo, mais um
+   movimento por dentro dele deixa a peça agitada. */
 .card-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:22px;
   background:linear-gradient(150deg,rgba(var(--lamp-rgb),.26),rgba(var(--red-rgb),.22));
-  border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);
-  transition:transform .28s cubic-bezier(.2,.7,.3,1),box-shadow .28s ease}
+  border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
 .card-icon svg{width:21px;height:21px;stroke:var(--glow);fill:none;stroke-width:1.7;
-  stroke-linecap:round;stroke-linejoin:round;
-  transition:transform .28s cubic-bezier(.2,.7,.3,1)}
-/* O gatilho é o card inteiro, não o ícone: mais fácil de acertar com o cursor */
-.card:hover .card-icon{transform:translateY(-3px) scale(1.09);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 14px 28px -12px rgba(var(--lamp-rgb),.55)}
-.card:hover .card-icon svg{transform:scale(1.12)}
+  stroke-linecap:round;stroke-linejoin:round}
 .card ul{list-style:none;margin-top:18px;display:grid;gap:9px}
 .card ul li{font-size:14.5px;color:var(--muted);padding-left:20px;position:relative}
 .card ul li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;
   background:linear-gradient(140deg,var(--red),var(--red-deep));
   transition:transform .2s cubic-bezier(.2,.7,.3,1)}
 .card ul li:hover::before{transform:scale(1.45)}
+
+/* Segunda linha do título em degradê, mesmo tratamento do hero.
+   Fica em bloco próprio para o degradê correr por uma linha inteira —
+   em linha, ele se parte na quebra e o efeito some. */
+#transformacao h2 em{font-style:normal;display:block;
+  background:linear-gradient(100deg,var(--glow),var(--lamp) 48%,var(--red));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
 /* ---------- antes / depois ----------
    O destaque vem de ACENDER a coluna escolhida, não de apagar a outra:
@@ -182,7 +196,7 @@
 .ad-depois ul li:nth-child(2) svg{stroke:var(--lamp)}
 .ad-depois ul li:nth-child(3) svg{stroke:var(--warm-mid)}
 .ad-depois ul li:nth-child(4) svg{stroke:var(--warm)}
-.ad-depois ul li:nth-child(5) svg{stroke:var(--alert)}
+.ad-depois ul li:nth-child(5) svg{stroke:var(--warm-deep)}
 .ad-depois.ativa ul li svg{filter:drop-shadow(0 0 7px rgba(var(--warm-rgb),.65))}
 .ad ul li:hover svg{transform:scale(1.25)}
 
@@ -192,6 +206,7 @@
 }
 
 /* ---------- resultados ---------- */
+/* Transição e hover vêm do .card, que estes cards também usam. */
 .proof{padding:0;overflow:hidden}
 .proof-frame{aspect-ratio:16/10;display:grid;place-items:center;text-align:center;padding:24px;
   border-bottom:1px solid var(--glass-line);
@@ -209,12 +224,37 @@
 .disclaimer{margin-top:26px;font-size:13.5px;color:var(--muted);text-align:center}
 
 /* ---------- método ---------- */
-.steps{display:grid;gap:16px}
-.step{display:grid;grid-template-columns:60px 1fr;gap:26px;align-items:start;padding:28px 32px}
-.step-n{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--red);
-  padding-top:4px;letter-spacing:.1em}
+.steps{display:grid;gap:18px}
+.step{display:grid;grid-template-columns:48px 1fr;gap:24px;align-items:start;
+  padding:26px 30px;position:relative;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s ease,border-color .3s ease}
+
+/* A linha que liga uma etapa à seguinte. Ela mora no vão entre os cards:
+   atrás deles, o desfoque do vidro a engoliria. Some na última. */
+.step::after{content:'';position:absolute;left:53px;top:100%;width:2px;height:18px;
+  background:linear-gradient(rgba(var(--lamp-rgb),.55),rgba(var(--lamp-rgb),.08))}
+.step:last-child::after{display:none}
+
+/* O número virou medalha: contorno em repouso, acende sob o cursor */
+.step-n{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.04em;
+  color:var(--lamp);background:rgba(255,255,255,.05);border:1px solid var(--glass-line);
+  transition:background .3s ease,color .3s ease,border-color .3s ease,
+             transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s ease}
 .step p{font-size:15.5px;margin-top:7px}
-@media(max-width:640px){.step{grid-template-columns:1fr;gap:10px}}
+
+/* Mesma linguagem de hover do resto do site, mais discreta porque a faixa
+   é larga e um salto grande numa linha comprida fica desengonçado. */
+.step:hover{transform:translateY(-4px);border-color:rgba(var(--ouro-rgb),.55);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.05),
+             0 26px 60px -28px rgba(var(--ouro-rgb),.55)}
+.step:hover .step-n{background:var(--grad);color:var(--ink);border-color:transparent;
+  transform:scale(1.08);box-shadow:0 0 26px -6px rgba(var(--warm-rgb),.85)}
+
+@media(max-width:640px){
+  .step{grid-template-columns:1fr;gap:14px}
+  .step::after{display:none}
+}
 
 /* ---------- brinde ---------- */
 .gift{padding:52px;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;
@@ -234,23 +274,88 @@
 @media(max-width:860px){.gift{grid-template-columns:1fr;padding:36px;gap:30px}}
 
 /* ---------- planos ---------- */
-.plan{padding:34px;display:flex;flex-direction:column}
-.plan.featured{border-color:rgba(var(--lamp-rgb),.55);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 0 0 1px rgba(var(--lamp-rgb),.24),0 30px 70px -26px rgba(var(--warm-rgb),.55)}
+/* position:relative para a tarja "Mais escolhido" se ancorar no card */
+.plan{padding:34px;display:flex;flex-direction:column;position:relative;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s ease,border-color .3s ease}
+
+/* ---------- o pódio ----------
+   1º no meio e mais alto, 2º à esquerda, 3º à direita — igual à logo.
+   As bases dos três ficam alinhadas, como um pódio apoiado no chão: o grid
+   estica todos até a mesma linha de baixo, e é a margem do topo que encurta
+   cada degrau. Por isso os tampos saem em alturas diferentes sozinhos. */
+.lugar-2{order:1;margin-top:38px}   /* prata, à esquerda */
+.lugar-1{order:2;margin-top:0}      /* ouro, no meio     */
+.lugar-3{order:3;margin-top:68px}   /* bronze, à direita */
+
+/* O degrau mais alto respira mais por dentro, senão sobra um vão vazio
+   acima do botão só porque o card ficou maior. */
+.lugar-1 .plan{padding:42px 34px}
+
+/* Bordas de medalha: finas, muda só a cor */
+/* Só a borda. Sem box-shadow aqui, o card herda a sombra neutra do .glass,
+   igual aos outros dois — o halo dourado fica reservado para o hover. */
+.plan.featured{border-color:rgba(var(--ouro-rgb),.60)}
+.lugar-2 .plan{border-color:rgba(var(--prata-rgb),.42)}
+.lugar-3 .plan{border-color:rgba(var(--bronze-rgb),.48)}
+
+/* Passar o cursor levanta o card e acende o halo na cor da própria medalha.
+   O z-index garante que o card que cresceu passe por cima dos vizinhos. */
+.plan-wrap:hover{z-index:3}
+.plan-wrap:hover .plan{transform:translateY(-8px) scale(1.035)}
+.lugar-1:hover .plan{border-color:rgba(var(--ouro-rgb),.90);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.05),
+             0 30px 70px -26px rgba(var(--ouro-rgb),.60)}
+.lugar-2:hover .plan{border-color:rgba(var(--prata-rgb),.78);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.05),
+             0 30px 70px -26px rgba(var(--prata-rgb),.45)}
+.lugar-3:hover .plan{border-color:rgba(var(--bronze-rgb),.82);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.05),
+             0 30px 70px -26px rgba(var(--bronze-rgb),.60)}
+
+/* Cada plano tem o botão da sua medalha. O ouro fica com o botão principal
+   do site; prata e bronze ganham corpo próprio para não parecerem
+   desligados ao lado dele — a gente também quer vender esses dois. */
+.lugar-2 .plan .btn{background:rgba(var(--prata-rgb),.15);
+  border-color:rgba(var(--prata-rgb),.55);color:var(--text)}
+.lugar-2 .plan .btn:hover{background:rgba(var(--prata-rgb),.27);
+  border-color:rgba(var(--prata-rgb),.85)}
+.lugar-3 .plan .btn{background:rgba(var(--bronze-rgb),.20);
+  border-color:rgba(var(--bronze-rgb),.62);color:var(--text)}
+.lugar-3 .plan .btn:hover{background:rgba(var(--bronze-rgb),.34);
+  border-color:rgba(var(--bronze-rgb),.90)}
+
+/* No celular a coluna é única: sem pódio, sem reordenar, e a lista volta a
+   subir de preço na ordem natural do HTML. */
+@media(max-width:900px){
+  .lugar-1,.lugar-2,.lugar-3{order:0;margin-top:0}
+  .lugar-1 .plan{padding:34px}
+}
 /* z-index obrigatório: o backdrop-filter do .glass cria contexto de
    empilhamento e o card pintaria por cima da tarja. */
 .plan-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);z-index:2;
   font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.15em;
   text-transform:uppercase;padding:6px 15px;border-radius:100px;white-space:nowrap;
-  background:var(--grad);
+  background:linear-gradient(140deg,#FFE9A8,var(--ouro) 45%,#D19A1F);
   color:var(--ink);
-  box-shadow:0 8px 20px -6px rgba(var(--warm-rgb),.80)}
+  box-shadow:0 8px 20px -6px rgba(var(--ouro-rgb),.80)}
 .plan-wrap{position:relative;display:flex}
 .plan-name{font-family:'Archivo',sans-serif;font-size:17px;font-weight:600;margin-bottom:6px}
 .plan-for{font-size:13.5px;color:var(--muted);min-height:42px}
+.plan-de{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);
+  letter-spacing:.02em;margin:18px 0 -2px}
+.plan-de s{font-size:19px;font-weight:700;color:var(--alert);
+  text-decoration-thickness:2px;margin:0 3px}
 .plan-price{font-size:40px;font-weight:800;letter-spacing:-.035em;margin:18px 0 4px}
+/* Quando existe o "de ... por" em cima, o preço não repete o respiro */
+.plan-de + .plan-price{margin-top:6px}
 .plan-price small{font-family:'Inter',sans-serif;font-size:14px;font-weight:400;color:var(--muted);letter-spacing:0}
-.plan-ads{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em}
+/* Aviso da verba em caixa própria, e não em letra miúda: é a informação que
+   mais gera mal-entendido depois de fechado, então precisa ser lida. */
+.plan-ads{font-size:12.5px;color:var(--muted);line-height:1.5;
+  margin-top:16px;padding:11px 13px;border-radius:12px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11)}
+.plan-ads strong{display:block;color:var(--text);font-weight:600;font-size:13px;
+  margin-bottom:3px}
 .plan ul{list-style:none;display:grid;gap:11px;margin:26px 0 30px;padding-top:24px;
   border-top:1px solid rgba(255,255,255,.10)}
 .plan ul li{display:flex;gap:11px;font-size:14.5px;color:var(--muted);align-items:flex-start}
@@ -386,15 +491,27 @@ footer::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;
   .wa-float:hover span{opacity:0}
 }
 
-/* ---------- holofote (segue o mouse) ----------
-   O cursor normal continua visível. Isto é só o brilho que vem atrás.
-   O elemento é criado pelo config.js, e só no computador. */
-/* Sem mix-blend-mode de propósito: misturado, ele obrigava o navegador a
-   recalcular o desfoque dos cards de vidro a cada quadro e sujava a pintura. */
-.holofote{position:fixed;top:0;left:0;width:26px;height:26px;border-radius:50%;
-  pointer-events:none;z-index:200;opacity:0;will-change:transform;
-  background:radial-gradient(circle,rgba(var(--glow-rgb),.85),rgba(var(--lamp-rgb),.45) 42%,transparent 72%);
-  transition:opacity .35s ease,width .25s ease,height .25s ease}
-.holofote.acesa{opacity:1}
-/* Cresce sobre o que é clicável */
-.holofote.perto{width:52px;height:52px}
+/* ---------- cursor: ponto de ouro + anel ----------
+   O ponto é INSTANTÂNEO e substitui a seta; o anel é que vem atrás.
+   Antes existia um elemento só, e era ele que corria atrás do cursor —
+   por isso a sensação de atraso. Agora o atraso é do anel, de propósito.
+   Os dois são criados pelo config.js, e só no computador. */
+.cursor-ponto,.cursor-anel{position:fixed;top:0;left:0;border-radius:50%;
+  pointer-events:none;z-index:300;opacity:0;will-change:transform;
+  transition:opacity .3s ease,width .22s cubic-bezier(.2,.7,.3,1),
+             height .22s cubic-bezier(.2,.7,.3,1),border-color .22s ease,background .22s ease}
+/* O ponto tem tamanho fixo: ele é a seta, e seta não muda de tamanho.
+   Quem reage ao conteúdo é só o anel de fora. */
+.cursor-ponto{width:5px;height:5px;background:var(--ouro);
+  box-shadow:0 0 10px 1px rgba(var(--ouro-rgb),.70)}
+.cursor-anel{width:34px;height:34px;border:1.5px solid var(--lamp)}
+.cursor-ponto.acesa,.cursor-anel.acesa{opacity:1}
+/* Sobre algo clicável, só o anel abre e fica dourado */
+.cursor-anel.perto{width:54px;height:54px;border-color:var(--ouro);
+  background:rgba(var(--ouro-rgb),.10)}
+
+/* A seta nativa só some DEPOIS que o cursor customizado existe. A classe vem
+   do config.js — se o JS falhar, o visitante não fica sem cursor nenhum.
+   Campos de texto mantêm o cursor do sistema, onde ele informa mais. */
+html.cursor-proprio,html.cursor-proprio *{cursor:none}
+html.cursor-proprio input,html.cursor-proprio textarea,html.cursor-proprio select{cursor:auto}
