@@ -143,9 +143,10 @@
 /* ---------- antes / depois ----------
    O destaque vem de ACENDER a coluna escolhida, não de apagar a outra:
    apagar demais derrubaria o contraste do texto abaixo do mínimo legível.
-   A inativa fica em .72 de opacidade, que ainda passa em contraste. */
+   A inativa fica em .78 de opacidade: medido, dá 4,8:1 de contraste no texto
+   apagado. Em .72, que era o valor anterior, caía para 4,3:1 e reprovava. */
 .ad{display:grid;grid-template-columns:1fr 1fr;padding:0;overflow:hidden}
-.ad-col{padding:28px 32px 36px;opacity:.72;position:relative;
+.ad-col{padding:28px 32px 36px;opacity:.78;position:relative;
   transition:opacity .35s ease,background .35s ease}
 .ad-col+.ad-col{border-left:1px solid var(--glass-line)}
 .ad-col.ativa{opacity:1}
