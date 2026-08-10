@@ -61,19 +61,30 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--glow);outline-offse
 .rv{opacity:0;transform:translateY(24px);transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .75s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
 
-@media(max-width:620px){
-  .hero h1 em{white-space:normal}
-}
+/* ---------- telas menores ----------
+   DUAS REGRAS PARA NÃO QUEBRAR DE NOVO:
+
+   1. Aqui só entram seletores definidos NESTE arquivo. Media query não
+      aumenta a força da regra, e o 02-blocos.css carrega depois — então
+      qualquer tentativa de mexer em .hero, .g3 ou .final daqui é ignorada.
+      Esses moram no 02-blocos, junto do bloco deles.
+
+   2. Da maior largura para a menor. Numa tela de 375px as três valem ao
+      mesmo tempo, e a última a aparecer é a que ganha. */
 @media(max-width:1250px){
   section{padding:80px 0}
   .section-head{margin-bottom:42px}
   h2{font-size:clamp(28px,3.6vw,40px)}
 }
 @media(max-width:900px){
-  .g3,.g2{grid-template-columns:1fr}
   section{padding:72px 0}
-  .hero{padding:150px 0 72px}
-  .final{padding:48px 26px}
+}
+@media(max-width:620px){
+  .wrap{padding:0 18px}
+  section{padding:58px 0}
+  .section-head{margin-bottom:32px}
+  .lead{font-size:16.5px}
+  .btn{padding:15px 22px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
