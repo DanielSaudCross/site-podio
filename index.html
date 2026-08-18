@@ -16,7 +16,16 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<!-- A Anton é usada num lugar só do site: a palavra PODIO do logotipo.
+     O &text= manda o Google devolver só esses quatro caracteres em vez do
+     alfabeto inteiro, o que derruba o peso da fonte de dezenas de KB para
+     quase nada.
+     ATENÇÃO: se o logotipo mudar de palavra, ou se a Anton passar a ser usada
+     em outro lugar, os caracteres novos precisam entrar no &text= abaixo,
+     senão eles somem e caem numa fonte substituta. -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&text=PODIO&display=swap" rel="stylesheet">
 
 <!-- ─── FOLHAS DE ESTILO ───────────────────────────────────
      00-config  cores da marca, fundo e o holofote
@@ -27,11 +36,15 @@
      em vez de usar a que ele guardou. Sempre que o CSS ou o JS mudar,
      esse número sobe.
      ───────────────────────────────────────────────────── -->
-<link rel="stylesheet" href="assets/css/00-config.css?v=18">
-<link rel="stylesheet" href="assets/css/01-base.css?v=18">
-<link rel="stylesheet" href="assets/css/02-blocos.css?v=18">
+<link rel="stylesheet" href="assets/css/00-config.css?v=20">
+<link rel="stylesheet" href="assets/css/01-base.css?v=20">
+<link rel="stylesheet" href="assets/css/02-blocos.css?v=20">
 </head>
 <body>
+
+<!-- Primeiro alvo do Tab: pula o menu e vai direto ao conteúdo.
+     Fica escondido acima da tela até alguém dar foco nele. -->
+<a class="pular" href="#topo">Pular para o conteúdo</a>
 
 <div class="bg"></div>
 <div class="beam-stage"><div class="beam"></div></div>
@@ -173,7 +186,7 @@
         <div class="proof-body">
           <p class="stat" data-placeholder="1">1º</p>
           <h3>Nome do cliente</h3>
-          <p>Busca: "o termo que ele queria disputar"</p>
+          <p>Busca: “o termo que ele queria disputar”</p>
           <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
         </div>
       </article>
@@ -183,7 +196,7 @@
         <div class="proof-body">
           <p class="stat" data-placeholder="1">1º</p>
           <h3>Nome do cliente</h3>
-          <p>Busca: "o termo que ele queria disputar"</p>
+          <p>Busca: “o termo que ele queria disputar”</p>
           <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
         </div>
       </article>
@@ -193,7 +206,7 @@
         <div class="proof-body">
           <p class="stat" data-placeholder="1">1º</p>
           <h3>Nome do cliente</h3>
-          <p>Busca: "o termo que ele queria disputar"</p>
+          <p>Busca: “o termo que ele queria disputar”</p>
           <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
         </div>
       </article>
@@ -293,7 +306,7 @@
         <article class="plan glass">
           <p class="plan-name">Essencial</p>
           <p class="plan-for">Para quem quer começar por um canal só e validar antes de crescer.</p>
-          <p class="plan-price">R$ 990<small>/mês</small></p>
+          <p class="plan-price">R$&nbsp;990<small>/mês</small></p>
           <p class="plan-ads"><strong>A verba de anúncio não está inclusa.</strong>Você paga direto ao Google e ao Meta, na sua própria conta.</p>
           <ul>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>1 frente: Google <em>ou</em> Meta</li>
@@ -311,7 +324,7 @@
         <article class="plan glass">
           <p class="plan-name">Crescimento</p>
           <p class="plan-for">Para quem já anuncia e quer somar a busca local ao alcance das redes.</p>
-          <p class="plan-price">R$ 1.590<small>/mês</small></p>
+          <p class="plan-price">R$&nbsp;1.590<small>/mês</small></p>
           <p class="plan-ads"><strong>A verba de anúncio não está inclusa.</strong>Você paga direto ao Google e ao Meta, na sua própria conta.</p>
           <ul>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>2 frentes: Google + Meta</li>
@@ -332,8 +345,8 @@
           <span class="plan-tag">Mais escolhido</span>
           <p class="plan-name">Performance</p>
           <p class="plan-for">Para quem quer as três frentes disputadas e uma presença completa.</p>
-          <p class="plan-de">de <s>R$ 2.500</s> por</p><!-- TROCAR: só use se R$ 2.500 for o valor real de tabela -->
-          <p class="plan-price">R$ 2.090<small>/mês</small></p>
+          <p class="plan-de">de <s>R$&nbsp;2.500</s> por</p><!-- TROCAR: só use se R$&nbsp;2.500 for o valor real de tabela -->
+          <p class="plan-price">R$&nbsp;2.090<small>/mês</small></p>
           <p class="plan-ads"><strong>A verba de anúncio não está inclusa.</strong>Você paga direto ao Google e ao Meta, na sua própria conta.</p>
           <ul>
             <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>3 frentes: Google + Meta + Google Meu Negócio</li>
@@ -500,6 +513,6 @@
   <span>Falar no WhatsApp</span>
 </a>
 
-<script src="assets/js/config.js?v=18"></script>
+<script src="assets/js/config.js?v=20"></script>
 </body>
 </html>

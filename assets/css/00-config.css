@@ -118,7 +118,10 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* color-scheme avisa o navegador que a página é escura. Sem isto a barra de
+   rolagem e a interface nativa vêm no tema claro e ficam com um branco
+   berrante contra o fundo. Se um dia a paleta virar clara, troque para light. */
+html{scroll-behavior:smooth;color-scheme:dark}
 
 body{
   position:relative;

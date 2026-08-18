@@ -221,7 +221,10 @@
 .proof-frame span{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);
   letter-spacing:.11em;text-transform:uppercase;max-width:24ch;line-height:1.7}
 .proof-body{padding:26px 28px 30px}
+/* tabular-nums deixa todo algarismo com a mesma largura. Os três cards ficam
+   lado a lado, então sem isto o "1º" de um não alinha com o do vizinho. */
 .stat{font-size:38px;font-weight:800;letter-spacing:-.035em;
+  font-variant-numeric:tabular-nums;
   background:linear-gradient(100deg,var(--glow),var(--lamp));
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .proof-body h3{font-size:16px;margin:8px 0 6px}
@@ -352,13 +355,23 @@
   color:var(--ink);
   box-shadow:0 8px 20px -6px rgba(var(--ouro-rgb),.80)}
 .plan-wrap{position:relative;display:flex}
-.plan-name{font-family:'Archivo',sans-serif;font-size:17px;font-weight:600;margin-bottom:6px}
+/* O nome e o preço são <p>, e o 01-base pinta todo <p> de --muted. Sem a cor
+   explícita aqui, o preço saía no mesmo cinza dos itens da lista e a ressalva
+   sobre a verba, que é branca, ficava o elemento mais forte do card. */
+.plan-name{font-family:'Archivo',sans-serif;font-size:17px;font-weight:600;margin-bottom:6px;
+  color:var(--text)}
 .plan-for{font-size:13.5px;color:var(--muted);min-height:42px}
 .plan-de{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);
   letter-spacing:.02em;margin:18px 0 -2px}
 .plan-de s{font-size:19px;font-weight:700;color:var(--alert);
   text-decoration-thickness:2px;margin:0 3px}
-.plan-price{font-size:40px;font-weight:800;letter-spacing:-.035em;margin:18px 0 4px}
+/* Os três preços ficam em colunas: sem tabular-nums o 990, o 1.590 e o 2.090
+   têm larguras de dígito diferentes e a leitura vertical desalinha. */
+.plan-price{font-size:40px;font-weight:800;letter-spacing:-.035em;margin:18px 0 4px;
+  font-variant-numeric:tabular-nums;color:var(--text)}
+/* Ouro só no primeiro degrau, mesma regra do resto do pódio: o preço do
+   Performance é o número que a página inteira existe para mostrar. */
+.lugar-1 .plan-price{color:var(--ouro)}
 /* Quando existe o "de ... por" em cima, o preço não repete o respiro */
 .plan-de + .plan-price{margin-top:6px}
 .plan-price small{font-family:'Inter',sans-serif;font-size:14px;font-weight:400;color:var(--muted);letter-spacing:0}

@@ -19,6 +19,9 @@
 /* ---------- estrutura ---------- */
 .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
 section{padding:96px 0}
+/* A nav é fixa no topo. Sem esta folga, clicar em "Planos" no menu leva o
+   título para debaixo da barra e a pessoa cai no meio do bloco. */
+section[id],header[id]{scroll-margin-top:96px}
 h1,h2,h3,.plan-price,.stat{font-family:'Archivo',sans-serif;letter-spacing:-.028em;line-height:1.08}
 h2{font-size:clamp(30px,4.4vw,45px);font-weight:700}
 h3{font-size:20px;font-weight:700;letter-spacing:-.015em;line-height:1.3}
@@ -55,7 +58,28 @@ p{color:var(--muted)}
 .btn-ghost{background:rgba(255,255,255,.07);color:var(--text);border-color:var(--glass-line);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .btn-ghost:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--glow);outline-offset:3px;border-radius:100px}
+/* O contorno já acompanha o arredondamento de cada elemento sozinho. Antes
+   havia um border-radius:100px aqui, que virava pílula qualquer coisa que
+   recebesse foco — inclusive as perguntas do FAQ e os cards. */
+a:focus-visible,button:focus-visible,summary:focus-visible{
+  outline:2px solid var(--glow);outline-offset:3px}
+
+/* touch-action tira o atraso de 300ms do toque duplo no celular.
+   O tap-highlight padrão é um retângulo cinza-azulado do sistema; trocado
+   pelo verde da marca, e sem canto reto atravessando as pílulas. */
+a,button,summary{
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(var(--lamp-rgb),.16)}
+
+/* Primeiro item do teclado: pula a navegação e vai direto ao conteúdo.
+   Fica escondido acima da tela até receber foco. */
+.pular{position:fixed;left:16px;top:-120px;z-index:200;
+  padding:13px 22px;border-radius:100px;
+  background:var(--grad);color:var(--ink);
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:14.5px;
+  text-decoration:none;box-shadow:0 12px 34px -10px rgba(var(--warm-rgb),.75);
+  transition:top .22s cubic-bezier(.2,.7,.3,1)}
+.pular:focus{top:16px}
 
 /* ---------- reveal ---------- */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .75s cubic-bezier(.2,.7,.3,1)}
