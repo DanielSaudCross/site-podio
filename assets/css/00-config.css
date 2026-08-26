@@ -202,7 +202,7 @@ body{
    devagar. O giro é UMA transformação só, então é barato para o navegador,
    mesmo com todos os cards de vidro por cima. */
 .beam-stage{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
-.beam{position:absolute;top:50%;left:50%;width:190vmax;height:190vmax;
+.beam{position:absolute;top:50%;left:50%;width:130vmax;height:130vmax;
   transform:translate(-50%,-50%);
   background:
     radial-gradient(38% 38% at 32% 30%,rgba(var(--lamp-rgb),.10),transparent 70%),

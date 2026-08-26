@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Só agora a seta do sistema pode sumir: os substitutos já existem. */
     document.documentElement.classList.add('cursor-proprio');
 
+    let ultimoAlvo = null;      /* evita repetir o closest() no mesmo elemento */
     let alvoX = 0, alvoY = 0;   /* onde o mouse está */
     let anelX = 0, anelY = 0;   /* onde o anel está, correndo atrás */
 
@@ -152,9 +153,17 @@ document.addEventListener('DOMContentLoaded', () => {
       ponto.classList.add('acesa');
       anel.classList.add('acesa');
 
-      /* Só o anel abre sobre o que é clicável. O ponto nunca muda. */
-      anel.classList.toggle('perto', !!(e.target.closest &&
-        e.target.closest('a,button,summary,input,select,textarea,.plan,.card')));
+      perseguir();
+
+      /* Só o anel abre sobre o que é clicável. O ponto nunca muda.
+         O closest() varre a árvore acima do elemento, e mousemove dispara
+         dezenas de vezes por segundo. Como o alvo só muda quando o ponteiro
+         troca de elemento, guardamos o último e evitamos a varredura repetida. */
+      if (e.target !== ultimoAlvo) {
+        ultimoAlvo = e.target;
+        anel.classList.toggle('perto', !!(e.target.closest &&
+          e.target.closest('a,button,summary,input,select,textarea,.plan,.card')));
+      }
     });
 
     document.addEventListener('mouseleave', () => {
@@ -163,12 +172,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* 0.35 = o quanto o anel alcança o ponto a cada quadro.
-       Maior, mais colado. Menor, mais preguiçoso. Antes era 0.18. */
-    (function seguir() {
-      anelX += (alvoX - anelX) * 0.35;
-      anelY += (alvoY - anelY) * 0.35;
+       Maior, mais colado. Menor, mais preguiçoso.
+
+       O laço PARA quando o anel alcança o ponto. Antes ele rodava para sempre,
+       mesmo com o mouse imóvel, mantendo o navegador acordado sem necessidade.
+       Agora o mousemove religa quando há o que perseguir. */
+    let perseguindo = false;
+
+    const seguir = () => {
+      const dx = alvoX - anelX;
+      const dy = alvoY - anelY;
+      if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) { perseguindo = false; return; }
+      anelX += dx * 0.35;
+      anelY += dy * 0.35;
       posicionar(anel, anelX, anelY);
       requestAnimationFrame(seguir);
-    })();
+    };
+
+    const perseguir = () => {
+      if (perseguindo) return;
+      perseguindo = true;
+      requestAnimationFrame(seguir);
+    };
   }
 });
