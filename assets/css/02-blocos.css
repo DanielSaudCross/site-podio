@@ -209,29 +209,166 @@
 }
 
 /* ---------- resultados ---------- */
-/* Transição e movimento vêm do .card. Só a cor muda: aqui o halo é DOURADO,
-   porque estes são os clientes que já estão em primeiro lugar. */
-.proof{padding:0;overflow:hidden}
-.proof:hover{border-color:rgba(var(--ouro-rgb),.90);
+/* Ouro em toda a seção pela regra do pódio: dourado é do primeiro degrau e
+   dos clientes. Cada caso é um <details>, então abrir/fechar é nativo:
+   funciona com teclado, com leitor de tela e sem JS. */
+.casos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+
+.caso{padding:0;overflow:hidden;position:relative;
+  border-color:rgba(var(--ouro-rgb),.34);
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s ease,border-color .3s ease}
+/* Aberto, sobe para o topo da grade e ocupa a linha inteira. O order:-1 é o
+   que tira ele do meio da fila: sem isso, abrir o segundo card deixava ele
+   embaixo do primeiro, e o card em destaque ficava escondido no rodapé. */
+.caso[open]{order:-1;grid-column:1/-1;border-color:rgba(var(--ouro-rgb),.80);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 30px 70px -26px rgba(var(--ouro-rgb),.50)}
+.caso:hover{transform:translateY(-6px);border-color:rgba(var(--ouro-rgb),.85);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.05),
              0 30px 70px -26px rgba(var(--ouro-rgb),.60)}
-.proof-frame{aspect-ratio:16/10;display:grid;place-items:center;text-align:center;padding:24px;
-  border-bottom:1px solid var(--glass-line);
-  background:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 12px,transparent 12px 24px)}
-.proof-frame span{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);
-  letter-spacing:.11em;text-transform:uppercase;max-width:24ch;line-height:1.7}
-.proof-body{padding:26px 28px 30px}
-/* tabular-nums deixa todo algarismo com a mesma largura. Os três cards ficam
-   lado a lado, então sem isto o "1º" de um não alinha com o do vizinho. */
-.stat{font-size:38px;font-weight:800;letter-spacing:-.035em;
+.caso[open]:hover{transform:none}
+/* Brilho quente subindo do rodapé do card. É o que tira a peça do "chapado":
+   dá profundidade sem pesar, e some quando o card não interessa. */
+.caso::before{content:'';position:absolute;inset:auto 0 0 0;height:58%;pointer-events:none;
+  background:linear-gradient(to top,rgba(var(--ouro-rgb),.13),transparent);
+  opacity:.55;transition:opacity .3s ease}
+.caso:hover::before,.caso[open]::before{opacity:1}
+
+.caso > summary{list-style:none;cursor:pointer;display:block;padding:24px 24px 20px;position:relative}
+.caso > summary::-webkit-details-marker{display:none}
+.caso > summary:focus-visible{outline:2px solid var(--glow);outline-offset:-3px}
+
+.caso-cabeca{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}
+/* O logotipo do cliente costuma vir branco e sem fundo. O quadro escuro dá
+   contorno a ele sem exigir uma versão colorida, e as medidas fixas reservam
+   o espaço antes da imagem chegar, então o card não salta ao carregar. */
+/* Altura fixa e largura livre: logotipo de cliente vem em proporção qualquer.
+   A Nativa é quadrada, a do Inuit é o dobro de largura. Travar num quadrado
+   faria a larga encolher até virar tarja ilegível. */
+.caso-logo{height:76px;width:auto;max-width:180px;flex:none;object-fit:contain;
+  border-radius:15px;padding:8px 12px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  /* Enquanto o arquivo nao existe, o alt aparece dentro do quadro em vez de
+     virar icone de imagem quebrada. */
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted);
+  overflow:hidden;text-align:center}
+.caso-logo-vazio{display:block;width:72px;background:
+  repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 7px,transparent 7px 14px)}
+
+/* O "+" que vira "×". Mesma gramática do FAQ, para o site ter um jeito só
+   de dizer "isto abre". */
+.caso-abrir{width:28px;height:28px;flex:none;border-radius:50%;position:relative;
+  border:1px solid rgba(var(--ouro-rgb),.40);
+  transition:transform .28s cubic-bezier(.2,.7,.3,1),background .25s ease,border-color .25s ease}
+.caso-abrir::before,.caso-abrir::after{content:'';position:absolute;top:50%;left:50%;
+  background:var(--ouro);border-radius:1px;transform:translate(-50%,-50%)}
+.caso-abrir::before{width:11px;height:1.5px}
+.caso-abrir::after{width:1.5px;height:11px;transition:opacity .2s ease}
+.caso:hover .caso-abrir{background:rgba(var(--ouro-rgb),.16);border-color:rgba(var(--ouro-rgb),.85)}
+.caso[open] .caso-abrir{display:none}
+
+.caso h3{font-size:19px;letter-spacing:-.02em;margin:0}
+.caso-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+  letter-spacing:.04em;margin-top:6px;line-height:1.5}
+
+/* O número é o elemento gráfico do card. Grande, dourado, sem concorrência. */
+.caso-numero{font-family:'Archivo',sans-serif;font-size:42px;font-weight:800;
+  letter-spacing:-.04em;line-height:1;margin:22px 0 0;
   font-variant-numeric:tabular-nums;
-  background:linear-gradient(100deg,var(--glow),var(--lamp));
+  background:linear-gradient(100deg,var(--glow),var(--ouro) 52%,#D69B12);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.proof-body h3{font-size:16px;margin:8px 0 6px}
-.proof-body p{font-size:14.5px}
-.proof-meta{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);
-  margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);letter-spacing:.05em}
+.caso-rot{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.4}
+
+.caso-pe{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.09)}
+.caso-canal{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ouro)}
+/* Os três degraus do logotipo, em miniatura. Ornamento da marca, não gráfico:
+   não representa dado nenhum e por isso fica fora da árvore de acessibilidade. */
+.caso-degraus{display:block;width:26px;height:14px;flex:none;
+  background:
+    linear-gradient(var(--muted),var(--muted))  0   100%/6px 7px  no-repeat,
+    linear-gradient(var(--ouro),var(--ouro))    50% 100%/7px 14px no-repeat,
+    linear-gradient(var(--muted),var(--muted)) 100% 100%/6px 4px  no-repeat;
+  opacity:.5;transition:opacity .25s ease}
+.caso:hover .caso-degraus{opacity:1}
+
+/* ---- conteúdo que aparece ao abrir ---- */
+/* ---- estado aberto ----
+   O número grande do card fechado repetia o primeiro número do bloco Google
+   Ads, e o rodapé "Google Ads + Meta" repetia os nomes dos dois blocos. Os
+   dois somem ao abrir: era daí que vinha metade da altura ociosa. */
+.caso[open] .caso-numero,
+.caso[open] .caso-rot,
+.caso[open] .caso-pe{display:none}
+/* Aberto, o logotipo do parceiro vira a marca do card, não um selo no canto. */
+/* Logotipo quadrado rende menos área que um deitado na mesma altura, e ao
+   lado de um deitado parece pequeno. Ganha altura extra para os dois terem
+   peso parecido no card. */
+.caso[open] .caso-logo{height:112px;max-width:270px;border-radius:20px;padding:12px 18px}
+.caso-logo.quadrada{height:92px}
+.caso[open] .caso-logo.quadrada{height:140px;padding:14px}
+.caso[open] > summary{padding-bottom:0}
+.caso[open] .caso-cabeca{margin-bottom:12px}
+.caso[open] h3{font-size:26px}
+
+.caso-mais{padding:0 24px 24px;cursor:pointer}
+
+/* Google Ads e Meta medem coisas diferentes e os números não se somam, então
+   cada canal ganha seu bloco com nome em cima. Juntar os dois numa fileira só
+   faria parecer que 566 e 168 são a mesma unidade. */
+.canal{padding-top:16px;margin-top:16px;border-top:1px solid rgba(255,255,255,.09)}
+.canal:first-child{margin-top:0}
+.canal-nome{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ouro);
+  display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.canal-nome::after{content:'';flex:1;height:1px;background:rgba(var(--ouro-rgb),.22)}
+.canal-camp{font-size:13.5px;color:var(--muted);margin:-6px 0 14px}
+
+/* Quatro colunas fixas, iguais em todos os cards. Com auto-fit, um bloco de
+   2 números esticava cada um para 50% da largura e abria um vão enorme entre
+   eles. Fixo, os dois se agrupam à esquerda e as colunas dos vários cards
+   ficam alinhadas entre si. */
+.caso-numeros{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 20px}
+.num-valor{font-family:'Archivo',sans-serif;font-size:30px;font-weight:800;
+  letter-spacing:-.035em;line-height:1.05;color:var(--text);font-variant-numeric:tabular-nums}
+.num-rot{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.35}
+/* O número de destaque é o mesmo nos dois estados: fechado ele é o
+   .caso-numero, aberto ele é o primeiro do bloco. Antes trocava de cor ao
+   abrir, e o herói do card virava um número igual aos outros. */
+.num-destaque .num-valor{font-size:38px;
+  background:linear-gradient(100deg,var(--glow),var(--ouro) 52%,#D69B12);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* A frase traduz o painel: número de plataforma não vende sozinho. */
+.caso-frase{margin-top:24px;font-size:16.5px;color:var(--muted);max-width:60ch}
+.caso-frase strong{color:var(--text);font-weight:700}
+.caso-periodo{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+  letter-spacing:.05em;margin-top:20px;padding-top:14px;opacity:.8;
+  border-top:1px solid rgba(255,255,255,.07)}
+
+/* O card de espera não se disfarça de cliente: sem ouro, sem brilho, sem clique. */
+.caso-vaga{border-color:rgba(255,255,255,.10);pointer-events:none}
+.caso-vaga::before{display:none}
+.caso-vaga h3,.caso-vaga .caso-numero{color:var(--muted);-webkit-text-fill-color:var(--muted)}
+.caso-vaga .caso-numero{background:none;font-size:34px}
+.caso-vaga .caso-canal{color:var(--muted)}
+.caso-vaga > summary{cursor:default}
+
 .disclaimer{margin-top:26px;font-size:13.5px;color:var(--muted);text-align:center}
+
+@media(max-width:900px){
+  .casos{grid-template-columns:repeat(2,1fr)}
+  .caso-numeros{grid-template-columns:repeat(2,1fr);gap:18px}
+}
+@media(max-width:620px){
+  .casos{grid-template-columns:1fr}
+  .caso > summary{padding:20px 20px 18px}
+  .caso-mais{padding:0 20px 22px}
+  .caso-numero{font-size:36px}
+  .caso-numeros{grid-template-columns:repeat(2,1fr);gap:16px 14px}
+  .num-valor{font-size:26px}
+  .num-destaque .num-valor{font-size:32px}
+  .caso-frase{font-size:15px}
+}
 
 /* ---------- método ---------- */
 .steps{display:grid;gap:18px}

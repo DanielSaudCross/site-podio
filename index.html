@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Agência Pódio · Você em primeiro nas buscas da sua região</title>
-<meta name="description" content="Agência Pódio: gestão de tráfego pago no Google e no Meta e otimização do Google Meu Negócio para empresas que atendem uma região. Diagnóstico gratuito do seu perfil em 24h.">
+<meta name="description" content="Agência de tráfego pago em Brasília, atendendo o Brasil inteiro. Google Ads, Meta Ads e otimização do Google Meu Negócio para empresas que atendem uma região. Diagnóstico gratuito do seu perfil em 24h.">
 
 <!-- Prévia do link no WhatsApp e nas redes -->
 <meta property="og:type" content="website">
@@ -13,6 +13,168 @@
 <meta property="og:description" content="Seu concorrente não é melhor que você. Ele só aparece primeiro. Anúncios no Google, anúncios no Meta e Google Meu Negócio.">
 <meta property="og:image" content="assets/img/preview.jpg"><!-- TROCAR: imagem 1200x630 -->
 <meta name="theme-color" content="#0A0B0A"><!-- acompanha a paleta ativa do 00-config.css -->
+
+
+<!-- TROCAR: quando houver domínio próprio, trocar aqui e no sitemap.xml.
+     O canonical diz ao Google qual é o endereço oficial da página e evita
+     que ela seja indexada por dois endereços diferentes. -->
+<link rel="canonical" href="https://site-podio.vercel.app/">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://site-podio.vercel.app/"><!-- TROCAR junto com o canonical -->
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Agência Pódio">
+
+<!-- ─── DADOS ESTRUTURADOS ──────────────────────────────────
+     Descreve a empresa em JSON para o Google e para os buscadores de IA.
+     É daqui que sai a resposta quando alguém pergunta a um assistente
+     "quanto custa uma agência de tráfego pago" ou "quem faz Google Meu
+     Negócio em [cidade]".
+
+     O bloco FAQPage é gerado a partir das perguntas visíveis do BLOCO 10.
+     Se você editar uma pergunta lá, edite aqui também: o Google exige que o
+     dado estruturado corresponda ao que a pessoa vê na página.
+     ───────────────────────────────────────────────────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Agência Pódio",
+  "description": "Agência de tráfego pago especializada em empresas que atendem uma região. Gestão de Google Ads, Meta Ads e otimização do perfil no Google Meu Negócio.",
+  "url": "https://site-podio.vercel.app/",
+  "image": "https://site-podio.vercel.app/assets/img/preview.jpg",
+  "priceRange": "R$ 990 - R$ 2.090 por mês",
+  "currenciesAccepted": "BRL",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Brasília",
+    "addressRegion": "DF",
+    "addressCountry": "BR"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Brasil"
+  },
+  "availableLanguage": "pt-BR",
+  "founder": [
+    { "@type": "Person", "name": "Daniel", "jobTitle": "Operação e processo comercial" },
+    { "@type": "Person", "name": "João Vitor", "jobTitle": "Tráfego pago" }
+  ],
+  "knowsAbout": [
+    "Google Ads",
+    "Meta Ads",
+    "Google Meu Negócio",
+    "tráfego pago",
+    "anúncios para negócio local",
+    "otimização de perfil no Google"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Planos de gestão de tráfego pago",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Essencial",
+        "description": "Uma frente: Google ou Meta. Estruturação, rastreamento e relatório mensal. Verba de anúncio não inclusa.",
+        "price": "990",
+        "priceCurrency": "BRL",
+        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "990", "priceCurrency": "BRL", "billingDuration": 1, "billingIncrement": 1, "unitCode": "MON" }
+      },
+      {
+        "@type": "Offer",
+        "name": "Crescimento",
+        "description": "Duas frentes: Google e Meta, mais otimização inicial do Google Meu Negócio. Verba de anúncio não inclusa.",
+        "price": "1590",
+        "priceCurrency": "BRL",
+        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "1590", "priceCurrency": "BRL", "billingDuration": 1, "billingIncrement": 1, "unitCode": "MON" }
+      },
+      {
+        "@type": "Offer",
+        "name": "Performance",
+        "description": "Três frentes: Google, Meta e Google Meu Negócio, com site de apresentação incluso. Verba de anúncio não inclusa.",
+        "price": "2090",
+        "priceCurrency": "BRL",
+        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "2090", "priceCurrency": "BRL", "billingDuration": 1, "billingIncrement": 1, "unitCode": "MON" }
+      }
+    ]
+  }
+}
+</script>
+
+<!-- As mesmas perguntas do BLOCO 10, em formato que o Google pode exibir
+     direto no resultado da busca e que um assistente de IA consegue citar. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "A verba de anúncio está incluída no plano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. O valor do plano é da gestão. A verba de anúncio é separada e paga por você direto ao Google e ao Meta, na sua conta e no seu cartão. Assim você enxerga cada gasto e as contas continuam suas, mesmo se a parceria acabar. Quanto investir depende da sua cidade, do seu segmento e de quantos atendimentos a mais você dá conta de receber. Esse valor é definido junto com você na reunião, depois do diagnóstico."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Onde a Agência Pódio fica? Vocês atendem a minha cidade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nossa sede é em Brasília, no Distrito Federal, e atendemos empresas no Brasil inteiro. O trabalho é feito à distância, com reunião por vídeo e conversa por WhatsApp. Isso não muda nada no resultado: o que a campanha disputa é a região do seu negócio, não a nossa. Se você atende Manaus, é em Manaus que você vai aparecer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vocês garantem que eu vou aparecer em primeiro no Google?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não, e desconfie de quem garantir. Posição depende de leilão e de quem mais está disputando, e isso ninguém controla. O que a gente garante é o trabalho: perfil organizado, campanhas no ar, ajuste toda semana e relatório mostrando quantos contatos entraram. Se o número não mexer, você tem em mãos exatamente o que foi feito."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Em quanto tempo eu vejo resultado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contato costuma aparecer nas primeiras semanas. Estabilidade, isto é, saber quanto custa cada cliente e conseguir repetir, leva de dois a três meses. Google Meu Negócio é mais lento: o ganho de posição no Maps se acumula ao longo dos meses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tem fidelidade ou multa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pedimos um compromisso inicial de três meses. Não é para prender ninguém: o primeiro mês é de estruturação e coleta de dados, e é a partir do segundo que dá para otimizar com informação de verdade. Depois desse período, é mês a mês."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que vem no diagnóstico gratuito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Um relatório do seu perfil no Google com mais de 20 pontos avaliados, cada um marcado como bom, razoável ou fraco: categorias, serviços, descrição, horário, fotos, avaliações e resposta a avaliações, entre outros. Entregamos em até 24 horas e você recebe mesmo que não feche com a gente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vocês produzem os criativos dos anúncios?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A gente dirige e testa, não produz. Definimos o roteiro, a oferta e a mensagem de cada anúncio, e conduzimos os testes para descobrir o que funciona. As peças em si vêm de você ou de quem já cuida disso aí. Nosso trabalho é comprar e gerenciar a mídia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vocês atendem qualquer segmento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Hoje temos mais bagagem em beleza e em estruturação comercial, mas o método de busca local funciona para qualquer empresa que atenda uma região. Se acharmos que o seu caso não é para nós, dizemos isso no diagnóstico."
+      }
+    }
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,9 +198,9 @@
      em vez de usar a que ele guardou. Sempre que o CSS ou o JS mudar,
      esse número sobe.
      ───────────────────────────────────────────────────── -->
-<link rel="stylesheet" href="assets/css/00-config.css?v=20">
-<link rel="stylesheet" href="assets/css/01-base.css?v=20">
-<link rel="stylesheet" href="assets/css/02-blocos.css?v=20">
+<link rel="stylesheet" href="assets/css/00-config.css?v=30">
+<link rel="stylesheet" href="assets/css/01-base.css?v=30">
+<link rel="stylesheet" href="assets/css/02-blocos.css?v=30">
 </head>
 <body>
 
@@ -177,41 +339,123 @@
     <div class="section-head rv">
       <p class="eyebrow">Prova social</p>
       <h2>Quem já está no degrau mais alto.</h2>
-      <p class="lead">Cada imagem abaixo é uma busca real, feita na cidade do cliente. Quem está em primeiro é quem trabalha com a gente. É exatamente o lugar onde o seu concorrente aparece hoje.</p>
+      <p class="lead">Número de conta real, tirado do painel do próprio cliente. Toque num card para ver a conta inteira, canal por canal.</p>
     </div>
-    <div class="grid g3">
 
-      <article class="card glass proof rv">
-        <div class="proof-frame"><span>Trocar pelo print da busca no Google, com o cliente em primeiro</span></div>
-        <div class="proof-body">
-          <p class="stat" data-placeholder="1">1º</p>
-          <h3>Nome do cliente</h3>
-          <p>Busca: “o termo que ele queria disputar”</p>
-          <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
-        </div>
-      </article>
+    <div class="casos rv">
 
-      <article class="card glass proof rv">
-        <div class="proof-frame"><span>Trocar pelo print da busca no Google, com o cliente em primeiro</span></div>
-        <div class="proof-body">
-          <p class="stat" data-placeholder="1">1º</p>
-          <h3>Nome do cliente</h3>
-          <p>Busca: “o termo que ele queria disputar”</p>
-          <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
-        </div>
-      </article>
+      <!-- Cada caso é um elemento "details" nativo: compacto por padrão, abre
+           no clique. Funciona com teclado e sem uma linha de JS.
+           Os dois canais ficam SEPARADOS lá dentro: Google Ads e Meta medem
+           coisas diferentes e os números não se somam. -->
+      <details class="caso glass" name="casos">
+        <summary>
+          <div class="caso-cabeca">
+            <!-- TROCAR: salvar o arquivo em assets/img/clientes/nativa.png -->
+            <img class="caso-logo quadrada" src="assets/img/clientes/nativa.png" alt="Nativa" width="512" height="512" loading="lazy">
+            <span class="caso-abrir" aria-hidden="true"></span>
+          </div>
 
-      <article class="card glass proof rv">
-        <div class="proof-frame"><span>Trocar pelo print da busca no Google, com o cliente em primeiro</span></div>
-        <div class="proof-body">
-          <p class="stat" data-placeholder="1">1º</p>
-          <h3>Nome do cliente</h3>
-          <p>Busca: “o termo que ele queria disputar”</p>
-          <p class="proof-meta">Segmento · Cidade · cliente desde mês/ano</p>
+          <h3>Nativa</h3>
+          <p class="caso-meta">Segmento · Cidade/UF · desde mês/ano</p><!-- TROCAR -->
+
+          <p class="caso-numero">566</p>
+          <p class="caso-rot">conversões no Google Ads<!-- TROCAR: se a conversão for mensagem, escrever "pessoas que chamaram" --></p>
+
+          <div class="caso-pe">
+            <span class="caso-canal">Google Ads + Meta</span>
+            <i class="caso-degraus" aria-hidden="true"></i>
+          </div>
+        </summary>
+
+        <div class="caso-mais">
+
+          <div class="canal">
+            <h4 class="canal-nome">Google Ads</h4>
+            <div class="caso-numeros">
+              <div class="num num-destaque"><p class="num-valor">566</p><p class="num-rot">conversões</p></div>
+              <div class="num"><p class="num-valor">R$&nbsp;4,85</p><p class="num-rot">por conversão</p></div>
+              <div class="num"><p class="num-valor">2,05&nbsp;mil</p><p class="num-rot">cliques</p></div>
+              <div class="num"><p class="num-valor">R$&nbsp;2,75&nbsp;mil</p><p class="num-rot">investido em mídia</p></div>
+            </div>
+          </div>
+
+          <div class="canal">
+            <h4 class="canal-nome">Meta</h4>
+            <p class="canal-camp">Campanha “Carrinho de picolé”</p>
+            <div class="caso-numeros">
+              <div class="num"><p class="num-valor">168</p><p class="num-rot">conversas iniciadas</p></div>
+              <div class="num"><p class="num-valor">R$&nbsp;3,38</p><p class="num-rot">por conversa</p></div>
+            </div>
+          </div>
+
+          <p class="caso-periodo">Período: mês/ano a mês/ano · verba de mídia paga pelo cliente<!-- TROCAR: preencher o período real --></p>
         </div>
-      </article>
+      </details>
+
+      <details class="caso glass" name="casos">
+        <summary>
+          <div class="caso-cabeca">
+            <img class="caso-logo" src="assets/img/clientes/inuit.png" alt="Brechó Inuit" width="512" height="256" loading="lazy">
+            <span class="caso-abrir" aria-hidden="true"></span>
+          </div>
+
+          <h3>Brechó Inuit</h3>
+          <p class="caso-meta">Brechó · Cidade/UF · desde mês/ano</p><!-- TROCAR: cidade e início -->
+
+          <p class="caso-numero">7.010</p>
+          <p class="caso-rot">visitas ao perfil do Instagram<!-- TROCAR: o painel mede VISITA ao perfil, não seguidor ganho --></p>
+
+          <div class="caso-pe">
+            <span class="caso-canal">Google Ads + Meta</span>
+            <i class="caso-degraus" aria-hidden="true"></i>
+          </div>
+        </summary>
+
+        <div class="caso-mais">
+
+          <div class="canal">
+            <h4 class="canal-nome">Google Ads</h4>
+            <div class="caso-numeros">
+              <div class="num"><p class="num-valor">6,86&nbsp;mil</p><p class="num-rot">cliques</p></div>
+              <div class="num"><p class="num-valor">R$&nbsp;0,23</p><p class="num-rot">por clique</p></div>
+              <div class="num"><p class="num-valor">64,6&nbsp;mil</p><p class="num-rot">impressões</p></div>
+              <div class="num"><p class="num-valor">R$&nbsp;1,59&nbsp;mil</p><p class="num-rot">investido em mídia</p></div>
+            </div>
+          </div>
+
+          <div class="canal">
+            <h4 class="canal-nome">Meta</h4>
+            <p class="canal-camp">Duas campanhas: perfil no Instagram e mensagens</p>
+            <div class="caso-numeros">
+              <div class="num num-destaque"><p class="num-valor">7.010</p><p class="num-rot">visitas ao perfil do Instagram</p></div>
+              <div class="num"><p class="num-valor">R$&nbsp;0,18</p><p class="num-rot">por visita ao perfil</p></div>
+              <div class="num"><p class="num-valor">157</p><p class="num-rot">conversas iniciadas</p></div>
+              <div class="num"><p class="num-valor">R$&nbsp;3,49</p><p class="num-rot">por conversa</p></div>
+            </div>
+          </div>
+
+          <p class="caso-periodo">Google Ads: 2 de março a 17 de agosto de 2026 · verba de mídia paga pelo cliente<!-- TROCAR: confirmar o período do Meta --></p>
+        </div>
+      </details>
+
+      <!-- TROCAR: card de espera. Duplique o bloco da Nativa e preencha, ou
+           apague este card se for lançar com menos de três casos. -->
+      <details class="caso caso-vaga glass">
+        <summary>
+          <div class="caso-cabeca">
+            <span class="caso-logo caso-logo-vazio" aria-hidden="true"></span>
+          </div>
+          <h3>Próximo caso</h3>
+          <p class="caso-meta">aguardando liberação do cliente</p>
+          <p class="caso-numero">—</p>
+          <p class="caso-rot">números em breve</p>
+          <div class="caso-pe"><span class="caso-canal">—</span></div>
+        </summary>
+      </details>
 
     </div>
+
     <p class="disclaimer">Resultado passado não garante resultado futuro. Cada mercado, verba e operação comercial responde de um jeito.</p>
   </div>
 </section>
@@ -407,15 +651,19 @@
       <h2>Perguntas que sempre aparecem.</h2>
     </div>
     <div class="faq">
-
       <details class="glass rv">
         <summary>A verba de anúncio está incluída no plano?</summary>
-        <p>Não. O valor do plano é da gestão. A verba de anúncio é separada e paga por você direto ao Google e ao Meta, na sua conta e no seu cartão. Assim você enxerga cada gasto e as contas continuam suas, mesmo se a parceria acabar.</p>
+        <p>Não. O valor do plano é da gestão. A verba de anúncio é separada e paga por você direto ao Google e ao Meta, na sua conta e no seu cartão. Assim você enxerga cada gasto e as contas continuam suas, mesmo se a parceria acabar. Quanto investir depende da sua cidade, do seu segmento e de quantos atendimentos a mais você dá conta de receber. Esse valor é definido junto com você na reunião, depois do diagnóstico.</p>
       </details>
 
       <details class="glass rv">
-        <summary>Tem fidelidade ou multa?</summary>
-        <p>Pedimos um compromisso inicial de três meses. Não é para prender ninguém: o primeiro mês é de estruturação e coleta de dados, e é a partir do segundo que dá para otimizar com informação de verdade. Depois desse período, é mês a mês.</p>
+        <summary>Onde a Agência Pódio fica? Vocês atendem a minha cidade?</summary>
+        <p>Nossa sede é em Brasília, no Distrito Federal, e atendemos empresas no Brasil inteiro. O trabalho é feito à distância, com reunião por vídeo e conversa por WhatsApp. Isso não muda nada no resultado: o que a campanha disputa é a região do seu negócio, não a nossa. Se você atende Manaus, é em Manaus que você vai aparecer.</p>
+      </details>
+
+      <details class="glass rv">
+        <summary>Vocês garantem que eu vou aparecer em primeiro no Google?</summary>
+        <p>Não, e desconfie de quem garantir. Posição depende de leilão e de quem mais está disputando, e isso ninguém controla. O que a gente garante é o trabalho: perfil organizado, campanhas no ar, ajuste toda semana e relatório mostrando quantos contatos entraram. Se o número não mexer, você tem em mãos exatamente o que foi feito.</p>
       </details>
 
       <details class="glass rv">
@@ -424,13 +672,23 @@
       </details>
 
       <details class="glass rv">
-        <summary>Vocês atendem qualquer segmento?</summary>
-        <p>Sim. Hoje temos mais bagagem em beleza e em estruturação comercial, mas o método de busca local funciona para qualquer empresa que atenda uma região. Se acharmos que o seu caso não é para nós, dizemos isso no diagnóstico.</p>
+        <summary>Tem fidelidade ou multa?</summary>
+        <p>Pedimos um compromisso inicial de três meses. Não é para prender ninguém: o primeiro mês é de estruturação e coleta de dados, e é a partir do segundo que dá para otimizar com informação de verdade. Depois desse período, é mês a mês.</p>
       </details>
 
       <details class="glass rv">
-        <summary>O site incluso é mesmo sem custo?</summary>
-        <p>A criação é sem custo no plano Performance, e não há mensalidade extra por ele. Domínio e hospedagem, quando você quiser um domínio próprio, são pagos direto ao provedor e ficam no seu nome.</p>
+        <summary>O que vem no diagnóstico gratuito?</summary>
+        <p>Um relatório do seu perfil no Google com mais de 20 pontos avaliados, cada um marcado como bom, razoável ou fraco: categorias, serviços, descrição, horário, fotos, avaliações e resposta a avaliações, entre outros. Entregamos em até 24 horas e você recebe mesmo que não feche com a gente.</p>
+      </details>
+
+      <details class="glass rv">
+        <summary>Vocês produzem os criativos dos anúncios?</summary>
+        <p>A gente dirige e testa, não produz. Definimos o roteiro, a oferta e a mensagem de cada anúncio, e conduzimos os testes para descobrir o que funciona. As peças em si vêm de você ou de quem já cuida disso aí. Nosso trabalho é comprar e gerenciar a mídia.</p>
+      </details>
+
+      <details class="glass rv">
+        <summary>Vocês atendem qualquer segmento?</summary>
+        <p>Sim. Hoje temos mais bagagem em beleza e em estruturação comercial, mas o método de busca local funciona para qualquer empresa que atenda uma região. Se acharmos que o seu caso não é para nós, dizemos isso no diagnóstico.</p>
       </details>
 
     </div>
@@ -464,7 +722,7 @@
         <p>Gestão de tráfego pago no Google e no Meta e otimização do Google Meu Negócio para empresas que atendem uma região.</p>
         <p class="foot-local">
           <svg viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
-          <span>Cidade/UF · atendimento em toda a região</span><!-- TROCAR: cidade e região -->
+          <span>Sede em Brasília/DF · atendemos o Brasil inteiro</span>
         </p>
         <div class="foot-social">
           <!-- TROCAR: endereço do Instagram no href -->
@@ -513,6 +771,6 @@
   <span>Falar no WhatsApp</span>
 </a>
 
-<script src="assets/js/config.js?v=20"></script>
+<script src="assets/js/config.js?v=30"></script>
 </body>
 </html>

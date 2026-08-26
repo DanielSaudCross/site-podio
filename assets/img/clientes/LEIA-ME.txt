@@ -1,0 +1,6 @@
+Logotipos de clientes.
+
+Salve aqui em PNG com fundo transparente, quadrado, 256x256 ou maior.
+O nome do arquivo tem que bater com o src no index.html.
+
+Esperando: nativa.png

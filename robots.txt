@@ -1,0 +1,25 @@
+# Agência Pódio
+# Site de uma página só: tudo é público e indexável.
+
+User-agent: *
+Allow: /
+
+# Assistentes de IA. Liberados de propósito: parte da procura por agência
+# hoje começa numa pergunta a um assistente, não numa busca no Google.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# TROCAR: trocar pelo domínio próprio quando existir
+Sitemap: https://site-podio.vercel.app/sitemap.xml
