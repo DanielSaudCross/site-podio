@@ -102,6 +102,77 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ----------------------------------------------------------
+     Menu do celular
+     Abre e fecha o painel, prende o foco do teclado dentro dele
+     enquanto está aberto e devolve o foco ao botão ao fechar.
+     ---------------------------------------------------------- */
+  const botaoMenu = document.querySelector('.menu-btn');
+  const painel = document.querySelector('.menu-painel');
+
+  if (botaoMenu && painel) {
+    const focaveis = () => painel.querySelectorAll('a[href], button');
+    /* O primeiro foco vai para o fechar, não para o primeiro link: quem abriu
+       sem querer precisa da saída à mão antes da navegação. */
+
+    const abrir = () => {
+      painel.hidden = false;
+      painel.classList.add('aberto');
+      botaoMenu.setAttribute('aria-expanded', 'true');
+      botaoMenu.setAttribute('aria-label', 'Fechar o menu');
+      /* Trava a rolagem de trás: sem isto a página corre por baixo do painel. */
+      document.body.style.overflow = 'hidden';
+      const saida = painel.querySelector('.menu-fechar') || focaveis()[0];
+      if (saida) saida.focus();
+    };
+
+    const fechar = (devolverFoco) => {
+      painel.classList.remove('aberto');
+      painel.hidden = true;
+      botaoMenu.setAttribute('aria-expanded', 'false');
+      botaoMenu.setAttribute('aria-label', 'Abrir o menu');
+      document.body.style.overflow = '';
+      if (devolverFoco) botaoMenu.focus();
+    };
+
+    botaoMenu.addEventListener('click', () => {
+      painel.classList.contains('aberto') ? fechar(true) : abrir();
+    });
+
+    /* O X de dentro do painel. Existe porque o painel cobre a barra, e o
+       hambúrguer fica atrás dele: no celular não há tecla Esc. */
+    const fecharBtn = painel.querySelector('.menu-fechar');
+    if (fecharBtn) fecharBtn.addEventListener('click', () => fechar(true));
+
+    /* Tocar num link fecha o painel: senão ele cobriria a seção de destino. */
+    painel.addEventListener('click', (e) => {
+      if (e.target.closest('a')) fechar(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!painel.classList.contains('aberto')) return;
+      if (e.key === 'Escape') { fechar(true); return; }
+      /* Foco preso: o Tab circula dentro do painel em vez de vazar para a
+         página de trás, que continua ali mas escondida. */
+      if (e.key === 'Tab') {
+        const itens = focaveis();
+        if (!itens.length) return;
+        const primeiro = itens[0], ultimo = itens[itens.length - 1];
+        if (e.shiftKey && document.activeElement === primeiro) {
+          e.preventDefault(); ultimo.focus();
+        } else if (!e.shiftKey && document.activeElement === ultimo) {
+          e.preventDefault(); primeiro.focus();
+        }
+      }
+    });
+
+    /* Se a pessoa girar o aparelho e virar tela larga, o painel não pode
+       ficar aberto: acima de 900px ele nem deveria existir. */
+    window.matchMedia('(min-width:901px)').addEventListener('change', (ev) => {
+      if (ev.matches && painel.classList.contains('aberto')) fechar(false);
+    });
+  }
+
   /* Animação de entrada dos blocos */
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {

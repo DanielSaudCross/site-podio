@@ -78,7 +78,105 @@
   .hero{padding:150px 0 78px}
   .hero .lead{font-size:17.5px}
 }
-@media(max-width:900px){.nav-links{display:none}}
+/* ---------- menu do celular ----------
+   O botão e o painel nascem fora da tela e SÓ passam a existir abaixo de
+   900px, na mesma faixa em que os .nav-links somem. Acima disso nada aqui
+   se aplica e a barra do computador fica idêntica. */
+.menu-btn{display:none;width:44px;height:44px;flex:none;border-radius:14px;
+  background:rgba(255,255,255,.06);border:1px solid var(--glass-line);
+  cursor:pointer;position:relative;padding:0;
+  transition:background .2s ease,border-color .2s ease}
+.menu-btn:hover{background:rgba(255,255,255,.11)}
+/* As três barras: a do meio é o próprio span, as outras são pseudo-elementos.
+   Ao abrir, a do meio some e as outras giram e viram um X. */
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{
+  content:'';position:absolute;left:50%;width:19px;height:2px;border-radius:2px;
+  background:var(--text);transform:translateX(-50%);
+  transition:transform .28s cubic-bezier(.2,.7,.3,1),opacity .18s ease}
+.menu-btn span{top:50%;margin-top:-1px}
+.menu-btn span::before{top:-6px;left:0;transform:none}
+.menu-btn span::after{top:6px;left:0;transform:none}
+.menu-btn[aria-expanded="true"] span{opacity:0}
+.menu-btn[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+
+/* O painel fica FORA da .nav de propósito. A barra usa backdrop-filter, que
+   cria contexto de empilhamento próprio: um painel filho dela ficaria preso
+   atrás do conteúdo, que foi o mesmo problema da tarja "Mais escolhido". */
+/* O painel ocupa a altura toda com propósito: marca em cima, navegação no
+   meio, ação embaixo. Antes tudo ficava centralizado e sobrava preto morto
+   nas duas pontas. */
+.menu-painel{position:fixed;inset:0;z-index:150;display:none;
+  flex-direction:column;padding:18px 24px calc(28px + env(safe-area-inset-bottom,0px));
+  background:
+    radial-gradient(700px 480px at 78% 8%,rgba(var(--lamp-rgb),.10),transparent 60%),
+    radial-gradient(600px 520px at 6% 92%,rgba(var(--warm-deep-rgb),.09),transparent 62%),
+    linear-gradient(165deg,rgba(var(--ink-rgb),.985),rgba(var(--sea-rgb),.985));
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  overflow-y:auto;overscroll-behavior:contain}
+.menu-painel[hidden]{display:none}
+.menu-painel.aberto{display:flex}
+
+.menu-topo{display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.09);flex:none}
+.menu-topo .marca{font-size:26px}
+.menu-fechar{width:44px;height:44px;flex:none;border-radius:14px;padding:0;cursor:pointer;
+  background:rgba(255,255,255,.06);border:1px solid var(--glass-line);position:relative;
+  transition:background .2s ease,border-color .2s ease}
+.menu-fechar:hover{background:rgba(255,255,255,.12);border-color:rgba(var(--lamp-rgb),.5)}
+.menu-fechar span::before,.menu-fechar span::after{
+  content:'';position:absolute;top:50%;left:50%;width:18px;height:2px;border-radius:2px;
+  background:var(--text)}
+.menu-fechar span::before{transform:translate(-50%,-50%) rotate(45deg)}
+.menu-fechar span::after{transform:translate(-50%,-50%) rotate(-45deg)}
+
+/* A navegação toma o espaço que sobra, em vez de flutuar no meio do vazio */
+.menu-painel nav{flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:8px 0;min-height:0}
+.menu-painel nav a{
+  display:flex;align-items:baseline;gap:16px;
+  font:var(--t-h2);letter-spacing:var(--t-h2-ls);color:var(--text);
+  text-decoration:none;padding:15px 2px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  transition:color .18s ease,gap .22s cubic-bezier(.2,.7,.3,1);
+  /* entrada escalonada: cada item chega um pouco depois do anterior */
+  opacity:0;transform:translateY(10px);
+  animation:menuEntra .42s cubic-bezier(.2,.7,.3,1) forwards}
+.menu-painel nav a:nth-child(1){animation-delay:.04s}
+.menu-painel nav a:nth-child(2){animation-delay:.09s}
+.menu-painel nav a:nth-child(3){animation-delay:.14s}
+.menu-painel nav a:nth-child(4){animation-delay:.19s}
+.menu-painel nav a:nth-child(5){animation-delay:.24s}
+@keyframes menuEntra{to{opacity:1;transform:none}}
+.menu-painel nav a i{font:var(--t-label-sm);letter-spacing:.1em;color:var(--lamp);
+  font-style:normal;flex:none;opacity:.75}
+.menu-painel nav a:hover,.menu-painel nav a:focus-visible{color:var(--lamp);gap:24px}
+.menu-painel nav a:hover i{opacity:1}
+
+.menu-pe{flex:none;padding-top:20px;border-top:1px solid rgba(255,255,255,.09)}
+.menu-pe .btn{width:100%}
+.menu-nota{font-size:13.5px;color:var(--muted);margin:14px 0 0;text-align:center;max-width:none}
+.menu-local{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);opacity:.7;margin:10px 0 0;text-align:center;max-width:none}
+
+/* Tela baixa em paisagem: a navegação encolhe em vez de estourar */
+@media(max-height:560px){
+  .menu-painel nav a{padding:9px 2px;font-size:18px}
+  .menu-nota{display:none}
+}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  /* No celular o botão do WhatsApp da barra sai: ele já está no painel e
+     dentro dele cabe por extenso, sem espremer o logotipo. */
+  .nav>.btn{display:none}
+}
+/* Quem pediu menos animação não recebe o giro das barras nem transição. */
+@media(prefers-reduced-motion:reduce){
+  .menu-btn span,.menu-btn span::before,.menu-btn span::after,
+  .menu-painel nav a{transition:none;animation:none;opacity:1;transform:none}
+}
 
 /* ---------- hero ---------- */
 .hero{padding:186px 0 96px;text-align:center}
@@ -222,12 +320,47 @@
   box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.05),
              0 30px 70px -26px rgba(var(--ouro-rgb),.60)}
 .caso[open]:hover{transform:none}
+/* ---- foto do cliente ao fundo ----
+   São quatro camadas empilhadas, e a ordem é o que faz o texto continuar
+   legível: foto (0), véu escuro (1), brilho quente (2), conteúdo (3).
+   Sem z-index explícito, o ::after do véu pintaria por cima do texto, porque
+   pseudo-elemento posicionado ganha de conteúdo em fluxo normal. */
+.caso-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  z-index:0;pointer-events:none;user-select:none;
+  /* a foto entra rebaixada: ela é ambientação, não informação */
+  opacity:.55;filter:grayscale(.25) brightness(.95);
+  transition:opacity .35s ease,filter .35s ease}
+.caso:hover .caso-foto,.caso[open] .caso-foto{opacity:.68;filter:grayscale(.12) brightness(1)}
+
+/* O véu. Mais ddenso embaixo, onde o texto se acumula, e mais leve em cima,
+   onde só existe o logotipo. É o que permite ler número sobre imagem. */
+.caso::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  /* Densidade medida, não estimada: com este degradê o texto de apoio, que é
+     o mais fraco da página, fica em 5,3:1 sobre a área mais clara da foto.
+     O mínimo aceitável é 4,5:1. Clarear mais reprova. */
+  /* Denso onde o texto mora, leve onde a foto aparece. O texto ocupa da
+     metade para baixo, então é ali que o véu fecha. */
+  background:linear-gradient(to top,
+    rgba(var(--ink-rgb),.93) 0%,
+    rgba(var(--ink-rgb),.90) 38%,
+    rgba(var(--ink-rgb),.72) 68%,
+    rgba(var(--ink-rgb),.42) 100%)}
+.caso[open]::after{background:linear-gradient(to top,
+    rgba(var(--ink-rgb),.94) 0%,
+    rgba(var(--ink-rgb),.91) 55%,
+    rgba(var(--ink-rgb),.74) 78%,
+    rgba(var(--ink-rgb),.48) 100%)}
+
 /* Brilho quente subindo do rodapé do card. É o que tira a peça do "chapado":
    dá profundidade sem pesar, e some quando o card não interessa. */
 .caso::before{content:'';position:absolute;inset:auto 0 0 0;height:58%;pointer-events:none;
+  z-index:2;
   background:linear-gradient(to top,rgba(var(--ouro-rgb),.13),transparent);
   opacity:.55;transition:opacity .3s ease}
 .caso:hover::before,.caso[open]::before{opacity:1}
+
+/* Conteúdo sempre por cima de tudo */
+.caso > summary,.caso-mais{position:relative;z-index:3}
 
 .caso > summary{list-style:none;cursor:pointer;display:block;padding:24px 24px 20px;position:relative}
 .caso > summary::-webkit-details-marker{display:none}
@@ -241,8 +374,11 @@
    A Nativa é quadrada, a do Inuit é o dobro de largura. Travar num quadrado
    faria a larga encolher até virar tarja ilegível. */
 .caso-logo{height:76px;width:auto;max-width:180px;flex:none;object-fit:contain;
-  border-radius:15px;padding:8px 12px;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:15px;padding:9px 13px;
+  /* Escuro, não claro: o logotipo do cliente vem em branco, e sobre foto clara
+     um quadro translúcido claro fazia branco sobre branco. */
+  background:rgba(var(--ink-rgb),.62);border:1px solid rgba(255,255,255,.20);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   /* Enquanto o arquivo nao existe, o alt aparece dentro do quadro em vez de
      virar icone de imagem quebrada. */
   font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted);
@@ -262,20 +398,32 @@
 .caso:hover .caso-abrir{background:rgba(var(--ouro-rgb),.16);border-color:rgba(var(--ouro-rgb),.85)}
 .caso[open] .caso-abrir{display:none}
 
-.caso h3{font-size:19px;letter-spacing:-.02em;margin:0}
-.caso-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
-  letter-spacing:.04em;margin-top:6px;line-height:1.5}
+/* O nome do cliente sai da tela: os três logotipos já são marcas nominativas
+   e trazem o nome escrito. Repetir embaixo era duplicar a informação, e era
+   esse título que não sobrevivia sobre a foto — Instrument Serif é de alto
+   contraste e os traços finos somem sobre imagem.
+   Ele continua no documento para leitor de tela e para a hierarquia de
+   títulos, apenas fora do alcance da vista. */
+.caso h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+/* Sobre foto, o cinza de apoio some. Sobe para o tom de texto, com sombra
+   para não depender do que estiver atrás. */
+.caso-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);
+  letter-spacing:.04em;margin-top:0;line-height:1.5;opacity:.92;
+  text-shadow:0 1px 8px rgba(var(--ink-rgb),.95)}
 
 /* O número é o elemento gráfico do card. Grande, dourado, sem concorrência. */
 .caso-numero{font:var(--t-num-xl);letter-spacing:var(--t-num-ls);margin:22px 0 0;
-  font-variant-numeric:tabular-nums;
+  font-variant-numeric:tabular-nums;text-shadow:0 1px 3px rgba(var(--ink-rgb),1),0 2px 18px rgba(var(--ink-rgb),.92);
   color:var(--ouro)}
-.caso-rot{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.4}
+.caso-rot{font-size:13.5px;color:var(--text);opacity:.86;margin-top:8px;line-height:1.4;
+  text-shadow:0 1px 8px rgba(var(--ink-rgb),.95)}
 
 .caso-pe{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.09)}
+  margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14)}
 .caso-canal{font:var(--t-label-sm);
-  letter-spacing:var(--t-label-sm-ls);text-transform:uppercase;color:var(--ouro)}
+  letter-spacing:var(--t-label-sm-ls);text-transform:uppercase;color:var(--ouro);
+  text-shadow:0 1px 3px rgba(var(--ink-rgb),1),0 1px 10px rgba(var(--ink-rgb),.9)}
 /* Os três degraus do logotipo, em miniatura. Ornamento da marca, não gráfico:
    não representa dado nenhum e por isso fica fora da árvore de acessibilidade. */
 .caso-degraus{display:block;width:26px;height:14px;flex:none;
@@ -723,3 +871,81 @@ footer::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;
    Campos de texto mantêm o cursor do sistema, onde ele informa mais. */
 html.cursor-proprio,html.cursor-proprio *{cursor:none}
 html.cursor-proprio input,html.cursor-proprio textarea,html.cursor-proprio select{cursor:auto}
+
+/* ==========================================================
+   AJUSTES DE CELULAR
+   Tudo aqui vive abaixo de 900px e não toca na versão de
+   computador, que foi conferida pixel a pixel.
+   ========================================================== */
+@media(max-width:900px){
+
+  /* 1. Card de caso abre onde está.
+     O order:-1 joga o card aberto para o topo da grade. No computador isso
+     faz sentido, porque a grade tem três colunas e o card em foco sobe para
+     a linha inteira. No celular a grade é uma coluna só: o card que a pessoa
+     tocou salta para longe do dedo e ela perde a referência. */
+  .caso[open]{order:0}
+
+  /* 2. Antes e Depois.
+     Empilhados, o "Antes" vinha em cima, aceso e com a tarja vermelha
+     brilhando, enquanto o "Depois" ficava rebaixado em .78 de opacidade.
+     A leitura terminava no problema, não na solução. Agora os dois vêm
+     inteiros e o destaque é do "Depois", que é o que a marca vende. */
+  .ad-col{opacity:1}
+  /* O .ativa vem do HTML no "Antes" e sua regra tem peso maior que um
+     seletor simples, então aqui é preciso repetir a classe para vencer. */
+  .ad-antes .ad-tab,.ad-antes.ativa .ad-tab{
+    background:rgba(var(--red-rgb),.14);color:var(--alert);
+    border:1px solid rgba(var(--red-rgb),.42);box-shadow:none}
+  .ad-antes ul li,.ad-antes.ativa ul li{color:var(--muted)}
+  .ad-depois .ad-tab,.ad-depois.ativa .ad-tab{
+    background:var(--grad);color:var(--ink);border-color:transparent;
+    box-shadow:0 10px 26px -8px rgba(var(--warm-rgb),.55)}
+  .ad-depois ul li,.ad-depois.ativa ul li{color:var(--text)}
+
+  /* 3. Cards das frentes: menos peso, mais ar entre eles. */
+  .g3,.g2{gap:16px}
+  .card{padding:26px 22px}
+  .card ul{margin-top:14px;gap:7px}
+  .card p{font-size:15px}
+
+  /* 4. O brilho do bloco do site incluso.
+     Ele é uma mancha à direita, pensada para duas colunas. Numa coluna só
+     vira uma divisa vertical no meio do card, com metade escura e metade
+     verde. Reposicionado para o alto, onde se lê como luz e não como corte. */
+  .gift::before{top:-40%;right:-30%;width:150%;height:120%;
+    background:radial-gradient(circle at 50% 40%,rgba(var(--lamp-rgb),.16),transparent 62%)}
+
+  /* 5. Rodapé enxuto.
+     No celular o rodapé virava uma segunda página inteira, e ninguém rola
+     até o fim de um rodapé. Fica só o essencial: marca, onde fica, como
+     falar e o copyright.
+
+     O que sai, e por quê:
+     · navegação — o hambúrguer já cobre, repetir cinco links só alonga
+     · descrição da agência — a página inteira acabou de dizer isso
+     · chamada "Pronto para aparecer primeiro?" — o BLOCO 11, logo acima,
+       é exatamente essa chamada. Duas seguidas cansam em vez de converter
+     · horário de atendimento — detalhe de suporte, não de decisão */
+  .foot-grid{gap:26px}
+  .foot-col.foot-nav{display:none}
+  .foot-brand>p:not(.foot-local){display:none}
+  .foot-cta{display:none}
+  .foot-col>p:last-child{display:none}
+  footer{padding-top:44px;margin-top:24px}
+  .foot-brand{gap:14px}
+  .foot-base{margin-top:26px;padding-top:20px}
+  .foot-base p:last-child{display:none}
+
+  /* 6. Botão flutuante mais presente, e acima da barra do sistema. */
+  .wa-float{width:64px;height:64px;right:18px;
+    bottom:calc(18px + env(safe-area-inset-bottom,0px));
+    box-shadow:0 16px 40px -8px rgba(var(--warm-rgb),.95)}
+  .wa-float svg{width:30px;height:30px}
+
+  /* Folga no fim da página para o botão flutuante.
+     Ele é fixo: no fim da rolagem ficava por cima da última linha do rodapé,
+     que terminava exatamente onde ele começa. Sem esta folga não existe
+     lugar reservado para ele, e o copyright ficava escondido atrás. */
+  footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+}

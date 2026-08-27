@@ -198,9 +198,9 @@
      em vez de usar a que ele guardou. Sempre que o CSS ou o JS mudar,
      esse número sobe.
      ───────────────────────────────────────────────────── -->
-<link rel="stylesheet" href="assets/css/00-config.css?v=37">
-<link rel="stylesheet" href="assets/css/01-base.css?v=37">
-<link rel="stylesheet" href="assets/css/02-blocos.css?v=37">
+<link rel="stylesheet" href="assets/css/00-config.css?v=54">
+<link rel="stylesheet" href="assets/css/01-base.css?v=54">
+<link rel="stylesheet" href="assets/css/02-blocos.css?v=54">
 </head>
 <body>
 
@@ -224,7 +224,41 @@
     <a href="#nos">Quem somos</a>
   </div>
   <a href="#" data-wa="menu" class="btn btn-primary">Falar no WhatsApp</a>
+
+  <!-- Hambúrguer e painel: nascem escondidos e só existem abaixo de 900px,
+       que é a mesma faixa onde os .nav-links somem. No computador os dois
+       ficam com display:none e não ocupam espaço nenhum. -->
+  <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu-painel" aria-label="Abrir o menu">
+    <span aria-hidden="true"></span>
+  </button>
 </nav>
+
+<div class="menu-painel" id="menu-painel" hidden>
+  <!-- O fechar mora DENTRO do painel: ele cobre a barra, então o X do
+       hambúrguer fica atrás e a pessoa não teria como sair no celular. -->
+  <div class="menu-topo">
+    <span class="marca" aria-hidden="true">P<span class="marca-o">O</span>DIO</span>
+    <button type="button" class="menu-fechar" aria-label="Fechar o menu">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <!-- Numerados de propósito: a marca inteira é sobre degraus, e a mesma
+       numeração aparece no bloco de método. -->
+  <nav aria-label="Navegação principal">
+    <a href="#frentes"><i aria-hidden="true">01</i>Serviços</a>
+    <a href="#resultados"><i aria-hidden="true">02</i>Resultados</a>
+    <a href="#metodo"><i aria-hidden="true">03</i>Como funciona</a>
+    <a href="#planos"><i aria-hidden="true">04</i>Planos</a>
+    <a href="#nos"><i aria-hidden="true">05</i>Quem somos</a>
+  </nav>
+
+  <div class="menu-pe">
+    <a href="#" data-wa="menu" class="btn btn-primary">Falar no WhatsApp</a>
+    <p class="menu-nota">Diagnóstico do seu perfil no Google em até 24h, sem custo.</p>
+    <p class="menu-local">Sede em Brasília/DF · atendemos o Brasil</p>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!--  BLOCO 02 · ABERTURA — pergunta, apoio e chamadas  -->
@@ -350,6 +384,11 @@
            coisas diferentes e os números não se somam. -->
       <details class="caso glass" name="casos">
         <summary>
+          <!-- TROCAR: foto do negócio do cliente. Ela é ambientação, não
+               informação: entra rebaixada e sob um véu escuro.
+               Fica DENTRO do <summary> de propósito: <details> fechado
+               esconde todo filho que não seja o summary, e a foto sumia. -->
+          <img class="caso-foto" src="assets/img/clientes/nativa-foto.jpg" alt="" aria-hidden="true" loading="lazy">
           <div class="caso-cabeca">
             <!-- TROCAR: salvar o arquivo em assets/img/clientes/nativa.png -->
             <img class="caso-logo quadrada" src="assets/img/clientes/nativa.png" alt="Nativa" width="512" height="512" loading="lazy">
@@ -357,7 +396,7 @@
           </div>
 
           <h3>Nativa</h3>
-          <p class="caso-meta">Segmento · Cidade/UF · desde mês/ano</p><!-- TROCAR -->
+          <p class="caso-meta">Picolés e polpas · Brasília/DF</p>
 
           <p class="caso-numero">566</p>
           <p class="caso-rot">conversões no Google Ads<!-- TROCAR: se a conversão for mensagem, escrever "pessoas que chamaram" --></p>
@@ -395,13 +434,18 @@
 
       <details class="caso glass" name="casos">
         <summary>
+          <!-- TROCAR: foto do negócio do cliente. Ela é ambientação, não
+               informação: entra rebaixada e sob um véu escuro.
+               Fica DENTRO do <summary> de propósito: <details> fechado
+               esconde todo filho que não seja o summary, e a foto sumia. -->
+          <img class="caso-foto" src="assets/img/clientes/inuit-foto.jpg" alt="" aria-hidden="true" loading="lazy">
           <div class="caso-cabeca">
             <img class="caso-logo" src="assets/img/clientes/inuit.png" alt="Brechó Inuit" width="512" height="256" loading="lazy">
             <span class="caso-abrir" aria-hidden="true"></span>
           </div>
 
           <h3>Brechó Inuit</h3>
-          <p class="caso-meta">Brechó · Cidade/UF · desde mês/ano</p><!-- TROCAR: cidade e início -->
+          <p class="caso-meta">Brechó · Rio de Janeiro/RJ</p>
 
           <p class="caso-numero">7.010</p>
           <p class="caso-rot">visitas ao perfil do Instagram<!-- TROCAR: o painel mede VISITA ao perfil, não seguidor ganho --></p>
@@ -439,19 +483,48 @@
         </div>
       </details>
 
-      <!-- TROCAR: card de espera. Duplique o bloco da Nativa e preencha, ou
-           apague este card se for lançar com menos de três casos. -->
-      <details class="caso caso-vaga glass">
+      <details class="caso glass" name="casos">
         <summary>
+          <!-- TROCAR: foto do negócio do cliente. Ela é ambientação, não
+               informação: entra rebaixada e sob um véu escuro.
+               Fica DENTRO do <summary> de propósito: <details> fechado
+               esconde todo filho que não seja o summary, e a foto sumia. -->
+          <img class="caso-foto" src="assets/img/clientes/profissionais-do-texto-foto.jpg" alt="" aria-hidden="true" loading="lazy">
           <div class="caso-cabeca">
-            <span class="caso-logo caso-logo-vazio" aria-hidden="true"></span>
+            <img class="caso-logo" src="assets/img/clientes/profissionais-do-texto.png" alt="Profissionais do Texto" width="1015" height="256" loading="lazy">
+            <span class="caso-abrir" aria-hidden="true"></span>
           </div>
-          <h3>Próximo caso</h3>
-          <p class="caso-meta">aguardando liberação do cliente</p>
-          <p class="caso-numero">—</p>
-          <p class="caso-rot">números em breve</p>
-          <div class="caso-pe"><span class="caso-canal">—</span></div>
+
+          <h3>Profissionais do Texto</h3>
+          <p class="caso-meta">Assessoria de imprensa · Brasília/DF</p>
+
+          <p class="caso-numero">638</p>
+          <p class="caso-rot">conversões no Google Ads</p>
+
+          <div class="caso-pe">
+            <span class="caso-canal">Google Ads + Meta</span>
+            <i class="caso-degraus" aria-hidden="true"></i>
+          </div>
         </summary>
+
+        <div class="caso-mais">
+
+          <div class="canal">
+            <h4 class="canal-nome">Google Ads</h4>
+            <div class="caso-numeros">
+              <div class="num num-destaque"><p class="num-valor">638</p><p class="num-rot">conversões</p></div>
+            </div>
+          </div>
+
+          <div class="canal">
+            <h4 class="canal-nome">Meta</h4>
+            <div class="caso-numeros">
+              <div class="num"><p class="num-valor">195</p><p class="num-rot">conversas iniciadas</p></div>
+            </div>
+          </div>
+
+          <p class="caso-periodo">Período: mês/ano a mês/ano · verba de mídia paga pelo cliente<!-- TROCAR: período real. Custo por conversão, cliques e investimento entram aqui quando houver o dado. --></p>
+        </div>
       </details>
 
     </div>
@@ -732,7 +805,7 @@
         </div>
       </div>
 
-      <nav class="foot-col" aria-label="Navegação do rodapé">
+      <nav class="foot-col foot-nav" aria-label="Navegação do rodapé">
         <p class="foot-tit">Navegação</p>
         <a href="#frentes">Serviços</a>
         <a href="#resultados">Resultados</a>
@@ -771,6 +844,6 @@
   <span>Falar no WhatsApp</span>
 </a>
 
-<script src="assets/js/config.js?v=37"></script>
+<script src="assets/js/config.js?v=48"></script>
 </body>
 </html>
