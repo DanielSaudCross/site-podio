@@ -937,6 +937,14 @@ html.cursor-proprio input,html.cursor-proprio textarea,html.cursor-proprio selec
   .foot-base{margin-top:26px;padding-top:20px}
   .foot-base p:last-child{display:none}
 
+  /* 7. Botões empilhados do hero.
+     O halo do botão verde é lançado 12px para baixo com 34px de raio, o que
+     o faz avançar cerca de 24px. Com apenas 10px de vão entre os dois
+     botões, ele caía dentro do segundo e desenhava ali a silhueta de um
+     terceiro botão. Mais espaço, e halo mais curto e centrado. */
+  .hero-cta{gap:20px}
+  .hero-cta .btn-primary{box-shadow:0 6px 26px -12px rgba(var(--warm-rgb),.85)}
+
   /* 6. Botão flutuante mais presente, e acima da barra do sistema. */
   .wa-float{width:64px;height:64px;right:18px;
     bottom:calc(18px + env(safe-area-inset-bottom,0px));

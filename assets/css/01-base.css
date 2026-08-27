@@ -63,10 +63,17 @@ p{color:var(--muted)}
 .btn-primary{background:var(--grad);
   color:var(--ink);
   box-shadow:0 12px 34px -10px rgba(var(--warm-rgb),.75)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 42px -10px rgba(var(--warm-rgb),.92)}
+/* O hover só existe onde há cursor. Em tela de toque o navegador mantém o
+   :hover grudado no último elemento tocado, e o botão ficava aceso e
+   levantado depois que a pessoa já tinha ido embora dele. */
+@media(hover:hover){
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 42px -10px rgba(var(--warm-rgb),.92)}
+}
 .btn-ghost{background:rgba(255,255,255,.07);color:var(--text);border-color:var(--glass-line);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.btn-ghost:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+@media(hover:hover){
+  .btn-ghost:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+}
 /* O contorno já acompanha o arredondamento de cada elemento sozinho. Antes
    havia um border-radius:100px aqui, que virava pílula qualquer coisa que
    recebesse foco — inclusive as perguntas do FAQ e os cards. */
