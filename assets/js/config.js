@@ -4,21 +4,48 @@
    telefone ou mensagens. Nenhum link fica solto no HTML.
    ========================================================== */
 
+/* ----------------------------------------------------------
+   AS MENSAGENS DOS BOTÕES
+
+   Elas são AVISO DE CHEGADA, não formulário. Servem para dizer
+   duas coisas e nada mais: que a pessoa veio do site, e o que
+   ela já estava olhando quando decidiu chamar.
+
+   Não peça empresa nem cidade aqui. O texto chega pronto e a
+   pessoa envia sem editar, então campo em branco chega em
+   branco quase sempre, e a mensagem parece defeituosa.
+   Esses dados são coletados DEPOIS, na resposta automática,
+   quando já existe uma conversa aberta.
+
+   Todas começam com "Vim pelo site da Agência Pódio": é a marca
+   comum que permite à automação separar quem chegou pelo site
+   de quem achou o número em qualquer outro lugar. O que vem
+   depois dessa frase é a intenção.
+   ---------------------------------------------------------- */
+const VEIO = 'Olá! 👋 Vim pelo site da Agência Pódio';
+
 const PODIO = {
 
-  /* Só números: 55 + DDD + telefone. Sem espaço, traço ou parêntese. */
-  whatsapp: '5500000000000',
+  /* Só números: 55 + DDD + telefone. Sem espaço, traço ou parêntese.
+     ATENÇÃO: precisa ser o MESMO número conectado na instância da Evolution
+     API, senão as mensagens chegam numa conta que a automação não observa. */
+  whatsapp: '5561981124779',
 
-  /* Mensagem que já vem escrita quando a pessoa abre a conversa.
-     A chave (ex.: 'diagnostico') é o que fica no data-wa="" do HTML. */
+  /* A chave (ex.: 'diagnostico') é o que fica no data-wa="" do HTML. */
   mensagens: {
-    menu:         'Olá, vim pelo site da Agência Pódio.',
-    diagnostico:  'Olá, quero o diagnóstico gratuito. Minha empresa é:',
-    essencial:    'Olá, tenho interesse no plano Essencial.',
-    crescimento:  'Olá, tenho interesse no plano Crescimento.',
-    performance:  'Olá, tenho interesse no plano Performance.',
-    flutuante:    'Olá, estava vendo o site e queria tirar uma dúvida.',
-    rodape:       'Olá, vim pelo rodapé do site da Agência Pódio.'
+
+    /* Passeando. Quatro botões, mesma intenção: só quer falar. */
+    menu:      VEIO + '.',
+    flutuante: VEIO + '.',
+    rodape:    VEIO + '.',
+
+    /* Pediu algo concreto. */
+    diagnostico: VEIO + ' e quero o diagnóstico gratuito do meu perfil no Google.',
+
+    /* Já escolheu plano. É a intenção mais alta que existe no site. */
+    essencial:   VEIO + ' e tenho interesse no plano Essencial.',
+    crescimento: VEIO + ' e tenho interesse no plano Crescimento.',
+    performance: VEIO + ' e tenho interesse no plano Performance.'
   }
 
 };
