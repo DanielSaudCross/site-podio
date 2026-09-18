@@ -1,6 +1,5 @@
 Logotipos de clientes.
 
-Salve aqui em PNG com fundo transparente, quadrado, 256x256 ou maior.
-O nome do arquivo tem que bater com o src no index.html.
+Formato SVG, quadrado. O nome do arquivo tem que bater com o src no index.html.
 
-Esperando: nativa.png
+Em uso: MTK Jiu Jitsu.svg, Logo Barra Fit.svg, Logo GB sudoeste.svg

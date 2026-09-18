@@ -306,7 +306,7 @@
 /* Ouro em toda a seção pela regra do pódio: dourado é do primeiro degrau e
    dos clientes. Cada caso é um <details>, então abrir/fechar é nativo:
    funciona com teclado, com leitor de tela e sem JS. */
-.casos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.casos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
 
 .caso{padding:0;overflow:hidden;position:relative;
   border-color:rgba(var(--ouro-rgb),.34);
@@ -366,6 +366,12 @@
 .caso > summary::-webkit-details-marker{display:none}
 .caso > summary:focus-visible{outline:2px solid var(--glow);outline-offset:-3px}
 
+/* Cards fechados com a mesma altura: o summary ocupa o card inteiro e o rodapé desce para o fim. */
+.caso:not([open]){display:flex;flex-direction:column}
+.caso:not([open]) > summary{flex:1;display:flex;flex-direction:column}
+.caso:not([open]) .caso-pe{margin-top:auto}
+.caso:not([open]) .caso-nome{margin-bottom:20px;min-height:2.2em;display:flex;align-items:flex-end}
+.caso:not([open]) .caso-meta{min-height:3em}
 .caso-cabeca{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}
 /* O logotipo do cliente costuma vir branco e sem fundo. O quadro escuro dá
    contorno a ele sem exigir uma versão colorida, e as medidas fixas reservam
@@ -374,10 +380,10 @@
    A Nativa é quadrada, a do Inuit é o dobro de largura. Travar num quadrado
    faria a larga encolher até virar tarja ilegível. */
 .caso-logo{height:76px;width:auto;max-width:180px;flex:none;object-fit:contain;
-  border-radius:15px;padding:9px 13px;
+  border-radius:15px;padding:7px;
   /* Escuro, não claro: o logotipo do cliente vem em branco, e sobre foto clara
      um quadro translúcido claro fazia branco sobre branco. */
-  background:rgba(var(--ink-rgb),.62);border:1px solid rgba(255,255,255,.20);
+  background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.60);
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   /* Enquanto o arquivo nao existe, o alt aparece dentro do quadro em vez de
      virar icone de imagem quebrada. */
@@ -416,6 +422,8 @@
 .caso-numero{font:var(--t-num-xl);letter-spacing:var(--t-num-ls);margin:22px 0 0;
   font-variant-numeric:tabular-nums;text-shadow:0 1px 3px rgba(var(--ink-rgb),1),0 2px 18px rgba(var(--ink-rgb),.92);
   color:var(--ouro)}
+/* Nome do cliente no lugar do número: mesma cor e peso, corpo menor para caber em duas linhas. */
+.caso-nome{font-size:30px;line-height:1.1;letter-spacing:-.01em}
 .caso-rot{font-size:13.5px;color:var(--text);opacity:.86;margin-top:8px;line-height:1.4;
   text-shadow:0 1px 8px rgba(var(--ink-rgb),.95)}
 
