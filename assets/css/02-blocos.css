@@ -474,6 +474,14 @@
 .canal-nome::after{content:'';flex:1;height:1px;background:rgba(var(--ouro-rgb),.22)}
 .canal-camp{font-size:13.5px;color:var(--muted);margin:-6px 0 14px}
 
+/* Unico link dentro de conteudo no site inteiro: o site do cliente que a
+   Podio construiu. Sem regra propria ele sai azul e sublinhado do padrao
+   do navegador, que nao existe em nenhum outro lugar da pagina. */
+.canal-link{color:var(--ouro);text-decoration:none;
+  border-bottom:1px solid rgba(var(--ouro-rgb),.35);
+  transition:border-color .18s ease}
+@media (hover:hover){.canal-link:hover{border-bottom-color:var(--ouro)}}
+
 /* Quatro colunas fixas, iguais em todos os cards. Com auto-fit, um bloco de
    2 números esticava cada um para 50% da largura e abria um vão enorme entre
    eles. Fixo, os dois se agrupam à esquerda e as colunas dos vários cards
