@@ -314,6 +314,19 @@
 .casos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
 
 .caso{padding:0;overflow:hidden;position:relative;
+  /* Tres camadas de fundo, de cima para baixo: o vidro do card, um véu liso
+     que apaga a foto, e a foto, que vem de --foto no HTML. Cards sem --foto
+     caem no "none" e ficam exatamente como antes. */
+  /* Zero por padrão: card sem foto não deve ganhar camada escura nenhuma.
+     Quem tem foto declara o próprio valor junto do --foto, no HTML. */
+  --foto-veu:0;
+  background-image:
+    var(--glass-bg),
+    linear-gradient(rgba(var(--ink-rgb),var(--foto-veu)),rgba(var(--ink-rgb),var(--foto-veu))),
+    var(--foto,none);
+  background-size:auto,auto,cover;
+  background-position:center,center,center;
+  background-repeat:no-repeat,no-repeat,no-repeat;
   border-color:rgba(var(--ouro-rgb),.34);
   transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s ease,border-color .3s ease}
 /* Aberto, sobe para o topo da grade e ocupa a linha inteira. O order:-1 é o
@@ -326,16 +339,18 @@
              0 30px 70px -26px rgba(var(--ouro-rgb),.60)}
 .caso[open]:hover{transform:none}
 /* ---- foto do cliente ao fundo ----
-   São quatro camadas empilhadas, e a ordem é o que faz o texto continuar
-   legível: foto (0), véu escuro (1), brilho quente (2), conteúdo (3).
-   Sem z-index explícito, o ::after do véu pintaria por cima do texto, porque
-   pseudo-elemento posicionado ganha de conteúdo em fluxo normal. */
-.caso-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  z-index:0;pointer-events:none;user-select:none;
-  /* a foto entra rebaixada: ela é ambientação, não informação */
-  opacity:.55;filter:grayscale(.25) brightness(.95);
-  transition:opacity .35s ease,filter .35s ease}
-.caso:hover .caso-foto,.caso[open] .caso-foto{opacity:.68;filter:grayscale(.12) brightness(1)}
+   A foto é fundo do PRÓPRIO card, não um <img>. Os dois caminhos com <img>
+   foram testados e falham, cada um de um jeito:
+   · dentro do <summary>, ela só cobre o summary, porque summary é
+     position:relative e vira o bloco de referência do inset:0 — com o card
+     aberto a foto parava no meio da altura;
+   · fora do <summary>, o <details> não renderiza filho nenhum enquanto está
+     fechado (medido: altura 0), então a foto sumia do card fechado.
+   Fundo do elemento resolve os dois estados de uma vez.
+
+   Sobre ela ainda vêm o ::after (véu em degradê) e o ::before (brilho).
+   A ordem importa: sem z-index explícito o pseudo-elemento pintaria por
+   cima do texto, porque posicionado ganha de conteúdo em fluxo normal. */
 
 /* O véu. Mais ddenso embaixo, onde o texto se acumula, e mais leve em cima,
    onde só existe o logotipo. É o que permite ler número sobre imagem. */
