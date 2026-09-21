@@ -184,7 +184,12 @@
    encolhendo em telas médias. Com 5.7 ele travava no teto de 64px já aos
    1120px de largura e ficava desproporcional em notebook. */
 .hero h1{font:var(--t-display);letter-spacing:var(--t-display-ls);
-  max-width:19ch;margin:0 auto 26px;text-wrap:balance}
+  /* 29ch, nao 19ch: a linha em italico tem white-space:nowrap e mede ~27,9ch.
+     Numa caixa mais estreita que isso ela nao quebra nem se centraliza, ela
+     transborda SO PARA A DIREITA, e o titulo inteiro parece torto. Medido:
+     com 19ch sobravam de 199 a 285px para fora, em toda largura de desktop.
+     Como ch cresce junto com a fonte, a folga se mantem em qualquer tela. */
+  max-width:29ch;margin:0 auto 26px;text-wrap:balance}
 .hero h1 em{font-style:italic;display:block;white-space:nowrap;color:var(--lamp)}
 .hero .lead{margin:0 auto;font-size:19px}
 .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:38px 0 20px}
