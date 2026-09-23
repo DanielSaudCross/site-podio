@@ -14,6 +14,20 @@
 <meta property="og:image" content="assets/img/preview.jpg"><!-- TROCAR: imagem 1200x630 -->
 <meta name="theme-color" content="#0A0B0A"><!-- acompanha a paleta ativa do 00-config.css -->
 
+<!-- ─── FAVICON ────────────────────────────────────────────
+     A aba do navegador usa o SVG (nítido em qualquer tela); o .ico fica
+     na raiz porque há navegador e robô que procuram só /favicon.ico.
+     O Google, no resultado da busca, pede um ícone com lado múltiplo de
+     48px: é o favicon-48 / 96 / 192. Ele leva dias ou semanas para trocar
+     o ícone na busca depois de rastrear a página de novo.
+     Fonte de tudo: favicon.svg. Se a paleta mudar, gerar os PNG de novo. -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/icones/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/assets/img/icones/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
 
 <!-- O canonical diz ao Google qual é o endereço oficial da página e evita
      que ela seja indexada por dois endereços diferentes. O mesmo endereço
@@ -43,6 +57,7 @@
   "description": "Agência de tráfego pago especializada em negócios de atividade física presencial: academias, estúdios de treino, boxes e escolas de arte marcial. Gestão de Google Ads, Meta Ads e otimização do perfil no Google Meu Negócio.",
   "url": "https://agenciapodio.com.br/",
   "image": "https://agenciapodio.com.br/assets/img/preview.jpg",
+  "logo": "https://agenciapodio.com.br/assets/img/icones/favicon-512.png",
   "priceRange": "R$ 990 - R$ 2.090 por mês",
   "currenciesAccepted": "BRL",
   "address": {
@@ -205,9 +220,9 @@
      em vez de usar a que ele guardou. Sempre que o CSS ou o JS mudar,
      esse número sobe.
      ───────────────────────────────────────────────────── -->
-<link rel="stylesheet" href="assets/css/00-config.css?v=65">
-<link rel="stylesheet" href="assets/css/01-base.css?v=65">
-<link rel="stylesheet" href="assets/css/02-blocos.css?v=65">
+<link rel="stylesheet" href="assets/css/00-config.css?v=66">
+<link rel="stylesheet" href="assets/css/01-base.css?v=66">
+<link rel="stylesheet" href="assets/css/02-blocos.css?v=66">
 </head>
 <body>
 
@@ -694,6 +709,6 @@
   <span>Falar no WhatsApp</span>
 </a>
 
-<script src="assets/js/config.js?v=65"></script>
+<script src="assets/js/config.js?v=66"></script>
 </body>
 </html>

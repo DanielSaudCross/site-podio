@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon da Pódio: o "O" do logotipo com o pódio por cima.
+       Cores da PALETA 1 · LIMA ELÉTRICA (00-config.css). Se a paleta mudar,
+       trocar aqui e gerar os PNG/ICO de novo. -->
+  <rect width="64" height="64" rx="14" fill="#0A0B0A"/>
+  <rect x="14"   y="13" width="9.4"  height="10" fill="#9BA69A"/>
+  <rect x="26.6" y="7"  width="10.8" height="16" fill="#C2F53D"/>
+  <rect x="40.6" y="17" width="9.4"  height="6"  fill="#9BA69A"/>
+  <path fill="#F4F7F0" fill-rule="evenodd"
+        d="M31 26h2a11 11 0 0 1 11 11v8a11 11 0 0 1-11 11h-2a11 11 0 0 1-11-11v-8a11 11 0 0 1 11-11z
+           M31.5 32.5h1a4 4 0 0 1 4 4v9a4 4 0 0 1-4 4h-1a4 4 0 0 1-4-4v-9a4 4 0 0 1 4-4z"/>
+</svg>
