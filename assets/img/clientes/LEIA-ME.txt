@@ -7,12 +7,14 @@ aparecer num quadrado de 92 pixels. Estão no histórico do git se precisar.
 LOGOTIPOS      512x512, fundo transparente.
                Aparecem dentro do quadro branco do card.
                mtk-logo.webp · barrafit-logo.webp · gracie-barra-logo.webp
+               tati-logo.webp
 
 FUNDOS         Viram o fundo do card inteiro, via --foto no index.html.
                O caminho tem que ser ABSOLUTO, começando com barra: url()
                dentro de variável CSS resolve relativo à folha de estilo,
                não ao HTML.
                mtk-foto.webp · gracie-barra-foto.webp · barrafit-marca.webp
+               tati-foto.webp
 
 O quanto a foto aparece é o --foto-veu, declarado por card no index.html.
 Zero é o padrão. Cada foto pede um valor diferente, e o critério não é a
@@ -20,6 +22,7 @@ luminância média: é o contraste do texto medido sobre a área mais clara.
 
   mtk-foto            véu .38   foto clara, tatame azul e kimonos brancos
   gracie-barra-foto   véu .18   já nasce escura, média 43
+  tati-foto           véu .30   brilho médio, média 72
   barrafit-marca      sem véu   é marca d'água, o apagamento está no alfa
 
 Ao trocar uma foto, meça o contraste de novo. O ponto mais apertado da

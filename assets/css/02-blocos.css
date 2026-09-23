@@ -311,7 +311,8 @@
 /* Ouro em toda a seção pela regra do pódio: dourado é do primeiro degrau e
    dos clientes. Cada caso é um <details>, então abrir/fechar é nativo:
    funciona com teclado, com leitor de tela e sem JS. */
-.casos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+/* Duas colunas com quatro casos: em três sobraria um card sozinho na linha de baixo. */
+.casos{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:stretch}
 
 .caso{padding:0;overflow:hidden;position:relative;
   /* Tres camadas de fundo, de cima para baixo: o vidro do card, um véu liso
