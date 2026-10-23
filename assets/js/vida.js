@@ -29,10 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const VIDEO = [
       { p: 0, c: 'hoje', ms: 2600, digita: true },
       { p: 0, c: 'hoje', ms: 2600 },
-      { p: 1, c: 'perfil', ms: 3400 },
-      { p: 1, c: 'perfil', ms: 3200, rolo: '.g-info' },
-      { p: 1, c: 'perfil', ms: 3200, rolo: '.g-servicos' },
-      { p: 1, c: 'perfil', ms: 1600 },
+      { p: 1, c: 'perfil', ms: 4800 },
       { p: 2, c: 'perfil', ms: 1100, a: 'rota' },
       { p: 2, c: 'perfil', ms: 750, a: 'rota', toque: '.a-rota i' },
       { p: 2, c: 'mapa', ms: 3800, a: 'rota' },
