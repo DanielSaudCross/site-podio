@@ -46,6 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
       { p: 3, c: 'aval-nova', ms: 3600, rolo: '.g-avals', mais: true },
       { p: 3, c: 'aval-nova', ms: 1200, mais: true }
     ];
+    /* Velocidade do vídeo, como no player: 1 = normal, 1.5 = uma vez e meia */
+    const VELOCIDADE = 1.5;
+    VIDEO.forEach((v) => { v.ms = Math.round(v.ms / VELOCIDADE); });
     /* Duração de cada parte e onde cada cena começa dentro da sua parte */
     const duracao = [0, 0, 0, 0];
     const inicioNaParte = VIDEO.map((v) => { const t = duracao[v.p]; duracao[v.p] += v.ms; return t; });
@@ -96,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       letra = setInterval(() => {
         digita.textContent = BUSCA.slice(0, ++i);
         if (i >= BUSCA.length) clearInterval(letra);
-      }, 45);
+      }, 45 / VELOCIDADE);
     };
 
     const cena = (i) => {
