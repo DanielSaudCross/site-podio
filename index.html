@@ -191,7 +191,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=1">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=3">
 </head>
 <body>
 
@@ -264,69 +264,132 @@
 <!-- ═══════════════════════════════════════════════════════ -->
 <section id="frentes" class="vida" data-passo="0">
   <div class="vida-palco">
-    <p class="vida-fundo" aria-hidden="true"><span>Google</span><span>Perfil</span><span>Site</span><span>Avaliações</span></p>
+    <p class="vida-fundo" aria-hidden="true"><span>Google</span><span>Perfil</span><span>Contato</span><span>Avaliações</span></p>
     <div class="wrap vida-grade">
 
       <div class="vida-textos">
         <h2>O perfil que <em>escolhe por você.</em></h2>
         <div class="vida-passos">
           <div class="vida-passo" data-p="0">
-            <p class="lead">Quem procura treino perto de casa decide olhando um perfil no Google. Role a página e veja o que a Pódio coloca nele.</p>
-            <p class="vida-dica" aria-hidden="true">role para ver</p>
+            <p class="lead">Quem procura treino perto de casa decide olhando um perfil no Google. E a maioria das academias parou aqui: nome e uma foto.</p>
+            <p class="vida-dica" aria-hidden="true">role para ver o perfil completo</p>
           </div>
           <div class="vida-passo" data-p="1">
-            <h3>Google Meu Negócio</h3>
-            <p>Nome certo, categoria de escola de luta, horário completo, telefone que alguém atende e fotos do espaço, da turma e do treino acontecendo.</p>
+            <h3>Google Meu Negócio completo</h3>
+            <p>Fotos do espaço e da turma, categoria certa, horário, telefone com WhatsApp, site, turmas, comodidades e publicações. Tudo o que a pessoa procura antes de decidir.</p>
           </div>
           <div class="vida-passo" data-p="2">
-            <h3>Site da academia</h3>
-            <p>Quem achou você no mapa quer conferir antes de chamar. O site responde horário, endereço e como é o espaço, e termina no botão de aula experimental no seu WhatsApp.</p>
+            <h3>Cada botão leva a um lugar</h3>
+            <ul class="vida-acoes">
+              <li data-a="rota"><b>Rotas</b> mostra o caminho até o tatame</li>
+              <li data-a="ligar"><b>Ligar</b> cai direto no WhatsApp da academia</li>
+              <li data-a="site"><b>Site</b> abre a sua página e termina na aula experimental</li>
+            </ul>
           </div>
           <div class="vida-passo" data-p="3">
-            <h3>Avaliações</h3>
-            <p>Na hora de comparar, pesam a nota e o número de avaliações. A placa com NFC deixa fácil o aluno avaliar, e cada avaliação recebe resposta no tom da sua academia.</p>
+            <h3>Avaliações que não param de chegar</h3>
+            <p>A placa com NFC fica no balcão: o aluno encosta o celular e já cai na tela de avaliar. Cada avaliação nova recebe resposta no tom da sua academia.</p>
           </div>
         </div>
       </div>
 
-      <!-- Ilustração: um perfil genérico se completando. Não é print do Google
-           nem de cliente, por isso o nome é "Sua Academia". -->
+      <!-- Ilustração: um perfil genérico ("Sua Academia"), não é print do Google
+           nem de cliente. As fotos são de teste: ver assets/img/teste/LEIA-ME.txt.
+           O vida.js troca data-passo (pela rolagem) e data-cena (pelo tempo). -->
       <div class="vida-cel" aria-hidden="true">
         <div class="cel">
           <div class="cel-tela">
-            <div class="g-busca"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>jiu-jitsu perto de mim</div>
-            <div class="g-fotos">
-              <i class="g-foto f1"><b>Tatame</b></i><i class="g-foto f2"><b>Turma</b></i><i class="g-foto f3"><b>Fachada</b></i>
+
+            <div class="g-topo">
+              <div class="g-busca"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="g-digita"></span><i class="g-cursor"></i></div>
             </div>
-            <div class="g-corpo">
-              <p class="g-nome"><span class="cru"></span><span class="pronto">Sua Academia de Jiu-Jitsu</span></p>
-              <p class="g-nota">
-                <span class="cru">Sem avaliações</span>
-                <span class="meio">4,2 <i class="estrelas e4"></i> (7)</span>
-                <span class="pronto">4,9 <i class="estrelas e5"></i> (86)</span>
-              </p>
-              <p class="g-cat"><span class="cru"></span><span class="pronto">Escola de jiu-jitsu · <b>Aberto</b> até 22h</span></p>
-              <div class="g-acoes">
-                <span class="g-acao a-rota"><i><svg viewBox="0 0 24 24"><path d="M12 3l8 9-8 9-8-9z"/><path d="M9.5 13v-2.5h5V8.5"/><path d="M13 7l1.5 1.5L13 10"/></svg></i>Rota</span>
-                <span class="g-acao a-ligar"><i><svg viewBox="0 0 24 24"><path d="M6.5 3.5l3 3-2 2.5a12 12 0 006.5 6.5l2.5-2 3 3-2 3C10 19.5 4.5 14 3.5 5.5z"/></svg></i>Ligar</span>
-                <span class="g-acao a-site"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 2.5 14.4 0 17M12 3.5c-2.5 2.6-2.5 14.4 0 17"/></svg></i>Site</span>
+
+            <div class="g-janela">
+              <div class="g-rolo">
+                <div class="g-fotos">
+                  <i class="g-foto f1"><img src="assets/img/teste/foto-tatame.webp" alt="" width="420" height="380"></i>
+                  <i class="g-foto f2"><img src="assets/img/teste/foto-turma.webp" alt="" width="260" height="348"></i>
+                  <i class="g-foto f3"><img src="assets/img/teste/foto-espaco.webp" alt="" width="260" height="173"><b>+ 38</b></i>
+                </div>
+                <div class="g-corpo">
+                  <p class="g-nome">Sua Academia de Jiu-Jitsu</p>
+                  <p class="g-linha"><span class="so-cru">Nenhuma avaliação</span><span class="so-pronto">4,9 <i class="estrelas e5"></i> (<b class="g-qtd">86</b>)</span></p>
+                  <p class="g-linha"><span class="so-cru">Academia</span><span class="so-pronto">Escola de jiu-jitsu · <b class="verde">Aberto</b> · Fecha às 22h</span></p>
+                  <div class="g-abas"><span class="ativa">Visão geral</span><span class="so-pronto">Avaliações</span><span>Fotos</span><span class="so-pronto">Atualizações</span><span>Sobre</span></div>
+                  <div class="g-acoes">
+                    <span class="g-acao a-rota"><i><svg viewBox="0 0 24 24"><path d="M12 3l8.5 9-8.5 9-8.5-9z"/><path d="M9.5 13.5v-3h5M13 8.5l2 2-2 2"/></svg></i>Rotas</span>
+                    <span class="g-acao a-ligar"><i><svg viewBox="0 0 24 24"><path d="M6.5 3.5l3 3-2 2.5a12 12 0 006.5 6.5l2.5-2 3 3-2 3C10 19.5 4.5 14 3.5 5.5z"/></svg></i>Ligar</span>
+                    <span class="g-acao a-site"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 2.5 14.4 0 17M12 3.5c-2.5 2.6-2.5 14.4 0 17"/></svg></i>Site</span>
+                    <span class="g-acao a-salvar"><i><svg viewBox="0 0 24 24"><path d="M7 3.5h10v17l-5-3.5-5 3.5z"/></svg></i>Salvar</span>
+                    <span class="g-acao a-enviar"><i><svg viewBox="0 0 24 24"><circle cx="17.5" cy="5.5" r="2.3"/><circle cx="6.5" cy="12" r="2.3"/><circle cx="17.5" cy="18.5" r="2.3"/><path d="M8.5 11l7-4.3M8.5 13l7 4.3"/></svg></i>Enviar</span>
+                  </div>
+                  <ul class="g-info">
+                    <li><svg viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span>SHCSW 300, Sudoeste · Brasília/DF</span></li>
+                    <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span class="so-cru falta">Adicionar horário</span><span class="so-pronto"><b class="verde">Aberto</b> · Seg a sex, 6h às 22h</span></li>
+                    <li><svg viewBox="0 0 24 24"><path d="M6.5 3.5l3 3-2 2.5a12 12 0 006.5 6.5l2.5-2 3 3-2 3C10 19.5 4.5 14 3.5 5.5z"/></svg><span class="so-cru falta">Adicionar telefone</span><span class="so-pronto">(61) 99999-0000 · WhatsApp</span></li>
+                    <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 2.5 14.4 0 17M12 3.5c-2.5 2.6-2.5 14.4 0 17"/></svg><span class="so-cru falta">Adicionar site</span><span class="so-pronto azul">suaacademia.com.br</span></li>
+                    <li class="so-pronto"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><span class="azul">Agendar aula experimental</span></li>
+                  </ul>
+                  <div class="g-bloco so-pronto g-servicos"><p class="g-bt">Turmas</p><p class="g-chips"><i>Jiu-jitsu adulto</i><i>Kids</i><i>Iniciante</i><i>No-gi</i><i>Feminino</i></p></div>
+                  <div class="g-bloco so-pronto"><p class="g-bt">Comodidades</p><p class="g-chips"><i>Vestiário</i><i>Estacionamento</i><i>Acessível</i><i>Wi-Fi</i></p></div>
+                  <div class="g-bloco so-pronto g-post"><p class="g-bt">Atualizações · há 2 dias</p><p>Aula aberta neste sábado, às 10h. Traga um amigo para treinar com a gente.</p></div>
+                  <div class="g-bloco so-pronto g-avals"><p class="g-bt">Avaliações</p>
+                    <div class="g-aval g-aval-nova"><p><i class="estrelas e5"></i> <span class="g-selo">agora</span> "Melhor ambiente de treino do bairro."</p><p class="g-resp">Resposta do proprietário: Valeu, Rafa! Te esperamos no treino de quinta.</p></div>
+                    <div class="g-aval"><p><i class="estrelas e5"></i> "Professor atencioso, turma acolhedora."</p><p class="g-resp">Resposta do proprietário: Valeu, Pedro! Bom te ver no tatame.</p></div>
+                    <div class="g-aval"><p><i class="estrelas e5"></i> "Levei meu filho na aula experimental e ele amou."</p><p class="g-resp">Resposta do proprietário: Obrigado, Carla! Ele mandou muito bem.</p></div>
+                  </div>
+                </div>
               </div>
-              <ul class="g-info">
-                <li><span class="cru"></span><span class="pronto">Sudoeste, Brasília · DF</span></li>
-                <li><span class="cru"></span><span class="pronto">Seg a sex, 6h às 22h · Sáb, 9h às 12h</span></li>
-              </ul>
-              <div class="g-avals">
-                <div class="g-aval"><p><i class="estrelas e5"></i> "Professor atencioso, turma acolhedora."</p><p class="g-resp">Resposta do proprietário: Valeu, Pedro! Bom te ver no tatame.</p></div>
-                <div class="g-aval"><p><i class="estrelas e5"></i> "Levei meu filho na aula experimental e ele amou."</p><p class="g-resp">Resposta do proprietário: Obrigado, Carla! Ele mandou muito bem.</p></div>
+            </div>
+
+            <!-- Para onde cada botão leva -->
+            <div class="ov ov-mapa">
+              <div class="mapa-ruas"></div>
+              <svg class="mapa-rota" viewBox="0 0 296 616"><path d="M60 560 L60 430 L170 430 L170 300 L232 300 L232 210"/></svg>
+              <i class="mapa-voce"></i>
+              <i class="mapa-pino"><svg viewBox="0 0 24 24"><path d="M12 22s7.5-6 7.5-12a7.5 7.5 0 10-15 0c0 6 7.5 12 7.5 12z"/><circle cx="12" cy="10" r="2.6" fill="#fff"/></svg></i>
+              <div class="mapa-cartao"><b>12 min</b> 3,1 km até a academia<span>Iniciar</span></div>
+            </div>
+            <div class="ov ov-ligar">
+              <p class="lig-marca">WhatsApp · chamada de voz</p>
+              <i class="lig-foto"><img src="assets/img/teste/foto-tatame.webp" alt=""></i>
+              <p class="lig-nome">Sua Academia</p>
+              <p class="lig-estado">Chamando…</p>
+              <div class="lig-botoes"><i></i><i></i><i class="desliga"></i></div>
+            </div>
+            <div class="ov ov-site">
+              <div class="s-topo">suaacademia.com.br</div>
+              <i class="s-foto"><img src="assets/img/teste/foto-tatame.webp" alt=""></i>
+              <p class="s-tit">Jiu-jitsu no Sudoeste para todas as idades</p>
+              <p class="s-txt">Turmas kids, iniciante e avançado. A primeira aula é por nossa conta.</p>
+              <span class="s-btn">Agende sua aula experimental</span>
+              <p class="s-grade"><b>Grade</b> Seg a sex · 7h · 12h · 19h · 20h30</p>
+            </div>
+            <div class="ov ov-zap">
+              <div class="z-topo"><i><img src="assets/img/teste/foto-tatame.webp" alt=""></i><p>Sua Academia<span>online</span></p></div>
+              <div class="z-chat">
+                <p class="z-msg z-eu">Oi! Vim pelo site e quero agendar uma aula experimental 🥋</p>
+                <p class="z-msg z-eles">Opa! Que bom. Amanhã às 19h fica bom pra você?</p>
               </div>
             </div>
-            <div class="g-site">
-              <div class="g-site-topo">suaacademia.com.br</div>
-              <p class="g-site-tit">Jiu-jitsu no Sudoeste para todas as idades</p>
-              <p class="g-site-txt">Turmas kids, iniciante e avançado. Primeira aula por nossa conta.</p>
-              <span class="g-site-btn">Agendar aula experimental</span>
-              <div class="g-zap">Oi! Quero agendar uma aula experimental 🥋</div>
+            <div class="ov ov-nfc">
+              <div class="nfc-placa">
+                <p class="nfc-tit">Gostou do treino?</p>
+                <p class="nfc-sub">Encoste o celular e avalie a gente no Google</p>
+                <i class="nfc-ondas"><svg viewBox="0 0 24 24"><path d="M8 7c2.5 3 2.5 7 0 10M11.5 4.5c4 4.5 4 10.5 0 15M15 2c5.5 6 5.5 14 0 20"/></svg></i>
+                <i class="estrelas e5"></i>
+              </div>
+              <i class="nfc-cel"></i>
             </div>
+            <div class="ov ov-avaliar">
+              <p class="av-nome">Sua Academia de Jiu-Jitsu</p>
+              <p class="av-sub">Avaliar e escrever</p>
+              <p class="av-estrelas"><i></i><i></i><i></i><i></i><i></i></p>
+              <p class="av-texto">Melhor ambiente de treino do bairro.</p>
+              <span class="av-btn">Postar</span>
+            </div>
+
+            <i class="toque"></i>
           </div>
         </div>
       </div>
@@ -765,6 +828,6 @@
 </a>
 
 <script src="assets/js/config.js?v=67"></script>
-<script src="assets/js/vida.js?v=1"></script>
+<script src="assets/js/vida.js?v=2"></script>
 </body>
 </html>
