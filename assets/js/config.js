@@ -200,11 +200,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* Animação de entrada dos blocos */
+  /* Animação de entrada dos blocos. Vale nos dois sentidos: o bloco aparece
+     quando entra na tela e se esconde quando sai, então a animação se repete
+     tanto descendo quanto subindo a página. */
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
+    entries.forEach((e) => e.target.classList.toggle('in', e.isIntersecting));
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
   document.querySelectorAll('.rv').forEach((el, i) => {

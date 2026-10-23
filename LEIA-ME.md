@@ -14,13 +14,9 @@
 
     01 · TOPO ................ logo, menu, botão do WhatsApp
     02 · ABERTURA ............ frase principal e chamadas
-    03 · SERVIÇOS ............ as três frentes
+    03 · SERVIÇOS ............ as três frentes (Google, site, avaliações)
     04 · ANTES / DEPOIS ...... interruptor da transformação
-    05 · RESULTADOS .......... prints e números reais
-    06 · COMO FUNCIONA ....... as quatro etapas
-    07 · SITE INCLUSO ........ o brinde do plano Performance
-    08 · PLANOS .............. os três preços
-    09 · QUEM SOMOS .......... Daniel e João Vitor
+    05 · RESULTADOS .......... academias atendidas
     10 · DÚVIDAS ............. perguntas frequentes
     11 · CHAMADA FINAL ....... último convite
     12 · RODAPÉ .............. contatos, navegação e chamada

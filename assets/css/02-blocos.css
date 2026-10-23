@@ -4,8 +4,12 @@
    ========================================================== */
 
 /* ---------- nav ---------- */
+/* No computador a barra abraça o conteúdo (logo, links e botão) em vez de
+   esticar até a largura da página: com só três links, a barra larga deixava
+   dois vãos vazios. Ela cresce sozinha quando entrar link novo. No celular
+   (até 900px) volta a ocupar a largura toda, ver o bloco do hambúrguer. */
 .nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;
-  width:calc(100% - 32px);max-width:var(--maxw);
+  width:max-content;max-width:calc(100% - 32px);gap:44px;
   display:flex;align-items:center;justify-content:space-between;
   padding:11px 11px 11px 22px;border-radius:100px;
   transition:top .3s cubic-bezier(.2,.7,.3,1),padding .3s cubic-bezier(.2,.7,.3,1),
@@ -166,6 +170,7 @@
 }
 
 @media(max-width:900px){
+  .nav{width:calc(100% - 32px)}
   .nav-links{display:none}
   .menu-btn{display:block}
   /* No celular o botão do WhatsApp da barra sai: ele já está no painel e
