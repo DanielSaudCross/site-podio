@@ -50,9 +50,15 @@
    O vida.js toca um vídeo de cenas quando a seção aparece: troca data-passo
    (0 a 3, o texto da esquerda) e data-cena (o que o celular mostra).
    Daqui para baixo cada passo e cada cena só acende o que é dele. */
-.vida{padding:0;position:relative}
-.vida-palco{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;
+/* Trava suave: a seção é um pouco mais alta que a tela e o palco fica parado
+   enquanto se rola esse trecho extra, o bastante para notar o vídeo, não para
+   obrigar a assistir. Quem passa da seção recebe .vista (vida.js): a seção volta
+   ao tamanho normal e, subindo de novo, não trava mais. */
+.vida{padding:0;position:relative;height:230vh}
+.vida.vista{height:auto}
+.vida-palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
   display:flex;align-items:center;padding:110px 0 70px}
+.vida.vista .vida-palco{position:relative;height:auto;min-height:100vh;min-height:100svh}
 .vida-grade{display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:center;position:relative}
 
 /* A palavra grande que troca atrás de tudo */
@@ -240,9 +246,12 @@ span.so-pronto,b.so-pronto{display:none}
 @keyframes chama{50%{box-shadow:0 0 0 16px rgba(255,255,255,.04)}}
 .lig-nome{font:400 24px/1.2 var(--serif);color:#fff}
 .lig-estado{font-size:12px;color:rgba(255,255,255,.75);margin-top:4px}
-.lig-botoes{position:absolute;left:0;right:0;bottom:60px;display:flex;justify-content:center;gap:26px}
-.lig-botoes i{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.14)}
+.lig-botoes{position:absolute;left:18px;right:18px;bottom:44px;display:flex;justify-content:space-between;
+  padding:14px 16px;border-radius:26px;background:rgba(0,0,0,.22)}
+.lig-botoes i{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center}
+.lig-botoes svg{width:21px;height:21px;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .lig-botoes .desliga{background:#E53935}
+.lig-botoes .desliga svg{fill:#fff;stroke:none}
 
 /* Site: a página da academia, com o botão que leva ao WhatsApp */
 .ov-site{background:linear-gradient(170deg,#16243a,#0b1220);color:#fff;padding:40px 18px 18px}
@@ -423,6 +432,7 @@ span.so-pronto,b.so-pronto{display:none}
 @media(prefers-reduced-motion:reduce){
   .vida{height:auto}
   .vida-palco{position:static;height:auto;padding:96px 0}
+  .vida{height:auto}
   .vida-passos{gap:26px}
   .vida-passo{grid-area:auto;opacity:1;transform:none}
   .vida-passo[data-p="0"]{display:none}

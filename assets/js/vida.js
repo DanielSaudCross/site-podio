@@ -147,8 +147,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (visivel && !tocando) tocarVideo(0);
         else if (!visivel && tocando) pausar();
       };
+      /* Trava suave só na primeira passagem: quando a pessoa já desceu além
+         da seção, ela volta ao tamanho normal. O encolhimento acontece acima da
+         tela; para nada pular de lugar, mede-se onde a próxima seção estava e
+         corrige-se só o que faltar (o navegador às vezes já corrige sozinho). */
+      const proxima = vida.nextElementSibling;
+      const liberar = () => {
+        if (vida.classList.contains('vista') || vida.getBoundingClientRect().bottom > 0) return;
+        const antes = proxima.getBoundingClientRect().top;
+        vida.classList.add('vista');
+        const diferenca = proxima.getBoundingClientRect().top - antes;
+        if (diferenca) window.scrollBy({ top: diferenca, behavior: 'instant' });
+      };
+      const aoRolar = () => { liberar(); conferir(); };
       conferir();
-      window.addEventListener('scroll', conferir, { passive: true });
+      window.addEventListener('scroll', aoRolar, { passive: true });
       window.addEventListener('resize', conferir);
     }
 
