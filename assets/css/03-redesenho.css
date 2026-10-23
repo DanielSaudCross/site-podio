@@ -287,14 +287,16 @@ span.so-pronto,b.so-pronto{display:none}
   box-shadow:0 20px 40px rgba(0,0,0,.5);position:relative}
 .nfc-tit{font:400 22px/1.1 var(--serif);color:#141814}
 .nfc-sub{font-size:11px;color:#5a625a;margin:6px 0 14px}
-.nfc-ondas{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 12px;border-radius:50%;background:#E8F0FE}
+.nfc-ondas{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 14px;border-radius:50%;background:#E8F0FE}
+.nfc-sub{margin-bottom:14px}
 .nfc-ondas svg{width:28px;height:28px;fill:none;stroke:#1A73E8;stroke-width:2;stroke-linecap:round}
 .vida[data-cena="nfc"] .nfc-ondas{animation:ondas 1s ease-in-out .9s infinite}
 @keyframes ondas{50%{box-shadow:0 0 0 14px rgba(26,115,232,.15)}}
 .nfc-cel{position:absolute;left:50%;top:-30px;width:84px;height:160px;margin-left:-42px;border-radius:18px;
   background:linear-gradient(160deg,#3a3f3a,#151715);border:2px solid rgba(255,255,255,.25)}
 .vida[data-cena="nfc"] .nfc-cel{animation:encosta 1.4s cubic-bezier(.4,0,.2,1) both}
-@keyframes encosta{0%{transform:translateY(-40px) rotate(-8deg);opacity:0}55%,100%{transform:translateY(150px) rotate(0);opacity:1}}
+/* O celular para com a ponta em cima do ícone do NFC, sem cobrir o texto */
+@keyframes encosta{0%{transform:translateY(-40px) rotate(-8deg);opacity:0}55%,100%{transform:translateY(92px) rotate(0);opacity:1}}
 
 /* Avaliar: as estrelas enchem uma a uma */
 .ov-avaliar{background:#fff;padding:70px 20px 20px;text-align:center}
