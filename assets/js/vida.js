@@ -112,15 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
       digita.textContent = BUSCA;
       vida.dataset.passo = '1';
     } else {
-      let pedido = false;
+      /* Uma leitura de posição por evento de rolagem é barata, e chamar direto
+         (sem esperar o próximo quadro) garante a troca mesmo em aba sem foco. */
       const medir = () => {
-        pedido = false;
         const r = vida.getBoundingClientRect();
         const curso = r.height - window.innerHeight;
         const feito = Math.min(1, Math.max(0, -r.top / curso));
         entrarNoPasso(feito < 0.16 ? 0 : feito < 0.40 ? 1 : feito < 0.72 ? 2 : 3);
       };
-      const aoRolar = () => { if (!pedido) { pedido = true; requestAnimationFrame(medir); } };
+      const aoRolar = medir;
       /* A digitação começa quando a seção aparece, não ao abrir a página */
       new IntersectionObserver(([e]) => { if (e.isIntersecting) { passoAtual = -1; medir(); } }, { threshold: 0.3 })
         .observe(vida.querySelector('.vida-cel'));
