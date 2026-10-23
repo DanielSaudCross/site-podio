@@ -45,6 +45,10 @@
 .section-head h2 em,#planos h2 em{font-style:italic;color:var(--lamp)}
 .port-sub{font:var(--t-h2);letter-spacing:var(--t-h2-ls);margin:84px 0 26px}
 
+/* ---------- abertura: texto de apoio, menor que o subtítulo ---------- */
+.hero .hero-apoio{max-width:58ch;margin:14px auto 0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.55)}
+@media(max-width:620px){.hero .hero-apoio{font-size:14px}}
+
 /* ---------- seção viva: o perfil se completando ----------
    A seção é alta (o tempo de rolagem) e o palco fica parado no meio da tela.
    O vida.js toca um vídeo de cenas quando a seção aparece: troca data-passo
@@ -73,8 +77,8 @@
 .vida[data-passo="2"] .vida-fundo span:nth-child(3),
 .vida[data-passo="3"] .vida-fundo span:nth-child(4){opacity:1;transform:none}
 
-.vida-textos h2{margin-bottom:34px;max-width:15ch}
-.vida-textos h2 em{font-style:italic;color:var(--lamp);display:block}
+.vida-textos h2{margin-bottom:34px;max-width:20ch}
+.vida-textos h2 em{font-style:italic;color:var(--lamp);display:block;white-space:nowrap}
 .vida-passos{display:grid}
 .vida-passo{grid-area:1/1;opacity:0;transform:translateY(22px);pointer-events:none;
   transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
@@ -315,7 +319,7 @@ span.so-pronto,b.so-pronto{display:none}
   .vida-palco{align-items:flex-start;padding:96px 0 40px}
   .vida-grade{grid-template-columns:1fr;gap:14px}
   .vida-textos h2{margin-bottom:10px;font-size:28px;max-width:none}
-  .vida-textos h2 em{display:inline}
+  .vida-textos h2 em{display:inline;white-space:normal}
   .vida-passo p,.vida-acoes li{font-size:14px}
   .vida-acoes{gap:4px}
   .vida-acoes li{padding:5px 10px}
