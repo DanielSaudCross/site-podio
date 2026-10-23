@@ -1,9 +1,8 @@
 /* ==========================================================
    VIDA DA PÁGINA (redesenho de outubro/2026)
-   1. Seção do perfil: um vídeo feito com o próprio HTML. Começa do
-      início quando a seção aparece, toca as cenas no tempo certo
-      (digitar a busca, perfil completo, tocar em Rotas, mapa...) e se
-      repete. Os botões de capítulo pulam para uma parte.
+   1. Seção do perfil: um vídeo feito com o próprio HTML, em 4 partes.
+      Na primeira descida a rolagem troca a parte e cada uma toca no seu
+      tempo, repetindo; depois de passar, vira um vídeo contínuo.
    2. O celular inclina de leve seguindo o mouse.
    3. Portfólio: o vídeo só roda quando está na tela.
    4. Formulário do fim: monta a mensagem e abre o WhatsApp.
@@ -22,33 +21,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const barras = vida.querySelectorAll('.vida-progresso i');
     const BUSCA = 'academia de jiu-jitsu perto de mim';
 
-    /* O VÍDEO: cenas com duração (ms), tocadas em sequência quando a seção
-       aparece na tela. p = parte do vídeo (texto da esquerda, palavra de fundo
-       e segmento da barrinha); c = o que o celular mostra; toque = onde o dedo
-       encosta; rolo = até onde o perfil desce; a = linha do texto que acende. */
+    /* O VÍDEO: cenas com duração (ms). p = parte do vídeo (texto da esquerda,
+       palavra de fundo e segmento da barrinha); c = o que o celular mostra;
+       toque = onde o dedo encosta; rolo = até onde o perfil desce;
+       a = linha do texto que acende. */
     const VIDEO = [
-      { p: 0, c: 'hoje', ms: 2600, digita: true },
-      { p: 0, c: 'hoje', ms: 2600 },
-      { p: 1, c: 'perfil', ms: 4800 },
-      { p: 2, c: 'perfil', ms: 1100, a: 'rota' },
-      { p: 2, c: 'perfil', ms: 750, a: 'rota', toque: '.a-rota i' },
-      { p: 2, c: 'mapa', ms: 3800, a: 'rota' },
-      { p: 2, c: 'perfil', ms: 1200, a: 'ligar' },
-      { p: 2, c: 'perfil', ms: 750, a: 'ligar', toque: '.a-ligar i' },
-      { p: 2, c: 'ligar', ms: 3400, a: 'ligar' },
-      { p: 2, c: 'perfil', ms: 1200, a: 'site' },
-      { p: 2, c: 'perfil', ms: 750, a: 'site', toque: '.a-site i' },
-      { p: 2, c: 'site', ms: 2800, a: 'site' },
-      { p: 2, c: 'site', ms: 750, a: 'site', toque: '.s-btn' },
-      { p: 2, c: 'site-zap', ms: 4400, a: 'site' },
-      { p: 3, c: 'nfc', ms: 4000 },
-      { p: 3, c: 'avaliar', ms: 4000 },
-      { p: 3, c: 'aval-nova', ms: 4800, rolo: '.g-avals', mais: true },
-      { p: 3, c: 'aval-nova', ms: 1800, mais: true }
+      { p: 0, c: 'hoje', ms: 2100, digita: true },
+      { p: 0, c: 'hoje', ms: 1900 },
+      { p: 1, c: 'perfil', ms: 3600 },
+      { p: 2, c: 'perfil', ms: 800, a: 'rota' },
+      { p: 2, c: 'perfil', ms: 600, a: 'rota', toque: '.a-rota i' },
+      { p: 2, c: 'mapa', ms: 2900, a: 'rota' },
+      { p: 2, c: 'perfil', ms: 800, a: 'ligar' },
+      { p: 2, c: 'perfil', ms: 600, a: 'ligar', toque: '.a-ligar i' },
+      { p: 2, c: 'ligar', ms: 2600, a: 'ligar' },
+      { p: 2, c: 'perfil', ms: 800, a: 'site' },
+      { p: 2, c: 'perfil', ms: 600, a: 'site', toque: '.a-site i' },
+      { p: 2, c: 'site', ms: 2000, a: 'site' },
+      { p: 2, c: 'site', ms: 600, a: 'site', toque: '.s-btn' },
+      { p: 2, c: 'site-zap', ms: 3300, a: 'site' },
+      { p: 3, c: 'nfc', ms: 3000 },
+      { p: 3, c: 'avaliar', ms: 3000 },
+      { p: 3, c: 'aval-nova', ms: 3600, rolo: '.g-avals', mais: true },
+      { p: 3, c: 'aval-nova', ms: 1200, mais: true }
     ];
-    /* Duração de cada parte e onde cada cena começa dentro da sua parte */
+    const PARTES = 4;
+    /* Duração de cada parte, onde cada cena começa dentro dela e a primeira
+       e a última cena de cada parte */
     const duracao = [0, 0, 0, 0];
     const inicioNaParte = VIDEO.map((v) => { const t = duracao[v.p]; duracao[v.p] += v.ms; return t; });
+    const primeira = (p) => VIDEO.findIndex((v) => v.p === p);
+    const ultima = (p) => VIDEO.length - 1 - [...VIDEO].reverse().findIndex((v) => v.p === p);
 
     /* Posição de um elemento dentro da tela do celular, sem contar a escala
        do celular no telefone (offset ignora transform, que é o que queremos). */
@@ -71,7 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const capitulos = vida.querySelectorAll('.vida-capitulos button');
-    let atual = 0, relogio = null, letra = null, tocando = false;
+    /* parte = qual parte está repetindo (modo rolagem); null = vídeo inteiro */
+    let atual = 0, relogio = null, letra = null, tocando = false, parte = null;
 
     /* Barrinha: as partes anteriores cheias, as seguintes vazias e a atual
        enchendo durante a cena (a transição do CSS dura o mesmo que a cena). */
@@ -96,11 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
       letra = setInterval(() => {
         digita.textContent = BUSCA.slice(0, ++i);
         if (i >= BUSCA.length) clearInterval(letra);
-      }, 55);
+      }, 45);
     };
 
     const cena = (i) => {
-      atual = i % VIDEO.length;
+      atual = i;
       const v = VIDEO[atual];
       vida.dataset.passo = v.p;
       vida.dataset.cena = v.c;
@@ -111,12 +115,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (v.toque) tocar(v.toque);
       capitulos.forEach((b) => b.setAttribute('aria-current', b.dataset.ir === String(v.p)));
       desenharBarra(v, atual);
+      /* Próxima cena: dentro da parte que está repetindo, ou do vídeo inteiro */
+      const proxima = parte === null
+        ? (atual + 1) % VIDEO.length
+        : atual + 1 > ultima(parte) ? primeira(parte) : atual + 1;
       clearTimeout(relogio);
-      relogio = setTimeout(() => cena(atual + 1), v.ms);
+      relogio = setTimeout(() => cena(proxima), v.ms);
     };
 
-    const tocarVideo = (desde = 0) => {
-      tocando = true;
+    const tocarParte = (p) => {           /* modo rolagem: uma parte repetindo */
+      if (tocando && parte === p) return;
+      tocando = true; parte = p;
+      cena(primeira(p));
+    };
+    const tocarVideo = (desde = 0) => {    /* depois de passar: vídeo inteiro */
+      tocando = true; parte = null;
       cena(desde);
     };
     const pausar = () => {
@@ -124,38 +137,55 @@ document.addEventListener('DOMContentLoaded', () => {
       clearTimeout(relogio); clearInterval(letra);
     };
 
-    /* Botões de capítulo: pulam para o começo daquela parte do vídeo */
-    capitulos.forEach((b) => b.addEventListener('click', () => {
-      tocarVideo(VIDEO.findIndex((v) => v.p === Number(b.dataset.ir)));
-    }));
-
     if (querMenosMovimento) {
       digita.textContent = BUSCA;
       vida.dataset.passo = '1';
       vida.dataset.cena = 'perfil';
+      capitulos.forEach((b) => b.addEventListener('click', () => {
+        vida.dataset.passo = b.dataset.ir;
+      }));
     } else {
-      /* Começa do início quando o celular aparece; pausa quando sai da tela.
-         Medido na rolagem (e não só por IntersectionObserver) para funcionar
-         também em janelas embutidas que atrasam esse aviso. */
       const caixa = vida.querySelector('.vida-cel');
+      const vista = () => vida.classList.contains('vista');
+      /* Na primeira descida a seção é alta e o palco fica parado: o trecho
+         rolado escolhe a parte (Hoje, Perfil, Contato, Avaliações), e cada
+         parte toca no seu tempo, repetindo até a pessoa rolar para a próxima. */
+      const parteDaRolagem = () => {
+        const r = vida.getBoundingClientRect();
+        const curso = r.height - window.innerHeight;
+        const feito = Math.min(0.999, Math.max(0, -r.top / curso));
+        return Math.floor(feito * PARTES);
+      };
+      /* Toca enquanto o celular aparece; pausa quando sai da tela. Medido na
+         rolagem para funcionar também em janelas embutidas. */
       const conferir = () => {
         const r = caixa.getBoundingClientRect();
         const visivel = r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
-        if (visivel && !tocando) tocarVideo(0);
-        else if (!visivel && tocando) pausar();
+        if (!visivel) { if (tocando) pausar(); return; }
+        if (vista()) { if (!tocando) tocarVideo(0); } else tocarParte(parteDaRolagem());
       };
-      /* Trava suave só na primeira passagem: quando a pessoa já desceu além
-         da seção, ela volta ao tamanho normal. O encolhimento acontece acima da
-         tela; para nada pular de lugar, mede-se onde a próxima seção estava e
-         corrige-se só o que faltar (o navegador às vezes já corrige sozinho). */
+      /* Trava só na primeira passagem: quando a pessoa já desceu além da seção,
+         ela volta ao tamanho normal e vira um vídeo contínuo. O encolhimento
+         acontece acima da tela; para nada pular de lugar, mede-se onde a próxima
+         seção estava e corrige-se só o que faltar. */
       const proxima = vida.nextElementSibling;
       const liberar = () => {
-        if (vida.classList.contains('vista') || vida.getBoundingClientRect().bottom > 0) return;
+        if (vista() || vida.getBoundingClientRect().bottom > 0) return;
         const antes = proxima.getBoundingClientRect().top;
         vida.classList.add('vista');
+        pausar();
         const diferenca = proxima.getBoundingClientRect().top - antes;
         if (diferenca) window.scrollBy({ top: diferenca, behavior: 'instant' });
       };
+      /* Capítulos: na primeira descida levam ao trecho da parte; depois,
+         pulam para aquela parte do vídeo contínuo */
+      capitulos.forEach((b) => b.addEventListener('click', () => {
+        const p = Number(b.dataset.ir);
+        if (vista()) { tocarVideo(primeira(p)); return; }
+        const curso = vida.offsetHeight - window.innerHeight;
+        const topo = vida.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: topo + curso * (p + 0.5) / PARTES, behavior: 'smooth' });
+      }));
       const aoRolar = () => { liberar(); conferir(); };
       conferir();
       window.addEventListener('scroll', aoRolar, { passive: true });
