@@ -1,9 +1,9 @@
 /* ==========================================================
    VIDA DA PÁGINA (redesenho de outubro/2026)
-   1. Seção do perfil: a ROLAGEM é o controle do vídeo. Cada trecho
-      da seção é uma cena completa (digitar a busca, perfil completo,
-      mapa, WhatsApp...). Rolar para cima volta a cena, como rebobinar;
-      nada depende de relógio, então nada é cortado no meio.
+   1. Seção do perfil: um vídeo feito com o próprio HTML. Começa do
+      início quando a seção aparece, toca as cenas no tempo certo
+      (digitar a busca, perfil completo, tocar em Rotas, mapa...) e se
+      repete. Os botões de capítulo pulam para uma parte.
    2. O celular inclina de leve seguindo o mouse.
    3. Portfólio: o vídeo só roda quando está na tela.
    4. Formulário do fim: monta a mensagem e abre o WhatsApp.
@@ -22,26 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const barras = vida.querySelectorAll('.vida-progresso i');
     const BUSCA = 'academia de jiu-jitsu perto de mim';
 
-    /* As cenas, na ordem da rolagem. passo = qual texto e qual palavra de
-       fundo; cena = o que o celular mostra; toque = onde o dedo encosta antes
-       de abrir a cena; antes = o que fica na tela enquanto o dedo toca;
-       rolo = até onde o perfil desce; acao = linha do texto que acende. */
-    const CENAS = [
-      { passo: 0, cena: 'hoje', digita: true },
-      { passo: 1, cena: 'perfil' },
-      { passo: 1, cena: 'perfil', rolo: '.g-info' },
-      { passo: 1, cena: 'perfil', rolo: '.g-servicos' },
-      { passo: 2, cena: 'mapa', acao: 'rota', toque: '.a-rota i' },
-      { passo: 2, cena: 'ligar', acao: 'ligar', toque: '.a-ligar i' },
-      { passo: 2, cena: 'site', acao: 'site', toque: '.a-site i' },
-      { passo: 2, cena: 'site-zap', acao: 'site', toque: '.s-btn', antes: 'site' },
-      { passo: 3, cena: 'nfc' },
-      { passo: 3, cena: 'avaliar' },
-      { passo: 3, cena: 'aval-nova', rolo: '.g-avals', mais: true }
+    /* O VÍDEO: cenas com duração (ms), tocadas em sequência quando a seção
+       aparece na tela. p = parte do vídeo (texto da esquerda, palavra de fundo
+       e segmento da barrinha); c = o que o celular mostra; toque = onde o dedo
+       encosta; rolo = até onde o perfil desce; a = linha do texto que acende. */
+    const VIDEO = [
+      { p: 0, c: 'hoje', ms: 2600, digita: true },
+      { p: 0, c: 'hoje', ms: 2600 },
+      { p: 1, c: 'perfil', ms: 3400 },
+      { p: 1, c: 'perfil', ms: 3200, rolo: '.g-info' },
+      { p: 1, c: 'perfil', ms: 3200, rolo: '.g-servicos' },
+      { p: 1, c: 'perfil', ms: 1600 },
+      { p: 2, c: 'perfil', ms: 1100, a: 'rota' },
+      { p: 2, c: 'perfil', ms: 750, a: 'rota', toque: '.a-rota i' },
+      { p: 2, c: 'mapa', ms: 3800, a: 'rota' },
+      { p: 2, c: 'perfil', ms: 1200, a: 'ligar' },
+      { p: 2, c: 'perfil', ms: 750, a: 'ligar', toque: '.a-ligar i' },
+      { p: 2, c: 'ligar', ms: 3400, a: 'ligar' },
+      { p: 2, c: 'perfil', ms: 1200, a: 'site' },
+      { p: 2, c: 'perfil', ms: 750, a: 'site', toque: '.a-site i' },
+      { p: 2, c: 'site', ms: 2800, a: 'site' },
+      { p: 2, c: 'site', ms: 750, a: 'site', toque: '.s-btn' },
+      { p: 2, c: 'site-zap', ms: 4400, a: 'site' },
+      { p: 3, c: 'nfc', ms: 4000 },
+      { p: 3, c: 'avaliar', ms: 4000 },
+      { p: 3, c: 'aval-nova', ms: 4800, rolo: '.g-avals', mais: true },
+      { p: 3, c: 'aval-nova', ms: 1800, mais: true }
     ];
-    /* Quantas cenas cada passo tem: é o tamanho de cada segmento da barrinha */
-    const porPasso = [0, 0, 0, 0];
-    CENAS.forEach((c) => porPasso[c.passo]++);
+    /* Duração de cada parte e onde cada cena começa dentro da sua parte */
+    const duracao = [0, 0, 0, 0];
+    const inicioNaParte = VIDEO.map((v) => { const t = duracao[v.p]; duracao[v.p] += v.ms; return t; });
 
     /* Posição de um elemento dentro da tela do celular, sem contar a escala
        do celular no telefone (offset ignora transform, que é o que queremos). */
@@ -63,57 +73,83 @@ document.addEventListener('DOMContentLoaded', () => {
       toque.classList.remove('on'); void toque.offsetWidth; toque.classList.add('on');
     };
 
-    let atual = -1, espera = null;
-    const mostrar = (i) => {
-      if (i === atual) return;
-      const indo = i > atual;
-      atual = i;
-      clearTimeout(espera);
-      const c = CENAS[i];
-      vida.dataset.passo = c.passo;
-      if (c.acao) vida.dataset.acao = c.acao; else delete vida.dataset.acao;
-      qtd.textContent = c.mais ? '87' : '86';
-      /* Indo para frente, o dedo toca o botão e só então a tela abre.
-         Voltando (rebobinando), a cena aparece direto. */
-      if (c.toque && indo) {
-        vida.dataset.cena = c.antes || 'perfil';
-        rolarAte(null);
-        tocar(c.toque);
-        espera = setTimeout(() => { vida.dataset.cena = c.cena; rolarAte(c.rolo); }, 420);
-      } else {
-        vida.dataset.cena = c.cena;
-        rolarAte(c.rolo);
-      }
+    const capitulos = vida.querySelectorAll('.vida-capitulos button');
+    let atual = 0, relogio = null, letra = null, tocando = false;
+
+    /* Barrinha: as partes anteriores cheias, as seguintes vazias e a atual
+       enchendo durante a cena (a transição do CSS dura o mesmo que a cena). */
+    const desenharBarra = (v, i) => {
+      barras.forEach((b, p) => {
+        const de = p < v.p ? 1 : p > v.p ? 0 : inicioNaParte[i] / duracao[v.p];
+        const ate = p !== v.p ? de : (inicioNaParte[i] + v.ms) / duracao[v.p];
+        b.style.setProperty('--dur', '0ms');
+        b.style.setProperty('--cheio', de.toFixed(4));
+        void getComputedStyle(b, '::after').transform;
+        if (tocando && ate !== de) {
+          b.style.setProperty('--dur', v.ms + 'ms');
+          b.style.setProperty('--cheio', ate.toFixed(4));
+        }
+      });
     };
+
+    const digitar = () => {
+      let i = 0;
+      clearInterval(letra);
+      digita.textContent = '';
+      letra = setInterval(() => {
+        digita.textContent = BUSCA.slice(0, ++i);
+        if (i >= BUSCA.length) clearInterval(letra);
+      }, 55);
+    };
+
+    const cena = (i) => {
+      atual = i % VIDEO.length;
+      const v = VIDEO[atual];
+      vida.dataset.passo = v.p;
+      vida.dataset.cena = v.c;
+      if (v.a) vida.dataset.acao = v.a; else delete vida.dataset.acao;
+      rolarAte(v.rolo);
+      qtd.textContent = v.mais ? '87' : '86';
+      if (v.digita) digitar(); else if (v.p > 0) { clearInterval(letra); digita.textContent = BUSCA; }
+      if (v.toque) tocar(v.toque);
+      capitulos.forEach((b) => b.setAttribute('aria-current', b.dataset.ir === String(v.p)));
+      desenharBarra(v, atual);
+      clearTimeout(relogio);
+      relogio = setTimeout(() => cena(atual + 1), v.ms);
+    };
+
+    const tocarVideo = (desde = 0) => {
+      tocando = true;
+      cena(desde);
+    };
+    const pausar = () => {
+      tocando = false;
+      clearTimeout(relogio); clearInterval(letra);
+    };
+
+    /* Botões de capítulo: pulam para o começo daquela parte do vídeo */
+    capitulos.forEach((b) => b.addEventListener('click', () => {
+      tocarVideo(VIDEO.findIndex((v) => v.p === Number(b.dataset.ir)));
+    }));
 
     if (querMenosMovimento) {
       digita.textContent = BUSCA;
       vida.dataset.passo = '1';
       vida.dataset.cena = 'perfil';
     } else {
-      /* Uma leitura de posição por evento de rolagem é barata, e chamar direto
-         (sem esperar o próximo quadro) garante a troca mesmo em aba sem foco. */
-      const medir = () => {
-        const r = vida.getBoundingClientRect();
-        const curso = r.height - window.innerHeight;
-        const feito = Math.min(0.9999, Math.max(0, -r.top / curso));
-        const pos = feito * CENAS.length;
-        const i = Math.floor(pos);
-        mostrar(i);
-        /* A busca vai sendo digitada conforme a rolagem da primeira cena */
-        const letras = i === 0 ? Math.round(Math.min(1, (pos - i) / 0.7) * BUSCA.length) : BUSCA.length;
-        if (digita.textContent.length !== letras) digita.textContent = BUSCA.slice(0, letras);
-        /* Barrinha de progresso: um segmento por passo, enchendo com a rolagem */
-        let antes = 0;
-        barras.forEach((b, p) => {
-          const cheio = Math.min(1, Math.max(0, (pos - antes) / porPasso[p]));
-          b.style.setProperty('--cheio', cheio.toFixed(3));
-          antes += porPasso[p];
-        });
+      /* Começa do início quando o celular aparece; pausa quando sai da tela.
+         Medido na rolagem (e não só por IntersectionObserver) para funcionar
+         também em janelas embutidas que atrasam esse aviso. */
+      const caixa = vida.querySelector('.vida-cel');
+      const conferir = () => {
+        const r = caixa.getBoundingClientRect();
+        const visivel = r.top < window.innerHeight * 0.7 && r.bottom > window.innerHeight * 0.3;
+        if (visivel && !tocando) tocarVideo(0);
+        else if (!visivel && tocando) pausar();
       };
-      medir();
-      window.addEventListener('scroll', medir, { passive: true });
-      window.addEventListener('resize', medir);
+      conferir();
+      window.addEventListener('scroll', conferir, { passive: true });
+      window.addEventListener('resize', conferir);
     }
 
     /* 2 · Inclinação do celular (só com mouse) */
