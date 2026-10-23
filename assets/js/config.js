@@ -43,9 +43,8 @@ const PODIO = {
     diagnostico: VEIO + ' e quero o diagnóstico gratuito do meu perfil no Google.',
 
     /* Já escolheu plano. É a intenção mais alta que existe no site. */
-    essencial:   VEIO + ' e tenho interesse no plano Essencial.',
-    crescimento: VEIO + ' e tenho interesse no plano Crescimento.',
-    performance: VEIO + ' e tenho interesse no plano Performance.'
+    plano1: VEIO + ' e quero arrumar o perfil da minha academia no Google.',
+    plano2: VEIO + ' e tenho interesse no acompanhamento mensal.'
   }
 
 };

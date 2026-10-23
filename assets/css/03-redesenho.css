@@ -1,0 +1,269 @@
+/* ==========================================================
+   03 · REDESENHO (versão do Claude, outubro/2026)
+   Menu que nasce só com a logo, seção viva do perfil, portfólio
+   em movimento, planos e formulário no fim.
+   Fica num arquivo próprio de propósito: tirar a linha dele do
+   index.html (e a do vida.js) volta o visual anterior.
+   ========================================================== */
+
+/* ---------- menu do topo ----------
+   No alto da página: só a logo, sem barra. Depois da primeira rolagem
+   (classe .compacta, posta pelo config.js) entra a barra escura de ponta a
+   ponta com os links no canto direito. O WhatsApp fica no botão flutuante. */
+.nav{position:fixed;top:0;left:0;right:0;transform:none;z-index:100;
+  width:auto;max-width:none;gap:0;display:block;
+  padding:0;border-radius:0;border:0;background:transparent;box-shadow:none;
+  border-bottom:1px solid transparent;
+  transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease}
+.nav-dentro{max-width:var(--maxw);margin:0 auto;padding:30px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:padding .35s cubic-bezier(.2,.7,.3,1)}
+.nav .marca{font-size:34px}
+.nav-links{display:flex;gap:40px;opacity:0;transform:translateY(-6px);pointer-events:none;
+  transition:opacity .35s ease,transform .35s cubic-bezier(.2,.7,.3,1)}
+.nav-links a{font:var(--t-label);letter-spacing:.22em;text-transform:uppercase;font-size:11.5px;
+  color:var(--muted);text-decoration:none;transition:color .2s ease}
+.nav-links a:hover{color:var(--text)}
+
+.nav.compacta{top:0;padding:0;
+  background:rgba(var(--ink-rgb),.88);border-bottom-color:rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:none}
+.nav.compacta .nav-dentro{padding:14px 22px}
+.nav.compacta .marca{font-size:24px}
+.nav.compacta .nav-links{opacity:1;transform:none;pointer-events:auto}
+
+@media(max-width:900px){
+  .nav{width:auto}
+  .nav-links{display:none}
+  .nav-dentro{padding:20px 18px}
+  .nav .marca{font-size:28px}
+  .nav.compacta .nav-dentro{padding:10px 18px}
+  .nav.compacta .marca{font-size:22px}
+}
+
+/* ---------- títulos sem o rótulo pequeno em cima ---------- */
+.section-head h2 em,#planos h2 em{font-style:italic;color:var(--lamp)}
+.port-sub{font:var(--t-h2);letter-spacing:var(--t-h2-ls);margin:84px 0 26px}
+
+/* ---------- seção viva: o perfil se completando ----------
+   A seção é alta (o tempo de rolagem) e o palco fica parado no meio da tela.
+   O vida.js mede quanto já foi rolado e troca data-passo de 0 a 3; daqui
+   para baixo cada passo só acende o que é dele, com transição. */
+.vida{padding:0;height:360vh;position:relative}
+.vida-palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  display:flex;align-items:center}
+.vida-grade{display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:center;position:relative}
+
+/* A palavra grande que troca atrás de tudo */
+.vida-fundo{position:absolute;inset:0;margin:0;pointer-events:none;user-select:none;
+  display:grid;place-items:center;overflow:hidden}
+.vida-fundo span{grid-area:1/1;font-family:var(--serif);font-style:italic;line-height:1;
+  font-size:clamp(90px,17vw,250px);letter-spacing:-.03em;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px rgba(var(--lamp-rgb),.16);
+  opacity:0;transform:translateY(60px) scale(.96);
+  transition:opacity .6s ease,transform .8s cubic-bezier(.2,.7,.3,1)}
+.vida[data-passo="0"] .vida-fundo span:nth-child(1),
+.vida[data-passo="1"] .vida-fundo span:nth-child(2),
+.vida[data-passo="2"] .vida-fundo span:nth-child(3),
+.vida[data-passo="3"] .vida-fundo span:nth-child(4){opacity:1;transform:none}
+
+.vida-textos h2{margin-bottom:34px;max-width:15ch}
+.vida-textos h2 em{font-style:italic;color:var(--lamp);display:block}
+.vida-passos{display:grid}
+.vida-passo{grid-area:1/1;opacity:0;transform:translateY(22px);pointer-events:none;
+  transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+.vida-passo h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(26px,2.8vw,36px);margin-bottom:14px}
+.vida-passo p{max-width:46ch}
+.vida[data-passo="0"] .vida-passo[data-p="0"],
+.vida[data-passo="1"] .vida-passo[data-p="1"],
+.vida[data-passo="2"] .vida-passo[data-p="2"],
+.vida[data-passo="3"] .vida-passo[data-p="3"]{opacity:1;transform:none;pointer-events:auto}
+.vida-dica{margin-top:26px;font:var(--t-label);letter-spacing:.2em;text-transform:uppercase;font-size:11px;color:var(--lamp)}
+.vida-dica::after{content:'';display:block;width:1px;height:38px;margin:12px 0 0 6px;
+  background:linear-gradient(var(--lamp),transparent);animation:dica 1.8s ease-in-out infinite}
+@keyframes dica{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}
+  51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* O celular: inclina de leve seguindo o mouse (--rx/--ry vêm do vida.js) */
+.vida-cel{perspective:1200px}
+.cel{width:320px;height:640px;border-radius:46px;padding:12px;margin:0 auto;
+  background:linear-gradient(160deg,#2a2e2a,#0d0f0d);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.14),0 40px 90px -30px rgba(0,0,0,.95),
+             0 0 120px -40px rgba(var(--lamp-rgb),.45);
+  transform:rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));
+  transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.cel-tela{width:100%;height:100%;border-radius:35px;overflow:hidden;position:relative;
+  background:#F6F7F5;color:#1D211D;font:400 13px/1.4 var(--sans)}
+
+.g-busca{margin:42px 14px 12px;padding:11px 14px;border-radius:100px;background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);display:flex;align-items:center;gap:9px;color:#4a514a;font-size:13px}
+.g-busca svg{width:16px;height:16px;fill:none;stroke:#6b736b;stroke-width:2}
+
+.g-fotos{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:4px;
+  height:132px;margin:0 14px;border-radius:16px;overflow:hidden}
+.g-foto{position:relative;background:#E3E6E2;overflow:hidden}
+.g-foto.f1{grid-row:1/3}
+.g-foto::before{content:'';position:absolute;inset:0;opacity:0;transform:scale(1.15);
+  transition:opacity .7s ease,transform 1s cubic-bezier(.2,.7,.3,1)}
+.g-foto.f1::before{background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,transparent 2px 38px),
+  linear-gradient(150deg,#2E5E8C,#163552)}
+.g-foto.f2::before{background:radial-gradient(circle at 30% 40%,#F2F2EE 0 14%,transparent 15%),
+  radial-gradient(circle at 70% 55%,#F2F2EE 0 13%,transparent 14%),linear-gradient(160deg,#5C6B3A,#2E3A1C)}
+.g-foto.f3::before{background:linear-gradient(180deg,#9DB4C8 0 55%,#6B5A48 55%),
+  linear-gradient(90deg,transparent 30%,rgba(0,0,0,.25) 30% 70%,transparent 70%)}
+.g-foto b{position:absolute;left:8px;bottom:6px;font:600 10px/1 var(--sans);color:#fff;opacity:0;
+  transition:opacity .5s ease .3s;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+
+.g-corpo{padding:12px 16px 0}
+.g-nome{font:400 21px/1.15 var(--serif);color:#141814;margin-bottom:6px}
+.g-nota,.g-cat{font-size:12.5px;color:#5a625a;margin-bottom:4px}
+.g-cat b{color:#1E8E3E;font-weight:600}
+/* Cada linha tem a versão crua (cinza) e a pronta; o passo escolhe qual aparece */
+.cru,.meio,.pronto{display:none}
+.cru{display:block;height:12px;width:70%;border-radius:6px;background:#DCE0DB}
+.g-nome .cru{height:20px;width:80%}
+.g-nota .cru{height:auto;width:auto;background:none;color:#8a928a}
+.estrelas{display:inline-block;width:62px;height:11px;vertical-align:-1px;margin:0 2px;
+  background:linear-gradient(90deg,#F5B400 var(--n),#D6D9D5 var(--n));
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 11'%3E%3Cg%3E%3Cpath id='s' d='M5.5 0l1.6 3.6 3.9.4-2.9 2.6.9 3.9-3.5-2.1-3.5 2.1.9-3.9L0 4l3.9-.4z'/%3E%3Cuse href='%23s' x='12.6'/%3E%3Cuse href='%23s' x='25.2'/%3E%3Cuse href='%23s' x='37.8'/%3E%3Cuse href='%23s' x='50.4'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 11'%3E%3Cg%3E%3Cpath id='s' d='M5.5 0l1.6 3.6 3.9.4-2.9 2.6.9 3.9-3.5-2.1-3.5 2.1.9-3.9L0 4l3.9-.4z'/%3E%3Cuse href='%23s' x='12.6'/%3E%3Cuse href='%23s' x='25.2'/%3E%3Cuse href='%23s' x='37.8'/%3E%3Cuse href='%23s' x='50.4'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+.estrelas.e4{--n:80%}
+.estrelas.e5{--n:100%}
+
+.g-acoes{display:flex;gap:10px;margin:12px 0}
+.g-acao{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;color:#5a625a}
+.g-acao i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid #D3D8D2;background:#fff;transition:background .4s ease,border-color .4s ease,transform .4s ease}
+.g-acao svg{width:17px;height:17px;fill:none;stroke:#1A73E8;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.g-acao.a-site i{border-style:dashed}
+.g-acao.a-site svg{stroke:#B8BEB7}
+.g-info{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid #E4E7E3;display:grid;gap:8px;font-size:12px;color:#3d443d}
+.g-avals{display:grid;gap:8px;margin-top:12px}
+.g-aval{padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #E4E7E3;font-size:11.5px;
+  opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+.g-aval p{color:#2c322c;margin:0}
+.g-aval .g-resp{margin-top:6px;padding-left:8px;border-left:2px solid #1A73E8;color:#5a625a;font-size:11px}
+.g-aval+.g-aval{transition-delay:.15s}
+
+/* O site que sobe de dentro do botão "Site" */
+.g-site{position:absolute;left:0;right:0;bottom:0;height:58%;padding:16px 18px;border-radius:24px 24px 0 0;
+  background:linear-gradient(160deg,#16243a,#0b1220);color:#fff;
+  transform:translateY(105%);transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+.g-site-topo{font:500 10px/1 var(--mono);color:rgba(255,255,255,.55);padding:6px 10px;border-radius:100px;
+  background:rgba(255,255,255,.08);display:inline-block;margin-bottom:16px}
+.g-site-tit{font:400 22px/1.12 var(--serif);color:#fff;margin-bottom:8px}
+.g-site-txt{font-size:11.5px;color:rgba(255,255,255,.7);margin-bottom:16px}
+.g-site-btn{display:inline-block;padding:10px 16px;border-radius:100px;background:#25D366;color:#06260f;font:600 12px/1 var(--sans)}
+.g-zap{position:absolute;right:14px;bottom:16px;max-width:72%;padding:9px 12px;border-radius:12px 12px 2px 12px;
+  background:#DCF8C6;color:#1a2a1a;font-size:11.5px;box-shadow:0 6px 18px rgba(0,0,0,.35);
+  opacity:0;transform:translateY(12px) scale(.9);transform-origin:bottom right;
+  transition:opacity .4s ease .7s,transform .5s cubic-bezier(.2,.7,.3,1) .7s}
+
+/* ---- passo 1 em diante: o perfil fica completo ---- */
+.vida:not([data-passo="0"]) .g-foto::before{opacity:1;transform:none}
+.vida:not([data-passo="0"]) .g-foto b{opacity:1}
+.vida:not([data-passo="0"]) .g-foto.f2::before{transition-delay:.15s}
+.vida:not([data-passo="0"]) .g-foto.f3::before{transition-delay:.3s}
+.vida:not([data-passo="0"]) :is(.g-nome,.g-cat,.g-info) .cru{display:none}
+.vida:not([data-passo="0"]) :is(.g-nome,.g-cat,.g-info) .pronto{display:block;animation:surge .5s ease both}
+.vida:not([data-passo="0"]) .a-ligar i,.vida:not([data-passo="0"]) .a-rota i{background:#E8F0FE;border-color:#C6DAFC}
+/* nota: crua no 0, intermediária no 1 e 2, cheia no 3 */
+.vida:not([data-passo="0"]) .g-nota .cru{display:none}
+.vida[data-passo="1"] .g-nota .meio,.vida[data-passo="2"] .g-nota .meio{display:inline;animation:surge .5s ease both}
+.vida[data-passo="3"] .g-nota .pronto{display:inline;animation:surge .5s ease both}
+@keyframes surge{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---- passo 2: o site sobe e a conversa chega ---- */
+.vida[data-passo="2"] .g-site{transform:none}
+.vida[data-passo="2"] .g-zap{opacity:1;transform:none}
+.vida:is([data-passo="2"],[data-passo="3"]) .a-site i{border-style:solid;background:#E8F0FE;border-color:#C6DAFC;transform:scale(1.1)}
+.vida:is([data-passo="2"],[data-passo="3"]) .a-site svg{stroke:#1A73E8}
+
+/* ---- passo 3: as avaliações com resposta ---- */
+.vida[data-passo="3"] .g-aval{opacity:1;transform:none}
+.vida[data-passo="3"] .g-info{display:none}
+
+@media(max-width:900px){
+  .vida{height:330vh}
+  .vida-palco{align-items:flex-start;padding-top:100px}
+  .vida-grade{grid-template-columns:1fr;gap:18px}
+  .vida-textos h2{margin-bottom:12px;font-size:28px;max-width:none}
+  .vida-textos h2 em{display:inline}
+  .vida-passo p{font-size:14.5px}
+  .vida-passo h3{font-size:24px;margin-bottom:6px}
+  .vida-dica{display:none}
+  /* O celular encolhe inteiro (o desenho foi feito em 320×640) */
+  .vida-cel{height:440px}
+  .cel{transform:scale(.69);transform-origin:top center}
+}
+@media(max-width:900px) and (max-height:700px){
+  .vida-cel{height:370px}
+  .cel{transform:scale(.58)}
+}
+
+/* ---------- portfólio: o site rolando dentro do celular ---------- */
+.port{display:grid;gap:28px}
+.port-item{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center}
+.port-cel{width:280px;height:560px;border-radius:42px;padding:11px;margin:0 auto;
+  background:linear-gradient(160deg,#2a2e2a,#0d0f0d);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.14),0 40px 90px -30px rgba(0,0,0,.95)}
+.port-tela{width:100%;height:100%;border-radius:32px;overflow:hidden;position:relative;background:#0b1220}
+.port-tela img{display:block;width:100%;height:auto;
+  animation:portRola 16s cubic-bezier(.45,0,.35,1) infinite;animation-play-state:paused}
+/* Desce o site até o fim da imagem, para no botão e a conversa aparece */
+@keyframes portRola{0%,8%{transform:translateY(0)}62%,100%{transform:translateY(calc(-100% + 538px))}}
+.port-toque{position:absolute;left:50%;top:62%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.85);opacity:0;animation:portToque 16s ease infinite;animation-play-state:paused}
+@keyframes portToque{0%,66%{opacity:0;transform:scale(1.6)}70%{opacity:1;transform:scale(1)}76%,100%{opacity:0;transform:scale(.8)}}
+.port-zap{position:absolute;left:12px;right:12px;bottom:18px;padding:11px 13px;border-radius:12px 12px 2px 12px;
+  background:#DCF8C6;color:#1a2a1a;font:400 12.5px/1.4 var(--sans);box-shadow:0 8px 24px rgba(0,0,0,.45);
+  opacity:0;animation:portZap 16s ease infinite;animation-play-state:paused}
+@keyframes portZap{0%,72%{opacity:0;transform:translateY(14px)}77%,96%{opacity:1;transform:none}100%{opacity:0}}
+.port.in :is(img,.port-toque,.port-zap){animation-play-state:running}
+.port-texto h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);margin-bottom:6px}
+.port-meta{font:var(--t-label);letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--lamp);margin-bottom:18px}
+.port-texto p{max-width:48ch}
+.port-link{display:inline-block;margin-top:20px;color:var(--text);font-weight:600;text-decoration:none;
+  border-bottom:1px solid rgba(var(--lamp-rgb),.6);padding-bottom:2px}
+.port-link:hover{color:var(--lamp)}
+@media(max-width:860px){
+  .port-item{grid-template-columns:1fr;gap:30px;text-align:center}
+  .port-texto p{margin:0 auto}
+}
+
+/* ---------- planos ---------- */
+.planos{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.plano{padding:38px;display:flex;flex-direction:column}
+.plano h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(26px,2.6vw,34px)}
+.plano-tipo{font:var(--t-label);letter-spacing:.16em;text-transform:uppercase;font-size:11px;color:var(--lamp);margin:8px 0 22px}
+.plano ul{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:12px;flex:1}
+.plano li{position:relative;padding-left:24px;color:var(--muted);font-size:15px;line-height:1.5}
+.plano li::before{content:'';position:absolute;left:2px;top:.5em;width:10px;height:6px;
+  border-left:2px solid var(--lamp);border-bottom:2px solid var(--lamp);transform:rotate(-45deg)}
+.plano .btn{align-self:flex-start}
+@media(max-width:860px){.planos{grid-template-columns:1fr}.plano{padding:28px}}
+
+/* ---------- formulário do fim ---------- */
+.form-diag{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;max-width:820px;margin:0 auto;text-align:left}
+.form-diag label{display:grid;gap:7px;font:600 13px/1.2 var(--sans);color:var(--text)}
+.form-diag input{font:400 15px/1.3 var(--sans);color:var(--text);padding:14px 16px;border-radius:14px;
+  background:rgba(255,255,255,.06);border:1px solid var(--glass-line);outline:none;
+  transition:border-color .2s ease,background .2s ease}
+.form-diag input::placeholder{color:rgba(255,255,255,.35)}
+.form-diag input:focus{border-color:rgba(var(--lamp-rgb),.7);background:rgba(255,255,255,.09)}
+.form-diag input[aria-invalid="true"]{border-color:var(--alert)}
+.form-diag .btn{grid-column:1/-1;justify-self:center;margin-top:10px}
+.final .form-diag p{margin:0;text-align:center;grid-column:1/-1;font-size:13px}
+.form-erro{color:var(--alert)!important}
+.form-erro:empty{display:none}
+@media(max-width:760px){.form-diag{grid-template-columns:1fr}}
+
+/* ---------- menos movimento: mostra tudo pronto, sem rolagem presa ---------- */
+@media(prefers-reduced-motion:reduce){
+  .vida{height:auto}
+  .vida-palco{position:static;height:auto;padding:96px 0}
+  .vida-passos{gap:26px}
+  .vida-passo{grid-area:auto;opacity:1;transform:none}
+  .port-tela img{animation:none}
+}

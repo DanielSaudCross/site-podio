@@ -191,6 +191,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=1">
 </head>
 <body>
 
@@ -204,21 +205,18 @@
 <!-- ═══════════════════════════════════════════════════════ -->
 <!--  BLOCO 01 · TOPO — logo, menu e botão do WhatsApp  -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<nav class="nav glass">
-  <a href="#topo" class="brand" aria-label="Pódio, ir para o topo"><span class="marca">P<span class="marca-o">O</span>DIO</span></a>
-  <div class="nav-links">
-    <a href="#frentes">Serviços</a>
-    <a href="#resultados">Resultados</a>
-    <a href="#duvidas">Dúvidas</a>
+<nav class="nav">
+  <div class="nav-dentro">
+    <a href="#topo" class="brand" aria-label="Pódio, ir para o topo"><span class="marca">P<span class="marca-o">O</span>DIO</span></a>
+    <div class="nav-links">
+      <a href="#frentes">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#duvidas">Dúvidas</a>
+    </div>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu-painel" aria-label="Abrir o menu">
+      <span aria-hidden="true"></span>
+    </button>
   </div>
-  <a href="#" data-wa="menu" class="btn btn-primary">Falar no WhatsApp</a>
-
-  <!-- Hambúrguer e painel: nascem escondidos e só existem abaixo de 900px,
-       que é a mesma faixa onde os .nav-links somem. No computador os dois
-       ficam com display:none e não ocupam espaço nenhum. -->
-  <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu-painel" aria-label="Abrir o menu">
-    <span aria-hidden="true"></span>
-  </button>
 </nav>
 
 <div class="menu-painel" id="menu-painel" hidden>
@@ -231,12 +229,11 @@
     </button>
   </div>
 
-  <!-- Numerados de propósito: a marca inteira é sobre degraus, e a mesma
-       numeração aparece no bloco de método. -->
   <nav aria-label="Navegação principal">
-    <a href="#frentes"><i aria-hidden="true">01</i>Serviços</a>
-    <a href="#resultados"><i aria-hidden="true">02</i>Resultados</a>
-    <a href="#duvidas"><i aria-hidden="true">03</i>Dúvidas</a>
+    <a href="#frentes">Serviços</a>
+    <a href="#portfolio">Portfólio</a>
+    <a href="#planos">Planos</a>
+    <a href="#duvidas">Dúvidas</a>
   </nav>
 
   <div class="menu-pe">
@@ -256,7 +253,7 @@
     <p class="lead">Quem procura academia, estúdio ou escola de arte marcial perto de casa escolhe entre os primeiros nomes que encontra. É esse lugar que a Pódio disputa por você.</p>
     <div class="hero-cta">
       <a href="#" data-wa="diagnostico" class="btn btn-primary">Pedir diagnóstico gratuito</a>
-      <a href="#resultados" class="btn btn-ghost">Ver quem já atendemos</a>
+      <a href="#portfolio" class="btn btn-ghost">Ver o portfólio</a>
     </div>
     <p class="hero-note">Análise do seu perfil em até 24h · sem compromisso</p>
   </div>
@@ -265,47 +262,74 @@
 <!-- ═══════════════════════════════════════════════════════ -->
 <!--  BLOCO 03 · SERVIÇOS — as três frentes  -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section id="frentes">
-  <div class="wrap">
-    <div class="section-head rv">
-      <p class="eyebrow">O que fazemos</p>
-      <h2>Três frentes que trabalham juntas.</h2>
-      <p class="lead">Cada uma pega a pessoa num momento diferente da decisão de começar a treinar: quando ela procura, quando confere e quando compara. Tudo no Google, sem depender de anúncio.</p>
-    </div>
-    <div class="grid g3">
+<section id="frentes" class="vida" data-passo="0">
+  <div class="vida-palco">
+    <p class="vida-fundo" aria-hidden="true"><span>Google</span><span>Perfil</span><span>Site</span><span>Avaliações</span></p>
+    <div class="wrap vida-grade">
 
-      <article class="card glass rv">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></div>
-        <h3>Google Meu Negócio</h3>
-        <p>É onde a decisão acontece. Quem digita "academia perto de mim" ou "jiu-jitsu no Sudoeste" recebe três nomes no mapa, com foto, nota e botão de ligar, e escolhe ali mesmo. Ficar fora desses três é ser invisível para quem já estava disposto a pagar.</p>
-        <ul>
-          <li>Categorias, serviços e descrição escritos para busca local</li>
-          <li>Horário, telefone e endereço certos, com aviso de feriado</li>
-          <li>Fotos do espaço, da turma e do treino acontecendo</li>
-        </ul>
-      </article>
+      <div class="vida-textos">
+        <h2>O perfil que <em>escolhe por você.</em></h2>
+        <div class="vida-passos">
+          <div class="vida-passo" data-p="0">
+            <p class="lead">Quem procura treino perto de casa decide olhando um perfil no Google. Role a página e veja o que a Pódio coloca nele.</p>
+            <p class="vida-dica" aria-hidden="true">role para ver</p>
+          </div>
+          <div class="vida-passo" data-p="1">
+            <h3>Google Meu Negócio</h3>
+            <p>Nome certo, categoria de escola de luta, horário completo, telefone que alguém atende e fotos do espaço, da turma e do treino acontecendo.</p>
+          </div>
+          <div class="vida-passo" data-p="2">
+            <h3>Site da academia</h3>
+            <p>Quem achou você no mapa quer conferir antes de chamar. O site responde horário, endereço e como é o espaço, e termina no botão de aula experimental no seu WhatsApp.</p>
+          </div>
+          <div class="vida-passo" data-p="3">
+            <h3>Avaliações</h3>
+            <p>Na hora de comparar, pesam a nota e o número de avaliações. A placa com NFC deixa fácil o aluno avaliar, e cada avaliação recebe resposta no tom da sua academia.</p>
+          </div>
+        </div>
+      </div>
 
-      <article class="card glass rv">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M7 6.5h.01M10 6.5h.01"/></svg></div>
-        <h3>Site da academia</h3>
-        <p>Quem achou você no mapa quer conferir antes de chamar: horário da turma, onde fica, como é o espaço. Se o link do Google leva para o Instagram ou para lugar nenhum, essa pessoa vai para a próxima academia. O site responde tudo numa página e termina no seu WhatsApp.</p>
-        <ul>
-          <li>Página única, com a cara da sua academia</li>
-          <li>Grade de horários, endereço e galeria de fotos</li>
-          <li>Botão de aula experimental direto no WhatsApp</li>
-        </ul>
-      </article>
-
-      <article class="card glass rv">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.25 4.1 1 5.8L12 16.9l-5.25 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg></div>
-        <h3>Avaliações</h3>
-        <p>Na hora de comparar, pesam a nota e o número de avaliações. Academia com pouca avaliação, ou com avaliação sem resposta, perde para a vizinha mesmo treinando melhor. A gente deixa fácil o aluno avaliar e responde cada avaliação no tom da sua academia.</p>
-        <ul>
-          <li>Placa com NFC: o aluno encosta o celular e já cai na avaliação</li>
-          <li>Roteiro simples para pedir avaliação a alunos e visitantes</li>
-          <li>Resposta a todas as avaliações</li>
-        </ul>
-      </article>
+      <!-- Ilustração: um perfil genérico se completando. Não é print do Google
+           nem de cliente, por isso o nome é "Sua Academia". -->
+      <div class="vida-cel" aria-hidden="true">
+        <div class="cel">
+          <div class="cel-tela">
+            <div class="g-busca"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>jiu-jitsu perto de mim</div>
+            <div class="g-fotos">
+              <i class="g-foto f1"><b>Tatame</b></i><i class="g-foto f2"><b>Turma</b></i><i class="g-foto f3"><b>Fachada</b></i>
+            </div>
+            <div class="g-corpo">
+              <p class="g-nome"><span class="cru"></span><span class="pronto">Sua Academia de Jiu-Jitsu</span></p>
+              <p class="g-nota">
+                <span class="cru">Sem avaliações</span>
+                <span class="meio">4,2 <i class="estrelas e4"></i> (7)</span>
+                <span class="pronto">4,9 <i class="estrelas e5"></i> (86)</span>
+              </p>
+              <p class="g-cat"><span class="cru"></span><span class="pronto">Escola de jiu-jitsu · <b>Aberto</b> até 22h</span></p>
+              <div class="g-acoes">
+                <span class="g-acao a-rota"><i><svg viewBox="0 0 24 24"><path d="M12 3l8 9-8 9-8-9z"/><path d="M9.5 13v-2.5h5V8.5"/><path d="M13 7l1.5 1.5L13 10"/></svg></i>Rota</span>
+                <span class="g-acao a-ligar"><i><svg viewBox="0 0 24 24"><path d="M6.5 3.5l3 3-2 2.5a12 12 0 006.5 6.5l2.5-2 3 3-2 3C10 19.5 4.5 14 3.5 5.5z"/></svg></i>Ligar</span>
+                <span class="g-acao a-site"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 2.5 14.4 0 17M12 3.5c-2.5 2.6-2.5 14.4 0 17"/></svg></i>Site</span>
+              </div>
+              <ul class="g-info">
+                <li><span class="cru"></span><span class="pronto">Sudoeste, Brasília · DF</span></li>
+                <li><span class="cru"></span><span class="pronto">Seg a sex, 6h às 22h · Sáb, 9h às 12h</span></li>
+              </ul>
+              <div class="g-avals">
+                <div class="g-aval"><p><i class="estrelas e5"></i> "Professor atencioso, turma acolhedora."</p><p class="g-resp">Resposta do proprietário: Valeu, Pedro! Bom te ver no tatame.</p></div>
+                <div class="g-aval"><p><i class="estrelas e5"></i> "Levei meu filho na aula experimental e ele amou."</p><p class="g-resp">Resposta do proprietário: Obrigado, Carla! Ele mandou muito bem.</p></div>
+              </div>
+            </div>
+            <div class="g-site">
+              <div class="g-site-topo">suaacademia.com.br</div>
+              <p class="g-site-tit">Jiu-jitsu no Sudoeste para todas as idades</p>
+              <p class="g-site-txt">Turmas kids, iniciante e avançado. Primeira aula por nossa conta.</p>
+              <span class="g-site-btn">Agendar aula experimental</span>
+              <div class="g-zap">Oi! Quero agendar uma aula experimental 🥋</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -317,7 +341,6 @@
 <section id="transformacao">
   <div class="wrap">
     <div class="section-head rv" style="text-align:center;margin-left:auto;margin-right:auto">
-      <p class="eyebrow">A transformação</p>
       <h2>O que muda quando <em>alguém cuida disso.</em></h2>
     </div>
 
@@ -352,15 +375,34 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 05 · RESULTADOS — prints e números reais  -->
+<!--  BLOCO 05 · PORTFÓLIO — sites em movimento e academias atendidas  -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section id="resultados">
+<section id="portfolio">
   <div class="wrap">
     <div class="section-head rv">
-      <p class="eyebrow">Prova social</p>
-      <h2>Quem já está no degrau mais alto.</h2>
-      <p class="lead">Academias e estúdios de Brasília que confiam a presença digital à Pódio. Toque num card para ver o perfil e os serviços de cada um.</p>
+      <h2>Sites que terminam <em>no WhatsApp.</em></h2>
+      <p class="lead">Cada site é feito com a cara da academia e leva quem chegou pelo Google direto para a conversa.</p>
     </div>
+
+    <div class="port rv">
+      <article class="port-item">
+        <div class="port-cel" aria-hidden="true">
+          <div class="port-tela">
+            <img src="assets/img/portfolio/ctmtk-celular.webp" alt="" width="360" height="2592" loading="lazy">
+            <div class="port-toque"></div>
+            <div class="port-zap">Oi! Vim pelo site e quero marcar uma aula experimental.</div>
+          </div>
+        </div>
+        <div class="port-texto">
+          <h3>CT MTK</h3>
+          <p class="port-meta">Artes marciais e funcional · Núcleo Bandeirante/DF</p>
+          <p>Judô, jiu-jitsu, muay thai e funcional numa página só: modalidades, turmas por idade, professores e o botão de aula experimental em cada bloco.</p>
+          <a class="port-link" href="https://ctmtk.vercel.app/" target="_blank" rel="noopener">Ver o site no ar</a>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="port-sub rv">Academias que já atendemos</h3>
 
     <div class="casos rv">
 
@@ -547,6 +589,46 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
+<!--  BLOCO 06 · PLANOS — arrumar e acompanhar (sem preço por enquanto)  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="planos">
+  <div class="wrap">
+    <div class="section-head rv">
+      <h2>Duas formas de <em>contratar.</em></h2>
+      <p class="lead">Comece arrumando o terreno. Se quiser que a gente continue cuidando, o acompanhamento é mensal e sem complicação.</p>
+    </div>
+    <div class="planos">
+      <article class="plano glass rv">
+        <h3>Arrumar o terreno</h3>
+        <p class="plano-tipo">Pagamento único</p>
+        <ul>
+          <li>Perfil do Google completo: categoria, descrição, turmas, horário, telefone e endereço</li>
+          <li>Fotos que a academia manda, escolhidas e publicadas</li>
+          <li>Site com grade, galeria e botão de aula experimental no WhatsApp</li>
+          <li>Placa de avaliação com NFC</li>
+          <li>Relatório das avaliações: como estão e o que fazer</li>
+          <li>Os dois primeiros meses de acompanhamento inclusos</li>
+        </ul>
+        <a href="#" data-wa="plano1" class="btn btn-primary">Quero arrumar o meu perfil</a>
+      </article>
+      <article class="plano glass rv">
+        <h3>Manter e acompanhar</h3>
+        <p class="plano-tipo">Mensal · opcional</p>
+        <ul>
+          <li>Publicação toda semana nas atualizações do Google</li>
+          <li>Toda segunda a gente confere com você se a grade mudou</li>
+          <li>Vigilância do perfil: mudança indevida, avaliação falsa e perfil duplicado</li>
+          <li>Resposta a todas as avaliações, no tom da academia</li>
+          <li>Site no ar, com grade, fotos e avisos sempre atualizados</li>
+          <li>Painel com ligações, rotas e cliques que vieram do Google</li>
+        </ul>
+        <a href="#" data-wa="plano2" class="btn btn-ghost">Quero o acompanhamento</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
 <!--  BLOCO 10 · DÚVIDAS — perguntas frequentes  -->
 <!--  ATENÇÃO: este texto tem de bater palavra por palavra com o FAQPage   -->
 <!--  lá em cima. O Google descarta o dado estruturado quando diverge.     -->
@@ -554,7 +636,6 @@
 <section id="duvidas">
   <div class="wrap">
     <div class="section-head rv" style="text-align:center;margin-left:auto;margin-right:auto">
-      <p class="eyebrow">Dúvidas</p>
       <h2>Perguntas que sempre aparecem.</h2>
     </div>
     <div class="faq">
@@ -609,10 +690,16 @@
   <div class="wrap">
     <div class="final glass rv">
       <span class="final-mark" aria-hidden="true">PÓDIO</span>
-      <p class="eyebrow">Vamos conversar?</p>
       <h2>Você não precisa aparecer para todo mundo. <em>Precisa aparecer para quem está procurando agora.</em></h2>
-      <p>Mande o nome do seu negócio e a cidade. Em até 24h você recebe um relatório do seu perfil no Google, sem custo e sem compromisso. E na conversa a gente mostra ao vivo em que posição você aparece na sua região e quem está na sua frente.</p>
-      <a href="#" data-wa="diagnostico" class="btn btn-primary">Pedir meu diagnóstico gratuito</a>
+      <p>Diga qual é a sua academia. Em até 24h você recebe um relatório do seu perfil no Google, sem custo e sem compromisso.</p>
+      <form class="form-diag" id="form-diag" novalidate>
+        <label>Nome da academia<input name="academia" required autocomplete="organization" placeholder="Ex.: CT Tatame Forte"></label>
+        <label>Bairro e cidade<input name="local" required autocomplete="address-level2" placeholder="Ex.: Sudoeste, Brasília"></label>
+        <label>Seu nome<input name="nome" autocomplete="given-name" placeholder="Opcional"></label>
+        <button class="btn btn-primary" type="submit">Pedir meu diagnóstico gratuito</button>
+        <p class="form-nota">Abre o WhatsApp com a mensagem pronta. É só enviar.</p>
+        <p class="form-erro" role="alert"></p>
+      </form>
     </div>
   </div>
 </section>
@@ -642,7 +729,8 @@
       <nav class="foot-col foot-nav" aria-label="Navegação do rodapé">
         <p class="foot-tit">Navegação</p>
         <a href="#frentes">Serviços</a>
-        <a href="#resultados">Resultados</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#planos">Planos</a>
         <a href="#duvidas">Dúvidas</a>
       </nav>
 
@@ -677,5 +765,6 @@
 </a>
 
 <script src="assets/js/config.js?v=67"></script>
+<script src="assets/js/vida.js?v=1"></script>
 </body>
 </html>
