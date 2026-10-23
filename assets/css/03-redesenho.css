@@ -47,10 +47,11 @@
 
 /* ---------- seção viva: o perfil se completando ----------
    A seção é alta (o tempo de rolagem) e o palco fica parado no meio da tela.
-   O vida.js troca data-passo (0 a 3) pela rolagem e, dentro de cada passo,
-   data-cena pelo tempo (digitar, tocar em Rotas, abrir o mapa...).
+   O vida.js divide a rolagem em cenas: cada trecho troca data-passo (0 a 3,
+   o texto da esquerda) e data-cena (o que o celular mostra). Sem relógio:
+   rolar para cima volta a cena.
    Daqui para baixo cada passo e cada cena só acende o que é dele. */
-.vida{padding:0;height:440vh;position:relative}
+.vida{padding:0;height:540vh;position:relative}
 .vida-palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
   display:flex;align-items:center}
 .vida-grade{display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:center;position:relative}
@@ -117,7 +118,7 @@
 .g-digita{white-space:nowrap;overflow:hidden}
 .g-cursor{width:1.5px;height:16px;background:#1A73E8;animation:pisca 1s steps(1) infinite}
 @keyframes pisca{50%{opacity:0}}
-.vida:not([data-passo="0"]) .g-cursor{display:none}
+.vida:not([data-cena="hoje"]) .g-cursor{display:none}
 
 .g-janela{flex:1;overflow:hidden;position:relative}
 .g-rolo{transform:translateY(var(--rolo,0px));transition:transform .9s cubic-bezier(.45,0,.25,1)}
@@ -132,8 +133,6 @@
 /* Perfil cru: só a primeira foto */
 .vida[data-passo="0"] :is(.f2,.f3) img,.vida[data-passo="0"] .f3 b{opacity:0}
 .vida[data-passo="0"] :is(.f2,.f3) img{transform:scale(1.2)}
-.vida:not([data-passo="0"]) .f2 img{transition-delay:.12s}
-.vida:not([data-passo="0"]) .f3 img{transition-delay:.24s}
 
 .g-corpo{padding:10px 14px 18px}
 .g-nome{font:400 20px/1.15 var(--serif);color:#141814;margin-bottom:4px}
@@ -279,12 +278,12 @@ span.so-pronto,b.so-pronto{display:none}
 .nfc-sub{font-size:11px;color:#5a625a;margin:6px 0 14px}
 .nfc-ondas{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 12px;border-radius:50%;background:#E8F0FE}
 .nfc-ondas svg{width:28px;height:28px;fill:none;stroke:#1A73E8;stroke-width:2;stroke-linecap:round}
-.vida[data-cena="nfc"] .nfc-ondas{animation:ondas 1s ease-in-out .9s 2}
+.vida[data-cena="nfc"] .nfc-ondas{animation:ondas 1s ease-in-out .9s infinite}
 @keyframes ondas{50%{box-shadow:0 0 0 14px rgba(26,115,232,.15)}}
 .nfc-cel{position:absolute;left:50%;top:-30px;width:84px;height:160px;margin-left:-42px;border-radius:18px;
   background:linear-gradient(160deg,#3a3f3a,#151715);border:2px solid rgba(255,255,255,.25)}
-.vida[data-cena="nfc"] .nfc-cel{animation:encosta 2.4s cubic-bezier(.4,0,.2,1) both}
-@keyframes encosta{0%{transform:translateY(-40px) rotate(-8deg);opacity:0}35%,75%{transform:translateY(190px) rotate(0);opacity:1}100%{transform:translateY(190px);opacity:0}}
+.vida[data-cena="nfc"] .nfc-cel{animation:encosta 1.4s cubic-bezier(.4,0,.2,1) both}
+@keyframes encosta{0%{transform:translateY(-40px) rotate(-8deg);opacity:0}55%,100%{transform:translateY(150px) rotate(0);opacity:1}}
 
 /* Avaliar: as estrelas enchem uma a uma */
 .ov-avaliar{background:#fff;padding:70px 20px 20px;text-align:center}
@@ -306,7 +305,7 @@ span.so-pronto,b.so-pronto{display:none}
 .av-btn{display:inline-block;margin-top:18px;padding:10px 26px;border-radius:100px;background:#1A73E8;color:#fff;font:600 12px/1 var(--sans)}
 
 @media(max-width:900px){
-  .vida{height:420vh}
+  .vida{height:520vh}
   .vida-palco{align-items:flex-start;padding-top:100px}
   .vida-grade{grid-template-columns:1fr;gap:14px}
   .vida-textos h2{margin-bottom:10px;font-size:28px;max-width:none}
@@ -324,6 +323,29 @@ span.so-pronto,b.so-pronto{display:none}
   .vida-cel{height:350px}
   .cel{transform:scale(.54)}
 }
+
+
+/* Selo em cima do celular: diz se o perfil é o de hoje ou o completo */
+.vida-cel{position:relative}
+.vida-selo{position:absolute;left:50%;top:-16px;transform:translateX(-50%);z-index:5;margin:0;
+  display:grid;white-space:nowrap}
+.vida-selo span{grid-area:1/1;justify-self:center;padding:7px 15px;border-radius:100px;
+  font:var(--t-label);letter-spacing:.16em;text-transform:uppercase;font-size:10.5px;
+  transition:opacity .4s ease,transform .5s cubic-bezier(.2,.7,.3,1)}
+.vida-selo .s-hoje{background:#3a2a22;color:#FFB59E;border:1px solid rgba(255,140,110,.4)}
+.vida-selo .s-podio{background:var(--grad);color:var(--ink);box-shadow:0 10px 26px -10px rgba(var(--warm-rgb),.8);
+  opacity:0;transform:translateY(8px) scale(.9)}
+.vida:not([data-passo="0"]) .vida-selo .s-hoje{opacity:0;transform:translateY(-8px) scale(.9)}
+.vida:not([data-passo="0"]) .vida-selo .s-podio{opacity:1;transform:none}
+
+/* Barrinha de progresso, como a dos stories: um segmento por passo */
+.vida-progresso{position:absolute;top:14px;left:26px;right:26px;z-index:30;display:flex;gap:4px;pointer-events:none}
+.vida-progresso i{flex:1;height:3px;border-radius:3px;background:rgba(0,0,0,.14);overflow:hidden;position:relative}
+.vida-progresso i::after{content:'';position:absolute;inset:0;background:#1A73E8;
+  transform:scaleX(var(--cheio,0));transform-origin:left;transition:transform .15s linear}
+.vida:is([data-cena="ligar"],[data-cena="site"],[data-cena="site-toque"],[data-cena="site-zap"],[data-cena="nfc"]) .vida-progresso i{background:rgba(255,255,255,.22)}
+.vida:is([data-cena="ligar"],[data-cena="site"],[data-cena="site-toque"],[data-cena="site-zap"],[data-cena="nfc"]) .vida-progresso i::after{background:#fff}
+@media(max-width:900px){.vida-selo{top:-12px}}
 
 /* ---------- portfólio: o site rolando dentro do celular ---------- */
 .port{display:grid;gap:28px}

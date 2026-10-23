@@ -191,7 +191,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=3">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=4">
 </head>
 <body>
 
@@ -295,10 +295,12 @@
 
       <!-- Ilustração: um perfil genérico ("Sua Academia"), não é print do Google
            nem de cliente. As fotos são de teste: ver assets/img/teste/LEIA-ME.txt.
-           O vida.js troca data-passo (pela rolagem) e data-cena (pelo tempo). -->
+           O vida.js troca data-passo e data-cena conforme a rolagem. -->
       <div class="vida-cel" aria-hidden="true">
+        <p class="vida-selo"><span class="s-hoje">Como está hoje</span><span class="s-podio">Com a Pódio</span></p>
         <div class="cel">
           <div class="cel-tela">
+            <div class="vida-progresso"><i></i><i></i><i></i><i></i></div>
 
             <div class="g-topo">
               <div class="g-busca"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="g-digita"></span><i class="g-cursor"></i></div>
@@ -828,6 +830,6 @@
 </a>
 
 <script src="assets/js/config.js?v=67"></script>
-<script src="assets/js/vida.js?v=3"></script>
+<script src="assets/js/vida.js?v=4"></script>
 </body>
 </html>

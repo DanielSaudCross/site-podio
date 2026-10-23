@@ -1,8 +1,9 @@
 /* ==========================================================
    VIDA DA PÁGINA (redesenho de outubro/2026)
-   1. Seção do perfil: a rolagem escolhe o passo (0 a 3) e, dentro
-      de cada passo, um roteiro com tempo troca a cena (digitar a
-      busca, tocar em Rotas, abrir o mapa...).
+   1. Seção do perfil: a ROLAGEM é o controle do vídeo. Cada trecho
+      da seção é uma cena completa (digitar a busca, perfil completo,
+      mapa, WhatsApp...). Rolar para cima volta a cena, como rebobinar;
+      nada depende de relógio, então nada é cortado no meio.
    2. O celular inclina de leve seguindo o mouse.
    3. Portfólio: o vídeo só roda quando está na tela.
    4. Formulário do fim: monta a mensagem e abre o WhatsApp.
@@ -18,7 +19,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const toque = vida.querySelector('.toque');
     const digita = vida.querySelector('.g-digita');
     const qtd = vida.querySelector('.g-qtd');
+    const barras = vida.querySelectorAll('.vida-progresso i');
     const BUSCA = 'academia de jiu-jitsu perto de mim';
+
+    /* As cenas, na ordem da rolagem. passo = qual texto e qual palavra de
+       fundo; cena = o que o celular mostra; toque = onde o dedo encosta antes
+       de abrir a cena; antes = o que fica na tela enquanto o dedo toca;
+       rolo = até onde o perfil desce; acao = linha do texto que acende. */
+    const CENAS = [
+      { passo: 0, cena: 'hoje', digita: true },
+      { passo: 1, cena: 'perfil' },
+      { passo: 1, cena: 'perfil', rolo: '.g-info' },
+      { passo: 1, cena: 'perfil', rolo: '.g-servicos' },
+      { passo: 2, cena: 'mapa', acao: 'rota', toque: '.a-rota i' },
+      { passo: 2, cena: 'ligar', acao: 'ligar', toque: '.a-ligar i' },
+      { passo: 2, cena: 'site', acao: 'site', toque: '.a-site i' },
+      { passo: 2, cena: 'site-zap', acao: 'site', toque: '.s-btn', antes: 'site' },
+      { passo: 3, cena: 'nfc' },
+      { passo: 3, cena: 'avaliar' },
+      { passo: 3, cena: 'aval-nova', rolo: '.g-avals', mais: true }
+    ];
+    /* Quantas cenas cada passo tem: é o tamanho de cada segmento da barrinha */
+    const porPasso = [0, 0, 0, 0];
+    CENAS.forEach((c) => porPasso[c.passo]++);
 
     /* Posição de um elemento dentro da tela do celular, sem contar a escala
        do celular no telefone (offset ignora transform, que é o que queremos). */
@@ -28,9 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return { x, y };
     };
     const rolarAte = (seletor) => {
-      if (!seletor) { rolo.style.setProperty('--rolo', '0px'); return; }
-      const alvo = rolo.querySelector(seletor);
-      if (alvo) rolo.style.setProperty('--rolo', -Math.max(0, alvo.offsetTop - 6) + 'px');
+      const alvo = seletor && rolo.querySelector(seletor);
+      rolo.style.setProperty('--rolo', alvo ? -Math.max(0, alvo.offsetTop - 6) + 'px' : '0px');
     };
     const tocar = (seletor) => {
       const alvo = tela.querySelector(seletor);
@@ -41,91 +63,57 @@ document.addEventListener('DOMContentLoaded', () => {
       toque.classList.remove('on'); void toque.offsetWidth; toque.classList.add('on');
     };
 
-    /* O roteiro de cada passo. ms = quanto a cena fica na tela.
-       toque = onde o dedo encosta; rolo = até onde o perfil rola; acao = linha
-       do texto que acende. O roteiro se repete enquanto o passo estiver na tela. */
-    const ROTEIRO = {
-      1: [
-        { cena: 'perfil', ms: 2600 },
-        { cena: 'perfil', ms: 2600, rolo: '.g-info' },
-        { cena: 'perfil', ms: 2600, rolo: '.g-servicos' },
-        { cena: 'perfil', ms: 1200 }
-      ],
-      2: [
-        { cena: 'perfil', ms: 700, acao: 'rota' },
-        { cena: 'perfil', ms: 550, acao: 'rota', toque: '.a-rota i' },
-        { cena: 'mapa', ms: 2700, acao: 'rota' },
-        { cena: 'perfil', ms: 600, acao: 'ligar' },
-        { cena: 'perfil', ms: 550, acao: 'ligar', toque: '.a-ligar i' },
-        { cena: 'ligar', ms: 2300, acao: 'ligar' },
-        { cena: 'perfil', ms: 600, acao: 'site' },
-        { cena: 'perfil', ms: 550, acao: 'site', toque: '.a-site i' },
-        { cena: 'site', ms: 1500, acao: 'site' },
-        { cena: 'site-toque', ms: 550, acao: 'site', toque: '.s-btn' },
-        { cena: 'site-zap', ms: 3000, acao: 'site' }
-      ],
-      3: [
-        { cena: 'nfc', ms: 2600 },
-        { cena: 'avaliar', ms: 2600 },
-        { cena: 'aval-nova', ms: 3400, rolo: '.g-avals', mais: 1 }
-      ]
-    };
-
-    let passoAtual = -1, relogio = null, letra = null;
-    const parar = () => { clearTimeout(relogio); clearInterval(letra); };
-
-    const digitar = () => {
-      let i = 0;
-      digita.textContent = '';
-      letra = setInterval(() => {
-        digita.textContent = BUSCA.slice(0, ++i);
-        if (i >= BUSCA.length) clearInterval(letra);
-      }, 55);
-    };
-
-    const rodar = (passo, i = 0) => {
-      const roteiro = ROTEIRO[passo];
-      if (!roteiro) return;
-      const c = roteiro[i % roteiro.length];
-      vida.dataset.cena = c.cena;
+    let atual = -1, espera = null;
+    const mostrar = (i) => {
+      if (i === atual) return;
+      const indo = i > atual;
+      atual = i;
+      clearTimeout(espera);
+      const c = CENAS[i];
+      vida.dataset.passo = c.passo;
       if (c.acao) vida.dataset.acao = c.acao; else delete vida.dataset.acao;
-      rolarAte(c.rolo);
-      if (c.toque) tocar(c.toque);
       qtd.textContent = c.mais ? '87' : '86';
-      relogio = setTimeout(() => rodar(passo, i + 1), c.ms);
-    };
-
-    const entrarNoPasso = (passo) => {
-      if (passo === passoAtual) return;
-      passoAtual = passo;
-      parar();
-      vida.dataset.passo = passo;
-      vida.dataset.cena = 'perfil';
-      delete vida.dataset.acao;
-      rolarAte(null);
-      qtd.textContent = '86';
-      if (passo === 0) digitar(); else digita.textContent = BUSCA;
-      rodar(passo);
+      /* Indo para frente, o dedo toca o botão e só então a tela abre.
+         Voltando (rebobinando), a cena aparece direto. */
+      if (c.toque && indo) {
+        vida.dataset.cena = c.antes || 'perfil';
+        rolarAte(null);
+        tocar(c.toque);
+        espera = setTimeout(() => { vida.dataset.cena = c.cena; rolarAte(c.rolo); }, 420);
+      } else {
+        vida.dataset.cena = c.cena;
+        rolarAte(c.rolo);
+      }
     };
 
     if (querMenosMovimento) {
       digita.textContent = BUSCA;
       vida.dataset.passo = '1';
+      vida.dataset.cena = 'perfil';
     } else {
       /* Uma leitura de posição por evento de rolagem é barata, e chamar direto
          (sem esperar o próximo quadro) garante a troca mesmo em aba sem foco. */
       const medir = () => {
         const r = vida.getBoundingClientRect();
         const curso = r.height - window.innerHeight;
-        const feito = Math.min(1, Math.max(0, -r.top / curso));
-        entrarNoPasso(feito < 0.16 ? 0 : feito < 0.40 ? 1 : feito < 0.72 ? 2 : 3);
+        const feito = Math.min(0.9999, Math.max(0, -r.top / curso));
+        const pos = feito * CENAS.length;
+        const i = Math.floor(pos);
+        mostrar(i);
+        /* A busca vai sendo digitada conforme a rolagem da primeira cena */
+        const letras = i === 0 ? Math.round(Math.min(1, (pos - i) / 0.7) * BUSCA.length) : BUSCA.length;
+        if (digita.textContent.length !== letras) digita.textContent = BUSCA.slice(0, letras);
+        /* Barrinha de progresso: um segmento por passo, enchendo com a rolagem */
+        let antes = 0;
+        barras.forEach((b, p) => {
+          const cheio = Math.min(1, Math.max(0, (pos - antes) / porPasso[p]));
+          b.style.setProperty('--cheio', cheio.toFixed(3));
+          antes += porPasso[p];
+        });
       };
-      const aoRolar = medir;
-      /* A digitação começa quando a seção aparece, não ao abrir a página */
-      new IntersectionObserver(([e]) => { if (e.isIntersecting) { passoAtual = -1; medir(); } }, { threshold: 0.3 })
-        .observe(vida.querySelector('.vida-cel'));
-      window.addEventListener('scroll', aoRolar, { passive: true });
-      window.addEventListener('resize', aoRolar);
+      medir();
+      window.addEventListener('scroll', medir, { passive: true });
+      window.addEventListener('resize', medir);
     }
 
     /* 2 · Inclinação do celular (só com mouse) */
