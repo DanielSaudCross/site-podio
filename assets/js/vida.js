@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { p: 2, c: 'site', ms: 2000, a: 'site' },
       { p: 2, c: 'site', ms: 600, a: 'site', toque: '.s-btn' },
       { p: 2, c: 'site-zap', ms: 3300, a: 'site' },
-      { p: 3, c: 'nfc', ms: 3000 },
+      { p: 3, c: 'nfc', ms: 3600 },
+      { p: 3, c: 'nfc', ms: 600, toque: '.nfc-notif' },
       { p: 3, c: 'avaliar', ms: 3000 },
       { p: 3, c: 'aval-nova', ms: 3600, rolo: '.g-avals', mais: true },
       { p: 3, c: 'aval-nova', ms: 1200, mais: true }
