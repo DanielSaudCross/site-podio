@@ -408,7 +408,7 @@ span.so-pronto,b.so-pronto{display:none}
 
 /* ---------- portfólio: o site rolando dentro do celular ---------- */
 .port{display:grid;gap:28px}
-.port-item{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center}
+.port-item{display:grid;grid-template-columns:300px minmax(0,520px);gap:56px;align-items:center;justify-content:center}
 .port-cel{width:280px;height:560px;border-radius:42px;padding:11px;margin:0 auto;
   background:linear-gradient(160deg,#2a2e2a,#0d0f0d);
   box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.14),0 40px 90px -30px rgba(0,0,0,.95)}
