@@ -269,7 +269,7 @@ span.so-pronto,b.so-pronto{display:none}
 .s-grade b{color:#fff;margin-right:6px}
 
 /* WhatsApp: a conversa chega */
-.ov-zap{background:#ECE5DD url(../img/fundo-whatsapp.webp) center top/cover;display:flex;flex-direction:column}
+.ov-zap{background:#EFE7DE url(../img/fundo-whatsapp.svg) 0 0/300px;display:flex;flex-direction:column}
 .z-topo{background:#075E54;color:#fff;padding:40px 14px 12px;display:flex;align-items:center;gap:10px}
 .z-topo i{width:34px;height:34px;border-radius:50%;overflow:hidden;flex:none}
 .z-topo p{font:600 13px/1.2 var(--sans);color:#fff;margin:0}
