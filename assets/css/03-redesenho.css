@@ -444,9 +444,9 @@ span.so-pronto,b.so-pronto{display:none}
    Vivos como o resto do site: no plano principal uma luz percorre a borda;
    ao entrar na tela os itens chegam um a um e o visto se desenha; a luz do
    cartão segue o mouse (--mx/--my, vida.js) e o cartão sobe no hover.
-   Entre os dois, um "+": o acompanhamento continua o que a presença começou. */
+   Os dois botões são verdes: as duas formas de contratar valem igual. */
 @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
-.planos{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch}
+.planos{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
 .plano{position:relative;isolation:isolate;padding:38px;display:flex;flex-direction:column;overflow:hidden;
   transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .5s cubic-bezier(.2,.7,.3,1),border-color .3s ease}
 .plano.in:hover{transform:translateY(-6px);border-color:rgba(var(--lamp-rgb),.35)}
@@ -478,21 +478,14 @@ span.so-pronto,b.so-pronto{display:none}
   background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(var(--lamp-rgb),.10),transparent 60%)}
 .plano:hover .plano-luz{opacity:1}
 .plano-1 .plano-luz{opacity:.6}
-/* O "+" entre os planos */
-.planos-mais{align-self:center;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
-  background:var(--lamp);box-shadow:0 0 0 8px rgba(var(--lamp-rgb),.10),0 10px 30px -8px rgba(var(--lamp-rgb),.6)}
-.planos-mais svg{width:20px;height:20px;fill:none;stroke:#0b0d0b;stroke-width:2.6;stroke-linecap:round}
-.planos-mais.in svg{animation:mais 3.2s ease-in-out infinite}
-@keyframes mais{0%,70%,100%{transform:none}80%{transform:rotate(90deg) scale(1.1)}}
 @media(max-width:860px){
-  .planos{grid-template-columns:1fr;gap:0}
+  .planos{grid-template-columns:1fr}
   .plano{padding:28px}
-  .planos-mais{justify-self:center;margin:-14px 0;position:relative;z-index:3}
 }
 @media(prefers-reduced-motion:reduce){
   .plano li,.plano li::before{opacity:1;transform:none;transition:none}
   .plano li::before{transform:rotate(-45deg)}
-  .plano-borda,.planos-mais svg{animation:none}
+  .plano-borda{animation:none}
 }
 
 /* ---------- formulário do fim ---------- */
