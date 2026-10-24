@@ -280,7 +280,9 @@ span.so-pronto,b.so-pronto{display:none}
 .z-eu{justify-self:end;background:#DCF8C6;border-top-right-radius:2px}
 .z-eles{justify-self:start;background:#fff;border-top-left-radius:2px}
 .vida[data-cena="site-zap"] .z-eu{animation:surge .4s ease .4s both}
-.vida[data-cena="site-zap"] .z-eles{animation:surge .4s ease 1.6s both}
+.vida[data-cena="site-zap"] .z-eles{animation:surge .4s ease 1.8s both}
+/* Do WhatsApp para a placa: site e conversa saem de uma vez, sem misturar as três telas */
+.vida[data-cena="nfc"] :is(.ov-site,.ov-zap){transition:none}
 
 /* NFC: o celular encosta na placa do balcão */
 .ov-nfc{background:radial-gradient(circle at 50% 60%,#2b2f2b,#111311);display:grid;place-items:center}
