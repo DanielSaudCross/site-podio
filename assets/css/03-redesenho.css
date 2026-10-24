@@ -29,8 +29,8 @@
 .nav-wa{display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;
   border:1px solid rgba(var(--lamp-rgb),.35);color:var(--lamp);transition:background .2s ease,color .2s ease}
 .nav-wa svg{width:19px;height:19px;fill:currentColor}
-.nav .nav-wa{color:var(--lamp)}
-.nav .nav-wa:hover{background:var(--lamp);color:#0b0d0b}
+.nav .nav-wa{background:var(--lamp);border-color:var(--lamp);color:#0b0d0b}
+.nav .nav-wa:hover{color:#0b0d0b;filter:brightness(1.08)}
 
 @media(max-width:900px){
   .nav{width:auto}
@@ -478,10 +478,8 @@ span.so-pronto,b.so-pronto{display:none}
   .port-tela img{animation:none}
 }
 
-/* ---------- link curto de WhatsApp no fim de cada parte ---------- */
-.wa-link{display:inline-flex;align-items:center;gap:9px;margin-top:22px;color:var(--lamp);
-  font:600 15px/1.3 var(--sans);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}
-.wa-link svg{width:19px;height:19px;flex:none;fill:currentColor}
-.wa-link:hover{border-bottom-color:currentColor}
-.wa-fim{text-align:center;margin:30px 0 0}
-.wa-fim .wa-link{margin-top:0}
+/* ---------- botão de WhatsApp no fim de cada parte ----------
+   Mesmo botão de "Ver o portfólio" (btn-ghost), com o ícone do WhatsApp em verde. */
+.wa-btn svg{width:18px;height:18px;flex:none;fill:var(--lamp)}
+.vida-textos .wa-btn{margin-top:24px}
+.wa-fim{text-align:center;margin:34px 0 0}
