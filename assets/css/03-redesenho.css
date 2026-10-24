@@ -189,8 +189,6 @@ span.so-pronto,b.so-pronto{display:none}
 .g-aval p{color:#2c322c;margin:0}
 .g-aval .g-resp{margin-top:5px;padding-left:8px;border-left:2px solid #1A73E8;color:#5a625a;font-size:10.5px}
 .g-selo{font:600 9.5px/1 var(--sans);color:#fff;background:#1E8E3E;padding:2px 6px;border-radius:100px;vertical-align:1px}
-.g-aval-nova{display:none}
-.vida[data-cena="aval-nova"] .g-aval-nova{display:block;border-color:#1E8E3E;box-shadow:0 0 0 3px rgba(30,142,62,.15);animation:surge .6s ease both}
 
 .estrelas{display:inline-block;width:62px;height:11px;vertical-align:-1px;margin:0 2px;
   background:linear-gradient(90deg,#F5B400 var(--n),#D6D9D5 var(--n));
@@ -213,7 +211,7 @@ span.so-pronto,b.so-pronto{display:none}
 .vida:is([data-cena="site"],[data-cena="site-toque"],[data-cena="site-zap"]) .ov-site,
 .vida[data-cena="site-zap"] .ov-zap,
 .vida[data-cena="nfc"] .ov-nfc,
-.vida[data-cena="avaliar"] .ov-avaliar{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.vida:is([data-cena="avaliar"],[data-cena="avals"]) .ov-avaliar{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 
 /* Mapa: zoom até o pino e a rota se desenhando */
 .ov-mapa{background:#E9EBE6;overflow:hidden}
@@ -329,6 +327,26 @@ span.so-pronto,b.so-pronto{display:none}
   opacity:0}
 .vida[data-cena="avaliar"] .av-texto{animation:surge .5s ease 1.3s both}
 .av-btn{display:inline-block;margin-top:18px;padding:10px 26px;border-radius:100px;background:#1A73E8;color:#fff;font:600 12px/1 var(--sans)}
+/* Depois de Postar: o formulário sobe e some, e três avaliações descem de cima */
+.av-form{transition:opacity .35s ease,transform .35s ease}
+.vida[data-cena="avals"] .av-form{opacity:0;transform:translateY(-18px)}
+.av-cards{position:absolute;left:14px;right:14px;top:58px;display:grid;gap:12px;text-align:left}
+.av-card{padding:14px 14px 13px;border-radius:16px;background:#fff;border:1px solid #E4E7E3;
+  box-shadow:0 12px 26px rgba(20,24,20,.13);opacity:0}
+.av-card:first-child{border-color:#1E8E3E;box-shadow:0 0 0 3px rgba(30,142,62,.15),0 12px 26px rgba(20,24,20,.13)}
+.vida[data-cena="avals"] .av-card{animation:cai .6s cubic-bezier(.2,.9,.3,1.15) both}
+.vida[data-cena="avals"] .av-card:nth-child(1){animation-delay:.35s}
+.vida[data-cena="avals"] .av-card:nth-child(2){animation-delay:.75s}
+.vida[data-cena="avals"] .av-card:nth-child(3){animation-delay:1.15s}
+@keyframes cai{from{opacity:0;transform:translateY(-70px)}to{opacity:1;transform:none}}
+.av-quem{display:flex;align-items:center;gap:8px;margin:0 0 7px;font:600 12.5px/1.2 var(--sans);color:#141814}
+.av-quem i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:600 12px/1 var(--sans);color:#fff;background:#1A73E8}
+.av-card:nth-child(2) .av-quem i{background:#E37400}
+.av-card:nth-child(3) .av-quem i{background:#8E24AA}
+.av-quem span{margin-left:auto;font:600 10px/1 var(--sans);padding:4px 8px;border-radius:100px;background:#1E8E3E;color:#fff}
+.av-card .estrelas{width:78px;height:14px;margin:0}
+.av-c-txt{font-size:13px;line-height:1.4;color:#2c322c;margin:6px 0 0}
+.av-c-resp{margin:9px 0 0;padding-left:9px;border-left:2px solid #1A73E8;font-size:11px;line-height:1.4;color:#5a625a}
 
 @media(max-width:900px){
   .vida-palco{align-items:flex-start;padding:96px 0 40px}

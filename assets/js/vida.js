@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
       { p: 2, c: 'site-zap', ms: 6300, a: 'site' },
       { p: 3, c: 'nfc', ms: 3600 },
       { p: 3, c: 'nfc', ms: 600, toque: '.nfc-notif' },
-      { p: 3, c: 'avaliar', ms: 3000 },
-      { p: 3, c: 'aval-nova', ms: 3600, rolo: '.g-avals', mais: true },
-      { p: 3, c: 'aval-nova', ms: 1200, mais: true }
+      { p: 3, c: 'avaliar', ms: 3900 },
+      { p: 3, c: 'avaliar', ms: 600, toque: '.av-btn' },
+      { p: 3, c: 'avals', ms: 6600 }
     ];
     /* Velocidade do vídeo, como no player: 1 = normal, 1.5 = uma vez e meia */
     const VELOCIDADE = 1.5;
