@@ -436,6 +436,12 @@ span.so-pronto,b.so-pronto{display:none}
   .port-texto p{margin:0 auto}
 }
 
+/* ---------- clientes: foto de fundo de cada card ---------- */
+.caso-mtk{--foto:url('../img/clientes/mtk-foto.webp')}
+.caso-barrafit{--foto:url('../img/clientes/barrafit-marca.webp')}
+.caso-gracie{--foto:url('../img/clientes/gracie-barra-foto.webp')}
+.caso-tati{--foto:url('../img/clientes/tati-foto.webp')}
+
 /* ---------- planos ----------
    Vivos como o resto do site: no plano principal uma luz percorre a borda;
    ao entrar na tela os itens chegam um a um e o visto se desenha; a luz do

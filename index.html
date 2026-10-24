@@ -184,7 +184,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=29">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=30">
 </head>
 <body>
 
@@ -483,16 +483,30 @@
       </article>
     </div>
 
-    <h3 class="port-sub rv">Academias que já atendemos</h3>
+    <p class="wa-fim rv"><a href="#" data-wa="site" class="btn btn-ghost wa-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg>Criar o site da minha academia</a></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  BLOCO 05b · RESULTADOS — academias que já atendemos     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="resultados">
+  <div class="wrap">
+    <div class="section-head rv">
+      <h2>Quem já está no degrau mais alto.</h2>
+      <p class="lead">Academias e estúdios de Brasília que confiam a presença digital à Pódio. Toque num card para ver o perfil e os serviços de cada um.</p>
+    </div>
 
     <div class="casos rv">
 
       <!-- Cada caso é um elemento "details" nativo: compacto por padrão, abre
            no clique. Funciona com teclado e sem uma linha de JS.
 -->
-      <!-- --foto vira o fundo do card inteiro. Ver a explicação em
-           02-blocos.css: com <img> a foto não cobre os dois estados. -->
-      <details class="caso glass" name="casos" style="--foto:url('/assets/img/clientes/mtk-foto.webp');--foto-veu:.38">
+      <!-- A foto de fundo de cada card (--foto) fica no 03-redesenho.css,
+           pela classe caso-*: com caminho relativo dentro do style="" ela
+           sumia ao abrir o arquivo local. Ver a explicação em 02-blocos.css:
+           com <img> a foto não cobre os dois estados. -->
+      <details class="caso glass caso-mtk" name="casos" style="--foto-veu:.38">
         <summary>
           <div class="caso-cabeca">
             <img class="caso-logo quadrada" src="assets/img/clientes/mtk-logo.webp" alt="CT MTK" width="512" height="512" loading="lazy">
@@ -539,7 +553,7 @@
            logotipo sobre branco, 96% da área é branca. Sem --foto-veu porque
            o apagamento já está no alfa do PNG; um véu liso escureceria também
            a área vazia do card. -->
-      <details class="caso glass" name="casos" style="--foto:url('/assets/img/clientes/barrafit-marca.webp')">
+      <details class="caso glass caso-barrafit" name="casos">
         <summary>
           <div class="caso-cabeca">
             <img class="caso-logo quadrada" src="assets/img/clientes/barrafit-logo.webp" alt="Barra Fit Sudoeste" width="512" height="512" loading="lazy">
@@ -579,7 +593,7 @@
 
       <!-- Véu leve de propósito: esta foto já nasce escura (média 43 contra
            94 da MTK), então não precisa do mesmo tanto de véu. Ver gb.py. -->
-      <details class="caso glass" name="casos" style="--foto:url('/assets/img/clientes/gracie-barra-foto.webp');--foto-veu:.18">
+      <details class="caso glass caso-gracie" name="casos" style="--foto-veu:.18">
         <summary>
           <div class="caso-cabeca">
             <img class="caso-logo quadrada" src="assets/img/clientes/gracie-barra-logo.webp" alt="Gracie Barra Sudoeste" width="512" height="512" loading="lazy">
@@ -619,7 +633,7 @@
 
       <!-- Foto de brilho médio (média 72, entre a MTK e a Gracie Barra),
            então o véu também fica no meio. -->
-      <details class="caso glass" name="casos" style="--foto:url('/assets/img/clientes/tati-foto.webp');--foto-veu:.3">
+      <details class="caso glass caso-tati" name="casos" style="--foto-veu:.3">
         <summary>
           <div class="caso-cabeca">
             <img class="caso-logo quadrada" src="assets/img/clientes/tati-logo.webp" alt="Studio Tatiane Lasneaux" width="512" height="512" loading="lazy">
@@ -666,7 +680,6 @@
       </details>
 
     </div>
-    <p class="wa-fim rv"><a href="#" data-wa="site" class="btn btn-ghost wa-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg>Criar o site da minha academia</a></p>
   </div>
 </section>
 
