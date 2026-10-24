@@ -7,16 +7,20 @@
    ========================================================== */
 
 /* ---------- menu do topo ----------
-   Como o da On: fica parado no topo da página, sem barra, e sai de vista com
-   a rolagem (o WhatsApp continua no botão flutuante). A logo começa na mesma
-   linha do texto da primeira tela, que é alinhado à esquerda. */
+   Simétrico como a primeira tela, que é centralizada: Serviços e Portfólio à
+   esquerda, a logo no centro (na linha do meio do título), Dúvidas e WhatsApp
+   à direita. Como o da On, fica parado no topo da página e sai de vista com a
+   rolagem; o WhatsApp continua no botão flutuante. */
 .nav{position:absolute;top:0;left:0;right:0;transform:none;z-index:100;
   width:auto;max-width:none;gap:0;display:block;
   padding:0;border-radius:0;border:0;background:transparent;box-shadow:none}
 .nav-dentro{max-width:var(--maxw);margin:0 auto;padding:30px 22px;
-  display:flex;align-items:center;gap:30px}
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:30px}
+.nav .brand{grid-column:2}
+.nav-esq{grid-column:1;justify-self:start}
+.nav-dir{grid-column:3;justify-self:end;align-items:center}
 .nav .marca{font-size:34px}
-.nav-links{display:flex;gap:40px;margin-left:auto}
+.nav-links{display:flex;gap:40px}
 .nav-links a{font:var(--t-label);letter-spacing:.22em;text-transform:uppercase;font-size:11.5px;
   color:var(--muted);text-decoration:none;transition:color .2s ease}
 .nav-links a:hover{color:var(--text)}
@@ -25,13 +29,17 @@
 .nav-wa{display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;
   border:1px solid rgba(var(--lamp-rgb),.35);color:var(--lamp);transition:background .2s ease,color .2s ease}
 .nav-wa svg{width:19px;height:19px;fill:currentColor}
-.nav-wa:hover{background:var(--lamp);color:#0b0d0b}
+.nav .nav-wa{color:var(--lamp)}
+.nav .nav-wa:hover{background:var(--lamp);color:#0b0d0b}
 
 @media(max-width:900px){
   .nav{width:auto}
-  .nav-links{display:none}
+  /* Celular: WhatsApp à esquerda, logo no centro, menu à direita */
+  .nav-esq,.nav-dir>a:not(.nav-wa){display:none}
+  .nav-dir{display:contents}
+  .nav-wa{grid-column:1;grid-row:1;justify-self:start}
+  .nav .menu-btn{grid-column:3;grid-row:1;justify-self:end}
   .nav-dentro{gap:12px}
-  .nav-wa{margin-left:auto}
   .nav-dentro{padding:20px 18px}
   .nav .marca{font-size:28px}
 }
@@ -41,12 +49,7 @@
 .port-sub{font:var(--t-h2);letter-spacing:var(--t-h2-ls);margin:84px 0 26px}
 
 /* ---------- abertura: texto de apoio, menor que o subtítulo ---------- */
-.hero .hero-apoio{max-width:58ch;margin:14px 0 0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.55)}
-/* Primeira tela alinhada à esquerda, na linha da logo (composição da On) */
-.hero{text-align:left}
-.hero h1{margin:0 0 26px}
-.hero .lead{margin:0;max-width:52ch}
-.hero-cta{justify-content:flex-start}
+.hero .hero-apoio{max-width:58ch;margin:14px auto 0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.55)}
 @media(max-width:620px){.hero .hero-apoio{font-size:14px}}
 
 /* ---------- seção viva: o perfil se completando ----------
