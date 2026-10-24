@@ -57,15 +57,11 @@
    O vida.js toca um vídeo de cenas quando a seção aparece: troca data-passo
    (0 a 3, o texto da esquerda) e data-cena (o que o celular mostra).
    Daqui para baixo cada passo e cada cena só acende o que é dele. */
-/* Trava suave: a seção é um pouco mais alta que a tela e o palco fica parado
-   enquanto se rola esse trecho extra, o bastante para notar o vídeo, não para
-   obrigar a assistir. Quem passa da seção recebe .vista (vida.js): a seção volta
-   ao tamanho normal e, subindo de novo, não trava mais. */
-.vida{padding:0;position:relative;height:230vh}
-.vida.vista{height:auto}
-.vida-palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+/* Sem trava: a seção tem a altura de uma tela e rola como as outras; o vídeo
+   toca sozinho enquanto ela aparece (vida.js). */
+.vida{padding:0;position:relative;height:auto}
+.vida-palco{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;
   display:flex;align-items:center;padding:110px 0 70px}
-.vida.vista .vida-palco{position:relative;height:auto;min-height:100vh;min-height:100svh}
 .vida-grade{display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:center;position:relative}
 
 /* A palavra grande que troca atrás de tudo */
