@@ -436,6 +436,19 @@ span.so-pronto,b.so-pronto{display:none}
   .port-texto p{margin:0 auto}
 }
 
+/* ---------- clientes: os quatro numa linha só, cards mais compactos ----------
+   (aberto, o card continua ocupando a linha inteira: grid-column 1/-1 no 02) */
+.casos{grid-template-columns:repeat(4,1fr);gap:16px}
+.caso > summary{padding:18px 18px 16px}
+.caso-cabeca{margin-bottom:14px}
+.caso:not([open]) .caso-logo{height:56px;border-radius:12px;padding:5px}
+.caso:not([open]) .caso-logo.quadrada{height:64px}
+.caso-nome{font-size:21px}
+.caso:not([open]) .caso-nome{margin-bottom:14px}
+.caso:not([open]) .caso-meta{min-height:4.4em}
+@media(max-width:1100px){.casos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.casos{grid-template-columns:1fr}}
+
 /* ---------- clientes: foto de fundo de cada card ---------- */
 .caso-mtk{--foto:url('../img/clientes/mtk-foto.webp')}
 .caso-barrafit{--foto:url('../img/clientes/barrafit-marca.webp')}
