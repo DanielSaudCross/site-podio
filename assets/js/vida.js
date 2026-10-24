@@ -190,6 +190,15 @@ document.addEventListener('DOMContentLoaded', () => {
       .observe(port);
   }
 
+  /* 3b · Planos: a luz do cartão segue o mouse */
+  document.querySelectorAll('.plano').forEach((card) => {
+    card.addEventListener('pointermove', (ev) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ev.clientX - r.left + 'px');
+      card.style.setProperty('--my', ev.clientY - r.top + 'px');
+    });
+  });
+
   /* 4 · Formulário: o que a pessoa preencheu vira a mensagem do WhatsApp */
   const form = document.getElementById('form-diag');
   if (form && typeof PODIO !== 'undefined') {

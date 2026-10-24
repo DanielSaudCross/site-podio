@@ -440,17 +440,60 @@ span.so-pronto,b.so-pronto{display:none}
   .port-texto p{margin:0 auto}
 }
 
-/* ---------- planos ---------- */
-.planos{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.plano{padding:38px;display:flex;flex-direction:column}
+/* ---------- planos ----------
+   Vivos como o resto do site: no plano principal uma luz percorre a borda;
+   ao entrar na tela os itens chegam um a um e o visto se desenha; a luz do
+   cartão segue o mouse (--mx/--my, vida.js) e o cartão sobe no hover.
+   Entre os dois, um "+": o acompanhamento continua o que a presença começou. */
+@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+.planos{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch}
+.plano{position:relative;isolation:isolate;padding:38px;display:flex;flex-direction:column;overflow:hidden;
+  transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .5s cubic-bezier(.2,.7,.3,1),border-color .3s ease}
+.plano.in:hover{transform:translateY(-6px);border-color:rgba(var(--lamp-rgb),.35)}
 .plano h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(26px,2.6vw,34px)}
 .plano-tipo{font:var(--t-label);letter-spacing:.16em;text-transform:uppercase;font-size:11px;color:var(--lamp);margin:8px 0 22px}
 .plano ul{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:12px;flex:1}
-.plano li{position:relative;padding-left:24px;color:var(--muted);font-size:15px;line-height:1.5}
+.plano li{position:relative;padding-left:24px;color:var(--muted);font-size:15px;line-height:1.5;
+  opacity:0;transform:translateX(-10px);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.3,1)}
 .plano li::before{content:'';position:absolute;left:2px;top:.5em;width:10px;height:6px;
-  border-left:2px solid var(--lamp);border-bottom:2px solid var(--lamp);transform:rotate(-45deg)}
+  border-left:2px solid var(--lamp);border-bottom:2px solid var(--lamp);transform:rotate(-45deg) scale(0);
+  transform-origin:30% 70%;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.plano.in li{opacity:1;transform:none}
+.plano.in li::before{transform:rotate(-45deg) scale(1)}
+.plano.in li:nth-child(1),.plano.in li:nth-child(1)::before{transition-delay:0.25s}
+.plano.in li:nth-child(2),.plano.in li:nth-child(2)::before{transition-delay:0.37s}
+.plano.in li:nth-child(3),.plano.in li:nth-child(3)::before{transition-delay:0.49s}
+.plano.in li:nth-child(4),.plano.in li:nth-child(4)::before{transition-delay:0.61s}
+.plano.in li:nth-child(5),.plano.in li:nth-child(5)::before{transition-delay:0.73s}
+.plano.in li:nth-child(6),.plano.in li:nth-child(6)::before{transition-delay:0.85s}
 .plano .btn{align-self:flex-start}
-@media(max-width:860px){.planos{grid-template-columns:1fr}.plano{padding:28px}}
+/* Luz que percorre a borda do plano principal */
+.plano-borda{position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:2;
+  background:conic-gradient(from var(--ang),transparent 0 62%,rgba(var(--lamp-rgb),.9) 76%,transparent 90%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:borda 6s linear infinite}
+@keyframes borda{to{--ang:360deg}}
+/* Luz que segue o mouse dentro do cartão */
+.plano-luz{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .4s ease;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(var(--lamp-rgb),.10),transparent 60%)}
+.plano:hover .plano-luz{opacity:1}
+.plano-1 .plano-luz{opacity:.6}
+/* O "+" entre os planos */
+.planos-mais{align-self:center;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+  background:var(--lamp);box-shadow:0 0 0 8px rgba(var(--lamp-rgb),.10),0 10px 30px -8px rgba(var(--lamp-rgb),.6)}
+.planos-mais svg{width:20px;height:20px;fill:none;stroke:#0b0d0b;stroke-width:2.6;stroke-linecap:round}
+.planos-mais.in svg{animation:mais 3.2s ease-in-out infinite}
+@keyframes mais{0%,70%,100%{transform:none}80%{transform:rotate(90deg) scale(1.1)}}
+@media(max-width:860px){
+  .planos{grid-template-columns:1fr;gap:0}
+  .plano{padding:28px}
+  .planos-mais{justify-self:center;margin:-14px 0;position:relative;z-index:3}
+}
+@media(prefers-reduced-motion:reduce){
+  .plano li,.plano li::before{opacity:1;transform:none;transition:none}
+  .plano li::before{transform:rotate(-45deg)}
+  .plano-borda,.planos-mais svg{animation:none}
+}
 
 /* ---------- formulário do fim ---------- */
 .form-diag{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;max-width:820px;margin:0 auto;text-align:left}
