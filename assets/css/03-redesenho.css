@@ -293,18 +293,18 @@ span.so-pronto,b.so-pronto{display:none}
 .nfc-ondas svg{width:28px;height:28px;fill:none;stroke:#1A73E8;stroke-width:2;stroke-linecap:round}
 .vida[data-cena="nfc"] .nfc-ondas{animation:ondas 1s ease-in-out .9s infinite}
 @keyframes ondas{50%{box-shadow:0 0 0 14px rgba(26,115,232,.15)}}
-.nfc-cel{position:absolute;left:50%;top:62px;width:128px;height:160px;margin-left:-64px;border-radius:18px;
+.nfc-cel{position:absolute;left:50%;top:28px;width:116px;height:220px;margin-left:-58px;border-radius:18px;
   background:linear-gradient(160deg,#3a3f3a,#151715);border:2px solid rgba(255,255,255,.25)}
 .vida[data-cena="nfc"] .nfc-cel{animation:encosta 1.4s cubic-bezier(.4,0,.2,1) both}
 /* O celular para com a ponta em cima do ícone do NFC, sem cobrir o texto.
    Anima o top (e não translate) para o dedo achar a notificação no lugar certo. */
-@keyframes encosta{0%{top:-70px;transform:rotate(-8deg);opacity:0}55%,100%{top:62px;transform:none;opacity:1}}
+@keyframes encosta{0%{top:-150px;transform:rotate(-8deg);opacity:0}55%,100%{top:28px;transform:none;opacity:1}}
 /* Quando encosta, a notificação do Google aparece na tela dele; o dedo toca nela */
-.nfc-notif{position:absolute;left:6px;right:6px;top:14px;display:flex;align-items:center;gap:5px;
-  padding:5px 6px;border-radius:9px;background:rgba(246,247,246,.97);color:#141814;text-align:left;
+.nfc-notif{position:absolute;left:5px;right:5px;top:16px;display:flex;align-items:center;gap:5px;
+  padding:5px;border-radius:9px;background:rgba(246,247,246,.97);color:#141814;text-align:left;
   box-shadow:0 4px 12px rgba(0,0,0,.4);opacity:0}
 .nfc-notif svg{flex:none;width:16px;height:16px;padding:2px;border-radius:4px;background:#fff}
-.nfc-notif b{display:block;font-size:9px;line-height:1.2;white-space:nowrap}
+.nfc-notif b{display:block;font-size:8.5px;line-height:1.2;white-space:nowrap}
 .nfc-notif small{display:block;font-size:7px;line-height:1.25;color:#5a625a;white-space:nowrap}
 .vida[data-cena="nfc"] .nfc-notif{animation:notif .4s cubic-bezier(.2,.9,.3,1.15) .85s both}
 @keyframes notif{from{opacity:0;transform:translateY(-6px) scale(.9)}to{opacity:1;transform:none}}
