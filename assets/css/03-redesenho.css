@@ -7,20 +7,19 @@
    ========================================================== */
 
 /* ---------- menu do topo ----------
-   No alto da página: só a logo, sem barra. Depois da primeira rolagem
-   (classe .compacta, posta pelo config.js) entra a barra escura de ponta a
-   ponta com os links no canto direito. O WhatsApp fica no botão flutuante. */
+   No alto da página: logo grande, links e o WhatsApp, sem barra. Depois da
+   primeira rolagem (classe .compacta, posta pelo config.js) entra a barra
+   escura de ponta a ponta e a logo encolhe. */
 .nav{position:fixed;top:0;left:0;right:0;transform:none;z-index:100;
   width:auto;max-width:none;gap:0;display:block;
   padding:0;border-radius:0;border:0;background:transparent;box-shadow:none;
   border-bottom:1px solid transparent;
   transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease}
 .nav-dentro{max-width:var(--maxw);margin:0 auto;padding:30px 22px;
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;align-items:center;gap:30px;
   transition:padding .35s cubic-bezier(.2,.7,.3,1)}
 .nav .marca{font-size:34px}
-.nav-links{display:flex;gap:40px;opacity:0;transform:translateY(-6px);pointer-events:none;
-  transition:opacity .35s ease,transform .35s cubic-bezier(.2,.7,.3,1)}
+.nav-links{display:flex;gap:40px;margin-left:auto}
 .nav-links a{font:var(--t-label);letter-spacing:.22em;text-transform:uppercase;font-size:11.5px;
   color:var(--muted);text-decoration:none;transition:color .2s ease}
 .nav-links a:hover{color:var(--text)}
@@ -30,11 +29,18 @@
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:none}
 .nav.compacta .nav-dentro{padding:14px 22px}
 .nav.compacta .marca{font-size:24px}
-.nav.compacta .nav-links{opacity:1;transform:none;pointer-events:auto}
+/* WhatsApp no fim do menu */
+.nav-wa{display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;
+  border:1px solid rgba(var(--lamp-rgb),.35);color:var(--lamp);transition:background .2s ease,color .2s ease}
+.nav-wa svg{width:19px;height:19px;fill:currentColor}
+.nav-wa:hover{background:var(--lamp);color:#0b0d0b}
+.nav.compacta .nav-wa{width:36px;height:36px}
 
 @media(max-width:900px){
   .nav{width:auto}
   .nav-links{display:none}
+  .nav-dentro{gap:12px}
+  .nav-wa{margin-left:auto}
   .nav-dentro{padding:20px 18px}
   .nav .marca{font-size:28px}
   .nav.compacta .nav-dentro{padding:10px 18px}
@@ -474,3 +480,11 @@ span.so-pronto,b.so-pronto{display:none}
   .vida-passo[data-p="0"]{display:none}
   .port-tela img{animation:none}
 }
+
+/* ---------- link curto de WhatsApp no fim de cada parte ---------- */
+.wa-link{display:inline-flex;align-items:center;gap:9px;margin-top:22px;color:var(--lamp);
+  font:600 15px/1.3 var(--sans);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}
+.wa-link svg{width:19px;height:19px;flex:none;fill:currentColor}
+.wa-link:hover{border-bottom-color:currentColor}
+.wa-fim{text-align:center;margin:30px 0 0}
+.wa-fim .wa-link{margin-top:0}
