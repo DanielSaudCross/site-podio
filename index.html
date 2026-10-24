@@ -158,18 +158,19 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-
-<!-- A Anton é usada num lugar só do site: a palavra PODIO do logotipo.
-     O &text= manda o Google devolver só esses quatro caracteres em vez do
-     alfabeto inteiro, o que derruba o peso da fonte de dezenas de KB para
-     quase nada.
-     ATENÇÃO: se o logotipo mudar de palavra, ou se a Anton passar a ser usada
-     em outro lugar, os caracteres novos precisam entrar no &text= abaixo,
-     senão eles somem e caem numa fonte substituta. -->
-<link href="https://fonts.googleapis.com/css2?family=Anton&text=PODIO&display=swap" rel="stylesheet">
+<!-- ─── FONTES ─────────────────────────────────────────────
+     Guardadas no próprio site (assets/fonts, regras em fontes.css) e pedidas
+     antes de tudo com preload: a página já nasce com a fonte certa, sem a
+     troca de fonte que aparecia ao recarregar quando elas vinham do Google.
+     A Anton é só a palavra PODIO do logotipo e foi baixada só com essas
+     letras. ATENÇÃO: se o logotipo mudar de palavra, ou a Anton passar a ser
+     usada em outro lugar, é preciso baixar a fonte de novo com as letras
+     novas, senão elas caem numa fonte substituta. -->
+<link rel="preload" href="assets/fonts/anton-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-italic-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fontes.css?v=1">
 
 <!-- ─── FOLHAS DE ESTILO ───────────────────────────────────
      00-config  cores da marca, fundo e o holofote
