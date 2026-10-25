@@ -748,7 +748,7 @@ span.so-pronto,b.so-pronto{display:none}
 .at-notif p{margin:0;color:#1f1f1f}
 .at-ov-academia .at-notif{top:auto;bottom:18px}
 .at-notif span{float:right;color:#70757a;font-size:10px}
-.atende[data-cena="academia"] .at-ov-academia .at-notif{animation:sobe .5s cubic-bezier(.2,.7,.3,1) 1.1s both}
+.atende[data-cena="academia"] .at-ov-academia .at-notif{animation:sobe .5s cubic-bezier(.2,.7,.3,1) .6s both}
 @keyframes sobe{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 @keyframes desce{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:none}}
 
@@ -758,7 +758,7 @@ span.so-pronto,b.so-pronto{display:none}
 .at-hora{margin:0;color:#fff;font:200 64px/1 var(--sans);letter-spacing:-.02em}
 .at-data{margin:8px 0 0;font-size:13px;color:rgba(255,255,255,.85)}
 .at-notif-bloq{top:190px;text-align:left;background:rgba(255,255,255,.88)}
-.atende[data-cena="bloqueio"] .at-notif-bloq{animation:desce .5s cubic-bezier(.2,.7,.3,1) .7s both}
+.atende[data-cena="bloqueio"] .at-notif-bloq{animation:desce .5s cubic-bezier(.2,.7,.3,1) .35s both}
 
 /* Barrinha: nas telas escuras ou com topo verde, fica branca */
 .atende:is([data-cena="chat"],[data-cena="bloqueio"]) .vida-progresso i{background:rgba(255,255,255,.22)}

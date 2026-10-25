@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     { p: 2, c: 'salvar', ms: 2300 },
     { p: 2, c: 'salvar', toque: '.at-btn-salvar', ms: 700 },
     { p: 2, c: 'aluno', ms: 3000 },
-    { p: 3, c: 'bloqueio', ate: 12, ms: 2600 },
-    { p: 3, c: 'bloqueio', toque: '.at-notif-bloq', ms: 700 },
-    { p: 3, c: 'chat', ate: 14, ms: 6500 },
-    { p: 4, c: 'academia', ms: 7500 }
+    { p: 3, c: 'bloqueio', ate: 12, ms: 1700 },
+    { p: 3, c: 'bloqueio', toque: '.at-notif-bloq', ms: 600 },
+    { p: 3, c: 'chat', ate: 14, ms: 3800 },
+    { p: 4, c: 'academia', ms: 4200 }
   ];
   /* Herança: cada cena completa o que não disse com a anterior */
   VIDEO.forEach((v, i) => {
