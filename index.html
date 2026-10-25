@@ -184,7 +184,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=38">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=40">
 </head>
 <body>
 
@@ -309,12 +309,11 @@
           <p class="sol-bolha nos">Segunda a sexta, às 19h. Quer marcar uma aula experimental grátis?</p>
           <p class="sol-bolha eles">Quero! Amanhã dá?</p>
         </div>
-        <span class="sol-breve">Em breve</span>
         <div class="sol-texto">
           <h3>Atendimento no WhatsApp</h3>
           <div class="sol-mais"><div>
             <p>Um assistente que responde horários e valores e marca a aula experimental, mesmo com a recepção fechada.</p>
-            <a class="sol-btn" href="#" data-wa="chatbot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg>Quero saber quando lançar</a>
+            <a class="sol-btn" href="#atendimento">Ver a demonstração<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
           </div></div>
         </div>
       </article>
@@ -554,6 +553,136 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
+<!--  BLOCO 05a · ATENDIMENTO — o WhatsApp que marca a aula   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- Mesmo formato da seção do perfil (classes vida-*), com script próprio:
+     o atende.js toca as cenas (data-passo, data-cena, data-ate). As mensagens
+     são as que o fluxo do n8n envia de verdade, com uma academia de exemplo
+     ("Sua Academia"); os links longos aparecem encurtados. -->
+<section id="atendimento" class="vida atende" data-passo="0" data-cena="chat">
+  <div class="vida-palco">
+    <p class="vida-fundo" aria-hidden="true"><span>Triagem</span><span>Horários</span><span>Agenda</span><span>Lembrete</span></p>
+    <div class="wrap vida-grade">
+
+      <div class="vida-textos">
+        <h2>Responde na hora.<br>Marca a aula.<br><em>Lembra o aluno.</em></h2>
+        <div class="vida-passos">
+          <div class="vida-passo" data-p="0">
+            <h3>Atende de dia e de noite</h3>
+            <p>O aluno chega pelo botão do site com a mensagem pronta. O atendimento pergunta o nome, se a aula é para adulto ou criança, a modalidade e se ele já treinou.</p>
+          </div>
+          <div class="vida-passo" data-p="1">
+            <h3>Só as turmas certas</h3>
+            <p>Pela grade da academia, aparecem as próximas turmas daquela modalidade e daquele público. O aluno escolhe com um número.</p>
+          </div>
+          <div class="vida-passo" data-p="2">
+            <h3>Marcada nas duas agendas</h3>
+            <p>A aula entra na agenda da academia e o dono recebe um aviso com os dados do aluno. O aluno salva na agenda dele com um toque.</p>
+          </div>
+          <div class="vida-passo" data-p="3">
+            <h3>Lembra e leva até a porta</h3>
+            <p>Antes da aula chega um lembrete com o endereço e a rota. O aluno confirma com 1 ou remarca com 2.</p>
+          </div>
+        </div>
+        <div class="vida-capitulos" role="group" aria-label="Partes do vídeo">
+          <button type="button" data-ir="0">Triagem</button>
+          <button type="button" data-ir="1">Horários</button>
+          <button type="button" data-ir="2">Agenda</button>
+          <button type="button" data-ir="3">Lembrete</button>
+        </div>
+        <a href="#" data-wa="chatbot" class="btn btn-ghost wa-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg>Quero isso no meu WhatsApp</a>
+        <p class="at-nota">Demonstração com uma academia de exemplo. As mensagens são as mesmas que o atendimento envia.</p>
+      </div>
+
+      <div class="vida-cel" aria-hidden="true">
+        <p class="vida-selo at-selo"><span class="s-aluno">Celular do aluno</span><span class="s-academia">Celular da academia</span></p>
+        <div class="cel">
+          <div class="cel-tela">
+            <div class="vida-progresso"><i></i><i></i><i></i><i></i></div>
+
+            <!-- A conversa: cada mensagem aparece quando o data-ate passa do seu data-i -->
+            <div class="at-zap">
+              <div class="at-topo">
+                <i><img src="assets/img/teste/foto-tatame.webp" alt="" width="420" height="380"></i>
+                <p>Sua Academia<span class="at-online">online</span><span class="at-digita">digitando…</span></p>
+              </div>
+              <div class="at-janela">
+                <div class="at-rolo">
+                  <p class="at-msg eu" data-i="0">Olá! 👋 Vim pelo site e quero agendar uma aula experimental<small>10:00</small></p>
+                  <p class="at-msg eles" data-i="1">Olá, Rafa! 👋 Aqui é a Sua Academia.<br>Boa! A primeira aula é por nossa conta. 🙌<br>Para deixar tudo pronto, qual é o seu nome?<small>10:00</small></p>
+                  <p class="at-msg eu" data-i="2">Rafael Costa<small>10:00</small></p>
+                  <p class="at-msg eles" data-i="3">Prazer, Rafael! A aula é para:<br><br>1️⃣ Você (adulto)<br>2️⃣ Uma criança<small>10:00</small></p>
+                  <p class="at-msg eu" data-i="4">1<small>10:01</small></p>
+                  <p class="at-msg eles" data-i="5">Qual modalidade você quer experimentar?<br><br>1️⃣ Jiu-jitsu<br>2️⃣ Muay thai<small>10:01</small></p>
+                  <p class="at-msg eu" data-i="6">1<small>10:01</small></p>
+                  <p class="at-msg eles" data-i="7">Você já treinou jiu-jitsu antes?<br><br>1️⃣ Nunca treinou<br>2️⃣ Já treinou<small>10:01</small></p>
+                  <p class="at-msg eu" data-i="8">1<small>10:02</small></p>
+                  <p class="at-msg eles" data-i="9">Perfeito! Estas são as próximas turmas de <b>Jiu-jitsu</b>:<br><br>1️⃣ ter, 27/10 às 19h<br>2️⃣ qua, 28/10 às 7h<br>3️⃣ qua, 28/10 às 19h<br>4️⃣ qui, 29/10 às 7h<br>5️⃣ qui, 29/10 às 19h<br><br>Responda com o número. Nenhum horário serve? Responda <b>0</b> que a equipe te ajuda.<small>10:02</small></p>
+                  <p class="at-msg eu" data-i="10">2<small>10:03</small></p>
+                  <p class="at-msg eles" data-i="11">Fechado! ✅ Sua aula experimental está marcada:<br><br><b>Jiu-jitsu · qua, 28/10 às 7h</b><br><br>A primeira aula é grátis. Venha com roupa confortável; o kimono a gente empresta.<br><br>📍 SHCSW 300, Bloco 1, Loja 10 · Sudoeste, Brasília/DF<br>🗺️ Rota: <span class="at-link">google.com/maps/dir/…</span><br><br>📅 Salvar na sua agenda:<br><span class="at-link at-salvar">calendar.google.com/…</span><br><br>Vou te mandar um lembrete antes da aula.<br><br>Te esperamos no tatame! 🥋<small>10:03</small></p>
+                  <p class="at-msg at-dia" data-i="12">Hoje, 20:00</p>
+                  <p class="at-msg eles" data-i="13">Oi, Rafael! Amanhã cedo tem aula experimental 🥋<br><br><b>Jiu-jitsu, qua, 28/10 às 7h</b><br>📍 SHCSW 300, Bloco 1, Loja 10 · Sudoeste, Brasília/DF<br>🗺️ Rota: <span class="at-link">google.com/maps/dir/…</span><br><br>A primeira aula é grátis. Venha com roupa confortável; o kimono a gente empresta.<br><br>Responda <b>1</b> para confirmar ou <b>2</b> para remarcar.<small>20:00</small></p>
+                  <p class="at-msg eu" data-i="14">1<small>20:06</small></p>
+                  <p class="at-msg eles" data-i="15">Presença confirmada! ✅<br><br><b>Jiu-jitsu · qua, 28/10 às 7h</b><br>📍 SHCSW 300, Bloco 1, Loja 10 · Sudoeste, Brasília/DF<br>🗺️ Rota: <span class="at-link">google.com/maps/dir/…</span><br><br>Te esperamos no tatame. 🥋<small>20:06</small></p>
+                </div>
+              </div>
+              <div class="at-campo"><span>Mensagem</span><i><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21"/></svg></i></div>
+            </div>
+
+            <!-- O aluno toca no link e salva a aula na agenda dele -->
+            <div class="at-ov at-ov-salvar">
+              <div class="at-sv-topo"><span class="at-x">✕</span><span class="at-btn-salvar">Salvar</span></div>
+              <p class="at-sv-tit">Aula experimental de Jiu-jitsu · Sua Academia</p>
+              <ul class="at-sv-campos">
+                <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span>qua., 28 de out. de 2026<br>07:00 – 08:00</span></li>
+                <li><svg viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span>SHCSW 300, Bloco 1, Loja 10 · Sudoeste, Brasília/DF</span></li>
+                <li><svg viewBox="0 0 24 24"><path d="M4 6h16M4 11h16M4 16h10"/></svg><span>A primeira aula é grátis. Venha com roupa confortável; o kimono a gente empresta.</span></li>
+              </ul>
+            </div>
+
+            <!-- Agenda do aluno, já com a aula -->
+            <div class="at-ov at-ov-alunocal at-cal">
+              <div class="at-cal-topo"><p class="at-cal-quem">Agenda do Rafael</p><p class="at-cal-dia"><b>28</b>qua., outubro</p></div>
+              <div class="at-horas">
+                <p><span>06:00</span></p><p><span>07:00</span></p><p><span>08:00</span></p><p><span>09:00</span></p><p><span>10:00</span></p><p><span>11:00</span></p><p><span>12:00</span></p>
+                <div class="at-evento">Aula experimental de Jiu-jitsu · Sua Academia<small>07:00 – 08:00</small></div>
+              </div>
+              <p class="at-toast">Evento salvo</p>
+            </div>
+
+            <!-- Agenda da academia: a aula entrou sozinha e o dono foi avisado -->
+            <div class="at-ov at-ov-academia at-cal">
+              <div class="at-cal-topo"><p class="at-cal-quem">Agenda da Sua Academia</p><p class="at-cal-dia"><b>28</b>qua., outubro</p></div>
+              <div class="at-horas">
+                <p><span>06:00</span></p><p><span>07:00</span></p><p><span>08:00</span></p><p><span>09:00</span></p><p><span>10:00</span></p><p><span>11:00</span></p><p><span>12:00</span></p>
+                <div class="at-evento">Aula experimental · Rafael Costa · Jiu-jitsu<small>07:00 – 08:00</small></div>
+              </div>
+              <div class="at-notif">
+                <i><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/></svg></i>
+                <p><b>Sua Academia</b><span>agora</span><br>🥋 Nova aula experimental marcada pelo WhatsApp<br>Rafael Costa · adulto · Jiu-jitsu · Nunca treinou<br>qua, 28/10 às 7h</p>
+              </div>
+            </div>
+
+            <!-- À noite: o lembrete chega na tela de bloqueio -->
+            <div class="at-ov at-ov-bloqueio">
+              <p class="at-hora">20:00</p>
+              <p class="at-data">terça-feira, 27 de outubro</p>
+              <div class="at-notif at-notif-bloq">
+                <i><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/></svg></i>
+                <p><b>Sua Academia</b><span>agora</span><br>Oi, Rafael! Amanhã cedo tem aula experimental 🥋</p>
+              </div>
+            </div>
+
+            <i class="toque"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
 <!--  BLOCO 05b · RESULTADOS — academias que já atendemos     -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <section id="resultados">
@@ -788,5 +917,6 @@
 
 <script src="assets/js/config.js?v=70"></script>
 <script src="assets/js/vida.js?v=18"></script>
+<script src="assets/js/atende.js?v=1"></script>
 </body>
 </html>
