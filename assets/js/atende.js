@@ -3,7 +3,8 @@
    Um vídeo feito com o próprio HTML, como o da seção do perfil (vida.js):
    a conversa acontece mensagem por mensagem, o aluno salva a aula na
    agenda dele, a aula aparece na agenda da academia e, à noite, chega o
-   lembrete. Começa quando a seção aparece, repete e pausa fora da tela.
+   lembrete, que termina com a rota. Começa quando a seção aparece,
+   repete e pausa fora da tela.
    ========================================================== */
 document.addEventListener('DOMContentLoaded', () => {
   const sec = document.getElementById('atendimento');
@@ -48,10 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { p: 2, c: 'academia', ms: 5200 },
     { p: 3, c: 'bloqueio', ate: 12, ms: 2600 },
     { p: 3, c: 'bloqueio', toque: '.at-notif-bloq', ms: 700 },
-    { p: 3, c: 'chat', ate: 14, ms: 3800 },
-    { p: 3, ate: 15, ms: 1100 },
-    { p: 3, dig: true, ms: 800 },
-    { p: 3, ate: 16, ms: 4600 }
+    { p: 3, c: 'chat', ate: 14, ms: 6500 }
   ];
   /* Herança: cada cena completa o que não disse com a anterior */
   VIDEO.forEach((v, i) => {
