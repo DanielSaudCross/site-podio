@@ -88,13 +88,6 @@
 .vida[data-passo="1"] .vida-fundo span:nth-child(2),
 .vida[data-passo="2"] .vida-fundo span:nth-child(3),
 .vida[data-passo="3"] .vida-fundo span:nth-child(4){opacity:1;transform:none}
-/* Com duas colunas, a palavra fica no meio do lado do texto: o right tira a
-   coluna do celular (340px + 64px de espaço) e a letra tem um tamanho em que
-   "Avaliações", a mais larga, cabe inteira. Assim o celular não cobre letra. */
-@media(min-width:901px){
-  .vida-fundo{right:404px}
-  .vida-fundo span{font-size:clamp(90px,calc(30vw - 145px),190px)}
-}
 
 .vida-textos h2{margin-bottom:34px;max-width:20ch}
 .vida-textos h2 em{font-style:italic;color:var(--lamp);display:block;white-space:nowrap}
