@@ -634,7 +634,7 @@ span.so-pronto,b.so-pronto{display:none}
 .form-diag input:focus{border-color:rgba(var(--lamp-rgb),.7);background:rgba(255,255,255,.09)}
 .form-diag input[aria-invalid="true"]{border-color:var(--alert)}
 .form-diag .btn{grid-column:1/-1;justify-self:center;margin-top:10px}
-.final .form-diag p{margin:0;text-align:center;grid-column:1/-1;font-size:13px}
+.final .form-diag p{margin:0 auto;text-align:center;grid-column:1/-1;font-size:13px}
 .form-erro{color:var(--alert)!important}
 .form-erro:empty{display:none}
 @media(max-width:760px){.form-diag{grid-template-columns:1fr}}
