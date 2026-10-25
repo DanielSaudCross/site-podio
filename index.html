@@ -184,7 +184,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=35">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=36">
 </head>
 <body>
 
@@ -495,192 +495,56 @@
   <div class="wrap">
     <div class="section-head rv">
       <h2>Quem já está no degrau mais alto.</h2>
-      <p class="lead">Academias e estúdios de Brasília que confiam a presença digital à Pódio. Toque num card para ver o perfil e os serviços de cada um.</p>
+      <p class="lead">Academias e estúdios de Brasília que confiam a presença digital à Pódio.</p>
     </div>
 
-    <div class="casos rv">
-
-      <!-- Cada caso é um elemento "details" nativo: compacto por padrão, abre
-           no clique. Funciona com teclado e sem uma linha de JS.
--->
-      <!-- A foto de fundo de cada card (--foto) fica no 03-redesenho.css,
-           pela classe caso-*: com caminho relativo dentro do style="" ela
-           sumia ao abrir o arquivo local. Ver a explicação em 02-blocos.css:
-           com <img> a foto não cobre os dois estados. -->
-      <details class="caso glass caso-mtk" name="casos" style="--foto-veu:.38">
-        <summary>
-          <div class="caso-cabeca">
-            <img class="caso-logo quadrada" src="assets/img/clientes/mtk-logo.webp" alt="CT MTK" width="512" height="512" loading="lazy">
-            <span class="caso-abrir" aria-hidden="true"></span>
-          </div>
-
-          <h3>CT MTK</h3>
-          <p class="caso-meta">Artes marciais e treino funcional · Núcleo Bandeirante/DF</p>
-
-          <p class="caso-numero caso-nome">CT MTK</p>
-
-          <div class="caso-pe">
-            <span class="caso-canal">@ct_mtk</span>
-            <i class="caso-degraus" aria-hidden="true"></i>
-          </div>
-        </summary>
-
-        <div class="caso-mais">
-
-          <div class="canal">
-            <h4 class="canal-nome">Instagram · @ct_mtk</h4>
-            <div class="caso-numeros">
-              <div class="num num-destaque"><p class="num-valor">2.090</p><p class="num-rot">seguidores</p></div>
-              <div class="num"><p class="num-valor">575</p><p class="num-rot">publicações</p></div>
-            </div>
-          </div>
-
-          <div class="canal">
-            <h4 class="canal-nome">Serviços</h4>
-            <p class="canal-camp">Judô e Jiu-Jitsu (kids, infantil, iniciante e avançado), Muay Thai, treino funcional para todas as idades e personal trainer.</p>
-            <p class="canal-camp">Av. Central Bl. 1420/1550, Núcleo Bandeirante, Distrito Federal.</p>
-          </div>
-
-          <div class="canal">
-            <h4 class="canal-nome">Site</h4>
-            <p class="canal-camp"><a class="canal-link" href="https://ctmtk.vercel.app/" target="_blank" rel="noopener">ctmtk.vercel.app</a> · feito pela Pódio</p>
-          </div>
-
-          <p class="caso-periodo">Dados públicos do perfil no Instagram, conferidos em 18/09/2026</p>
-        </div>
-      </details>
-
-      <!-- Marca d'água, não foto: o arquivo que temos da Barra Fit é o
-           logotipo sobre branco, 96% da área é branca. Sem --foto-veu porque
-           o apagamento já está no alfa do PNG; um véu liso escureceria também
-           a área vazia do card. -->
-      <details class="caso glass caso-barrafit" name="casos">
-        <summary>
-          <div class="caso-cabeca">
-            <img class="caso-logo quadrada" src="assets/img/clientes/barrafit-logo.webp" alt="Barra Fit Sudoeste" width="512" height="512" loading="lazy">
-            <span class="caso-abrir" aria-hidden="true"></span>
-          </div>
-
-          <h3>Barra Fit Sudoeste</h3>
-          <p class="caso-meta">Studio de personal premium · Sudoeste/DF</p>
-
-          <p class="caso-numero caso-nome">Barra Fit Sudoeste</p>
-
-          <div class="caso-pe">
-            <span class="caso-canal">@barrafit.bsb</span>
-            <i class="caso-degraus" aria-hidden="true"></i>
-          </div>
-        </summary>
-
-        <div class="caso-mais">
-
-          <div class="canal">
-            <h4 class="canal-nome">Instagram · @barrafit.bsb</h4>
-            <div class="caso-numeros">
-              <div class="num num-destaque"><p class="num-valor">728</p><p class="num-rot">seguidores</p></div>
-              <div class="num"><p class="num-valor">80</p><p class="num-rot">publicações</p></div>
-            </div>
-          </div>
-
-          <div class="canal">
-            <h4 class="canal-nome">Serviços</h4>
-            <p class="canal-camp">Funcional, treinos flash, kids, musculação, fight, terapias e turmas coletivas, com atendimento personalizado.</p>
-            <p class="canal-camp">SIG Quadra 3, Bloco B, Loja 87, Brasília/DF.</p>
-          </div>
-
-          <p class="caso-periodo">Dados públicos do perfil no Instagram, conferidos em 18/09/2026</p>
-        </div>
-      </details>
-
-      <!-- Véu leve de propósito: esta foto já nasce escura (média 43 contra
-           94 da MTK), então não precisa do mesmo tanto de véu. Ver gb.py. -->
-      <details class="caso glass caso-gracie" name="casos" style="--foto-veu:.18">
-        <summary>
-          <div class="caso-cabeca">
-            <img class="caso-logo quadrada" src="assets/img/clientes/gracie-barra-logo.webp" alt="Gracie Barra Sudoeste" width="512" height="512" loading="lazy">
-            <span class="caso-abrir" aria-hidden="true"></span>
-          </div>
-
-          <h3>Gracie Barra Sudoeste</h3>
-          <p class="caso-meta">Escola de artes marciais · Sudoeste/DF</p>
-
-          <p class="caso-numero caso-nome">Gracie Barra Sudoeste</p>
-
-          <div class="caso-pe">
-            <span class="caso-canal">@gb.sudoeste</span>
-            <i class="caso-degraus" aria-hidden="true"></i>
-          </div>
-        </summary>
-
-        <div class="caso-mais">
-
-          <div class="canal">
-            <h4 class="canal-nome">Instagram · @gb.sudoeste</h4>
-            <div class="caso-numeros">
-              <div class="num num-destaque"><p class="num-valor">3.440</p><p class="num-rot">seguidores</p></div>
-              <div class="num"><p class="num-valor">925</p><p class="num-rot">publicações</p></div>
-            </div>
-          </div>
-
-          <div class="canal">
-            <h4 class="canal-nome">Serviços</h4>
-            <p class="canal-camp">Jiu-Jitsu e defesa pessoal, judô, karatê, boxe kids e muay thai.</p>
-            <p class="canal-camp">SIG Quadra 3, Bloco B, Loja 87, Brasília/DF.</p>
-          </div>
-
-          <p class="caso-periodo">Dados públicos do perfil no Instagram, conferidos em 18/09/2026</p>
-        </div>
-      </details>
-
-      <!-- Foto de brilho médio (média 72, entre a MTK e a Gracie Barra),
-           então o véu também fica no meio. -->
-      <details class="caso glass caso-tati" name="casos" style="--foto-veu:.3">
-        <summary>
-          <div class="caso-cabeca">
-            <img class="caso-logo quadrada" src="assets/img/clientes/tati-logo.webp" alt="Studio Tatiane Lasneaux" width="512" height="512" loading="lazy">
-            <span class="caso-abrir" aria-hidden="true"></span>
-          </div>
-
-          <h3>Studio Tatiane Lasneaux</h3>
-          <p class="caso-meta">Estúdio de pilates · Lago Sul/DF</p>
-
-          <p class="caso-numero caso-nome">Studio Tatiane Lasneaux</p>
-
-          <div class="caso-pe">
-            <span class="caso-canal">@pilates.tatianelasneaux</span>
-            <i class="caso-degraus" aria-hidden="true"></i>
-          </div>
-        </summary>
-
-        <div class="caso-mais">
-
-          <div class="canal">
-            <h4 class="canal-nome">Instagram · @pilates.tatianelasneaux</h4>
-            <div class="caso-numeros">
-              <div class="num num-destaque"><p class="num-valor">426</p><p class="num-rot">seguidores</p></div>
-              <div class="num"><p class="num-valor">158</p><p class="num-rot">publicações</p></div>
-            </div>
-          </div>
-
-          <div class="canal">
-            <h4 class="canal-nome">Google</h4>
-            <div class="caso-numeros">
-              <div class="num num-destaque"><p class="num-valor">5,0</p><p class="num-rot">nota</p></div>
-              <div class="num"><p class="num-valor">80</p><p class="num-rot">avaliações</p></div>
-            </div>
-          </div>
-
-          <div class="canal">
-            <h4 class="canal-nome">Serviços</h4>
-            <p class="canal-camp">Pilates, fortalecimento e wellness, num estúdio focado em saúde, mobilidade e qualidade de vida.</p>
-            <p class="canal-camp">SHIS QI 11, Bloco M, Loja 10, Lago Sul, Brasília/DF.</p>
-          </div>
-
-          <p class="caso-periodo">Dados públicos do Instagram e do Google, conferidos em 23/09/2026</p>
-        </div>
-      </details>
-
+    <!-- Dois cases em destaque, como na base.digital; os outros abrem no
+         botão abaixo (details nativo, sem JS). A foto de cada card vem do
+         03-redesenho.css pela classe caso-*. -->
+    <div class="cases">
+      <article class="case rv">
+        <a class="case-foto caso-mtk" href="https://ctmtk.vercel.app/" target="_blank" rel="noopener">
+          <img class="case-logo" src="assets/img/clientes/mtk-logo.webp" alt="" width="512" height="512" loading="lazy">
+          <span class="case-btn">Ver o site<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <p class="case-cliente">CT MTK · Núcleo Bandeirante/DF</p>
+        <h3>Site institucional: CT MTK</h3>
+        <p class="case-desc">Judô, jiu-jitsu, muay thai e funcional numa página só, com o botão de aula experimental em cada bloco.</p>
+      </article>
+      <article class="case rv">
+        <a class="case-foto caso-gracie" href="https://www.instagram.com/gb.sudoeste/" target="_blank" rel="noopener">
+          <img class="case-logo" src="assets/img/clientes/gracie-barra-logo.webp" alt="" width="512" height="512" loading="lazy">
+          <span class="case-btn">Ver o perfil<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <p class="case-cliente">Gracie Barra · Sudoeste/DF</p>
+        <h3>Gracie Barra Sudoeste</h3>
+        <p class="case-desc">Escola de artes marciais com jiu-jitsu e defesa pessoal, judô, karatê, boxe kids e muay thai.</p>
+      </article>
     </div>
+
+    <details class="cases-mais">
+      <summary class="btn btn-ghost">Ver todos os clientes</summary>
+      <div class="cases">
+      <article class="case rv">
+        <a class="case-foto caso-barrafit" href="https://www.instagram.com/barrafit.bsb/" target="_blank" rel="noopener">
+          <img class="case-logo" src="assets/img/clientes/barrafit-logo.webp" alt="" width="512" height="512" loading="lazy">
+          <span class="case-btn">Ver o perfil<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <p class="case-cliente">Barra Fit · Sudoeste/DF</p>
+        <h3>Barra Fit Sudoeste</h3>
+        <p class="case-desc">Studio de personal premium: funcional, kids, musculação, fight e turmas coletivas.</p>
+      </article>
+      <article class="case rv">
+        <a class="case-foto caso-tati" href="https://www.instagram.com/pilates.tatianelasneaux/" target="_blank" rel="noopener">
+          <img class="case-logo" src="assets/img/clientes/tati-logo.webp" alt="" width="512" height="512" loading="lazy">
+          <span class="case-btn">Ver o perfil<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+        <p class="case-cliente">Studio Tatiane Lasneaux · Lago Sul/DF</p>
+        <h3>Studio Tatiane Lasneaux</h3>
+        <p class="case-desc">Estúdio de pilates com nota 5,0 e 80 avaliações no Google.</p>
+      </article>
+      </div>
+    </details>
   </div>
 </section>
 

@@ -448,34 +448,41 @@ span.so-pronto,b.so-pronto{display:none}
   .port-texto p{margin:0 auto}
 }
 
-/* ---------- clientes: os quatro numa linha só, cards mais compactos ----------
-   (aberto, o card continua ocupando a linha inteira: grid-column 1/-1 no 02) */
-.casos{grid-template-columns:repeat(4,1fr);gap:16px}
-.caso > summary{padding:18px 18px 16px}
-.caso-cabeca{margin-bottom:14px}
-.caso:not([open]) .caso-logo{height:56px;border-radius:12px;padding:5px}
-.caso:not([open]) .caso-logo.quadrada{height:64px}
-.caso-nome{font-size:21px}
-.caso:not([open]) .caso-nome{margin-bottom:14px}
-.caso:not([open]) .caso-meta{min-height:4.4em}
-@media(max-width:1100px){.casos{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.casos{grid-template-columns:1fr}}
+/* ---------- clientes: cases grandes (referência: base.digital) ----------
+   Foto em cima, com logo no canto e o botão que sobe no hover; nome, título
+   e uma linha de texto embaixo. A foto fica num ::before para poder crescer
+   no hover sem mexer na borda do card. */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.case-foto{position:relative;display:block;aspect-ratio:3/2;border-radius:20px;overflow:hidden;isolation:isolate;
+  background:var(--sea);border:1px solid var(--glass-line)}
+.case-foto::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--foto) var(--pos,center)/cover no-repeat;
+  transition:transform .8s cubic-bezier(.2,.7,.3,1)}
+.case-foto::after{content:'';position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to top,rgba(var(--ink-rgb),.82) 0%,rgba(var(--ink-rgb),.2) 55%,rgba(var(--ink-rgb),.3) 100%);
+  transition:opacity .5s}
+.case-foto:hover::before{transform:scale(1.06)}
+.case-logo{position:absolute;top:20px;left:20px;width:60px;height:60px;border-radius:14px;object-fit:contain;background:#fff;padding:4px}
+.case-btn{position:absolute;left:24px;bottom:24px;display:inline-flex;align-items:center;gap:8px;
+  padding:12px 18px;border:1px solid rgba(255,255,255,.75);border-radius:10px;color:var(--text);font-weight:600;font-size:15px;
+  background:rgba(var(--ink-rgb),.25);backdrop-filter:blur(6px);
+  opacity:0;transform:translateY(14px);transition:opacity .4s,transform .4s cubic-bezier(.2,.7,.3,1)}
+.case-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.case-foto:hover .case-btn,.case-foto:focus-visible .case-btn{opacity:1;transform:none}
+@media(hover:none){.case-btn{opacity:1;transform:none}}
+.case-cliente{font:var(--t-label);letter-spacing:var(--t-label-ls);text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
+.case h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(26px,2.6vw,34px);margin-bottom:10px}
+.case-desc{color:var(--muted);max-width:52ch}
+.cases-mais{margin-top:44px}
+.cases-mais>summary{list-style:none;display:table;margin:0 auto}
+.cases-mais>summary::-webkit-details-marker{display:none}
+.cases-mais[open]>summary{display:none}
+@media(max-width:760px){.cases{grid-template-columns:1fr;gap:40px}}
+@media(prefers-reduced-motion:reduce){.case-foto::before,.case-btn{transition:none}}
 
-/* O véu escuro vai no mesmo fundo da foto, e não num ::after por cima: como
-   camada separada ele sobrava menor que a foto em alguns navegadores e as
-   bordas do card ficavam claras. Mesmo degradê do 02-blocos.css. */
-.caso{--veu:linear-gradient(to top,rgba(var(--ink-rgb),.93) 0%,rgba(var(--ink-rgb),.90) 38%,rgba(var(--ink-rgb),.72) 68%,rgba(var(--ink-rgb),.42) 100%);
-  background-image:var(--glass-bg),var(--veu),
-    linear-gradient(rgba(var(--ink-rgb),var(--foto-veu)),rgba(var(--ink-rgb),var(--foto-veu))),var(--foto,none);
-  background-size:auto,auto,auto,cover;background-position:center;background-repeat:no-repeat;
-  background-origin:border-box;background-clip:border-box}
-.caso[open]{--veu:linear-gradient(to top,rgba(var(--ink-rgb),.94) 0%,rgba(var(--ink-rgb),.91) 55%,rgba(var(--ink-rgb),.74) 78%,rgba(var(--ink-rgb),.48) 100%)}
-.caso::after,.caso[open]::after{display:none}
-
-/* ---------- clientes: foto de fundo de cada card ---------- */
+/* ---------- clientes: foto de cada card ---------- */
 .caso-mtk{--foto:url('../img/clientes/mtk-foto.webp')}
 .caso-barrafit{--foto:url('../img/clientes/barrafit-marca.webp')}
-.caso-gracie{--foto:url('../img/clientes/gracie-barra-foto.webp')}
+.caso-gracie{--foto:url('../img/clientes/gracie-barra-foto.webp');--pos:center 30%}
 .caso-tati{--foto:url('../img/clientes/tati-foto.webp')}
 
 /* ---------- dúvidas: entram em ordem ----------
