@@ -216,6 +216,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       erro.textContent = '';
+      /* Guarda o pedido no n8n antes de abrir o WhatsApp. sendBeacon entrega
+         mesmo com a aba trocando e, como formulário simples, não esbarra
+         em bloqueio entre domínios. Se falhar, o WhatsApp abre do mesmo jeito. */
+      if (PODIO.registroDiagnostico && navigator.sendBeacon) {
+        try {
+          navigator.sendBeacon(PODIO.registroDiagnostico,
+            new URLSearchParams({ academia, local, nome, pagina: location.href }));
+        } catch (e) { /* segue para o WhatsApp */ }
+      }
       const texto = `${VEIO} e quero o diagnóstico gratuito do meu perfil no Google.\n` +
         `Academia: ${academia}\nBairro e cidade: ${local}` + (nome ? `\nMeu nome: ${nome}` : '');
       const numero = String(PODIO.whatsapp).replace(/\D/g, '');
