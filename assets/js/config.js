@@ -105,32 +105,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* Cards de caso (BLOCO 05): fechar clicando em qualquer lugar.
-     O <details> nativo só abre e fecha pelo <summary>. Fechado, o summary é
-     o card inteiro, então clicar em qualquer ponto já funciona. Aberto, ele
-     vira uma faixa fina no topo e o resto do card fica inerte — daí a
-     sensação de que só o "x" fechava. Isto devolve o clique ao card todo. */
-  document.querySelectorAll('.caso .caso-mais').forEach((corpo) => {
-    corpo.addEventListener('click', (evento) => {
-      /* Não fecha se a pessoa clicou num link, num botão, ou se está
-         selecionando texto para copiar. */
-      if (evento.target.closest('a,button,summary')) return;
-      if (String(window.getSelection())) return;
-      corpo.closest('details').open = false;
-    });
-  });
-
-  /* Um card de caso aberto por vez.
-     O atributo name="casos" nos <details> já faz a sanfona sozinho nos
-     navegadores atuais. Este trecho só entra em ação nos que ainda não
-     entendem o atributo, para o comportamento não mudar conforme o aparelho. */
-  if (!('name' in HTMLDetailsElement.prototype)) {
-    const sanfona = document.querySelectorAll('.casos > details[name]');
-    sanfona.forEach((card) => {
-      card.addEventListener('toggle', () => {
-        if (!card.open) return;
-        sanfona.forEach((outro) => { if (outro !== card) outro.open = false; });
-      });
+  /* Clientes: "Ver todos" abre e fecha os cases extras.
+     Ao fechar, a página compensa a altura que sumiu, para o botão não
+     fugir de baixo do dedo e a pessoa não se perder na página. */
+  const botaoCases = document.querySelector('.cases-mais button');
+  if (botaoCases) {
+    const extras = document.getElementById('cases-extra');
+    botaoCases.addEventListener('click', () => {
+      const abrir = extras.hidden;
+      const antes = botaoCases.getBoundingClientRect().top;
+      extras.hidden = !abrir;
+      botaoCases.setAttribute('aria-expanded', String(abrir));
+      botaoCases.textContent = abrir ? 'Ver menos' : 'Ver todos os clientes';
+      if (!abrir) window.scrollBy({ top: botaoCases.getBoundingClientRect().top - antes, behavior: 'instant' });
     });
   }
 

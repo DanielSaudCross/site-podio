@@ -472,10 +472,9 @@ span.so-pronto,b.so-pronto{display:none}
 .case-cliente{font:var(--t-label);letter-spacing:var(--t-label-ls);text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
 .case h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(26px,2.6vw,34px);margin-bottom:10px}
 .case-desc{color:var(--muted);max-width:52ch}
-.cases-mais{margin-top:44px}
-.cases-mais>summary{list-style:none;display:table;margin:0 auto}
-.cases-mais>summary::-webkit-details-marker{display:none}
-.cases-mais[open]>summary{display:none}
+.cases-extra{margin-top:44px}
+.cases-extra[hidden]{display:none}
+.cases-mais{margin-top:44px;text-align:center}
 @media(max-width:760px){.cases{grid-template-columns:1fr;gap:40px}}
 @media(prefers-reduced-motion:reduce){.case-foto::before,.case-btn{transition:none}}
 

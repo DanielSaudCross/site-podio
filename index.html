@@ -184,7 +184,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=36">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=37">
 </head>
 <body>
 
@@ -499,7 +499,7 @@
     </div>
 
     <!-- Dois cases em destaque, como na base.digital; os outros abrem no
-         botão abaixo (details nativo, sem JS). A foto de cada card vem do
+         botão abaixo (config.js). A foto de cada card vem do
          03-redesenho.css pela classe caso-*. -->
     <div class="cases">
       <article class="case rv">
@@ -522,9 +522,7 @@
       </article>
     </div>
 
-    <details class="cases-mais">
-      <summary class="btn btn-ghost">Ver todos os clientes</summary>
-      <div class="cases">
+    <div class="cases cases-extra" id="cases-extra" hidden>
       <article class="case rv">
         <a class="case-foto caso-barrafit" href="https://www.instagram.com/barrafit.bsb/" target="_blank" rel="noopener">
           <img class="case-logo" src="assets/img/clientes/barrafit-logo.webp" alt="" width="512" height="512" loading="lazy">
@@ -543,8 +541,9 @@
         <h3>Studio Tatiane Lasneaux</h3>
         <p class="case-desc">Estúdio de pilates com nota 5,0 e 80 avaliações no Google.</p>
       </article>
-      </div>
-    </details>
+    </div>
+
+    <p class="cases-mais"><button type="button" class="btn btn-ghost" aria-expanded="false" aria-controls="cases-extra">Ver todos os clientes</button></p>
   </div>
 </section>
 
@@ -722,7 +721,7 @@
   <span>Falar no WhatsApp</span>
 </a>
 
-<script src="assets/js/config.js?v=68"></script>
+<script src="assets/js/config.js?v=69"></script>
 <script src="assets/js/vida.js?v=18"></script>
 </body>
 </html>
