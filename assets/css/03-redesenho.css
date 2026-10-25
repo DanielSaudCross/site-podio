@@ -448,6 +448,81 @@ span.so-pronto,b.so-pronto{display:none}
   .port-texto p{margin:0 auto}
 }
 
+/* ---------- soluções: três cards altos (referência: base.digital) ----------
+   Parado, só o título. No hover (ou foco), o véu escurece, a cena se mexe e
+   o texto e o botão sobem: a altura do .sol-mais vai de 0fr a 1fr.
+   No celular viram uma fileira que desliza para o lado, com o texto aberto. */
+.sols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.sol{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;isolation:isolate;
+  border:1px solid var(--glass-line);background:var(--sea)}
+.sol-cena{position:absolute;inset:0;z-index:-2;transition:opacity .5s,filter .5s,transform .8s cubic-bezier(.2,.7,.3,1)}
+/* Com o texto aberto, a cena apaga e desfoca, como a foto nos cards da Base:
+   o texto nunca briga com o que está atrás. */
+.sol:is(:hover,:focus-within) .sol-cena{opacity:.28;filter:blur(3px);transform:scale(1.05)}
+.sol::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to top,rgba(var(--ink-rgb),.95) 0%,rgba(var(--ink-rgb),.55) 38%,rgba(var(--ink-rgb),0) 65%);
+  transition:background-color .5s}
+.sol-texto{position:absolute;left:0;right:0;bottom:0;padding:28px}
+.sol h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(28px,2.6vw,34px)}
+.sol-mais{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.2,.7,.3,1)}
+.sol-mais>div{overflow:hidden;opacity:0;transition:opacity .4s}
+.sol:is(:hover,:focus-within) .sol-mais{grid-template-rows:1fr}
+.sol:is(:hover,:focus-within) .sol-mais>div{opacity:1;transition-delay:.12s}
+.sol-mais p{color:rgba(255,255,255,.86);margin:14px 0 22px;max-width:36ch}
+.sol-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border:1px solid rgba(255,255,255,.75);
+  border-radius:10px;color:var(--text);font-weight:600;font-size:15px;text-decoration:none;transition:background .3s,color .3s}
+.sol-btn:hover{background:#fff;color:#0b0d0b}
+.sol-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.sol-btn[data-wa] svg{width:18px;height:18px;fill:var(--lamp);stroke:none}
+.sol-btn[data-wa]:hover svg{fill:#1f8f4e}
+.sol-breve{position:absolute;top:20px;left:20px;font:var(--t-label);letter-spacing:var(--t-label-ls);text-transform:uppercase;
+  color:#0b0d0b;background:var(--lamp);padding:7px 11px;border-radius:999px}
+
+/* cena 1: mapa com pino e o card do perfil */
+.sol-google .sol-cena{background:
+  radial-gradient(circle at 50% 30%,rgba(var(--lamp-rgb),.16),transparent 55%),
+  linear-gradient(28deg,transparent 47.5%,rgba(255,255,255,.09) 48%,rgba(255,255,255,.09) 52%,transparent 52.5%),
+  linear-gradient(-62deg,transparent 47.6%,rgba(255,255,255,.06) 48%,rgba(255,255,255,.06) 50.5%,transparent 51%),
+  repeating-linear-gradient(0deg,transparent 0 46px,rgba(255,255,255,.035) 46px 47px),
+  repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.035) 46px 47px),#121512}
+.sol-pino{position:absolute;left:50%;top:15%;width:34px;height:34px;margin-left:-17px;border-radius:50% 50% 50% 0;
+  background:var(--lamp);transform:rotate(-45deg);box-shadow:0 0 0 10px rgba(var(--lamp-rgb),.14)}
+.sol-pino::after{content:'';position:absolute;inset:11px;border-radius:50%;background:#0b0d0b}
+.sol-gcard{position:absolute;left:12%;right:12%;top:30%;background:#fff;color:#202124;border-radius:14px;padding:16px 16px 14px;
+  box-shadow:0 18px 40px rgba(0,0,0,.45);font-size:13px;line-height:1.45}
+.sg-nome{font-size:16px;font-weight:600;margin-bottom:2px}
+.sg-nota{color:#5f6368}
+.sg-linha{color:#5f6368}
+.sg-linha b{color:#188038;font-weight:500}
+.sg-botoes{display:flex;gap:6px;margin-top:10px}
+.sg-botoes span{flex:1;text-align:center;font-size:12px;color:#0b57d0;border:1px solid #dadce0;border-radius:999px;padding:5px 0}
+
+/* cena 2: celular com o site da CT MTK, que rola no hover */
+.sol-site .sol-cena{background:radial-gradient(circle at 50% 35%,rgba(var(--lamp-rgb),.13),transparent 60%),#121512}
+.sol-cel{position:absolute;left:50%;top:8%;width:46%;aspect-ratio:9/19;margin-left:-23%;border-radius:24px;overflow:hidden;
+  border:6px solid #1c1f1c;box-shadow:0 22px 50px rgba(0,0,0,.55);transform:rotate(-5deg);background:#000}
+.sol-cel img{display:block;width:100%;height:auto}
+
+/* cena 3: conversa no WhatsApp (mesmo fundo do vídeo) */
+.sol-zap .sol-cena{background:#EFE7DE url(../img/fundo-whatsapp.svg) 0 0/300px;padding:22% 16px 0;display:flex;flex-direction:column;gap:10px}
+.sol-bolha{max-width:78%;padding:9px 12px;border-radius:10px;font-size:13.5px;line-height:1.4;color:#111b21;
+  box-shadow:0 1px 1px rgba(0,0,0,.12)}
+.sol-bolha.eles{align-self:flex-start;background:#fff;border-top-left-radius:2px}
+.sol-bolha.nos{align-self:flex-end;background:#D9FDD3;border-top-right-radius:2px}
+
+@media(hover:none){
+  .sol-mais{grid-template-rows:1fr}
+  .sol-mais>div{opacity:1}
+  .sol .sol-cena{opacity:.45;filter:none;transform:none}
+}
+@media(max-width:900px){
+  .sols{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(78%,340px);overflow-x:auto;
+    scroll-snap-type:x mandatory;scroll-padding-inline:16px;margin:0 -16px;padding:0 16px 8px;scrollbar-width:none}
+  .sols::-webkit-scrollbar{display:none}
+  .sol{scroll-snap-align:start;aspect-ratio:3/4.4}
+}
+@media(prefers-reduced-motion:reduce){.sol *,.sol::after{transition:none!important}}
+
 /* ---------- clientes: cases grandes (referência: base.digital) ----------
    Foto em cima, com logo no canto e o botão que sobe no hover; nome, título
    e uma linha de texto embaixo. A foto fica num ::before para poder crescer

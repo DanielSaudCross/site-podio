@@ -184,7 +184,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=37">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=38">
 </head>
 <body>
 
@@ -201,7 +201,7 @@
 <nav class="nav">
   <div class="nav-dentro">
     <div class="nav-links nav-esq">
-      <a href="#frentes">Serviços</a>
+      <a href="#solucoes">Serviços</a>
       <a href="#portfolio">Portfólio</a>
     </div>
     <a href="#topo" class="brand" aria-label="Pódio, ir para o topo"><span class="marca">P<span class="marca-o">O</span>DIO</span></a>
@@ -226,7 +226,7 @@
   </div>
 
   <nav aria-label="Navegação principal">
-    <a href="#frentes">Serviços</a>
+    <a href="#solucoes">Serviços</a>
     <a href="#portfolio">Portfólio</a>
     <a href="#planos">Planos</a>
     <a href="#duvidas">Dúvidas</a>
@@ -256,6 +256,71 @@
     <p class="hero-note">Análise do seu perfil em até 24h · sem compromisso</p>
   </div>
 </header>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  BLOCO 02b · SOLUÇÕES — o que a Pódio faz, em três cards   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- Cada card tem uma "cena" desenhada com HTML/CSS em vez de foto de banco:
+     o perfil no Google é genérico, o site é o da CT MTK (feito pela Pódio) e
+     a conversa do WhatsApp é ilustrativa. -->
+<section id="solucoes">
+  <div class="wrap">
+    <div class="section-head rv">
+      <h2>O que a Pódio faz pela sua <em>academia.</em></h2>
+      <p class="lead">Do Google ao WhatsApp, cada parte leva quem procura onde treinar até a aula experimental.</p>
+    </div>
+
+    <div class="sols">
+      <article class="sol sol-google rv">
+        <div class="sol-cena" aria-hidden="true">
+          <i class="sol-pino"></i>
+          <div class="sol-gcard">
+            <p class="sg-nome">Sua Academia de Jiu-Jitsu</p>
+            <p class="sg-nota">4,9 <i class="estrelas e5"></i> (86)</p>
+            <p class="sg-linha"><b>Aberto</b> · Fecha às 22h</p>
+            <p class="sg-botoes"><span>Rotas</span><span>Ligar</span><span>Site</span></p>
+          </div>
+        </div>
+        <div class="sol-texto">
+          <h3>Perfil no Google</h3>
+          <div class="sol-mais"><div>
+            <p>Google Meu Negócio completo: fotos, horários, WhatsApp e avaliações que chegam pela placa NFC no balcão.</p>
+            <a class="sol-btn" href="#frentes">Saiba mais<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+          </div></div>
+        </div>
+      </article>
+
+      <article class="sol sol-site rv">
+        <div class="sol-cena" aria-hidden="true">
+          <div class="sol-cel"><img src="assets/img/portfolio/ctmtk-celular.webp" alt="" width="360" height="2592" loading="lazy"></div>
+        </div>
+        <div class="sol-texto">
+          <h3>Site institucional</h3>
+          <div class="sol-mais"><div>
+            <p>Uma página com modalidades, turmas, professores e o botão de aula experimental direto no WhatsApp.</p>
+            <a class="sol-btn" href="#portfolio">Ver um exemplo<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+          </div></div>
+        </div>
+      </article>
+
+      <article class="sol sol-zap rv">
+        <div class="sol-cena" aria-hidden="true">
+          <p class="sol-bolha eles">Qual o horário do jiu-jitsu adulto?</p>
+          <p class="sol-bolha nos">Segunda a sexta, às 19h. Quer marcar uma aula experimental grátis?</p>
+          <p class="sol-bolha eles">Quero! Amanhã dá?</p>
+        </div>
+        <span class="sol-breve">Em breve</span>
+        <div class="sol-texto">
+          <h3>Atendimento no WhatsApp</h3>
+          <div class="sol-mais"><div>
+            <p>Um assistente que responde horários e valores e marca a aula experimental, mesmo com a recepção fechada.</p>
+            <a class="sol-btn" href="#" data-wa="chatbot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg>Quero saber quando lançar</a>
+          </div></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!--  BLOCO 03 · SERVIÇOS — as três frentes  -->
@@ -685,7 +750,7 @@
 
       <nav class="foot-col foot-nav" aria-label="Navegação do rodapé">
         <p class="foot-tit">Navegação</p>
-        <a href="#frentes">Serviços</a>
+        <a href="#solucoes">Serviços</a>
         <a href="#portfolio">Portfólio</a>
         <a href="#planos">Planos</a>
         <a href="#duvidas">Dúvidas</a>
@@ -721,7 +786,7 @@
   <span>Falar no WhatsApp</span>
 </a>
 
-<script src="assets/js/config.js?v=69"></script>
+<script src="assets/js/config.js?v=70"></script>
 <script src="assets/js/vida.js?v=18"></script>
 </body>
 </html>

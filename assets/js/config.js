@@ -50,7 +50,10 @@ const PODIO = {
     perfil:  VEIO + ' e quero deixar o perfil da minha academia completo no Google.',
     mudanca: VEIO + ' e quero essa mudança na minha academia.',
     site:    VEIO + ' e quero um site para a minha academia.',
-    duvida:  VEIO + ' e tenho uma dúvida.'
+    duvida:  VEIO + ' e tenho uma dúvida.',
+
+    /* Card "Em breve" das soluções: quer ser avisado. */
+    chatbot: VEIO + ' e quero saber do atendimento automático no WhatsApp.'
   }
 
 };
