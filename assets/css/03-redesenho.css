@@ -669,6 +669,9 @@ span.so-pronto,b.so-pronto{display:none}
   opacity:0;transform:translateY(8px) scale(.9)}
 .atende[data-cena="academia"] .at-selo .s-aluno{opacity:0;transform:translateY(-8px) scale(.9)}
 .atende[data-cena="academia"] .at-selo .s-academia{opacity:1;transform:none}
+/* Quinta parte, só desta seção: a academia recebe a aula no fim do vídeo */
+.atende[data-passo="4"] .vida-passo[data-p="4"]{opacity:1;transform:none;pointer-events:auto}
+.atende[data-passo="4"] .vida-fundo span:nth-child(5){opacity:1;transform:none}
 
 /* A conversa */
 .at-zap{position:absolute;inset:0;display:flex;flex-direction:column;

@@ -2,8 +2,8 @@
    ATENDIMENTO NO WHATSAPP (BLOCO 05a)
    Um vídeo feito com o próprio HTML, como o da seção do perfil (vida.js):
    a conversa acontece mensagem por mensagem, o aluno salva a aula na
-   agenda dele, a aula aparece na agenda da academia e, à noite, chega o
-   lembrete, que termina com a rota. Começa quando a seção aparece,
+   agenda dele e, à noite, chega o lembrete, que termina com a rota. Por
+   último, o celular da academia: a aula na agenda e o aviso ao dono. Começa quando a seção aparece,
    repete e pausa fora da tela.
    ========================================================== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const capitulos = sec.querySelectorAll('.vida-capitulos button');
 
   /* O VÍDEO: p = parte (texto da esquerda e barrinha); c = o que o celular
-     mostra (chat, salvar, aluno, academia, bloqueio); ate = quantas mensagens
+     mostra (chat, salvar, aluno, bloqueio, academia); ate = quantas mensagens
      já apareceram; dig = o atendimento está digitando; toque = onde o dedo
      encosta. O que a cena não diz, herda da anterior. */
   const VIDEO = [
@@ -45,11 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     { p: 2, toque: '.at-salvar', ms: 700 },
     { p: 2, c: 'salvar', ms: 2300 },
     { p: 2, c: 'salvar', toque: '.at-btn-salvar', ms: 700 },
-    { p: 2, c: 'aluno', ms: 2600 },
-    { p: 2, c: 'academia', ms: 5200 },
+    { p: 2, c: 'aluno', ms: 3000 },
     { p: 3, c: 'bloqueio', ate: 12, ms: 2600 },
     { p: 3, c: 'bloqueio', toque: '.at-notif-bloq', ms: 700 },
-    { p: 3, c: 'chat', ate: 14, ms: 6500 }
+    { p: 3, c: 'chat', ate: 14, ms: 6500 },
+    { p: 4, c: 'academia', ms: 7500 }
   ];
   /* Herança: cada cena completa o que não disse com a anterior */
   VIDEO.forEach((v, i) => {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   const VELOCIDADE = 1.2;
   VIDEO.forEach((v) => { v.ms = Math.round(v.ms / VELOCIDADE); });
-  const duracao = [0, 0, 0, 0];
+  const duracao = [0, 0, 0, 0, 0];
   const inicioNaParte = VIDEO.map((v) => { const t = duracao[v.p]; duracao[v.p] += v.ms; return t; });
 
   /* Mostra as mensagens até "ate" e desce a conversa até a última */
