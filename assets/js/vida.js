@@ -321,11 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
         4: 'Desconto máximo: 20% na implantação.' };
       est.querySelector('.est-dica').textContent = qtd.unico + qtd.mensal === 0 ? prox[0]
         : qtd.unico === 0 ? 'Escolha os serviços de implantação.' : prox[qtd.unico];
-      /* site sem acompanhamento: avisa a hospedagem do 2º ano em diante */
-      const aviso = est.querySelector('.est-aviso');
-      aviso.hidden = !(est.querySelector('[name=site]').checked && !est.querySelector('[name=acomp]').checked);
-      aviso.textContent = 'Do 2º ano em diante, a hospedagem do site é R$ 70 por ano. '
-        + 'Com o Acompanhamento, a hospedagem e as atualizações do site ficam inclusas.';
 
       const vazio = !qtd.unico && !qtd.mensal;
       botao.setAttribute('aria-disabled', vazio);
