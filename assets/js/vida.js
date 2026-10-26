@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* 3b · Serviços: abas que trocam o cartão. Enquanto a seção está na tela
      passam sozinhas a cada PL_MS. Mouse (ou foco do teclado) em cima do
-     cartão pausa para ler (nas abas, não), e a barrinha congela; ao sair, continua de onde parou. Clicar
+     cartão pausa para ler (nas abas, não); ao sair, continua de onde parou. Clicar
      numa aba abre ela e segue passando a partir dali. A luz do cartão segue
      o mouse. */
   const pl = document.querySelector('.pl');
@@ -204,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
        pausado = mouse ou foco em cima */
     let atual = 0, timer = null, inicio = 0, restante = PL_MS, visivel = false, pausado = false;
     const automatico = !querMenosMovimento;
-    pl.style.setProperty('--pl-ms', PL_MS + 'ms');
 
     const abrir = (i, foco) => {
       atual = (i + abas.length) % abas.length;
@@ -223,19 +222,12 @@ document.addEventListener('DOMContentLoaded', () => {
       lista.scrollTo({ left: lista.scrollLeft + dx - 16, behavior: querMenosMovimento ? 'auto' : 'smooth' });
       if (foco) abas[atual].focus({ preventScroll: true });
       restante = PL_MS;
-      reiniciarBarra();
       seguir();
-    };
-    /* a barrinha da aba recomeça do zero (só quando a aba muda) */
-    const reiniciarBarra = () => {
-      if (!automatico) return;
-      pl.classList.remove('rodando'); void pl.offsetWidth; pl.classList.add('rodando');
     };
     /* roda o tempo que falta, se a seção está na tela e ninguém está lendo */
     const seguir = () => {
       clearTimeout(timer);
       const anda = automatico && visivel && !pausado;
-      pl.classList.toggle('pausado', !anda);
       if (!anda) return;
       inicio = performance.now();
       timer = setTimeout(() => abrir(atual + 1), restante);
@@ -265,7 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
         visivel = e.isIntersecting;
         seguir();
       }, { threshold: 0.4 }).observe(pl);
-      reiniciarBarra();
       seguir();
     }
     cartao.addEventListener('pointermove', (ev) => {

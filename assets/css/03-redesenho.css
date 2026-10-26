@@ -608,12 +608,6 @@ span.so-pronto,b.so-pronto{display:none}
   transition:color .25s ease,background .25s ease,border-color .25s ease,transform .25s ease}
 .pl-abas button:hover{color:var(--text);transform:translateY(-2px)}
 .pl-abas button[aria-selected="true"]{color:#0A0B0A;background:var(--lamp);border-color:var(--lamp)}
-.pl-tempo{position:absolute;left:0;bottom:0;height:3px;width:100%;background:#3A6600;
-  transform:scaleX(0);transform-origin:left}
-.pl.rodando button[aria-selected="true"] .pl-tempo{animation:pl-tempo var(--pl-ms,7000ms) linear forwards}
-@keyframes pl-tempo{to{transform:scaleX(1)}}
-/* mouse em cima ou seção fora da tela: a barrinha congela onde está */
-.pl.pausado button[aria-selected="true"] .pl-tempo{animation-play-state:paused}
 .pl-cartao{position:relative;isolation:isolate;overflow:hidden;padding:40px;min-height:360px}
 .pl-painel{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
 .pl-painel[hidden]{display:none}
