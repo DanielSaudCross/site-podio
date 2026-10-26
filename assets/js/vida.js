@@ -316,17 +316,17 @@ document.addEventListener('DOMContentLoaded', () => {
       est.querySelector('.est-eco').textContent = ecoU || ecoM
         ? 'Você economiza ' + [ecoU && brl(ecoU), ecoM && brl(ecoM) + ' por mês'].filter(Boolean).join(' e ')
         : '';
-      const prox = { 0: 'Escolha um serviço para começar.', 1: 'Junte mais 1 serviço de implantação e ganhe 10% de desconto.',
+      const prox = { 0: 'Escolha um serviço para começar.', 1: 'Junte mais 1 serviço e ganhe 10% de desconto.',
         2: 'Junte mais 1 serviço e o desconto sobe para 18%.', 3: 'Junte mais 1 serviço e o desconto sobe para 20%.',
-        4: 'Desconto máximo: 20% na implantação.' };
+        4: 'Desconto máximo: 20% nos serviços.' };
       est.querySelector('.est-dica').textContent = qtd.unico + qtd.mensal === 0 ? prox[0]
-        : qtd.unico === 0 ? 'Escolha os serviços de implantação.' : prox[qtd.unico];
+        : qtd.unico === 0 ? 'Escolha os serviços de cima.' : prox[qtd.unico];
 
       const vazio = !qtd.unico && !qtd.mensal;
       botao.setAttribute('aria-disabled', vazio);
       const texto = PODIO.mensagens.estrutura + '\n' +
         [...nomes.unico, ...nomes.mensal].map((n) => '• ' + n).join('\n') + '\n\n' +
-        'Implantação (paga uma vez): ' + (total.unico ? brl(total.unico) : 'nenhuma') + '\n' +
+        'Serviços (pagos uma vez): ' + (total.unico ? brl(total.unico) : 'nenhum') + '\n' +
         'Mensalidade (a partir da entrega): ' + (total.mensal ? brl(total.mensal) : 'nenhuma');
       botao.href = 'https://wa.me/' + String(PODIO.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(texto);
     };
