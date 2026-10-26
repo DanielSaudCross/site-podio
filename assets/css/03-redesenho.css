@@ -660,7 +660,7 @@ span.so-pronto,b.so-pronto{display:none}
 .pl-cabeca .plano-tipo{margin:0 0 8px}
 .pl-cabeca h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(28px,3vw,40px)}
 .pl-frase{margin-top:12px;color:var(--muted);font-size:16px;line-height:1.55}
-.pl-acoes{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:26px}
+.pl-acoes{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:26px}  /* "Ver a demonstração" sempre embaixo do botão */
 .pl-link{color:var(--text);font-weight:600;font-size:14px;border-bottom:1px solid rgba(var(--lamp-rgb),.6)}
 .pl-link:hover{color:var(--lamp)}
 button.pl-link{background:none;border:0;border-bottom:1px solid rgba(var(--lamp-rgb),.6);padding:0 0 2px;cursor:pointer;font-family:inherit}
