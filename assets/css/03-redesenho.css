@@ -580,15 +580,17 @@ span.so-pronto,b.so-pronto{display:none}
    Vivos como o resto do site: no plano principal uma luz percorre a borda;
    ao entrar na tela os itens chegam um a um e o visto se desenha; a luz do
    cartão segue o mouse (--mx/--my, vida.js) e o cartão sobe no hover.
-   Os dois botões são verdes: as duas formas de contratar valem igual. */
+   São três passos lado a lado (diagnóstico, base, acompanhamento); o número
+   grande atrás do título marca a ordem. Os botões são todos verdes: cada
+   passo é uma porta de entrada. O adicional fica numa faixa embaixo. */
 @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
-.planos{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
-.plano{position:relative;isolation:isolate;padding:38px;display:flex;flex-direction:column;overflow:hidden;
+.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plano{position:relative;isolation:isolate;padding:34px;display:flex;flex-direction:column;overflow:hidden;
   transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .5s cubic-bezier(.2,.7,.3,1),border-color .3s ease}
 .plano.in:hover{transform:translateY(-6px);border-color:rgba(var(--lamp-rgb),.35)}
 .plano h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(26px,2.6vw,34px)}
 .plano-tipo{font:var(--t-label);letter-spacing:.16em;text-transform:uppercase;font-size:11px;color:var(--lamp);margin:8px 0 22px}
-.plano ul{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:12px;flex:1}
+.plano ul{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:12px;flex:1;align-content:start}
 .plano li{position:relative;padding-left:24px;color:var(--muted);font-size:15px;line-height:1.5;
   opacity:0;transform:translateX(-10px);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.3,1)}
 .plano li::before{content:'';position:absolute;left:2px;top:.5em;width:10px;height:6px;
@@ -614,9 +616,22 @@ span.so-pronto,b.so-pronto{display:none}
   background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(var(--lamp-rgb),.10),transparent 60%)}
 .plano:hover .plano-luz{opacity:1}
 .plano-1 .plano-luz{opacity:.6}
-@media(max-width:860px){
+.plano-num{position:absolute;top:14px;right:26px;z-index:-1;font:var(--t-h1);font-size:96px;line-height:1;
+  color:rgba(var(--lamp-rgb),.10);pointer-events:none}
+/* Adicional: faixa larga embaixo dos três passos */
+.plano-extra{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;
+  margin-top:20px;padding:26px 34px}
+.plano-extra .plano-tipo{margin:0}
+.plano-extra h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(22px,2vw,26px)}
+.plano-extra-txt p{margin-top:6px;color:var(--muted);font-size:15px;line-height:1.5}
+.planos-nota{margin-top:26px;text-align:center;color:var(--muted);font-size:15px}
+@media(max-width:1060px){
   .planos{grid-template-columns:1fr}
   .plano{padding:28px}
+}
+@media(max-width:860px){
+  .plano-extra{grid-template-columns:1fr;gap:14px;padding:28px}
+  .plano-extra .btn{justify-self:start}
 }
 @media(prefers-reduced-motion:reduce){
   .plano li,.plano li::before{opacity:1;transform:none;transition:none}
