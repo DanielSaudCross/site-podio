@@ -452,7 +452,7 @@ span.so-pronto,b.so-pronto{display:none}
    Parado, só o título. No hover (ou foco), o véu escurece, a cena se mexe e
    o texto e o botão sobem: a altura do .sol-mais vai de 0fr a 1fr.
    No celular viram uma fileira que desliza para o lado, com o texto aberto. */
-.sols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.sols{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .sol{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;isolation:isolate;
   border:1px solid var(--glass-line);background:var(--sea)}
 .sol-cena{position:absolute;inset:0;z-index:-2;transition:opacity .5s,filter .5s,transform .8s cubic-bezier(.2,.7,.3,1)}
@@ -462,8 +462,8 @@ span.so-pronto,b.so-pronto{display:none}
 .sol::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(to top,rgba(var(--ink-rgb),.95) 0%,rgba(var(--ink-rgb),.55) 38%,rgba(var(--ink-rgb),0) 65%);
   transition:background-color .5s}
-.sol-texto{position:absolute;left:0;right:0;bottom:0;padding:28px}
-.sol h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(28px,2.6vw,34px)}
+.sol-texto{position:absolute;left:0;right:0;bottom:0;padding:24px}
+.sol h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(24px,2.1vw,30px)}
 .sol-mais{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.2,.7,.3,1)}
 .sol-mais>div{overflow:hidden;opacity:0;transition:opacity .4s}
 .sol:is(:hover,:focus-within) .sol-mais{grid-template-rows:1fr}
@@ -497,6 +497,25 @@ span.so-pronto,b.so-pronto{display:none}
 .sg-botoes{display:flex;gap:6px;margin-top:10px}
 .sg-botoes span{flex:1;text-align:center;font-size:12px;color:#0b57d0;border:1px solid #dadce0;border-radius:999px;padding:5px 0}
 
+/* cena da placa: a placa do balcão emitindo o NFC e o celular que chega perto */
+.sol-placa .sol-cena{background:radial-gradient(circle at 50% 34%,rgba(var(--lamp-rgb),.15),transparent 58%),#121512}
+.sp-placa{position:absolute;left:25%;right:25%;top:8%;aspect-ratio:3/4;border-radius:14px;padding:12px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;
+  background:linear-gradient(160deg,#1f231f,#0c0e0c);border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 22px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.2)}
+.sp-g{width:30px;height:30px;border-radius:50%;background:#fff;color:#4285F4;font:700 18px/30px var(--sans)}
+.sp-tit{font:600 13px/1.2 var(--sans);color:#fff}
+.sp-est{color:#FBBC04;letter-spacing:2px;font-size:13px;line-height:1}
+.sp-nfc{position:relative;width:30px;height:30px;margin-top:2px}
+.sp-nfc b{position:absolute;inset:0;border:2px solid var(--lamp);border-radius:50%;opacity:0;animation:sp-onda 2.4s ease-out infinite}
+.sp-nfc b:nth-child(2){animation-delay:.8s}
+.sp-nfc b:nth-child(3){animation-delay:1.6s}
+@keyframes sp-onda{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.sp-dica{font:var(--t-label);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--lamp)}
+.sp-cel{position:absolute;right:9%;top:38%;width:20%;aspect-ratio:9/18;border-radius:12px;border:4px solid #2a2e2a;
+  background:linear-gradient(160deg,#1a1d1a,#070807);box-shadow:0 14px 30px rgba(0,0,0,.5);animation:sp-toca 3.2s ease-in-out infinite}
+@keyframes sp-toca{0%,100%{transform:translate(0,0) rotate(14deg)}45%,62%{transform:translate(-30%,-12%) rotate(6deg)}}
+
 /* cena 2: celular com o site da CT MTK, que rola no hover */
 .sol-site .sol-cena{background:radial-gradient(circle at 50% 35%,rgba(var(--lamp-rgb),.13),transparent 60%),#121512}
 .sol-cel{position:absolute;left:50%;top:8%;width:46%;aspect-ratio:9/19;margin-left:-23%;border-radius:24px;overflow:hidden;
@@ -515,13 +534,13 @@ span.so-pronto,b.so-pronto{display:none}
   .sol-mais>div{opacity:1}
   .sol .sol-cena{opacity:.45;filter:none;transform:none}
 }
-@media(max-width:900px){
+@media(max-width:1100px){
   .sols{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(78%,340px);overflow-x:auto;
     scroll-snap-type:x mandatory;scroll-padding-inline:16px;margin:0 -16px;padding:0 16px 8px;scrollbar-width:none}
   .sols::-webkit-scrollbar{display:none}
   .sol{scroll-snap-align:start;aspect-ratio:3/4.4}
 }
-@media(prefers-reduced-motion:reduce){.sol *,.sol::after{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.sol *,.sol::after{transition:none!important}.sp-nfc b,.sp-cel{animation:none}}
 
 /* ---------- clientes: cases grandes (referência: base.digital) ----------
    Foto em cima, com logo no canto e o botão que sobe no hover; nome, título
