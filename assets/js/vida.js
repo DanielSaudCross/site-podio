@@ -193,7 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 3b · Serviços: abas que trocam o cartão. Enquanto a seção está na tela
      passam sozinhas a cada PL_MS. Mouse (ou foco do teclado) em cima do
      cartão pausa para ler (nas abas, não); ao sair, continua de onde parou. Clicar
-     numa aba abre ela e segue passando a partir dali. A luz do cartão segue
+     numa aba (ou numa seta do lado) abre ela e segue passando a partir dali.
+     A luz do cartão segue
      o mouse. */
   const pl = document.querySelector('.pl');
   if (pl) {
@@ -241,6 +242,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const continuar = () => { pausado = false; seguir(); };
 
     abas.forEach((aba, i) => aba.addEventListener('click', () => abrir(i)));
+    pl.querySelector('.pl-volta').addEventListener('click', () => abrir(atual - 1));
+    pl.querySelector('.pl-vai').addEventListener('click', () => abrir(atual + 1));
     pl.querySelector('[role="tablist"]').addEventListener('keydown', (ev) => {
       const passo = { ArrowRight: 1, ArrowLeft: -1 }[ev.key];
       if (passo) { ev.preventDefault(); abrir(atual + passo, true); }

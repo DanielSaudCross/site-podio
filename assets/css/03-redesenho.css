@@ -609,6 +609,17 @@ span.so-pronto,b.so-pronto{display:none}
 .pl-abas button:hover{color:var(--text);transform:translateY(-2px)}
 .pl-abas button[aria-selected="true"]{color:#0A0B0A;background:var(--lamp);border-color:var(--lamp)}
 .pl-cartao{position:relative;isolation:isolate;overflow:hidden;padding:40px;min-height:360px}
+/* setas dos lados: encostadas na borda do cartão; com espaço, ficam fora dele */
+.pl-palco{position:relative}
+.pl-seta{position:absolute;z-index:2;top:50%;display:grid;place-items:center;width:46px;height:46px;margin-top:-23px;
+  border-radius:50%;border:1px solid var(--glass-line);background:rgba(18,20,18,.82);color:var(--text);cursor:pointer;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:color .25s ease,border-color .25s ease,background .25s ease,transform .25s ease}
+.pl-seta svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pl-seta:hover{color:var(--lamp);border-color:rgba(var(--lamp-rgb),.6);background:rgba(var(--lamp-rgb),.1)}
+.pl-volta{left:-23px}.pl-vai{right:-23px}
+.pl-volta:hover{transform:translateX(-3px)}.pl-vai:hover{transform:translateX(3px)}
+@media(min-width:1280px){.pl-volta{left:-74px}.pl-vai{right:-74px}}
 .pl-painel{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
 .pl-painel[hidden]{display:none}
 .pl-painel.entra{animation:pl-entra .55s cubic-bezier(.2,.7,.3,1) both}
@@ -749,6 +760,10 @@ span.so-pronto,b.so-pronto{display:none}
   .pl-abas::-webkit-scrollbar{display:none}
   .pl-abas button{flex:none}
   .pl-cartao{padding:26px 22px;min-height:0}
+  /* no celular as setas ficam embaixo do cartão, lado a lado */
+  .pl-palco{padding-bottom:62px}
+  .pl-seta{top:auto;bottom:0;margin-top:0}
+  .pl-volta{left:calc(50% - 54px)}.pl-vai{right:calc(50% - 54px)}
   .pl-painel{grid-template-columns:1fr;gap:24px}
   .pl-acoes{order:3}
 }
