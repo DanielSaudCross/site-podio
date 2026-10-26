@@ -31,11 +31,6 @@ const PODIO = {
      API, senão as mensagens chegam numa conta que a automação não observa. */
   whatsapp: '5561981124779',
 
-  /* Endereço do n8n que guarda os pedidos do formulário de diagnóstico
-     (fluxo "Pódio · pedidos de diagnóstico do site"). Assim o pedido fica
-     salvo mesmo que a pessoa desista de enviar a mensagem no WhatsApp. */
-  registroDiagnostico: 'https://servidor.tail780f20.ts.net:8443/webhook/podio-diagnostico',
-
   /* A chave (ex.: 'diagnostico') é o que fica no data-wa="" do HTML. */
   mensagens: {
 
