@@ -257,22 +257,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const caixas = [...est.querySelectorAll('input[type="checkbox"]')];
     const botao = est.querySelector('[data-wa="estrutura"]');
     const brl = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+    /* valor que está na tela agora e a animação em andamento, por total */
     const mostrado = { unico: 0, mensal: 0, soma: 0 };
+    const animando = {};
+    const DUR = 900;
+    let primeira = true;
 
-    /* o número desliza do valor antigo até o novo */
+    /* O número desliza do valor que está na tela até o novo. Um clique no
+       meio da animação cancela a anterior e parte de onde o número parou:
+       nunca há duas animações escrevendo no mesmo lugar. */
     const deslizar = (tipo, ate, sufixo) => {
       const el = est.querySelector(`[data-total="${tipo}"]`);
+      const a = animando[tipo] || {};
+      cancelAnimationFrame(a.quadro); clearTimeout(a.fim);
       el.classList.toggle('vazio', !ate);
       if (!ate) { el.textContent = tipo === 'mensal' ? 'Sem mensalidade' : tipo === 'soma' ? 'R$ 0' : 'Nenhum serviço'; mostrado[tipo] = 0; return; }
-      const de = mostrado[tipo], t0 = performance.now(), dur = querMenosMovimento ? 0 : 450;
+      const de = mostrado[tipo], t0 = performance.now();
+      const dur = querMenosMovimento || primeira || !de ? 0 : DUR;
+      const escrever = (v) => { mostrado[tipo] = v; el.innerHTML = brl(v) + sufixo; };
       const passo = (t) => {
         const k = dur ? Math.min(1, (t - t0) / dur) : 1;
-        const v = de + (ate - de) * (1 - Math.pow(1 - k, 3));
-        el.innerHTML = brl(v) + sufixo;
-        if (k < 1) requestAnimationFrame(passo);
+        escrever(de + (ate - de) * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) animando[tipo].quadro = requestAnimationFrame(passo);
       };
-      requestAnimationFrame(passo);
-      mostrado[tipo] = ate;
+      if (!dur) { escrever(ate); return; }
+      /* o navegador pausa a animação com a aba em segundo plano: o valor
+         final entra de qualquer jeito quando o tempo da animação acaba */
+      animando[tipo] = { quadro: requestAnimationFrame(passo),
+        fim: setTimeout(() => { cancelAnimationFrame(animando[tipo].quadro); escrever(ate); }, DUR + 60) };
     };
 
     const calcular = () => {
@@ -323,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
       calcular();
     }));
     calcular();
+    primeira = false;
   }
 
   /* 4 · Formulário: o que a pessoa preencheu vira a mensagem do WhatsApp */

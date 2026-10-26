@@ -702,7 +702,7 @@ span.so-pronto,b.so-pronto{display:none}
   gap:2px 10px;padding:12px 0;border-top:1px solid rgba(255,255,255,.08)}
 .est-rot{grid-area:rot;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
 .est-de{grid-area:de;justify-self:end;color:var(--muted);font-size:13px}
-.est-total{grid-area:total;font:var(--t-h1);font-size:clamp(28px,2.6vw,36px);color:var(--text);font-weight:400}
+.est-total{grid-area:total;white-space:nowrap;font-variant-numeric:tabular-nums;font:var(--t-h1);font-size:clamp(28px,2.6vw,36px);color:var(--text);font-weight:400}
 .est-linha:first-of-type .est-total{color:var(--lamp)}
 .est-total small{font:500 14px/1 var(--sans);color:var(--muted)}
 .est-total.vazio{font:500 15px/1.4 var(--sans);color:var(--muted)}
@@ -715,7 +715,7 @@ span.so-pronto,b.so-pronto{display:none}
   border-radius:14px;background:rgba(var(--lamp-rgb),.10);border:1px solid rgba(var(--lamp-rgb),.35)}
 .est-soma{grid-template-areas:"rot val" "obs val"}
 .est-soma .est-rot{grid-area:rot;color:var(--text)}
-.est-soma b{grid-area:val;white-space:nowrap;font:var(--t-h1);font-size:clamp(30px,2.8vw,40px);font-weight:400;color:var(--lamp)}
+.est-soma b{grid-area:val;white-space:nowrap;font-variant-numeric:tabular-nums;font:var(--t-h1);font-size:clamp(30px,2.8vw,40px);font-weight:400;color:var(--lamp)}
 .est-soma-obs{grid-area:obs;color:var(--muted);font-size:12px}
 .est-eco{margin-top:12px;color:var(--lamp);font-weight:700;font-size:14px;min-height:1.4em}
 .est-dica{margin:4px 0 18px;color:var(--muted);font-size:13px;line-height:1.45;min-height:2.9em}
