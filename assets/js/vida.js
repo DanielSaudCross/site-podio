@@ -191,8 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* 3b · Serviços: abas que trocam o cartão. Enquanto a seção está na tela
-     passam sozinhas a cada PL_MS. Mouse (ou foco do teclado) em cima pausa
-     para ler, e a barrinha congela; ao sair, continua de onde parou. Clicar
+     passam sozinhas a cada PL_MS. Mouse (ou foco do teclado) em cima do
+     cartão pausa para ler (nas abas, não), e a barrinha congela; ao sair, continua de onde parou. Clicar
      numa aba abre ela e segue passando a partir dali. A luz do cartão segue
      o mouse. */
   const pl = document.querySelector('.pl');
@@ -253,10 +253,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const passo = { ArrowRight: 1, ArrowLeft: -1 }[ev.key];
       if (passo) { ev.preventDefault(); abrir(atual + passo, true); }
     });
-    pl.addEventListener('mouseenter', pausar);
-    pl.addEventListener('mouseleave', continuar);
-    pl.addEventListener('focusin', pausar);
-    pl.addEventListener('focusout', (ev) => { if (!pl.contains(ev.relatedTarget)) continuar(); });
+    /* só o cartão pausa: passar o mouse nas abas não segura a troca */
+    cartao.addEventListener('mouseenter', pausar);
+    cartao.addEventListener('mouseleave', continuar);
+    cartao.addEventListener('focusin', pausar);
+    cartao.addEventListener('focusout', (ev) => { if (!cartao.contains(ev.relatedTarget)) continuar(); });
     if (automatico) {
       new IntersectionObserver(([e]) => {
         if (e.isIntersecting === visivel) return;
