@@ -245,6 +245,81 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* 3c · Monte a estrutura: soma o pagamento único e o mensal separados.
+     Desconto no único pela quantidade de serviços (2 = 10%, 3 = 18%,
+     4 = 20%) e 10% quando as duas mensalidades vão juntas. O WhatsApp é
+     um par: implantação e mensalidade entram e saem juntas. O botão leva
+     a escolha e os valores na mensagem. */
+  const est = document.querySelector('.est');
+  if (est && typeof PODIO !== 'undefined') {
+    const DESC_UNICO = { 2: 0.10, 3: 0.18, 4: 0.20 };
+    const DESC_MENSAL = { 2: 0.10 };
+    const caixas = [...est.querySelectorAll('input[type="checkbox"]')];
+    const botao = est.querySelector('[data-wa="estrutura"]');
+    const brl = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+    const mostrado = { unico: 0, mensal: 0 };
+
+    /* o número desliza do valor antigo até o novo */
+    const deslizar = (tipo, ate, sufixo) => {
+      const el = est.querySelector(`[data-total="${tipo}"]`);
+      el.classList.toggle('vazio', !ate);
+      if (!ate) { el.textContent = tipo === 'mensal' ? 'Sem mensalidade' : 'Nenhum serviço'; mostrado[tipo] = 0; return; }
+      const de = mostrado[tipo], t0 = performance.now(), dur = querMenosMovimento ? 0 : 450;
+      const passo = (t) => {
+        const k = dur ? Math.min(1, (t - t0) / dur) : 1;
+        const v = de + (ate - de) * (1 - Math.pow(1 - k, 3));
+        el.innerHTML = brl(v) + sufixo;
+        if (k < 1) requestAnimationFrame(passo);
+      };
+      requestAnimationFrame(passo);
+      mostrado[tipo] = ate;
+    };
+
+    const calcular = () => {
+      const soma = { unico: 0, mensal: 0 }, qtd = { unico: 0, mensal: 0 }, nomes = { unico: [], mensal: [] };
+      caixas.filter((c) => c.checked).forEach((c) => {
+        soma[c.dataset.tipo] += +c.dataset.preco;
+        qtd[c.dataset.tipo] += 1;
+        nomes[c.dataset.tipo].push(c.dataset.nome);
+      });
+      const pct = { unico: DESC_UNICO[qtd.unico] || 0, mensal: DESC_MENSAL[qtd.mensal] || 0 };
+      const total = { unico: Math.round(soma.unico * (1 - pct.unico)), mensal: Math.round(soma.mensal * (1 - pct.mensal)) };
+
+      ['unico', 'mensal'].forEach((tipo) => {
+        est.querySelector(`[data-de="${tipo}"]`).textContent = pct[tipo] ? brl(soma[tipo]) + (tipo === 'mensal' ? '/mês' : '') : '';
+        const off = est.querySelector(`[data-off="${tipo}"]`);
+        const novo = pct[tipo] ? '-' + Math.round(pct[tipo] * 100) + '%' : '';
+        if (off.textContent !== novo) { off.textContent = novo; off.classList.remove('pisca'); void off.offsetWidth; off.classList.add('pisca'); }
+        deslizar(tipo, total[tipo], tipo === 'mensal' ? '<small>/mês</small>' : '');
+      });
+
+      const ecoU = soma.unico - total.unico, ecoM = soma.mensal - total.mensal;
+      est.querySelector('.est-eco').textContent = ecoU || ecoM
+        ? 'Você economiza ' + [ecoU && brl(ecoU), ecoM && brl(ecoM) + ' por mês'].filter(Boolean).join(' e ')
+        : '';
+      const prox = { 0: 'Escolha um serviço para começar.', 1: 'Junte mais 1 serviço de pagamento único e ganhe 10% de desconto.',
+        2: 'Junte mais 1 serviço e o desconto sobe para 18%.', 3: 'Junte mais 1 serviço e o desconto sobe para 20%.',
+        4: 'Desconto máximo: 20% no pagamento único.' };
+      est.querySelector('.est-dica').textContent = qtd.unico + qtd.mensal === 0 ? prox[0]
+        : qtd.unico === 0 ? 'Junte um serviço de pagamento único para montar a base.' : prox[qtd.unico];
+
+      const vazio = !qtd.unico && !qtd.mensal;
+      botao.setAttribute('aria-disabled', vazio);
+      const texto = PODIO.mensagens.estrutura + '\n' +
+        [...nomes.unico, ...nomes.mensal].map((n) => '• ' + n).join('\n') + '\n\n' +
+        'Pagamento único: ' + (total.unico ? brl(total.unico) : 'nenhum') + '\n' +
+        'Por mês: ' + (total.mensal ? brl(total.mensal) : 'nenhum');
+      botao.href = 'https://wa.me/' + String(PODIO.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(texto);
+    };
+
+    caixas.forEach((c) => c.addEventListener('change', () => {
+      /* implantação e mensalidade do WhatsApp andam juntas */
+      if (c.dataset.par) caixas.filter((o) => o !== c && o.dataset.par === c.dataset.par).forEach((o) => { o.checked = c.checked; });
+      calcular();
+    }));
+    calcular();
+  }
+
   /* 4 · Formulário: o que a pessoa preencheu vira a mensagem do WhatsApp */
   const form = document.getElementById('form-diag');
   if (form && typeof PODIO !== 'undefined') {
