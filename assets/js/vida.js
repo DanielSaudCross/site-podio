@@ -264,8 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const el = est.querySelector(`[data-total="${tipo}"]`);
       const novo = ate ? brl(ate) + sufixo
         : tipo === 'mensal' ? 'Sem mensalidade' : tipo === 'soma' ? 'R$ 0' : 'Nenhum serviço';
-      if (el.innerHTML === novo) return;
       el.classList.toggle('vazio', !ate);
+      if (el.innerHTML === novo) return;
       el.innerHTML = novo;
       el.classList.remove('troca'); void el.offsetWidth; el.classList.add('troca');
     };
@@ -288,9 +288,11 @@ document.addEventListener('DOMContentLoaded', () => {
         deslizar(tipo, total[tipo], tipo === 'mensal' ? '<small>/mês</small>' : '');
       });
 
-      /* total para começar: o pagamento único mais a primeira mensalidade */
-      deslizar('soma', total.unico + total.mensal, '');
-      est.querySelector('.est-soma-obs').textContent = total.unico && total.mensal ? 'pagamento único + 1º mês'
+      /* para começar: só o pagamento único. A mensalidade é cobrada a partir
+         da entrega; sem nada de pagamento único, o começo é o 1º mês. */
+      deslizar('soma', total.unico || total.mensal, '');
+      est.querySelector('.est-soma-obs').textContent = total.unico && total.mensal
+        ? 'depois, ' + brl(total.mensal) + ' por mês a partir da entrega'
         : total.mensal ? '1º mês' : 'pagamento único';
       const ecoU = soma.unico - total.unico, ecoM = soma.mensal - total.mensal;
       est.querySelector('.est-eco').textContent = ecoU || ecoM
@@ -301,14 +303,18 @@ document.addEventListener('DOMContentLoaded', () => {
         4: 'Desconto máximo: 20% no pagamento único.' };
       est.querySelector('.est-dica').textContent = qtd.unico + qtd.mensal === 0 ? prox[0]
         : qtd.unico === 0 ? 'Junte um serviço de pagamento único para montar a base.' : prox[qtd.unico];
+      /* site sem acompanhamento: avisa a hospedagem do 2º ano em diante */
+      const aviso = est.querySelector('.est-aviso');
+      aviso.hidden = !(est.querySelector('[name=site]').checked && !est.querySelector('[name=acomp]').checked);
+      aviso.textContent = 'Do 2º ano em diante, a hospedagem do site é R$ 70 por ano. '
+        + 'Com o Acompanhamento, a hospedagem e as atualizações do site ficam inclusas.';
 
       const vazio = !qtd.unico && !qtd.mensal;
       botao.setAttribute('aria-disabled', vazio);
       const texto = PODIO.mensagens.estrutura + '\n' +
         [...nomes.unico, ...nomes.mensal].map((n) => '• ' + n).join('\n') + '\n\n' +
         'Pagamento único: ' + (total.unico ? brl(total.unico) : 'nenhum') + '\n' +
-        'Por mês: ' + (total.mensal ? brl(total.mensal) : 'nenhum') + '\n' +
-        'Total para começar: ' + brl(total.unico + total.mensal);
+        'Por mês: ' + (total.mensal ? brl(total.mensal) + ' (a partir da entrega)' : 'nenhum');
       botao.href = 'https://wa.me/' + String(PODIO.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(texto);
     };
 
