@@ -1,7 +1,8 @@
 # Agência Pódio
 
 > Especialista em presença no Google para academias, estúdios de treino, boxes
-> e escolas de arte marcial: perfil no Google Meu Negócio, site e avaliações.
+> e escolas de arte marcial: perfil no Google Meu Negócio, site, avaliações e
+> atendimento no WhatsApp.
 
 ## Quem atende
 
@@ -10,7 +11,7 @@ WhatsApp. O que conta no Google é a região do cliente.
 
 ## O que faz
 
-Três frentes, todas no Google e sem anúncio:
+Quatro frentes, sem anúncio:
 
 - **Google Meu Negócio** — categorias, serviços e descrição; horário, telefone e
   endereço corretos, com aviso de feriado; fotos do espaço, da turma e do treino.
@@ -18,14 +19,19 @@ Três frentes, todas no Google e sem anúncio:
   endereço, galeria de fotos e botão de aula experimental no WhatsApp.
 - **Avaliações** — placa com NFC que leva o aluno direto à avaliação, roteiro
   para pedir avaliação a alunos e visitantes, e resposta a todas as avaliações.
+- **Atendimento no WhatsApp** — responde na hora, pergunta turma, modalidade e
+  experiência, mostra os horários da grade, marca a aula experimental na agenda
+  e manda lembrete com a rota no dia.
 
 O resultado fica com o cliente: um perfil forte, com avaliações e um site,
 continua trazendo aluno sem verba de anúncio.
 
 ## Como contratar
 
-- **Arrumar o perfil e o site**, com pagamento único.
-- **Acompanhamento mensal**, opcional: publicações no Google, avaliações
+- **Perfil no Google, site e placa de avaliações**, com pagamento único, juntos
+  ou separados.
+- **Atendimento no WhatsApp**, com implantação e mensalidade.
+- **Acompanhamento mensal**: publicações no Google, avaliações
   respondidas, site atualizado e relatório com ligações, rotas e cliques que
   vieram do Google.
 

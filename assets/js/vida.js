@@ -190,14 +190,60 @@ document.addEventListener('DOMContentLoaded', () => {
       .observe(port);
   }
 
-  /* 3b · Planos: a luz do cartão segue o mouse */
-  document.querySelectorAll('.plano').forEach((card) => {
-    card.addEventListener('pointermove', (ev) => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', ev.clientX - r.left + 'px');
-      card.style.setProperty('--my', ev.clientY - r.top + 'px');
+  /* 3b · Planos: abas que trocam o cartão. Enquanto a seção está na tela
+     e ninguém clicou, passam sozinhas a cada PL_MS; o primeiro clique (ou
+     tecla) para a troca automática. A luz do cartão segue o mouse. */
+  const pl = document.querySelector('.pl');
+  if (pl) {
+    const PL_MS = 7000;
+    const abas = [...pl.querySelectorAll('[role="tab"]')];
+    const cartao = pl.querySelector('.pl-cartao');
+    let atual = 0, timer = null, parado = querMenosMovimento;
+    pl.style.setProperty('--pl-ms', PL_MS + 'ms');
+
+    const abrir = (i, foco) => {
+      atual = (i + abas.length) % abas.length;
+      abas.forEach((aba, j) => {
+        const sel = j === atual;
+        aba.setAttribute('aria-selected', sel);
+        aba.tabIndex = sel ? 0 : -1;
+        const painel = document.getElementById(aba.getAttribute('aria-controls'));
+        painel.hidden = !sel;
+        painel.classList.remove('entra');
+        if (sel) { void painel.offsetWidth; painel.classList.add('entra'); }
+      });
+      /* no celular as abas rolam de lado: traz a escolhida para a vista */
+      const lista = abas[atual].parentElement;
+      const dx = abas[atual].getBoundingClientRect().left - lista.getBoundingClientRect().left;
+      lista.scrollTo({ left: lista.scrollLeft + dx - 16, behavior: querMenosMovimento ? 'auto' : 'smooth' });
+      if (foco) abas[atual].focus({ preventScroll: true });
+      if (!parado) agendar();
+    };
+    const agendar = () => {
+      clearTimeout(timer);
+      /* reinicia a barrinha da aba */
+      pl.classList.remove('rodando'); void pl.offsetWidth; pl.classList.add('rodando');
+      timer = setTimeout(() => abrir(atual + 1), PL_MS);
+    };
+    const parar = () => { parado = true; clearTimeout(timer); pl.classList.remove('rodando'); };
+
+    abas.forEach((aba, i) => aba.addEventListener('click', () => { parar(); abrir(i); }));
+    pl.querySelector('[role="tablist"]').addEventListener('keydown', (ev) => {
+      const passo = { ArrowRight: 1, ArrowLeft: -1 }[ev.key];
+      if (passo) { ev.preventDefault(); parar(); abrir(atual + passo, true); }
     });
-  });
+    if (!querMenosMovimento) {
+      new IntersectionObserver(([e]) => {
+        if (parado) return;
+        if (e.isIntersecting) abrir(atual); else { clearTimeout(timer); pl.classList.remove('rodando'); }
+      }, { threshold: 0.4 }).observe(pl);
+    }
+    cartao.addEventListener('pointermove', (ev) => {
+      const r = cartao.getBoundingClientRect();
+      cartao.style.setProperty('--mx', ev.clientX - r.left + 'px');
+      cartao.style.setProperty('--my', ev.clientY - r.top + 'px');
+    });
+  }
 
   /* 4 · Formulário: o que a pessoa preencheu vira a mensagem do WhatsApp */
   const form = document.getElementById('form-diag');

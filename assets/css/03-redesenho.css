@@ -577,66 +577,89 @@ span.so-pronto,b.so-pronto{display:none}
 @media(prefers-reduced-motion:reduce){.faq details{opacity:1;transform:none;transition:none}}
 
 /* ---------- planos ----------
-   Vivos como o resto do site: no plano principal uma luz percorre a borda;
-   ao entrar na tela os itens chegam um a um e o visto se desenha; a luz do
-   cartão segue o mouse (--mx/--my, vida.js) e o cartão sobe no hover.
-   São três passos lado a lado (diagnóstico, base, acompanhamento); o número
-   grande atrás do título marca a ordem. Os botões são todos verdes: cada
-   passo é uma porta de entrada. O adicional fica numa faixa embaixo. */
+   Um cartão por vez: as abas trocam a frente e, enquanto a seção está na
+   tela e ninguém clicou, passam sozinhas (a barrinha da aba mostra o tempo).
+   Ao trocar, o cartão entra de lado, o ícone se mexe e os itens chegam um a
+   um com o visto se desenhando. Uma luz percorre a borda e outra segue o
+   mouse (--mx/--my, vida.js). */
 @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
-.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-.plano{position:relative;isolation:isolate;padding:34px;display:flex;flex-direction:column;overflow:hidden;
-  transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .5s cubic-bezier(.2,.7,.3,1),border-color .3s ease}
-.plano.in:hover{transform:translateY(-6px);border-color:rgba(var(--lamp-rgb),.35)}
-.plano h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(26px,2.6vw,34px)}
-.plano-tipo{font:var(--t-label);letter-spacing:.16em;text-transform:uppercase;font-size:11px;color:var(--lamp);margin:8px 0 22px}
-.plano ul{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:12px;flex:1;align-content:start}
-.plano li{position:relative;padding-left:24px;color:var(--muted);font-size:15px;line-height:1.5;
-  opacity:0;transform:translateX(-10px);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.3,1)}
-.plano li::before{content:'';position:absolute;left:2px;top:.5em;width:10px;height:6px;
-  border-left:2px solid var(--lamp);border-bottom:2px solid var(--lamp);transform:rotate(-45deg) scale(0);
-  transform-origin:30% 70%;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
-.plano.in li{opacity:1;transform:none}
-.plano.in li::before{transform:rotate(-45deg) scale(1)}
-.plano.in li:nth-child(1),.plano.in li:nth-child(1)::before{transition-delay:0.25s}
-.plano.in li:nth-child(2),.plano.in li:nth-child(2)::before{transition-delay:0.37s}
-.plano.in li:nth-child(3),.plano.in li:nth-child(3)::before{transition-delay:0.49s}
-.plano.in li:nth-child(4),.plano.in li:nth-child(4)::before{transition-delay:0.61s}
-.plano.in li:nth-child(5),.plano.in li:nth-child(5)::before{transition-delay:0.73s}
-.plano.in li:nth-child(6),.plano.in li:nth-child(6)::before{transition-delay:0.85s}
-.plano .btn{align-self:flex-start}
-/* Luz que percorre a borda do plano principal */
+.pl-abas{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.pl-abas button{position:relative;overflow:hidden;font:600 14px/1 var(--sans);color:var(--muted);cursor:pointer;
+  padding:12px 18px;border-radius:999px;border:1px solid var(--glass-line);background:rgba(255,255,255,.04);
+  transition:color .25s ease,background .25s ease,border-color .25s ease,transform .25s ease}
+.pl-abas button:hover{color:var(--text);transform:translateY(-2px)}
+.pl-abas button[aria-selected="true"]{color:#0A0B0A;background:var(--lamp);border-color:var(--lamp)}
+.pl-tempo{position:absolute;left:0;bottom:0;height:3px;width:100%;background:rgba(10,11,10,.35);
+  transform:scaleX(0);transform-origin:left}
+.pl.rodando button[aria-selected="true"] .pl-tempo{animation:pl-tempo var(--pl-ms,7000ms) linear forwards}
+@keyframes pl-tempo{to{transform:scaleX(1)}}
+.pl-cartao{position:relative;isolation:isolate;overflow:hidden;padding:40px;min-height:360px}
+.pl-painel{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+.pl-painel[hidden]{display:none}
+.pl-painel.entra{animation:pl-entra .55s cubic-bezier(.2,.7,.3,1) both}
+@keyframes pl-entra{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+.pl-icone{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;margin-bottom:18px;
+  background:rgba(var(--lamp-rgb),.10);border:1px solid rgba(var(--lamp-rgb),.28)}
+.pl-icone svg{width:32px;height:32px;fill:none;stroke:var(--lamp);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pl-icone .ic-anda{animation:ic-anda 2.4s ease-in-out infinite}
+#pl-google .ic-anda{transform-origin:24px 40px;animation-name:ic-pula}
+#pl-zap .ic-anda circle{fill:var(--lamp);stroke:none;animation:ic-digita 1.2s ease-in-out infinite}
+#pl-zap .ic-anda circle:nth-child(2){animation-delay:.15s}
+#pl-zap .ic-anda circle:nth-child(3){animation-delay:.3s}
+#pl-zap .ic-anda{animation:none}
+#pl-acomp .ic-anda{stroke-dasharray:44;animation-name:ic-sobe}
+@keyframes ic-anda{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes ic-pula{0%,100%{transform:none}30%{transform:translateY(-4px)}55%{transform:none}}
+@keyframes ic-digita{0%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
+@keyframes ic-sobe{0%{stroke-dashoffset:44}55%,100%{stroke-dashoffset:0}}
+.pl-cabeca .plano-tipo{margin:0 0 8px}
+.pl-cabeca h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(28px,3vw,40px)}
+.pl-frase{margin-top:12px;color:var(--muted);font-size:16px;line-height:1.55}
+.pl-acoes{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:26px}
+.pl-link{color:var(--text);font-weight:600;font-size:14px;border-bottom:1px solid rgba(var(--lamp-rgb),.6)}
+.pl-link:hover{color:var(--lamp)}
+.plano-tipo{font:var(--t-label);letter-spacing:.16em;text-transform:uppercase;font-size:11px;color:var(--lamp)}
+.pl-painel ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.pl-painel li{position:relative;padding:14px 16px 14px 44px;border-radius:14px;color:var(--text);font-size:15px;line-height:1.45;
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);
+  transition:border-color .25s ease,background .25s ease,transform .25s ease}
+.pl-painel li:hover{border-color:rgba(var(--lamp-rgb),.35);background:rgba(var(--lamp-rgb),.06);transform:translateX(4px)}
+.pl-painel li::before{content:'';position:absolute;left:18px;top:1.25em;width:10px;height:6px;
+  border-left:2px solid var(--lamp);border-bottom:2px solid var(--lamp);transform:rotate(-45deg)}
+.pl-painel.entra li{animation:pl-item .45s cubic-bezier(.2,.7,.3,1) both}
+.pl-painel.entra li::before{animation:pl-visto .35s cubic-bezier(.3,1.6,.5,1) both}
+.pl-painel.entra li:nth-child(1),.pl-painel.entra li:nth-child(1)::before{animation-delay:.15s}
+.pl-painel.entra li:nth-child(2),.pl-painel.entra li:nth-child(2)::before{animation-delay:.25s}
+.pl-painel.entra li:nth-child(3),.pl-painel.entra li:nth-child(3)::before{animation-delay:.35s}
+.pl-painel.entra li:nth-child(4),.pl-painel.entra li:nth-child(4)::before{animation-delay:.45s}
+.pl-painel.entra li:nth-child(5),.pl-painel.entra li:nth-child(5)::before{animation-delay:.55s}
+.pl-painel.entra li:nth-child(6),.pl-painel.entra li:nth-child(6)::before{animation-delay:.65s}
+@keyframes pl-item{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes pl-visto{from{transform:rotate(-45deg) scale(0)}to{transform:rotate(-45deg) scale(1)}}
+/* Luz que percorre a borda do cartão */
 .plano-borda{position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:2;
   background:conic-gradient(from var(--ang),transparent 0 62%,rgba(var(--lamp-rgb),.9) 76%,transparent 90%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:borda 6s linear infinite}
 @keyframes borda{to{--ang:360deg}}
 /* Luz que segue o mouse dentro do cartão */
-.plano-luz{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .4s ease;
-  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(var(--lamp-rgb),.10),transparent 60%)}
-.plano:hover .plano-luz{opacity:1}
-.plano-1 .plano-luz{opacity:.6}
-.plano-num{position:absolute;top:14px;right:26px;z-index:-1;font:var(--t-h1);font-size:96px;line-height:1;
-  color:rgba(var(--lamp-rgb),.10);pointer-events:none}
-/* Adicional: faixa larga embaixo dos três passos */
-.plano-extra{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;
-  margin-top:20px;padding:26px 34px}
-.plano-extra .plano-tipo{margin:0}
-.plano-extra h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(22px,2vw,26px)}
-.plano-extra-txt p{margin-top:6px;color:var(--muted);font-size:15px;line-height:1.5}
-.planos-nota{margin-top:26px;text-align:center;color:var(--muted);font-size:15px}
-@media(max-width:1060px){
-  .planos{grid-template-columns:1fr}
-  .plano{padding:28px}
-}
+.plano-luz{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;transition:opacity .4s ease;
+  background:radial-gradient(520px circle at var(--mx,80%) var(--my,0%),rgba(var(--lamp-rgb),.10),transparent 60%)}
+.pl-cartao:hover .plano-luz{opacity:1}
+.planos-nota{margin-top:24px;text-align:center;color:var(--muted);font-size:15px}
+.planos-nota a{color:var(--text);font-weight:600;border-bottom:1px solid rgba(var(--lamp-rgb),.6)}
+.planos-nota a:hover{color:var(--lamp)}
 @media(max-width:860px){
-  .plano-extra{grid-template-columns:1fr;gap:14px;padding:28px}
-  .plano-extra .btn{justify-self:start}
+  .pl-abas{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px 16px;padding:0 16px 4px;scrollbar-width:none}
+  .pl-abas::-webkit-scrollbar{display:none}
+  .pl-abas button{flex:none}
+  .pl-cartao{padding:26px 22px;min-height:0}
+  .pl-painel{grid-template-columns:1fr;gap:24px}
+  .pl-acoes{order:3}
 }
 @media(prefers-reduced-motion:reduce){
-  .plano li,.plano li::before{opacity:1;transform:none;transition:none}
-  .plano li::before{transform:rotate(-45deg)}
-  .plano-borda{animation:none}
+  .pl-painel.entra,.pl-painel.entra li,.pl-painel.entra li::before,.pl-icone .ic-anda,
+  #pl-zap .ic-anda circle,.plano-borda{animation:none}
 }
 
 /* ---------- formulário do fim ---------- */

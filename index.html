@@ -129,7 +129,7 @@
       "name": "Preciso pagar mensalidade?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Não. A base online é paga uma vez. O acompanhamento mensal é opcional."
+        "text": "Não para o perfil, o site e a placa: são pagos uma vez. O atendimento no WhatsApp e o acompanhamento são mensais."
       }
     },
     {
@@ -186,7 +186,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=67">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=47">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=48">
 </head>
 <body>
 
@@ -747,69 +747,116 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 06 · PLANOS — diagnóstico, base online e acompanhamento (sem preço)  -->
+<!--  BLOCO 06 · PLANOS — as 4 frentes e o acompanhamento, uma por vez  -->
 <!-- ═══════════════════════════════════════════════════════ -->
 
 <section id="planos">
   <div class="wrap">
     <div class="section-head rv">
-      <h2>Do diagnóstico à <em>base pronta.</em></h2>
-      <p class="lead">Três passos, no ritmo da sua academia. Você começa sem custo e só contrata o que ainda falta.</p>
+      <h2>Nossos <em>planos.</em></h2>
+      <p class="lead">Contrate a frente que falta na sua academia, ou todas juntas.</p>
     </div>
-    <div class="planos">
-      <article class="plano plano-0 glass rv">
-        <i class="plano-luz" aria-hidden="true"></i>
-        <span class="plano-num" aria-hidden="true">1</span>
-        <h3>Diagnóstico</h3>
-        <p class="plano-tipo">Gratuito</p>
-        <ul>
-          <li>Nota Pódio do perfil da sua academia no Google.</li>
-          <li>O que falta para quem procura treino encontrar e escolher a sua academia.</li>
-          <li>Entregue em até 24h pelo WhatsApp.</li>
-          <li>Sem custo e sem compromisso.</li>
-        </ul>
-        <a href="#" data-wa="diagnostico" class="btn btn-primary">Pedir o diagnóstico</a>
-      </article>
-      <article class="plano plano-1 glass rv">
-        <i class="plano-borda" aria-hidden="true"></i><i class="plano-luz" aria-hidden="true"></i>
-        <span class="plano-num" aria-hidden="true">2</span>
-        <h3>Base online</h3>
-        <p class="plano-tipo">Pagamento único</p>
-        <ul>
-          <li>Perfil no Google completo e otimizado.</li>
-          <li>Organização das fotos que a academia enviar.</li>
-          <li>Site próprio com grade de aulas, galeria e botão para aula experimental no WhatsApp.</li>
-          <li>Placa com NFC para facilitar o recebimento de avaliações.</li>
-          <li>Nota Pódio antes e depois, com o relatório das avaliações.</li>
-          <li>Dois primeiros meses de acompanhamento inclusos.</li>
-        </ul>
-        <a href="#" data-wa="plano1" class="btn btn-primary">Quero a base online</a>
-      </article>
-      <article class="plano plano-2 glass rv">
-        <i class="plano-luz" aria-hidden="true"></i>
-        <span class="plano-num" aria-hidden="true">3</span>
-        <h3>Acompanhamento</h3>
-        <p class="plano-tipo">Mensal</p>
-        <ul>
-          <li>Publicações semanais nas atualizações do Google.</li>
-          <li>Conferência semanal da grade de aulas e dos horários.</li>
-          <li>Monitoramento do perfil contra alterações indevidas, duplicidades e possíveis avaliações falsas.</li>
-          <li>Respostas às avaliações no tom de voz da sua academia.</li>
-          <li>Site sempre atualizado, com grade de aulas, fotos e avisos.</li>
-          <li>Relatório com ligações, solicitações de rota e cliques gerados pelo Google.</li>
-        </ul>
-        <a href="#" data-wa="plano2" class="btn btn-primary">Quero o acompanhamento</a>
-      </article>
-    </div>
-    <div class="plano-extra glass rv">
-      <p class="plano-tipo">Adicional</p>
-      <div class="plano-extra-txt">
-        <h3>Atendimento no WhatsApp</h3>
-        <p>Responde na hora, marca a aula experimental na agenda e lembra o aluno no dia. Combina com a base online ou com o acompanhamento.</p>
+    <div class="pl rv">
+      <div class="pl-abas" role="tablist" aria-label="Planos da Pódio">
+        <button type="button" role="tab" id="aba-google" aria-controls="pl-google" aria-selected="true">Perfil no Google<i class="pl-tempo" aria-hidden="true"></i></button>
+        <button type="button" role="tab" id="aba-site" aria-controls="pl-site" aria-selected="false" tabindex="-1">Site<i class="pl-tempo" aria-hidden="true"></i></button>
+        <button type="button" role="tab" id="aba-nfc" aria-controls="pl-nfc" aria-selected="false" tabindex="-1">Placa de avaliações<i class="pl-tempo" aria-hidden="true"></i></button>
+        <button type="button" role="tab" id="aba-zap" aria-controls="pl-zap" aria-selected="false" tabindex="-1">Atendimento no WhatsApp<i class="pl-tempo" aria-hidden="true"></i></button>
+        <button type="button" role="tab" id="aba-acomp" aria-controls="pl-acomp" aria-selected="false" tabindex="-1">Acompanhamento<i class="pl-tempo" aria-hidden="true"></i></button>
       </div>
-      <a href="#atendimento" class="btn btn-ghost">Ver como funciona</a>
+      <div class="pl-cartao glass">
+        <i class="plano-borda" aria-hidden="true"></i><i class="plano-luz" aria-hidden="true"></i>
+      <article class="pl-painel" id="pl-google" role="tabpanel" aria-labelledby="aba-google">
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="ic-anda" d="M24 6c-7 0-12 5.3-12 12 0 9 12 22 12 22s12-13 12-22c0-6.7-5-12-12-12z"/><circle cx="24" cy="18" r="4.5"/><path d="M12 44h24"/></svg></i>
+          <p class="plano-tipo">Implantação · pagamento único</p>
+          <h3>Perfil no Google</h3>
+          <p class="pl-frase">O perfil que aparece quando alguém procura onde treinar perto de casa.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="perfil" class="btn btn-primary">Quero meu perfil completo</a>
+          </div>
+        </div>
+        <ul>
+            <li>Categorias, serviços e descrição certos para academia.</li>
+            <li>Horários, WhatsApp e área de atendimento sempre corretos.</li>
+            <li>Organização das fotos que a academia enviar.</li>
+            <li>Nota Pódio antes e depois, para ver o que mudou.</li>
+        </ul>
+      </article>
+      <article class="pl-painel" id="pl-site" role="tabpanel" aria-labelledby="aba-site" hidden>
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="14" y="4" width="20" height="40" rx="4"/><path class="ic-anda" d="M19 14h10M19 20h10M19 26h6"/><path d="M21 38h6"/></svg></i>
+          <p class="plano-tipo">Implantação · pagamento único</p>
+          <h3>Site</h3>
+          <p class="pl-frase">Uma página com a cara da academia que termina no WhatsApp.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="site" class="btn btn-primary">Quero o site da minha academia</a>
+          </div>
+        </div>
+        <ul>
+            <li>Modalidades, turmas e professores.</li>
+            <li>Grade de aulas e galeria de fotos.</li>
+            <li>Botão de aula experimental em cada parte da página.</li>
+            <li>Feito para o celular e ligado ao perfil no Google.</li>
+        </ul>
+      </article>
+      <article class="pl-painel" id="pl-nfc" role="tabpanel" aria-labelledby="aba-nfc" hidden>
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="14" width="22" height="28" rx="3"/><path d="M12 22h10M12 28h6"/><path class="ic-anda" d="M33 18c3 3 3 9 0 12M38 14c5 5 5 15 0 20"/></svg></i>
+          <p class="plano-tipo">Implantação · pagamento único</p>
+          <h3>Placa de avaliações</h3>
+          <p class="pl-frase">O aluno encosta o celular na placa e cai direto na tela de avaliar a academia.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="placa" class="btn btn-primary">Quero a placa na minha academia</a>
+          </div>
+        </div>
+        <ul>
+            <li>Placa para o balcão com NFC e QR Code.</li>
+            <li>Leva direto para a avaliação no Google.</li>
+            <li>Relatório das avaliações com o que melhorar.</li>
+        </ul>
+      </article>
+      <article class="pl-painel" id="pl-zap" role="tabpanel" aria-labelledby="aba-zap" hidden>
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 10h26a4 4 0 014 4v14a4 4 0 01-4 4H18l-8 7v-7H8a4 4 0 01-4-4V14a4 4 0 014-4z"/><g class="ic-anda"><circle cx="14" cy="21" r="1.8"/><circle cx="21" cy="21" r="1.8"/><circle cx="28" cy="21" r="1.8"/></g></svg></i>
+          <p class="plano-tipo">Implantação + mensal</p>
+          <h3>Atendimento no WhatsApp</h3>
+          <p class="pl-frase">Responde na hora, marca a aula experimental e lembra o aluno, de dia e de noite.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="chatbot" class="btn btn-primary">Quero isso no meu WhatsApp</a>
+            <a href="#atendimento" class="pl-link">Ver a demonstração</a>
+          </div>
+        </div>
+        <ul>
+            <li>Pergunta nome, turma, modalidade e experiência.</li>
+            <li>Mostra só os horários certos da grade.</li>
+            <li>Marca a aula na agenda da academia e do aluno.</li>
+            <li>Lembrete com a rota no dia da aula.</li>
+            <li>A academia recebe um aviso a cada aula marcada.</li>
+        </ul>
+      </article>
+      <article class="pl-painel" id="pl-acomp" role="tabpanel" aria-labelledby="aba-acomp" hidden>
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M6 40h36"/><path class="ic-anda" d="M10 32l9-9 7 6 12-14"/><path d="M32 15h6v6"/></svg></i>
+          <p class="plano-tipo">Mensal</p>
+          <h3>Acompanhamento</h3>
+          <p class="pl-frase">A gente cuida para o perfil e o site continuarem certos e em movimento.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="plano2" class="btn btn-primary">Quero o acompanhamento</a>
+          </div>
+        </div>
+        <ul>
+            <li>Publicações semanais nas atualizações do Google.</li>
+            <li>Conferência semanal da grade de aulas e dos horários.</li>
+            <li>Monitoramento contra alterações indevidas, duplicidades e avaliações falsas.</li>
+            <li>Respostas às avaliações no tom de voz da sua academia.</li>
+            <li>Site sempre atualizado, com grade, fotos e avisos.</li>
+            <li>Relatório com ligações, rotas e cliques vindos do Google.</li>
+        </ul>
+      </article>
+      </div>
     </div>
-    <p class="planos-nota rv">O valor sai depois do diagnóstico, de acordo com o que a sua academia já tem. Saber não custa nada.</p>
+    <p class="planos-nota rv">Não sabe por onde começar? <a href="#" data-wa="diagnostico">O diagnóstico gratuito</a> mostra o que falta na sua academia.</p>
   </div>
 </section>
 
@@ -841,7 +888,7 @@
 
       <details class="glass">
         <summary>Preciso pagar mensalidade?</summary>
-        <p>Não. A base online é paga uma vez. O acompanhamento mensal é opcional.</p>
+        <p>Não para o perfil, o site e a placa: são pagos uma vez. O atendimento no WhatsApp e o acompanhamento são mensais.</p>
       </details>
 
       <details class="glass">
@@ -939,8 +986,8 @@
   <span>Falar no WhatsApp</span>
 </a>
 
-<script src="assets/js/config.js?v=72"></script>
-<script src="assets/js/vida.js?v=19"></script>
+<script src="assets/js/config.js?v=73"></script>
+<script src="assets/js/vida.js?v=20"></script>
 <script src="assets/js/atende.js?v=4"></script>
 </body>
 </html>
