@@ -700,15 +700,8 @@ span.so-pronto,b.so-pronto{display:none}
 .est-prod .est-valor{margin-top:auto;font:var(--t-h1);font-size:24px;font-weight:400}
 .est-prod .est-valor small{display:block;margin-top:4px;font:500 12px/1.2 var(--sans);color:var(--muted)}
 .est-prod .est-info{padding:14px 14px 16px}
-/* a mensalidade do WhatsApp só aparece com o chatbot marcado em cima */
-.est-item.est-zapmes:not(:has(input:checked)){display:none}
-.est-zapmes{animation:est-chega .4s cubic-bezier(.2,.7,.3,1)}
-@keyframes est-chega{from{opacity:0;transform:translateY(8px)}}
-/* com o Site marcado, o Acompanhamento aparece como recomendado */
-.est-nome .est-selo{display:none;width:fit-content;margin:0 0 8px;padding:5px 9px;border-radius:999px;
-  font:700 11px/1 var(--sans);font-style:normal;letter-spacing:.02em;color:#0A0B0A;background:var(--lamp)}
-.est:has([name=site]:checked) .est-nome .est-selo{display:block}
-.est:has([name=site]:checked) .est-mais:has(.est-selo):not(:has(input:checked)){opacity:1;border-color:rgba(var(--lamp-rgb),.35)}
+/* no cartão do Site, a dica de juntar o Acompanhamento */
+.est-nome small.est-reco{margin-top:8px;color:var(--lamp);font-weight:600}
 .est-prod .est-check,.est-mais .est-check{position:absolute;top:12px;right:12px;background:rgba(10,11,10,.55)}
 .est-item.est-mais{grid-template-columns:116px 1fr;align-items:stretch}
 .est-mais .est-foto{border-right:1px solid rgba(255,255,255,.06)}

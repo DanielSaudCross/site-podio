@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const texto = PODIO.mensagens.estrutura + '\n' +
         [...nomes.unico, ...nomes.mensal].map((n) => '• ' + n).join('\n') + '\n\n' +
         'Serviços (pagos uma vez): ' + (total.unico ? brl(total.unico) : 'nenhum') + '\n' +
-        'Mensalidade (a partir da entrega): ' + (total.mensal ? brl(total.mensal) : 'nenhuma');
+        'Por mês (a partir da entrega): ' + (total.mensal ? brl(total.mensal) : 'nenhuma');
       botao.href = 'https://wa.me/' + String(PODIO.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(texto);
     };
 
