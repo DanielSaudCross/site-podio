@@ -257,13 +257,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const caixas = [...est.querySelectorAll('input[type="checkbox"]')];
     const botao = est.querySelector('[data-wa="estrutura"]');
     const brl = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
-    const mostrado = { unico: 0, mensal: 0 };
+    const mostrado = { unico: 0, mensal: 0, soma: 0 };
 
     /* o número desliza do valor antigo até o novo */
     const deslizar = (tipo, ate, sufixo) => {
       const el = est.querySelector(`[data-total="${tipo}"]`);
       el.classList.toggle('vazio', !ate);
-      if (!ate) { el.textContent = tipo === 'mensal' ? 'Sem mensalidade' : 'Nenhum serviço'; mostrado[tipo] = 0; return; }
+      if (!ate) { el.textContent = tipo === 'mensal' ? 'Sem mensalidade' : tipo === 'soma' ? 'R$ 0' : 'Nenhum serviço'; mostrado[tipo] = 0; return; }
       const de = mostrado[tipo], t0 = performance.now(), dur = querMenosMovimento ? 0 : 450;
       const passo = (t) => {
         const k = dur ? Math.min(1, (t - t0) / dur) : 1;
@@ -293,6 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
         deslizar(tipo, total[tipo], tipo === 'mensal' ? '<small>/mês</small>' : '');
       });
 
+      /* total para começar: o pagamento único mais a primeira mensalidade */
+      deslizar('soma', total.unico + total.mensal, '');
+      est.querySelector('.est-soma-obs').textContent = total.unico && total.mensal ? 'pagamento único + 1º mês'
+        : total.mensal ? '1º mês' : 'pagamento único';
       const ecoU = soma.unico - total.unico, ecoM = soma.mensal - total.mensal;
       est.querySelector('.est-eco').textContent = ecoU || ecoM
         ? 'Você economiza ' + [ecoU && brl(ecoU), ecoM && brl(ecoM) + ' por mês'].filter(Boolean).join(' e ')
@@ -308,7 +312,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const texto = PODIO.mensagens.estrutura + '\n' +
         [...nomes.unico, ...nomes.mensal].map((n) => '• ' + n).join('\n') + '\n\n' +
         'Pagamento único: ' + (total.unico ? brl(total.unico) : 'nenhum') + '\n' +
-        'Por mês: ' + (total.mensal ? brl(total.mensal) : 'nenhum');
+        'Por mês: ' + (total.mensal ? brl(total.mensal) : 'nenhum') + '\n' +
+        'Total para começar: ' + brl(total.unico + total.mensal);
       botao.href = 'https://wa.me/' + String(PODIO.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(texto);
     };
 

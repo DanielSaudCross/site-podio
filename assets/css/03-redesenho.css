@@ -711,7 +711,13 @@ span.so-pronto,b.so-pronto{display:none}
 .est-off:empty{display:none}
 .est-off.pisca{animation:est-pisca .6s cubic-bezier(.3,1.6,.5,1)}
 @keyframes est-pisca{0%{transform:scale(.6)}100%{transform:scale(1)}}
-.est-eco{margin-top:6px;color:var(--lamp);font-weight:700;font-size:14px;min-height:1.4em}
+.est-soma{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 10px;margin-top:4px;padding:16px 18px;
+  border-radius:14px;background:rgba(var(--lamp-rgb),.10);border:1px solid rgba(var(--lamp-rgb),.35)}
+.est-soma{grid-template-areas:"rot val" "obs val"}
+.est-soma .est-rot{grid-area:rot;color:var(--text)}
+.est-soma b{grid-area:val;white-space:nowrap;font:var(--t-h1);font-size:clamp(30px,2.8vw,40px);font-weight:400;color:var(--lamp)}
+.est-soma-obs{grid-area:obs;color:var(--muted);font-size:12px}
+.est-eco{margin-top:12px;color:var(--lamp);font-weight:700;font-size:14px;min-height:1.4em}
 .est-dica{margin:4px 0 18px;color:var(--muted);font-size:13px;line-height:1.45;min-height:2.9em}
 .est-resumo .btn{margin-top:auto;justify-content:center;text-align:center}
 .est-resumo .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
