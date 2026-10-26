@@ -226,9 +226,12 @@ document.addEventListener('DOMContentLoaded', () => {
     /* restante = quanto falta para trocar; visivel = seção na tela;
        pausado = mouse ou foco em cima */
     let atual = 0, timer = null, inicio = 0, restante = PL_MS, visivel = false, pausado = false;
+    /* demo = demonstração aberta abaixo do cartão (as abas não trocam sozinhas) */
+    let demo = null;
     const automatico = !querMenosMovimento;
 
     const abrir = (i, foco) => {
+      if (demo) fecharDemo();
       atual = (i + abas.length) % abas.length;
       abas.forEach((aba, j) => {
         const sel = j === atual;
@@ -250,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* roda o tempo que falta, se a seção está na tela e ninguém está lendo */
     const seguir = () => {
       clearTimeout(timer);
-      const anda = automatico && visivel && !pausado;
+      const anda = automatico && visivel && !pausado && !demo;
       if (!anda) return;
       inicio = performance.now();
       timer = setTimeout(() => abrir(atual + 1), restante);
@@ -262,6 +265,35 @@ document.addEventListener('DOMContentLoaded', () => {
       seguir();
     };
     const continuar = () => { pausado = false; seguir(); };
+
+    /* Demonstração: o link do painel abre, logo abaixo do cartão, a demo
+       daquele serviço (uma por vez) e leva a pessoa até ela. Clicar de novo,
+       no 'Fechar' da demo ou em outra aba fecha. */
+    const rolar = querMenosMovimento ? 'auto' : 'smooth';
+    const links = [...pl.querySelectorAll('[data-demo]')];
+    links.forEach((b) => { b.dataset.rotulo = b.textContent; });
+    const fecharDemo = () => {
+      if (!demo) return;
+      demo.hidden = true;
+      demo = null;
+      links.forEach((b) => { b.setAttribute('aria-expanded', 'false'); b.textContent = b.dataset.rotulo; });
+      seguir();
+    };
+    links.forEach((b) => b.addEventListener('click', () => {
+      const alvo = document.getElementById(b.dataset.demo);
+      if (demo === alvo) { fecharDemo(); return; }
+      fecharDemo();
+      demo = alvo;
+      alvo.hidden = false;
+      b.setAttribute('aria-expanded', 'true');
+      b.textContent = 'Fechar a demonstração';
+      seguir();
+      alvo.scrollIntoView({ behavior: rolar, block: 'start' });
+    }));
+    document.querySelectorAll('.demo-fechar').forEach((b) => b.addEventListener('click', () => {
+      fecharDemo();
+      pl.scrollIntoView({ behavior: rolar, block: 'start' });
+    }));
 
     abas.forEach((aba, i) => aba.addEventListener('click', () => abrir(i)));
     pl.querySelector('.pl-volta').addEventListener('click', () => abrir(atual - 1));

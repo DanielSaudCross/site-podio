@@ -47,7 +47,7 @@
      "quem faz Google Meu Negócio para academia" ou "quem faz site para
      academia em [cidade]".
 
-     O bloco FAQPage é gerado a partir das perguntas visíveis do BLOCO 10.
+     O bloco FAQPage é gerado a partir das perguntas visíveis do BLOCO 05.
      Se você editar uma pergunta lá, edite aqui também: o Google exige que o
      dado estruturado corresponda ao que a pessoa vê na página.
      ───────────────────────────────────────────────────── -->
@@ -94,7 +94,7 @@
 }
 </script>
 
-<!-- As mesmas perguntas do BLOCO 10, em formato que o Google pode exibir
+<!-- As mesmas perguntas do BLOCO 05, em formato que o Google pode exibir
      direto no resultado da busca e que um assistente de IA consegue citar. -->
 <script type="application/ld+json">
 {
@@ -187,7 +187,7 @@
 <link rel="stylesheet" href="assets/css/00-config.css?v=67">
 <link rel="stylesheet" href="assets/css/01-base.css?v=68">
 <link rel="stylesheet" href="assets/css/02-blocos.css?v=67">
-<link rel="stylesheet" href="assets/css/03-redesenho.css?v=67">
+<link rel="stylesheet" href="assets/css/03-redesenho.css?v=69">
 </head>
 <body>
 
@@ -204,13 +204,13 @@
 <nav class="nav">
   <div class="nav-dentro">
     <div class="nav-links nav-esq">
-      <a href="#solucoes">Serviços</a>
-      <a href="#portfolio">Portfólio</a>
+      <a href="#planos">Serviços</a>
+      <a href="#resultados">Cases</a>
     </div>
     <a href="#topo" class="brand" aria-label="Pódio, ir para o topo"><span class="marca">P<span class="marca-o">O</span>DIO</span></a>
     <div class="nav-links nav-dir">
       <a href="#duvidas">Dúvidas</a>
-      <a href="#" data-wa="menu" class="nav-wa" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg></a>
+      <a href="#" data-wa="menu" class="nav-wa" aria-label="Contato pelo WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg><span>Contato</span></a>
     </div>
     <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu-painel" aria-label="Abrir o menu">
       <span aria-hidden="true"></span>
@@ -229,9 +229,8 @@
   </div>
 
   <nav aria-label="Navegação principal">
-    <a href="#solucoes">Serviços</a>
-    <a href="#portfolio">Portfólio</a>
-    <a href="#planos">Preços</a>
+    <a href="#planos">Serviços</a>
+    <a href="#resultados">Cases</a>
     <a href="#duvidas">Dúvidas</a>
   </nav>
 
@@ -253,101 +252,139 @@
     <p class="lead">Transformamos sua presença digital em mais visibilidade para atrair pessoas que querem treinar perto de casa e conquistar novos alunos para o seu negócio.</p>
     <p class="hero-apoio">Com um site profissional e uma presença estratégica no Google, ajudamos sua academia, estúdio ou escola de artes marciais a ser encontrada por quem procura onde treinar.</p>
     <div class="hero-cta">
-      <a href="#" data-wa="diagnostico" class="btn btn-primary">Pedir diagnóstico gratuito</a>
-      <a href="#portfolio" class="btn btn-ghost">Ver o portfólio</a>
+      <a href="#planos" class="btn btn-primary">Conheça nossas soluções</a>
+      <a href="#" data-wa="diagnostico" class="btn btn-ghost">Pedir diagnóstico gratuito</a>
     </div>
     <p class="hero-note">Análise do seu perfil em até 24h, sem compromisso</p>
   </div>
 </header>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 02b · SOLUÇÕES — o que a Pódio faz, em quatro cards -->
+<!--  BLOCO 03 · SERVIÇOS — cards que viram abas, demonstrações e preços  -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- Cada card tem uma "cena" desenhada com HTML/CSS em vez de foto de banco:
-     o perfil no Google é genérico, o site é o da CT MTK (feito pela Pódio) e
-     a conversa do WhatsApp é ilustrativa. -->
-<section id="solucoes">
+
+<section id="planos">
   <div class="wrap">
     <div class="section-head rv">
-      <h2>O que a Pódio faz pela sua <em>academia.</em></h2>
-      <p class="lead">Do Google ao WhatsApp, cada parte leva quem procura onde treinar até a aula experimental.</p>
+      <h2>Nossos <em>serviços.</em></h2>
+      <p class="lead">Contrate a frente que falta na sua academia, ou todas juntas.</p>
     </div>
-
-    <div class="sols">
-      <article class="sol sol-google rv">
-        <div class="sol-cena" aria-hidden="true">
-          <i class="sol-pino"></i>
-          <div class="sol-gcard">
-            <p class="sg-nome">Sua Academia</p>
-            <p class="sg-nota">4,9 <i class="estrelas e5"></i> (86)</p>
-            <p class="sg-linha"><b>Aberto</b> · Fecha às 22h</p>
-            <p class="sg-botoes"><span>Rotas</span><span>Ligar</span><span>Site</span></p>
-          </div>
-        </div>
-        <div class="sol-texto">
+    <div class="pl rv">
+      <div class="pl-abas" role="tablist" aria-label="Serviços da Pódio">
+        <button type="button" role="tab" id="aba-google" aria-controls="pl-google" aria-selected="true" class="pl-card sol-google"><span class="sol-cena" aria-hidden="true"><i class="sol-pino"></i><span class="sol-gcard"><span class="sg-nome">Sua Academia</span><span class="sg-nota">4,9 <i class="estrelas e5"></i> (86)</span><span class="sg-linha"><b>Aberto</b> · Fecha às 22h</span><span class="sg-botoes"><span>Rotas</span><span>Ligar</span><span>Site</span></span></span></span><span class="pl-card-nome">Perfil no Google</span></button>
+        <button type="button" role="tab" id="aba-site" aria-controls="pl-site" aria-selected="false" tabindex="-1" class="pl-card sol-site"><span class="sol-cena" aria-hidden="true"><span class="sol-cel"><img src="assets/img/portfolio/ctmtk-celular.webp" alt="" width="360" height="2592" loading="lazy"></span></span><span class="pl-card-nome">Site</span></button>
+        <button type="button" role="tab" id="aba-zap" aria-controls="pl-zap" aria-selected="false" tabindex="-1" class="pl-card sol-zap"><span class="sol-cena" aria-hidden="true"><span class="sol-bolha eles">Qual o horário do jiu-jitsu adulto?</span><span class="sol-bolha nos">Segunda a sexta, às 19h. Quer marcar uma aula experimental grátis?</span><span class="sol-bolha eles">Quero! Amanhã dá?</span></span><span class="pl-card-nome">Atendimento no WhatsApp</span></button>
+        <button type="button" role="tab" id="aba-nfc" aria-controls="pl-nfc" aria-selected="false" tabindex="-1" class="pl-card sol-placa"><span class="sol-cena" aria-hidden="true"><span class="sp-placa"><span class="sp-g">G</span><span class="sp-tit">Avalie a gente<br>no Google</span><span class="sp-est">★★★★★</span><i class="sp-nfc"><b></b><b></b><b></b></i><span class="sp-dica">Aproxime o celular</span></span><i class="sp-cel"></i></span><span class="pl-card-nome">Placa de&nbsp;avaliações</span></button>
+        <button type="button" role="tab" id="aba-acomp" aria-controls="pl-acomp" aria-selected="false" tabindex="-1" class="pl-card sol-acomp"><span class="sol-cena" aria-hidden="true"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="40" y="18" width="160" height="114" rx="12" fill="#1C1E1B" stroke="#454943" stroke-width="2"/><rect x="54" y="32" width="60" height="7" rx="3.5" fill="#F3F4F1"/><rect x="54" y="44" width="38" height="5" rx="2.5" fill="#9DA29A"/><g class="l" opacity=".35"><rect x="58" y="96" width="14" height="22" rx="3"/><rect x="80" y="88" width="14" height="30" rx="3"/><rect x="102" y="92" width="14" height="26" rx="3"/><rect x="124" y="78" width="14" height="40" rx="3"/><rect x="146" y="70" width="14" height="48" rx="3"/></g><rect x="168" y="58" width="14" height="60" rx="3" class="l"/><path class="ls" d="M65 86l22-8 22 4 22-14 22-8 22-12" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="pl-card-nome">Acompanhamento</span></button>
+      </div>
+      <div class="pl-palco">
+      <button type="button" class="pl-seta pl-volta" aria-label="Serviço anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" class="pl-seta pl-vai" aria-label="Próximo serviço"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="pl-cartao glass">
+        <i class="plano-borda" aria-hidden="true"></i><i class="plano-luz" aria-hidden="true"></i>
+      <article class="pl-painel" id="pl-google" role="tabpanel" aria-labelledby="aba-google">
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="ic-anda" d="M24 6c-7 0-12 5.3-12 12 0 9 12 22 12 22s12-13 12-22c0-6.7-5-12-12-12z"/><circle cx="24" cy="18" r="4.5"/><path d="M12 44h24"/></svg></i>
+          <p class="plano-tipo">Implantação</p>
           <h3>Perfil no Google</h3>
-          <div class="sol-mais"><div>
-            <p>Google Meu Negócio completo: categorias, fotos, horários e WhatsApp, para quem procura treino perto de casa encontrar a sua academia.</p>
-            <a class="sol-btn" href="#frentes">Saiba mais<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
-          </div></div>
-        </div>
-      </article>
-
-      <article class="sol sol-site rv">
-        <div class="sol-cena" aria-hidden="true">
-          <div class="sol-cel"><img src="assets/img/portfolio/ctmtk-celular.webp" alt="" width="360" height="2592" loading="lazy"></div>
-        </div>
-        <div class="sol-texto">
-          <h3>Site institucional</h3>
-          <div class="sol-mais"><div>
-            <p>Uma página com modalidades, turmas, professores e o botão de aula experimental direto no WhatsApp.</p>
-            <a class="sol-btn" href="#portfolio">Ver um exemplo<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
-          </div></div>
-        </div>
-      </article>
-
-      <article class="sol sol-zap rv">
-        <div class="sol-cena" aria-hidden="true">
-          <p class="sol-bolha eles">Qual o horário do jiu-jitsu adulto?</p>
-          <p class="sol-bolha nos">Segunda a sexta, às 19h. Quer marcar uma aula experimental grátis?</p>
-          <p class="sol-bolha eles">Quero! Amanhã dá?</p>
-        </div>
-        <div class="sol-texto">
-          <h3>Atendimento no WhatsApp</h3>
-          <div class="sol-mais"><div>
-            <p>Um assistente que responde horários e valores e marca a aula experimental, mesmo com a recepção fechada.</p>
-            <a class="sol-btn" href="#atendimento">Ver a demonstração<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
-          </div></div>
-        </div>
-      </article>
-
-      <article class="sol sol-placa rv">
-        <div class="sol-cena" aria-hidden="true">
-          <div class="sp-placa">
-            <p class="sp-g">G</p>
-            <p class="sp-tit">Avalie a gente<br>no Google</p>
-            <p class="sp-est">★★★★★</p>
-            <i class="sp-nfc"><b></b><b></b><b></b></i>
-            <p class="sp-dica">Aproxime o celular</p>
+          <p class="pl-frase">O perfil que aparece quando alguém procura onde treinar perto de casa.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="perfil" class="btn btn-primary">Quero meu perfil completo</a>
+            <button type="button" class="pl-link" data-demo="demo-google" aria-controls="demo-google" aria-expanded="false">Ver a demonstração</button>
           </div>
-          <i class="sp-cel"></i>
         </div>
-        <div class="sol-texto">
-          <h3>Placa de avaliações</h3>
-          <div class="sol-mais"><div>
-            <p>O aluno encosta o celular na placa do balcão e cai direto na tela de avaliar a academia no Google.</p>
-            <a class="sol-btn" href="#planos">Ver os preços</a>
-          </div></div>
-        </div>
+        <ul>
+            <li>Categorias, serviços e descrição certos para academia.</li>
+            <li>Horários, WhatsApp e área de atendimento sempre corretos.</li>
+            <li>Organização das fotos que a academia enviar.</li>
+            <li>Nota Pódio antes e depois, para ver o que mudou.</li>
+        </ul>
       </article>
+      <article class="pl-painel" id="pl-site" role="tabpanel" aria-labelledby="aba-site" hidden>
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="14" y="4" width="20" height="40" rx="4"/><path class="ic-anda" d="M19 14h10M19 20h10M19 26h6"/><path d="M21 38h6"/></svg></i>
+          <p class="plano-tipo">Implantação</p>
+          <h3>Site</h3>
+          <p class="pl-frase">Uma página com a cara da academia que termina no WhatsApp.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="site" class="btn btn-primary">Quero o site da minha academia</a>
+            <button type="button" class="pl-link" data-demo="demo-site" aria-controls="demo-site" aria-expanded="false">Ver um site pronto</button>
+          </div>
+        </div>
+        <ul>
+            <li>Modalidades, turmas e professores.</li>
+            <li>Grade de aulas e galeria de fotos.</li>
+            <li>Botão de aula experimental em cada parte da página.</li>
+            <li>Feito para o celular e ligado ao perfil no Google.</li>
+            <li>1 ano de hospedagem incluso.</li>
+        </ul>
+      </article>
+      <article class="pl-painel" id="pl-nfc" role="tabpanel" aria-labelledby="aba-nfc" hidden>
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="14" width="22" height="28" rx="3"/><path d="M12 22h10M12 28h6"/><path class="ic-anda" d="M33 18c3 3 3 9 0 12M38 14c5 5 5 15 0 20"/></svg></i>
+          <p class="plano-tipo">Implantação</p>
+          <h3>Placa de avaliações</h3>
+          <p class="pl-frase">O aluno encosta o celular na placa e cai direto na tela de avaliar a academia.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="placa" class="btn btn-primary">Quero a placa na minha academia</a>
+          </div>
+        </div>
+        <ul>
+            <li>Placa para o balcão com NFC e QR Code.</li>
+            <li>Leva direto para a avaliação no Google.</li>
+            <li>Relatório das avaliações com o que melhorar.</li>
+        </ul>
+      </article>
+      <article class="pl-painel" id="pl-zap" role="tabpanel" aria-labelledby="aba-zap" hidden>
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 10h26a4 4 0 014 4v14a4 4 0 01-4 4H18l-8 7v-7H8a4 4 0 01-4-4V14a4 4 0 014-4z"/><g class="ic-anda"><circle cx="14" cy="21" r="1.8"/><circle cx="21" cy="21" r="1.8"/><circle cx="28" cy="21" r="1.8"/></g></svg></i>
+          <p class="plano-tipo">Implantação + mensalidade</p>
+          <h3>Atendimento no WhatsApp</h3>
+          <p class="pl-frase">Um atendente pronto para marcar aula experimental, montado com os dados da sua academia.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="chatbot" class="btn btn-primary">Quero isso no meu WhatsApp</a>
+            <button type="button" class="pl-link" data-demo="demo-zap" aria-controls="demo-zap" aria-expanded="false">Ver a demonstração</button>
+          </div>
+        </div>
+        <ul>
+            <li>Modelo pronto e testado, feito para marcar aula experimental.</li>
+            <li>Configurado com nome, endereço, modalidades e grade da sua academia.</li>
+            <li>Ligado à agenda da academia: a aula já entra marcada.</li>
+            <li>Pergunta turma, modalidade e experiência, e mostra só os horários certos.</li>
+            <li>Lembrete com a rota no dia e aviso para a academia a cada aula marcada.</li>
+            <li>Ajustamos o modelo ao jeito da sua academia.</li>
+        </ul>
+      </article>
+      <article class="pl-painel" id="pl-acomp" role="tabpanel" aria-labelledby="aba-acomp" hidden>
+        <div class="pl-cabeca">
+          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M6 40h36"/><path class="ic-anda" d="M10 32l9-9 7 6 12-14"/><path d="M32 15h6v6"/></svg></i>
+          <p class="plano-tipo">Mensalidade</p>
+          <h3>Acompanhamento</h3>
+          <p class="pl-frase">A grade muda, o Google muda, as avaliações chegam. Todo mês a gente cuida para a sua academia continuar bem apresentada, sem você perder tempo com isso.</p>
+          <div class="pl-acoes">
+            <a href="#" data-wa="plano2" class="btn btn-primary">Quero o acompanhamento</a>
+          </div>
+        </div>
+        <ul>
+            <li><b>Perfil ativo:</b> publicação toda semana, para mostrar que a academia está viva.</li>
+            <li><b>Nada fora do lugar:</b> grade e horários conferidos toda semana.</li>
+            <li><b>Perfil protegido:</b> contra alterações indevidas, duplicidades e avaliações falsas.</li>
+            <li><b>Toda avaliação respondida,</b> no tom da sua academia.</li>
+            <li><b>Site em dia:</b> atualizações e hospedagem inclusas.</li>
+            <li><b>Números do mês:</b> ligações, rotas e cliques que vieram do Google.</li>
+        </ul>
+      </article>
+      </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 03 · SERVIÇOS — as três frentes  -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section id="frentes" class="vida" data-passo="0">
+<!-- Demonstrações: abertas pelo link 'Ver a demonstração' do painel de
+     cada serviço (vida.js, 3b). O texto fica na página para o Google ler. -->
+<div class="demo" id="demo-google" role="region" aria-label="Demonstração: Perfil no Google" hidden>
+  <div class="wrap demo-topo"><p class="plano-tipo">Demonstração · Perfil no Google</p><button type="button" class="demo-fechar">Fechar a demonstração</button></div>
+<section id="frentes" class="vida vista" data-passo="0">
   <div class="vida-palco">
     <p class="vida-fundo" aria-hidden="true"><span>Google</span><span>Perfil</span><span>Contato</span><span>Avaliações</span></p>
     <div class="wrap vida-grade">
@@ -503,10 +540,9 @@
     </div>
   </div>
 </section>
-
-<!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 05 · PORTFÓLIO — sites em movimento e academias atendidas  -->
-<!-- ═══════════════════════════════════════════════════════ -->
+</div>
+<div class="demo" id="demo-site" role="region" aria-label="Demonstração: Site" hidden>
+  <div class="wrap demo-topo"><p class="plano-tipo">Demonstração · Site</p><button type="button" class="demo-fechar">Fechar a demonstração</button></div>
 <section id="portfolio">
   <div class="wrap">
     <div class="section-head rv">
@@ -535,14 +571,9 @@
     <p class="wa-fim rv"><a href="#" data-wa="site" class="btn btn-ghost wa-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg>Criar o site da minha academia</a></p>
   </div>
 </section>
-
-<!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 05a · ATENDIMENTO — o WhatsApp que marca a aula   -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- Mesmo formato da seção do perfil (classes vida-*), com script próprio:
-     o atende.js toca as cenas (data-passo, data-cena, data-ate). As mensagens
-     são as que o fluxo do n8n envia de verdade, com uma academia de exemplo
-     ("Sua Academia"); os links longos aparecem encurtados. -->
+</div>
+<div class="demo" id="demo-zap" role="region" aria-label="Demonstração: Atendimento no WhatsApp" hidden>
+  <div class="wrap demo-topo"><p class="plano-tipo">Demonstração · Atendimento no WhatsApp</p><button type="button" class="demo-fechar">Fechar a demonstração</button></div>
 <section id="atendimento" class="vida atende" data-passo="0" data-cena="chat">
   <div class="vida-palco">
     <p class="vida-fundo" aria-hidden="true"><span>Triagem</span><span>Horários</span><span>Agenda</span><span>Lembrete</span><span>Academia</span></p>
@@ -668,49 +699,63 @@
     </div>
   </div>
 </section>
+</div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 05a2 · ANTES / DEPOIS — o que muda com as frentes  -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section id="transformacao">
+<section id="precos">
   <div class="wrap">
-    <div class="section-head rv" style="text-align:center;margin-left:auto;margin-right:auto">
-      <h2>O que muda quando <em>alguém cuida disso.</em></h2>
-    </div>
-
-    <!-- Os títulos das colunas são o interruptor. O config.js troca a classe
-         .ativa entre as duas; nada some da página, só muda o destaque. -->
-    <div class="ad glass rv">
-
-      <div class="ad-col ad-antes ativa">
-        <button type="button" class="ad-tab" aria-pressed="true">Antes</button>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg>Perfil incompleto, com horário errado e poucas fotos.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg>Quem chega pelo Google não tem para onde ir.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg>Poucas avaliações, e muitas sem resposta.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg>Mensagem fora do horário fica sem resposta.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg>Ninguém sabe se o Google traz alunos.</li>
-        </ul>
+    <div class="est">
+      <div class="est-head rv">
+        <h3>Monte a estrutura da <em>sua academia.</em></h3>
+        <p>Escolha os serviços. Quanto mais você junta, maior o desconto.</p>
       </div>
-
-      <div class="ad-col ad-depois">
-        <button type="button" class="ad-tab" aria-pressed="false">Depois</button>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>Perfil completo, com fotos e horários certos.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>Site que leva direto para a conversa no WhatsApp.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>O aluno avalia na hora, encostando o celular na placa.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>Aula experimental marcada a qualquer hora.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 7"/></svg>Relatório do mês com ligações, rotas e cliques.</li>
-        </ul>
+      <div class="est-corpo rv">
+        <div class="est-andares">
+        <fieldset class="est-col">
+          <legend class="plano-tipo">Serviços</legend>
+          <p class="est-obs">Pagos uma vez.</p>
+          <div class="est-grade">
+            <label class="est-item est-prod"><input type="checkbox" name="perfil" data-tipo="unico" data-preco="547" data-nome="Perfil no Google" checked><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="58" y="14" width="124" height="124" rx="14" fill="#F3F4F1"/><path d="M58 28a14 14 0 0 1 14-14h96a14 14 0 0 1 14 14v34H58z" fill="#DCE6D3"/><path d="M58 46l40-14 34 20 50-18" stroke="#fff" stroke-width="5" fill="none"/><path d="M120 24c-6.6 0-12 5-12 11.5 0 8.5 12 20.5 12 20.5s12-12 12-20.5C132 29 126.6 24 120 24z" fill="#EA4335"/><circle cx="120" cy="35.5" r="4.2" fill="#fff"/><rect x="72" y="72" width="74" height="8" rx="4" fill="#2A2C29"/><text x="72" y="98" font-size="13" fill="#FBBC04" letter-spacing="1">★★★★★</text><rect x="72" y="104" width="50" height="5" rx="2.5" fill="#B9BDB5"/><circle cx="80" cy="123" r="6" fill="#1A73E8"/><circle cx="100" cy="123" r="6" fill="#1A73E8" opacity=".7"/><circle cx="120" cy="123" r="6" fill="#1A73E8" opacity=".45"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Perfil no Google<small>Completo e certo para quem procura academia perto.</small></span><span class="est-valor">R$ 547</span></span></label>
+            <label class="est-item est-prod"><input type="checkbox" name="site" data-tipo="unico" data-preco="997" data-nome="Site" checked><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="34" y="20" width="140" height="92" rx="7" fill="#1C1E1B" stroke="#454943" stroke-width="2"/><rect x="42" y="28" width="124" height="40" rx="4" class="l" opacity=".22"/><rect x="50" y="35" width="64" height="7" rx="3.5" fill="#F3F4F1"/><rect x="50" y="47" width="44" height="5" rx="2.5" fill="#9DA29A"/><rect x="50" y="56" width="30" height="7" rx="3.5" class="l"/><rect x="42" y="74" width="38" height="30" rx="3" fill="#2C2F2B"/><rect x="85" y="74" width="38" height="30" rx="3" fill="#2C2F2B"/><rect x="128" y="74" width="38" height="30" rx="3" fill="#2C2F2B"/><path d="M22 114h172l-8 10H30z" fill="#C9CCC6"/><rect x="160" y="48" width="48" height="90" rx="9" fill="#111311" stroke="#454943" stroke-width="2"/><rect x="166" y="58" width="36" height="24" rx="3" class="l" opacity=".22"/><rect x="166" y="88" width="28" height="4" rx="2" fill="#9DA29A"/><rect x="166" y="96" width="20" height="4" rx="2" fill="#9DA29A"/><rect x="166" y="118" width="36" height="10" rx="5" fill="#25D366"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Site<small>Página da academia que termina no WhatsApp. 1 ano de hospedagem incluso.</small></span><span class="est-valor">R$ 997</span></span></label>
+            <label class="est-item est-prod"><input type="checkbox" name="placa" data-tipo="unico" data-preco="90" data-nome="Placa de avaliações" checked><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><ellipse cx="120" cy="139" rx="54" ry="5" fill="#000" opacity=".35"/><rect x="80" y="10" width="80" height="120" rx="10" fill="#F6F7F4"/><rect x="74" y="124" width="92" height="12" rx="4" fill="#C9CCC6"/><text x="120" y="28" text-anchor="middle" font-size="7.5" font-weight="700" fill="#2A2C29" font-family="sans-serif">AVALIE A GENTE</text><text x="120" y="42" font-size="10" fill="#FBBC04" letter-spacing="1" text-anchor="middle">★★★★★</text><g fill="#2A2C29"><rect x="98" y="50" width="14" height="14"/><rect x="128" y="50" width="14" height="14"/><rect x="98" y="78" width="14" height="14"/><rect x="116" y="52" width="6" height="6"/><rect x="116" y="66" width="8" height="6"/><rect x="128" y="68" width="6" height="8"/><rect x="136" y="82" width="6" height="10"/><rect x="118" y="82" width="10" height="6"/><rect x="102" y="68" width="8" height="5"/></g><g fill="#F6F7F4"><rect x="101" y="53" width="8" height="8"/><rect x="131" y="53" width="8" height="8"/><rect x="101" y="81" width="8" height="8"/></g><path d="M114 100c2.5 2.5 2.5 7.5 0 10M119 97c4 4 4 12 0 16M124 94c5.5 5.5 5.5 16.5 0 22" stroke="#2A2C29" stroke-width="2" fill="none" stroke-linecap="round"/><path class="ls" d="M172 52c8 8 8 24 0 32M182 44c12 12 12 36 0 48" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Placa de&nbsp;avaliações<small>O aluno encosta o celular e avalia no Google.</small></span><span class="est-valor">R$ 90</span></span></label>
+            <label class="est-item est-prod"><input type="checkbox" name="zapimp" data-tipo="unico" data-preco="497" data-nome="Atendimento no WhatsApp" data-par="zap"><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="70" y="8" width="100" height="134" rx="14" fill="#111311" stroke="#454943" stroke-width="2"/><path d="M70 22a14 14 0 0 1 14-14h72a14 14 0 0 1 14 14v10H70z" fill="#1F5E3A"/><circle cx="86" cy="21" r="6" fill="#25D366"/><rect x="96" y="17" width="40" height="5" rx="2.5" fill="#F3F4F1"/><rect x="80" y="42" width="58" height="16" rx="6" fill="#2C2F2B"/><rect x="102" y="64" width="58" height="16" rx="6" fill="#1F5E3A"/><rect x="80" y="86" width="52" height="16" rx="6" fill="#2C2F2B"/><rect x="134" y="96" width="50" height="44" rx="8" fill="#F3F4F1"/><path d="M134 104a8 8 0 0 1 8-8h34a8 8 0 0 1 8 8v4h-50z" fill="#EA4335"/><path d="M148 122l6 6 12-12" stroke="#1F9D55" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Atendimento no WhatsApp<small>Chatbot que marca aula experimental na agenda.</small></span><span class="est-valor">R$ 497<small>+ R$ 217/mês</small></span></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="est-col">
+          <legend class="plano-tipo">Planos mensais</legend>
+          <p class="est-obs">Só começa a ser cobrado quando o serviço é entregue.</p>
+          <div class="est-grade est-grade-mais">
+            <label class="est-item est-mais"><input type="checkbox" name="acomp" data-tipo="mensal" data-preco="217" data-nome="Acompanhamento"><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="40" y="18" width="160" height="114" rx="12" fill="#1C1E1B" stroke="#454943" stroke-width="2"/><rect x="54" y="32" width="60" height="7" rx="3.5" fill="#F3F4F1"/><rect x="54" y="44" width="38" height="5" rx="2.5" fill="#9DA29A"/><g class="l" opacity=".35"><rect x="58" y="96" width="14" height="22" rx="3"/><rect x="80" y="88" width="14" height="30" rx="3"/><rect x="102" y="92" width="14" height="26" rx="3"/><rect x="124" y="78" width="14" height="40" rx="3"/><rect x="146" y="70" width="14" height="48" rx="3"/></g><rect x="168" y="58" width="14" height="60" rx="3" class="l"/><path class="ls" d="M65 86l22-8 22 4 22-14 22-8 22-12" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Acompanhamento<small>Todo mês a gente cuida do perfil e do site.</small><small class="est-req">precisa do Perfil ou do Site</small></span><span class="est-valor">R$ 217<small>/mês</small></span></span></label>
+            <label class="est-item est-mais"><input type="checkbox" name="zapmes" data-tipo="mensal" data-preco="217" data-nome="Mensalidade do atendimento no WhatsApp" data-par="zap"><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="70" y="8" width="100" height="134" rx="14" fill="#111311" stroke="#454943" stroke-width="2"/><path d="M70 22a14 14 0 0 1 14-14h72a14 14 0 0 1 14 14v10H70z" fill="#1F5E3A"/><circle cx="86" cy="21" r="6" fill="#25D366"/><rect x="96" y="17" width="40" height="5" rx="2.5" fill="#F3F4F1"/><rect x="80" y="42" width="58" height="16" rx="6" fill="#2C2F2B"/><rect x="102" y="64" width="58" height="16" rx="6" fill="#1F5E3A"/><rect x="80" y="86" width="52" height="16" rx="6" fill="#2C2F2B"/><rect x="134" y="96" width="50" height="44" rx="8" fill="#F3F4F1"/><path d="M134 104a8 8 0 0 1 8-8h34a8 8 0 0 1 8 8v4h-50z" fill="#EA4335"/><path d="M148 122l6 6 12-12" stroke="#1F9D55" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Atendimento no WhatsApp<small>Vem junto com o chatbot escolhido acima.</small></span><span class="est-valor">R$ 217<small>/mês</small></span></span></label>
+          </div>
+        </fieldset>
+        </div>
+        <aside class="est-resumo glass" aria-live="polite">
+          <i class="plano-borda" aria-hidden="true"></i>
+          <p class="plano-tipo">Sua estrutura</p>
+          <div class="est-linha est-imp">
+            <span class="est-rot">Serviços <small>pagos uma vez</small></span>
+            <s class="est-de" data-de="unico"></s>
+            <b class="est-total" data-total="unico">R$ 1.347</b>
+            <em class="est-off" data-off="unico"></em>
+          </div>
+          <div class="est-linha est-mes">
+            <span class="est-rot">Por mês <small>a partir da entrega</small></span>
+            <s class="est-de" data-de="mensal"></s>
+            <b class="est-total" data-total="mensal">Sem mensalidade</b>
+            <em class="est-off" data-off="mensal"></em>
+          </div>
+          <p class="est-eco"></p>
+          <p class="est-dica"></p>
+          <a href="#" data-wa="estrutura" class="btn btn-primary">Quero essa estrutura</a>
+        </aside>
       </div>
-
     </div>
-    <p class="wa-fim rv"><a href="#" data-wa="mudanca" class="btn btn-ghost wa-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg>Transformar minha academia</a></p>
+    <p class="planos-nota rv">Não sabe por onde começar? <a href="#" data-wa="diagnostico">O diagnóstico gratuito</a> mostra o que falta na sua academia.</p>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 05b · RESULTADOS — academias que já atendemos     -->
+<!--  BLOCO 04 · CASES — academias que já atendemos     -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <section id="resultados">
   <div class="wrap">
@@ -769,174 +814,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 06 · SERVIÇOS E PREÇOS — uma frente por vez e a calculadora  -->
-<!-- ═══════════════════════════════════════════════════════ -->
-
-<section id="planos">
-  <div class="wrap">
-    <div class="section-head rv">
-      <h2>Nossos <em>serviços.</em></h2>
-      <p class="lead">Contrate a frente que falta na sua academia, ou todas juntas.</p>
-    </div>
-    <div class="pl rv">
-      <div class="pl-abas" role="tablist" aria-label="Serviços da Pódio">
-        <button type="button" role="tab" id="aba-google" aria-controls="pl-google" aria-selected="true">Perfil no Google</button>
-        <button type="button" role="tab" id="aba-site" aria-controls="pl-site" aria-selected="false" tabindex="-1">Site</button>
-        <button type="button" role="tab" id="aba-nfc" aria-controls="pl-nfc" aria-selected="false" tabindex="-1">Placa de avaliações</button>
-        <button type="button" role="tab" id="aba-zap" aria-controls="pl-zap" aria-selected="false" tabindex="-1">Atendimento no WhatsApp</button>
-        <button type="button" role="tab" id="aba-acomp" aria-controls="pl-acomp" aria-selected="false" tabindex="-1">Acompanhamento</button>
-      </div>
-      <div class="pl-palco">
-      <button type="button" class="pl-seta pl-volta" aria-label="Serviço anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button type="button" class="pl-seta pl-vai" aria-label="Próximo serviço"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-      <div class="pl-cartao glass">
-        <i class="plano-borda" aria-hidden="true"></i><i class="plano-luz" aria-hidden="true"></i>
-      <article class="pl-painel" id="pl-google" role="tabpanel" aria-labelledby="aba-google">
-        <div class="pl-cabeca">
-          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="ic-anda" d="M24 6c-7 0-12 5.3-12 12 0 9 12 22 12 22s12-13 12-22c0-6.7-5-12-12-12z"/><circle cx="24" cy="18" r="4.5"/><path d="M12 44h24"/></svg></i>
-          <p class="plano-tipo">Implantação</p>
-          <h3>Perfil no Google</h3>
-          <p class="pl-frase">O perfil que aparece quando alguém procura onde treinar perto de casa.</p>
-          <div class="pl-acoes">
-            <a href="#" data-wa="perfil" class="btn btn-primary">Quero meu perfil completo</a>
-          </div>
-        </div>
-        <ul>
-            <li>Categorias, serviços e descrição certos para academia.</li>
-            <li>Horários, WhatsApp e área de atendimento sempre corretos.</li>
-            <li>Organização das fotos que a academia enviar.</li>
-            <li>Nota Pódio antes e depois, para ver o que mudou.</li>
-        </ul>
-      </article>
-      <article class="pl-painel" id="pl-site" role="tabpanel" aria-labelledby="aba-site" hidden>
-        <div class="pl-cabeca">
-          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="14" y="4" width="20" height="40" rx="4"/><path class="ic-anda" d="M19 14h10M19 20h10M19 26h6"/><path d="M21 38h6"/></svg></i>
-          <p class="plano-tipo">Implantação</p>
-          <h3>Site</h3>
-          <p class="pl-frase">Uma página com a cara da academia que termina no WhatsApp.</p>
-          <div class="pl-acoes">
-            <a href="#" data-wa="site" class="btn btn-primary">Quero o site da minha academia</a>
-          </div>
-        </div>
-        <ul>
-            <li>Modalidades, turmas e professores.</li>
-            <li>Grade de aulas e galeria de fotos.</li>
-            <li>Botão de aula experimental em cada parte da página.</li>
-            <li>Feito para o celular e ligado ao perfil no Google.</li>
-            <li>1 ano de hospedagem incluso.</li>
-        </ul>
-      </article>
-      <article class="pl-painel" id="pl-nfc" role="tabpanel" aria-labelledby="aba-nfc" hidden>
-        <div class="pl-cabeca">
-          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="14" width="22" height="28" rx="3"/><path d="M12 22h10M12 28h6"/><path class="ic-anda" d="M33 18c3 3 3 9 0 12M38 14c5 5 5 15 0 20"/></svg></i>
-          <p class="plano-tipo">Implantação</p>
-          <h3>Placa de avaliações</h3>
-          <p class="pl-frase">O aluno encosta o celular na placa e cai direto na tela de avaliar a academia.</p>
-          <div class="pl-acoes">
-            <a href="#" data-wa="placa" class="btn btn-primary">Quero a placa na minha academia</a>
-          </div>
-        </div>
-        <ul>
-            <li>Placa para o balcão com NFC e QR Code.</li>
-            <li>Leva direto para a avaliação no Google.</li>
-            <li>Relatório das avaliações com o que melhorar.</li>
-        </ul>
-      </article>
-      <article class="pl-painel" id="pl-zap" role="tabpanel" aria-labelledby="aba-zap" hidden>
-        <div class="pl-cabeca">
-          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 10h26a4 4 0 014 4v14a4 4 0 01-4 4H18l-8 7v-7H8a4 4 0 01-4-4V14a4 4 0 014-4z"/><g class="ic-anda"><circle cx="14" cy="21" r="1.8"/><circle cx="21" cy="21" r="1.8"/><circle cx="28" cy="21" r="1.8"/></g></svg></i>
-          <p class="plano-tipo">Implantação + mensalidade</p>
-          <h3>Atendimento no WhatsApp</h3>
-          <p class="pl-frase">Um atendente pronto para marcar aula experimental, montado com os dados da sua academia.</p>
-          <div class="pl-acoes">
-            <a href="#" data-wa="chatbot" class="btn btn-primary">Quero isso no meu WhatsApp</a>
-            <a href="#atendimento" class="pl-link">Ver a demonstração</a>
-          </div>
-        </div>
-        <ul>
-            <li>Modelo pronto e testado, feito para marcar aula experimental.</li>
-            <li>Configurado com nome, endereço, modalidades e grade da sua academia.</li>
-            <li>Ligado à agenda da academia: a aula já entra marcada.</li>
-            <li>Pergunta turma, modalidade e experiência, e mostra só os horários certos.</li>
-            <li>Lembrete com a rota no dia e aviso para a academia a cada aula marcada.</li>
-            <li>Ajustamos o modelo ao jeito da sua academia.</li>
-        </ul>
-      </article>
-      <article class="pl-painel" id="pl-acomp" role="tabpanel" aria-labelledby="aba-acomp" hidden>
-        <div class="pl-cabeca">
-          <i class="pl-icone" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M6 40h36"/><path class="ic-anda" d="M10 32l9-9 7 6 12-14"/><path d="M32 15h6v6"/></svg></i>
-          <p class="plano-tipo">Mensalidade</p>
-          <h3>Acompanhamento</h3>
-          <p class="pl-frase">A grade muda, o Google muda, as avaliações chegam. Todo mês a gente cuida para a sua academia continuar bem apresentada, sem você perder tempo com isso.</p>
-          <div class="pl-acoes">
-            <a href="#" data-wa="plano2" class="btn btn-primary">Quero o acompanhamento</a>
-          </div>
-        </div>
-        <ul>
-            <li><b>Perfil ativo:</b> publicação toda semana, para mostrar que a academia está viva.</li>
-            <li><b>Nada fora do lugar:</b> grade e horários conferidos toda semana.</li>
-            <li><b>Perfil protegido:</b> contra alterações indevidas, duplicidades e avaliações falsas.</li>
-            <li><b>Toda avaliação respondida,</b> no tom da sua academia.</li>
-            <li><b>Site em dia:</b> atualizações e hospedagem inclusas.</li>
-            <li><b>Números do mês:</b> ligações, rotas e cliques que vieram do Google.</li>
-        </ul>
-      </article>
-      </div>
-      </div>
-    </div>
-    <div class="est">
-      <div class="est-head rv">
-        <h3>Monte a estrutura da <em>sua academia.</em></h3>
-        <p>Escolha os serviços. Quanto mais você junta, maior o desconto.</p>
-      </div>
-      <div class="est-corpo rv">
-        <div class="est-andares">
-        <fieldset class="est-col">
-          <legend class="plano-tipo">Serviços</legend>
-          <p class="est-obs">Pagos uma vez.</p>
-          <div class="est-grade">
-            <label class="est-item est-prod"><input type="checkbox" name="perfil" data-tipo="unico" data-preco="547" data-nome="Perfil no Google" checked><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="58" y="14" width="124" height="124" rx="14" fill="#F3F4F1"/><path d="M58 28a14 14 0 0 1 14-14h96a14 14 0 0 1 14 14v34H58z" fill="#DCE6D3"/><path d="M58 46l40-14 34 20 50-18" stroke="#fff" stroke-width="5" fill="none"/><path d="M120 24c-6.6 0-12 5-12 11.5 0 8.5 12 20.5 12 20.5s12-12 12-20.5C132 29 126.6 24 120 24z" fill="#EA4335"/><circle cx="120" cy="35.5" r="4.2" fill="#fff"/><rect x="72" y="72" width="74" height="8" rx="4" fill="#2A2C29"/><text x="72" y="98" font-size="13" fill="#FBBC04" letter-spacing="1">★★★★★</text><rect x="72" y="104" width="50" height="5" rx="2.5" fill="#B9BDB5"/><circle cx="80" cy="123" r="6" fill="#1A73E8"/><circle cx="100" cy="123" r="6" fill="#1A73E8" opacity=".7"/><circle cx="120" cy="123" r="6" fill="#1A73E8" opacity=".45"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Perfil no Google<small>Completo e certo para quem procura academia perto.</small></span><span class="est-valor">R$ 547</span></span></label>
-            <label class="est-item est-prod"><input type="checkbox" name="site" data-tipo="unico" data-preco="997" data-nome="Site" checked><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="34" y="20" width="140" height="92" rx="7" fill="#1C1E1B" stroke="#454943" stroke-width="2"/><rect x="42" y="28" width="124" height="40" rx="4" class="l" opacity=".22"/><rect x="50" y="35" width="64" height="7" rx="3.5" fill="#F3F4F1"/><rect x="50" y="47" width="44" height="5" rx="2.5" fill="#9DA29A"/><rect x="50" y="56" width="30" height="7" rx="3.5" class="l"/><rect x="42" y="74" width="38" height="30" rx="3" fill="#2C2F2B"/><rect x="85" y="74" width="38" height="30" rx="3" fill="#2C2F2B"/><rect x="128" y="74" width="38" height="30" rx="3" fill="#2C2F2B"/><path d="M22 114h172l-8 10H30z" fill="#C9CCC6"/><rect x="160" y="48" width="48" height="90" rx="9" fill="#111311" stroke="#454943" stroke-width="2"/><rect x="166" y="58" width="36" height="24" rx="3" class="l" opacity=".22"/><rect x="166" y="88" width="28" height="4" rx="2" fill="#9DA29A"/><rect x="166" y="96" width="20" height="4" rx="2" fill="#9DA29A"/><rect x="166" y="118" width="36" height="10" rx="5" fill="#25D366"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Site<small>Página da academia que termina no WhatsApp. 1 ano de hospedagem incluso.</small></span><span class="est-valor">R$ 997</span></span></label>
-            <label class="est-item est-prod"><input type="checkbox" name="placa" data-tipo="unico" data-preco="90" data-nome="Placa de avaliações" checked><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><ellipse cx="120" cy="139" rx="54" ry="5" fill="#000" opacity=".35"/><rect x="80" y="10" width="80" height="120" rx="10" fill="#F6F7F4"/><rect x="74" y="124" width="92" height="12" rx="4" fill="#C9CCC6"/><text x="120" y="28" text-anchor="middle" font-size="7.5" font-weight="700" fill="#2A2C29" font-family="sans-serif">AVALIE A GENTE</text><text x="120" y="42" font-size="10" fill="#FBBC04" letter-spacing="1" text-anchor="middle">★★★★★</text><g fill="#2A2C29"><rect x="98" y="50" width="14" height="14"/><rect x="128" y="50" width="14" height="14"/><rect x="98" y="78" width="14" height="14"/><rect x="116" y="52" width="6" height="6"/><rect x="116" y="66" width="8" height="6"/><rect x="128" y="68" width="6" height="8"/><rect x="136" y="82" width="6" height="10"/><rect x="118" y="82" width="10" height="6"/><rect x="102" y="68" width="8" height="5"/></g><g fill="#F6F7F4"><rect x="101" y="53" width="8" height="8"/><rect x="131" y="53" width="8" height="8"/><rect x="101" y="81" width="8" height="8"/></g><path d="M114 100c2.5 2.5 2.5 7.5 0 10M119 97c4 4 4 12 0 16M124 94c5.5 5.5 5.5 16.5 0 22" stroke="#2A2C29" stroke-width="2" fill="none" stroke-linecap="round"/><path class="ls" d="M172 52c8 8 8 24 0 32M182 44c12 12 12 36 0 48" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Placa de&nbsp;avaliações<small>O aluno encosta o celular e avalia no Google.</small></span><span class="est-valor">R$ 90</span></span></label>
-            <label class="est-item est-prod"><input type="checkbox" name="zapimp" data-tipo="unico" data-preco="497" data-nome="Atendimento no WhatsApp" data-par="zap"><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="70" y="8" width="100" height="134" rx="14" fill="#111311" stroke="#454943" stroke-width="2"/><path d="M70 22a14 14 0 0 1 14-14h72a14 14 0 0 1 14 14v10H70z" fill="#1F5E3A"/><circle cx="86" cy="21" r="6" fill="#25D366"/><rect x="96" y="17" width="40" height="5" rx="2.5" fill="#F3F4F1"/><rect x="80" y="42" width="58" height="16" rx="6" fill="#2C2F2B"/><rect x="102" y="64" width="58" height="16" rx="6" fill="#1F5E3A"/><rect x="80" y="86" width="52" height="16" rx="6" fill="#2C2F2B"/><rect x="134" y="96" width="50" height="44" rx="8" fill="#F3F4F1"/><path d="M134 104a8 8 0 0 1 8-8h34a8 8 0 0 1 8 8v4h-50z" fill="#EA4335"/><path d="M148 122l6 6 12-12" stroke="#1F9D55" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Atendimento no WhatsApp<small>Chatbot que marca aula experimental na agenda.</small></span><span class="est-valor">R$ 497<small>+ R$ 217/mês</small></span></span></label>
-          </div>
-        </fieldset>
-        <fieldset class="est-col">
-          <legend class="plano-tipo">Planos mensais</legend>
-          <p class="est-obs">Só começa a ser cobrado quando o serviço é entregue.</p>
-          <div class="est-grade est-grade-mais">
-            <label class="est-item est-mais"><input type="checkbox" name="acomp" data-tipo="mensal" data-preco="217" data-nome="Acompanhamento"><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="40" y="18" width="160" height="114" rx="12" fill="#1C1E1B" stroke="#454943" stroke-width="2"/><rect x="54" y="32" width="60" height="7" rx="3.5" fill="#F3F4F1"/><rect x="54" y="44" width="38" height="5" rx="2.5" fill="#9DA29A"/><g class="l" opacity=".35"><rect x="58" y="96" width="14" height="22" rx="3"/><rect x="80" y="88" width="14" height="30" rx="3"/><rect x="102" y="92" width="14" height="26" rx="3"/><rect x="124" y="78" width="14" height="40" rx="3"/><rect x="146" y="70" width="14" height="48" rx="3"/></g><rect x="168" y="58" width="14" height="60" rx="3" class="l"/><path class="ls" d="M65 86l22-8 22 4 22-14 22-8 22-12" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Acompanhamento<small>Todo mês a gente cuida do perfil e do site.</small><small class="est-req">precisa do Perfil ou do Site</small></span><span class="est-valor">R$ 217<small>/mês</small></span></span></label>
-            <label class="est-item est-mais"><input type="checkbox" name="zapmes" data-tipo="mensal" data-preco="217" data-nome="Mensalidade do atendimento no WhatsApp" data-par="zap"><span class="est-foto"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="70" y="8" width="100" height="134" rx="14" fill="#111311" stroke="#454943" stroke-width="2"/><path d="M70 22a14 14 0 0 1 14-14h72a14 14 0 0 1 14 14v10H70z" fill="#1F5E3A"/><circle cx="86" cy="21" r="6" fill="#25D366"/><rect x="96" y="17" width="40" height="5" rx="2.5" fill="#F3F4F1"/><rect x="80" y="42" width="58" height="16" rx="6" fill="#2C2F2B"/><rect x="102" y="64" width="58" height="16" rx="6" fill="#1F5E3A"/><rect x="80" y="86" width="52" height="16" rx="6" fill="#2C2F2B"/><rect x="134" y="96" width="50" height="44" rx="8" fill="#F3F4F1"/><path d="M134 104a8 8 0 0 1 8-8h34a8 8 0 0 1 8 8v4h-50z" fill="#EA4335"/><path d="M148 122l6 6 12-12" stroke="#1F9D55" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><i class="est-check" aria-hidden="true"></i><span class="est-info"><span class="est-nome">Atendimento no WhatsApp<small>Vem junto com o chatbot escolhido acima.</small></span><span class="est-valor">R$ 217<small>/mês</small></span></span></label>
-          </div>
-        </fieldset>
-        </div>
-        <aside class="est-resumo glass" aria-live="polite">
-          <i class="plano-borda" aria-hidden="true"></i>
-          <p class="plano-tipo">Sua estrutura</p>
-          <div class="est-linha est-imp">
-            <span class="est-rot">Serviços <small>pagos uma vez</small></span>
-            <s class="est-de" data-de="unico"></s>
-            <b class="est-total" data-total="unico">R$ 1.347</b>
-            <em class="est-off" data-off="unico"></em>
-          </div>
-          <div class="est-linha est-mes">
-            <span class="est-rot">Por mês <small>a partir da entrega</small></span>
-            <s class="est-de" data-de="mensal"></s>
-            <b class="est-total" data-total="mensal">Sem mensalidade</b>
-            <em class="est-off" data-off="mensal"></em>
-          </div>
-          <p class="est-eco"></p>
-          <p class="est-dica"></p>
-          <a href="#" data-wa="estrutura" class="btn btn-primary">Quero essa estrutura</a>
-        </aside>
-      </div>
-    </div>
-    <p class="planos-nota rv">Não sabe por onde começar? <a href="#" data-wa="diagnostico">O diagnóstico gratuito</a> mostra o que falta na sua academia.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 10 · DÚVIDAS — perguntas frequentes  -->
+<!--  BLOCO 05 · DÚVIDAS — perguntas frequentes  -->
 <!--  ATENÇÃO: este texto tem de bater palavra por palavra com o FAQPage   -->
 <!--  lá em cima. O Google descarta o dado estruturado quando diverge.     -->
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -987,7 +865,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 11 · CHAMADA FINAL — último convite  -->
+<!--  BLOCO 06 · CHAMADA FINAL — último convite  -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <section>
   <div class="wrap">
@@ -1008,7 +886,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 12 · RODAPÉ  -->
+<!--  BLOCO 07 · RODAPÉ  -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
@@ -1025,9 +903,9 @@
 
       <nav class="foot-col foot-nav" aria-label="Navegação do rodapé">
         <p class="foot-tit">Navegação</p>
-        <a href="#solucoes">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
-        <a href="#planos">Preços</a>
+        <a href="#planos">Serviços</a>
+        <a href="#precos">Preços</a>
+        <a href="#resultados">Cases</a>
         <a href="#duvidas">Dúvidas</a>
       </nav>
 
@@ -1054,7 +932,7 @@
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!--  BLOCO 13 · BOTÃO FLUTUANTE — acompanha a rolagem       -->
+<!--  BLOCO 08 · BOTÃO FLUTUANTE — acompanha a rolagem       -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <a href="#" data-wa="flutuante" class="wa-float" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.14c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.37.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.65.49.25.6.83 2.07.9 2.22.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.67-.18 1.36z"/></svg>
@@ -1062,7 +940,7 @@
 </a>
 
 <script src="assets/js/config.js?v=75"></script>
-<script src="assets/js/vida.js?v=36"></script>
+<script src="assets/js/vida.js?v=37"></script>
 <script src="assets/js/atende.js?v=4"></script>
 </body>
 </html>

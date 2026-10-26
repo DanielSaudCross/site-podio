@@ -31,6 +31,9 @@
 .nav-wa svg{width:19px;height:19px;fill:currentColor}
 .nav .nav-wa{background:var(--lamp);border-color:var(--lamp);color:#0b0d0b}
 .nav .nav-wa:hover{color:#0b0d0b;filter:brightness(1.08)}
+/* no computador o botão diz "Contato"; no celular fica só o ícone */
+.nav .nav-wa{display:inline-flex;align-items:center;gap:8px;width:auto;padding:0 18px 0 14px;border-radius:999px;
+  font:var(--t-label);letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;font-weight:700;text-decoration:none}
 
 @media(max-width:900px){
   .nav{width:auto}
@@ -38,6 +41,8 @@
   .nav-esq,.nav-dir>a:not(.nav-wa){display:none}
   .nav-dir{display:contents}
   .nav-wa{grid-column:1;grid-row:1;justify-self:start}
+  .nav .nav-wa{width:40px;padding:0;justify-content:center}
+  .nav-wa span{display:none}
   .nav .menu-btn{grid-column:3;grid-row:1;justify-self:end}
   .nav-dentro{gap:12px}
   .nav-dentro{padding:20px 18px}
@@ -602,12 +607,25 @@ span.so-pronto,b.so-pronto{display:none}
    um com o visto se desenhando. Uma luz percorre a borda e outra segue o
    mouse (--mx/--my, vida.js). */
 @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
-.pl-abas{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.pl-abas button{position:relative;overflow:hidden;font:600 14px/1 var(--sans);color:var(--muted);cursor:pointer;
-  padding:12px 18px;border-radius:999px;border:1px solid var(--glass-line);background:rgba(255,255,255,.04);
-  transition:color .25s ease,background .25s ease,border-color .25s ease,transform .25s ease}
-.pl-abas button:hover{color:var(--text);transform:translateY(-2px)}
-.pl-abas button[aria-selected="true"]{color:#0A0B0A;background:var(--lamp);border-color:var(--lamp)}
+/* as abas são os cards ilustrados (as cenas de cada serviço, em escala
+   menor); a escolhida acende, as outras ficam apagadas */
+.pl-abas{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px}
+.pl-card{position:relative;isolation:isolate;overflow:hidden;height:190px;padding:0;border-radius:18px;cursor:pointer;
+  text-align:left;font:inherit;color:var(--text);border:1px solid var(--glass-line);background:#121512;
+  transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.pl-card .sol-cena{zoom:.6;opacity:.5;filter:saturate(.5);transition:opacity .3s ease,filter .3s ease}
+:where(.pl-card .sol-cena span){display:block}
+.pl-card::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to top,rgba(var(--ink-rgb),.96) 0%,rgba(var(--ink-rgb),.5) 38%,transparent 62%)}
+.pl-card-nome{position:absolute;left:14px;right:14px;bottom:13px;font:600 15px/1.25 var(--sans);text-wrap:balance;transition:color .25s ease}
+.pl-card:hover{transform:translateY(-3px);border-color:rgba(var(--lamp-rgb),.4)}
+.pl-card:is(:hover,[aria-selected="true"]) .sol-cena{opacity:1;filter:none}
+.pl-card[aria-selected="true"]{border-color:var(--lamp);box-shadow:0 0 0 1px var(--lamp),0 14px 34px rgba(var(--lamp-rgb),.16)}
+.pl-card[aria-selected="true"] .pl-card-nome{color:var(--lamp)}
+/* cena do acompanhamento: o gráfico do mês subindo */
+.sol-acomp .sol-cena{display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,rgba(var(--lamp-rgb),.15),transparent 60%),#121512}
+.sol-acomp svg{width:88%;margin-top:-18%}
+.sol-acomp .l{fill:var(--lamp)}.sol-acomp .ls{stroke:var(--lamp)}
 .pl-cartao{position:relative;isolation:isolate;overflow:hidden;padding:40px;min-height:360px}
 /* setas dos lados: encostadas na borda do cartão; com espaço, ficam fora dele */
 .pl-palco{position:relative}
@@ -644,6 +662,17 @@ span.so-pronto,b.so-pronto{display:none}
 .pl-acoes{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:26px}
 .pl-link{color:var(--text);font-weight:600;font-size:14px;border-bottom:1px solid rgba(var(--lamp-rgb),.6)}
 .pl-link:hover{color:var(--lamp)}
+button.pl-link{background:none;border:0;border-bottom:1px solid rgba(var(--lamp-rgb),.6);padding:0 0 2px;cursor:pointer;font-family:inherit}
+/* demonstração aberta pelo link do painel, logo abaixo do cartão */
+.demo{border-block:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.015)}
+.demo:not([hidden]){animation:demo-abre .5s cubic-bezier(.2,.7,.3,1)}
+@keyframes demo-abre{from{opacity:0;transform:translateY(12px)}}
+.demo-topo{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:28px}
+.demo-topo .plano-tipo{margin:0}
+.demo-fechar{font:600 14px/1 var(--sans);color:var(--text);cursor:pointer;padding:11px 16px;border-radius:999px;
+  border:1px solid var(--glass-line);background:rgba(255,255,255,.04);transition:border-color .2s ease,color .2s ease}
+.demo-fechar:hover{color:var(--lamp);border-color:rgba(var(--lamp-rgb),.5)}
+#precos .est{margin-top:0}
 .plano-tipo{font:var(--t-label);letter-spacing:.16em;text-transform:uppercase;font-size:11px;color:var(--lamp)}
 .pl-painel ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
 .pl-painel li{position:relative;padding:14px 16px 14px 44px;border-radius:14px;color:var(--text);font-size:15px;line-height:1.45;
@@ -787,9 +816,10 @@ span.so-pronto,b.so-pronto{display:none}
 .planos-nota a{color:var(--text);font-weight:600;border-bottom:1px solid rgba(var(--lamp-rgb),.6)}
 .planos-nota a:hover{color:var(--lamp)}
 @media(max-width:860px){
-  .pl-abas{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px 16px;padding:0 16px 4px;scrollbar-width:none}
+  .pl-abas{display:flex;overflow-x:auto;margin:0 -16px 16px;padding:4px 16px 6px;scrollbar-width:none}
   .pl-abas::-webkit-scrollbar{display:none}
-  .pl-abas button{flex:none}
+  .pl-card{flex:none;width:150px;height:160px}
+  .pl-card-nome{font-size:14px}
   .pl-cartao{padding:26px 22px;min-height:0}
   /* no celular as setas ficam embaixo do cartão, lado a lado */
   .pl-palco{padding-bottom:62px}
