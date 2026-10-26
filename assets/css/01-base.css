@@ -127,6 +127,10 @@ a,button,summary{
   .lead{font-size:16.5px}   /* só o corpo encolhe; entrelinha vem do token */
   .btn{padding:15px 22px}
 }
+/* quebra de linha: títulos, nomes e botões em linhas equilibradas; textos
+   corridos sem palavra sozinha na última linha */
+h1,h2,h3,h4,legend,.btn,.est-nome,.plano-tipo{text-wrap:balance}
+p,li,dd,summary,figcaption,blockquote,small,.est-nome small{text-wrap:pretty}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
   .rv{opacity:1;transform:none}

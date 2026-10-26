@@ -11,6 +11,28 @@
 document.addEventListener('DOMContentLoaded', () => {
   const querMenosMovimento = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
+  /* 0 · Quebra de linha: palavra de uma letra (a, o, e, é, à), número e
+     'R$' não ficam soltos no fim da linha. O espaço depois deles vira um
+     espaço que não quebra, então eles descem junto com a palavra seguinte. */
+  const PRENDE = /(?<=^|[\s(])([aeoàéAEOÀÉ]|R\$|\+|\d+[º%]?)[ \t\n]+(?=\S)/g;
+  const colar = (texto) => texto.replace(PRENDE, '$1\u00a0');
+  const andar = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode: (n) => (n.parentElement.closest('script,style,svg,textarea') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+  });
+  for (let n; (n = andar.nextNode());) {
+    const novo = colar(n.data);
+    if (novo !== n.data) n.data = novo;
+  }
+  /* e a última palavra de cada texto desce junto com a penúltima, para
+     nunca sobrar uma palavra sozinha na última linha */
+  document.querySelectorAll('p,li,dd,summary,h1,h2,h3,h4').forEach((el) => {
+    const nos = [];
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    for (let n; (n = w.nextNode());) if (n.data.trim()) nos.push(n);
+    const ult = nos[nos.length - 1];
+    if (ult) ult.data = ult.data.replace(/[ \t\n]+(?=\S+\s*$)/, '\u00a0');
+  });
+
   /* 1 · Seção viva */
   const vida = document.querySelector('.vida');
   if (vida) {
@@ -313,14 +335,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const ecoU = soma.unico - total.unico, ecoM = soma.mensal - total.mensal;
-      est.querySelector('.est-eco').textContent = ecoU || ecoM
+      est.querySelector('.est-eco').textContent = colar(ecoU || ecoM
         ? 'Você economiza ' + [ecoU && brl(ecoU), ecoM && brl(ecoM) + ' por mês'].filter(Boolean).join(' e ')
-        : '';
+        : '');
       const prox = { 0: 'Escolha um serviço para começar.', 1: 'Junte mais 1 serviço e ganhe 10% de desconto.',
         2: 'Junte mais 1 serviço e o desconto sobe para 18%.', 3: 'Junte mais 1 serviço e o desconto sobe para 20%.',
         4: 'Desconto máximo: 20% nos serviços.' };
-      est.querySelector('.est-dica').textContent = qtd.unico + qtd.mensal === 0 ? prox[0]
-        : qtd.unico === 0 ? 'Escolha os serviços de cima.' : prox[qtd.unico];
+      est.querySelector('.est-dica').textContent = colar(qtd.unico + qtd.mensal === 0 ? prox[0]
+        : qtd.unico === 0 ? 'Escolha os serviços de cima.' : prox[qtd.unico]);
 
       const vazio = !qtd.unico && !qtd.mensal;
       botao.setAttribute('aria-disabled', vazio);
