@@ -22,7 +22,7 @@
    de quem achou o número em qualquer outro lugar. O que vem
    depois dessa frase é a intenção.
    ---------------------------------------------------------- */
-const VEIO = 'Olá! 👋 Vim pelo site da Agência Pódio';
+const VEIO = 'Olá! Vim pelo site da Agência Pódio';
 
 const PODIO = {
 
@@ -56,7 +56,6 @@ const PODIO = {
 
     /* Links curtos no fim de cada parte: se convenceu ali mesmo. */
     perfil:  VEIO + ' e quero deixar o perfil da minha academia completo no Google.',
-    mudanca: VEIO + ' e quero essa mudança na minha academia.',
     site:    VEIO + ' e quero um site para a minha academia.',
     placa:   VEIO + ' e quero a placa de avaliações na minha academia.',
     duvida:  VEIO + ' e tenho uma dúvida.',
