@@ -190,15 +190,20 @@ document.addEventListener('DOMContentLoaded', () => {
       .observe(port);
   }
 
-  /* 3b · Planos: abas que trocam o cartão. Enquanto a seção está na tela
-     e ninguém clicou, passam sozinhas a cada PL_MS; o primeiro clique (ou
-     tecla) para a troca automática. A luz do cartão segue o mouse. */
+  /* 3b · Serviços: abas que trocam o cartão. Enquanto a seção está na tela
+     passam sozinhas a cada PL_MS. Mouse (ou foco do teclado) em cima pausa
+     para ler, e a barrinha congela; ao sair, continua de onde parou. Clicar
+     numa aba abre ela e segue passando a partir dali. A luz do cartão segue
+     o mouse. */
   const pl = document.querySelector('.pl');
   if (pl) {
     const PL_MS = 7000;
     const abas = [...pl.querySelectorAll('[role="tab"]')];
     const cartao = pl.querySelector('.pl-cartao');
-    let atual = 0, timer = null, parado = querMenosMovimento;
+    /* restante = quanto falta para trocar; visivel = seção na tela;
+       pausado = mouse ou foco em cima */
+    let atual = 0, timer = null, inicio = 0, restante = PL_MS, visivel = false, pausado = false;
+    const automatico = !querMenosMovimento;
     pl.style.setProperty('--pl-ms', PL_MS + 'ms');
 
     const abrir = (i, foco) => {
@@ -217,26 +222,50 @@ document.addEventListener('DOMContentLoaded', () => {
       const dx = abas[atual].getBoundingClientRect().left - lista.getBoundingClientRect().left;
       lista.scrollTo({ left: lista.scrollLeft + dx - 16, behavior: querMenosMovimento ? 'auto' : 'smooth' });
       if (foco) abas[atual].focus({ preventScroll: true });
-      if (!parado) agendar();
+      restante = PL_MS;
+      reiniciarBarra();
+      seguir();
     };
-    const agendar = () => {
-      clearTimeout(timer);
-      /* reinicia a barrinha da aba */
+    /* a barrinha da aba recomeça do zero (só quando a aba muda) */
+    const reiniciarBarra = () => {
+      if (!automatico) return;
       pl.classList.remove('rodando'); void pl.offsetWidth; pl.classList.add('rodando');
-      timer = setTimeout(() => abrir(atual + 1), PL_MS);
     };
-    const parar = () => { parado = true; clearTimeout(timer); pl.classList.remove('rodando'); };
+    /* roda o tempo que falta, se a seção está na tela e ninguém está lendo */
+    const seguir = () => {
+      clearTimeout(timer);
+      const anda = automatico && visivel && !pausado;
+      pl.classList.toggle('pausado', !anda);
+      if (!anda) return;
+      inicio = performance.now();
+      timer = setTimeout(() => abrir(atual + 1), restante);
+    };
+    /* guarda quanto faltava e congela */
+    const pausar = () => {
+      if (!pausado && visivel && automatico) restante = Math.max(0, restante - (performance.now() - inicio));
+      pausado = true;
+      seguir();
+    };
+    const continuar = () => { pausado = false; seguir(); };
 
-    abas.forEach((aba, i) => aba.addEventListener('click', () => { parar(); abrir(i); }));
+    abas.forEach((aba, i) => aba.addEventListener('click', () => abrir(i)));
     pl.querySelector('[role="tablist"]').addEventListener('keydown', (ev) => {
       const passo = { ArrowRight: 1, ArrowLeft: -1 }[ev.key];
-      if (passo) { ev.preventDefault(); parar(); abrir(atual + passo, true); }
+      if (passo) { ev.preventDefault(); abrir(atual + passo, true); }
     });
-    if (!querMenosMovimento) {
+    pl.addEventListener('mouseenter', pausar);
+    pl.addEventListener('mouseleave', continuar);
+    pl.addEventListener('focusin', pausar);
+    pl.addEventListener('focusout', (ev) => { if (!pl.contains(ev.relatedTarget)) continuar(); });
+    if (automatico) {
       new IntersectionObserver(([e]) => {
-        if (parado) return;
-        if (e.isIntersecting) abrir(atual); else { clearTimeout(timer); pl.classList.remove('rodando'); }
+        if (e.isIntersecting === visivel) return;
+        if (!e.isIntersecting && !pausado) restante = Math.max(0, restante - (performance.now() - inicio));
+        visivel = e.isIntersecting;
+        seguir();
       }, { threshold: 0.4 }).observe(pl);
+      reiniciarBarra();
+      seguir();
     }
     cartao.addEventListener('pointermove', (ev) => {
       const r = cartao.getBoundingClientRect();
