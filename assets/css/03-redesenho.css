@@ -646,6 +646,47 @@ span.so-pronto,b.so-pronto{display:none}
 .plano-luz{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;transition:opacity .4s ease;
   background:radial-gradient(520px circle at var(--mx,80%) var(--my,0%),rgba(var(--lamp-rgb),.10),transparent 60%)}
 .pl-cartao:hover .plano-luz{opacity:1}
+.pl-preco{margin-top:10px;font:var(--t-h1);font-size:clamp(26px,2.4vw,32px);color:var(--lamp)}
+.pl-preco small{font:500 15px/1 var(--sans);color:var(--muted)}
+/* Pacotes: quatro cartões com o preço separado riscado e quanto economiza.
+   O Completo é o recomendado: luz na borda, selo e botão cheio. Ao entrar na
+   tela o risco passa por cima do preço antigo. No celular rolam de lado. */
+.pac{margin-top:56px}
+.pac-head{max-width:none}
+.pac-head h3{margin-top:10px;font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(24px,2.4vw,32px)}
+.pac-head h3 em{font-style:italic;color:var(--lamp)}
+.pac-lista{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px;align-items:stretch}
+.pac-card{position:relative;isolation:isolate;display:flex;flex-direction:column;padding:26px 22px;
+  transition:transform .35s cubic-bezier(.2,.7,.3,1),border-color .3s ease}
+.pac-card:hover{transform:translateY(-6px);border-color:rgba(var(--lamp-rgb),.4)}
+.pac-card h4{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:24px}
+.pac-inclui{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.45;flex:1}
+.pac-de{margin-top:18px;color:var(--muted);font-size:13px}
+.pac-de s{position:relative;text-decoration:none;margin-left:4px}
+.pac-de s::after{content:'';position:absolute;left:-2px;right:-2px;top:52%;height:1.5px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s ease .35s}
+.pac-lista.in .pac-de s::after{transform:scaleX(1)}
+.pac-por{margin-top:4px;font:var(--t-h1);font-size:34px;color:var(--text)}
+.pac-por small{font:500 14px/1 var(--sans);color:var(--muted)}
+.pac-eco{align-self:flex-start;margin:10px 0 20px;padding:5px 10px;border-radius:999px;font:700 12px/1 var(--sans);
+  color:var(--lamp);background:rgba(var(--lamp-rgb),.10);border:1px solid rgba(var(--lamp-rgb),.3)}
+.pac-card .btn{align-self:stretch;justify-content:center;text-align:center;white-space:nowrap}
+.pac-top{border-color:rgba(var(--lamp-rgb),.45);
+  background:linear-gradient(180deg,rgba(var(--lamp-rgb),.10),rgba(var(--lamp-rgb),.02) 60%),var(--glass-bg,rgba(255,255,255,.04))}
+.pac-top .pac-por{color:var(--lamp)}
+.pac-selo{position:absolute;top:-11px;left:22px;padding:5px 12px;border-radius:999px;font:var(--t-label);font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:#0A0B0A;background:var(--lamp);
+  box-shadow:0 0 0 0 rgba(var(--lamp-rgb),.5);animation:selo 2.6s ease-out infinite}
+@keyframes selo{0%{box-shadow:0 0 0 0 rgba(var(--lamp-rgb),.45)}70%,100%{box-shadow:0 0 0 12px rgba(var(--lamp-rgb),0)}}
+.pac-top{overflow:visible}
+@media(max-width:1060px){
+  .pac-lista{grid-template-columns:repeat(4,250px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;
+    margin:24px -16px 0;padding:14px 16px 8px;scrollbar-width:none}
+  .pac-top{order:-1}  /* no celular o recomendado vem primeiro */
+  .pac-lista::-webkit-scrollbar{display:none}
+  .pac-card{scroll-snap-align:start}
+}
+@media(prefers-reduced-motion:reduce){.pac-selo{animation:none}.pac-de s::after{transition:none}}
 .planos-nota{margin-top:24px;text-align:center;color:var(--muted);font-size:15px}
 .planos-nota a{color:var(--text);font-weight:600;border-bottom:1px solid rgba(var(--lamp-rgb),.6)}
 .planos-nota a:hover{color:var(--lamp)}

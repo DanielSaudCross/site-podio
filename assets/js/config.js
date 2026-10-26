@@ -50,6 +50,10 @@ const PODIO = {
     /* Já escolheu plano. É a intenção mais alta que existe no site.
        Os outros planos usam perfil, site, placa e chatbot, logo abaixo. */
     plano2: VEIO + ' e tenho interesse no acompanhamento mensal.',
+    pacoteGoogle:   VEIO + ' e quero o pacote Presença no Google.',
+    pacoteBase:     VEIO + ' e quero o pacote Base online.',
+    pacoteCompleto: VEIO + ' e quero o pacote Completo.',
+    pacoteMensal:   VEIO + ' e quero o pacote Mensal completo.',
 
     /* Links curtos no fim de cada parte: se convenceu ali mesmo. */
     perfil:  VEIO + ' e quero deixar o perfil da minha academia completo no Google.',
