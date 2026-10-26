@@ -700,8 +700,6 @@ span.so-pronto,b.so-pronto{display:none}
 .est-prod .est-valor{margin-top:auto;font:var(--t-h1);font-size:24px;font-weight:400}
 .est-prod .est-valor small{display:block;margin-top:4px;font:500 12px/1.2 var(--sans);color:var(--muted)}
 .est-prod .est-info{padding:14px 14px 16px}
-/* no cartão do Site, a dica de juntar o Acompanhamento */
-.est-nome small.est-reco{margin-top:8px;color:var(--lamp);font-weight:600;font-size:11px;white-space:nowrap}
 .est-prod .est-check,.est-mais .est-check{position:absolute;top:12px;right:12px;background:rgba(10,11,10,.55)}
 .est-item.est-mais{grid-template-columns:116px 1fr;align-items:stretch}
 .est-mais .est-foto{border-right:1px solid rgba(255,255,255,.06)}
