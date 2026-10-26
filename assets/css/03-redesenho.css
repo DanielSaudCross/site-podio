@@ -664,6 +664,18 @@ span.so-pronto,b.so-pronto{display:none}
 .pl-link{color:var(--text);font-weight:600;font-size:14px;border-bottom:1px solid rgba(var(--lamp-rgb),.6)}
 .pl-link:hover{color:var(--lamp)}
 button.pl-link{background:none;border:0;border-bottom:1px solid rgba(var(--lamp-rgb),.6);padding:0 0 2px;cursor:pointer;font-family:inherit}
+/* "Ver a demonstração": continua texto, não botão, mas em verde, com um
+   ponto que pulsa e um brilho leve no texto para chamar o clique. Para de
+   pulsar quando a demonstração está aberta. */
+button.pl-link[data-demo]{display:inline-flex;align-items:center;gap:10px;padding:4px 0;border:0;color:var(--lamp);font-weight:700;font-size:15px;
+  text-decoration:underline;text-decoration-color:rgba(var(--lamp-rgb),.5);text-underline-offset:5px;animation:demo-brilho 2.4s ease-in-out infinite}
+button.pl-link[data-demo]::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--lamp);animation:demo-pulso 1.6s ease-out infinite}
+button.pl-link[data-demo]:hover{text-decoration-color:var(--lamp)}
+button.pl-link[data-demo][aria-expanded="true"]{color:var(--text);animation:none}
+button.pl-link[data-demo][aria-expanded="true"]::before{animation:none;background:rgba(255,255,255,.35)}
+@keyframes demo-pulso{0%{box-shadow:0 0 0 0 rgba(var(--lamp-rgb),.75)}70%{box-shadow:0 0 0 10px rgba(var(--lamp-rgb),0)}100%{box-shadow:0 0 0 0 rgba(var(--lamp-rgb),0)}}
+@keyframes demo-brilho{0%,100%{text-shadow:none}50%{text-shadow:0 0 14px rgba(var(--lamp-rgb),.55)}}
+@media (prefers-reduced-motion:reduce){button.pl-link[data-demo],button.pl-link[data-demo]::before{animation:none}}
 /* demonstração aberta pelo link do painel, logo abaixo do cartão */
 .demo{border-block:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.015)}
 .demo:not([hidden]){animation:demo-abre .5s cubic-bezier(.2,.7,.3,1)}
