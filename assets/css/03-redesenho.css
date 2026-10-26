@@ -635,7 +635,8 @@ span.so-pronto,b.so-pronto{display:none}
   transition:color .25s ease,border-color .25s ease,background .25s ease,transform .25s ease}
 .pl-seta svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .pl-seta:hover{color:var(--lamp);border-color:rgba(var(--lamp-rgb),.6);background:rgba(var(--lamp-rgb),.1)}
-.pl-volta{left:-23px}.pl-vai{right:-23px}
+/* metade fora do cartão, sem passar do respiro de 22px da .wrap */
+.pl-volta{left:-18px}.pl-vai{right:-18px}
 .pl-volta:hover{transform:translateX(-3px)}.pl-vai:hover{transform:translateX(3px)}
 @media(min-width:1280px){.pl-volta{left:-74px}.pl-vai{right:-74px}}
 .pl-painel{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}

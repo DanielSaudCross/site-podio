@@ -12,18 +12,25 @@
 
 ## Blocos do index.html
 
-    01 · TOPO ................ logo, menu, botão do WhatsApp
-    02 · ABERTURA ............ frase principal e chamadas
-    03 · SERVIÇOS ............ as três frentes (Google, site, avaliações)
-    04 · ANTES / DEPOIS ...... interruptor da transformação
-    05 · RESULTADOS .......... academias atendidas
-    10 · DÚVIDAS ............. perguntas frequentes
-    11 · CHAMADA FINAL ....... último convite
-    12 · RODAPÉ .............. contatos, navegação e chamada
-    13 · BOTÃO FLUTUANTE ..... acompanha a rolagem
+    01 · TOPO ................ logo, menu (Serviços, Preços, Cases, Dúvidas) e Contato
+    02 · ABERTURA ............ frase principal e "Conheça nossas soluções"
+    03 · SERVIÇOS ............ 5 cards (Perfil, Site, WhatsApp, Placa, Acompanhamento),
+                               demonstrações que abrem pelo link e a calculadora (#precos)
+    04 · CASES ............... academias atendidas
+    05 · DÚVIDAS ............. perguntas frequentes (repetidas no FAQPage do <head>)
+    06 · CHAMADA FINAL ....... formulário do diagnóstico gratuito
+    07 · RODAPÉ .............. contatos, navegação e chamada
+    08 · BOTÃO FLUTUANTE ..... acompanha a rolagem
 
 Cada bloco começa e termina com uma faixa de `═══`. Para editar um,
-basta pedir ao Claude Code: "altere o BLOCO 07 do index.html".
+basta pedir ao Claude Code: "altere o BLOCO 03 do index.html".
+
+## Publicação
+
+O site sai na Vercel a cada push na `main`. O `vercel.json` guarda os
+cabeçalhos de segurança (CSP e afins): um endereço externo novo (fonte,
+imagem, script ou webhook) precisa entrar lá, senão o navegador bloqueia.
+O `.vercelignore` tira deste pacote os arquivos de trabalho, como este.
 
 ## Rodar em localhost
 
@@ -31,11 +38,3 @@ basta pedir ao Claude Code: "altere o BLOCO 07 do index.html".
     python3 -m http.server 5173
 
 Abrir em http://localhost:5173
-
-## Antes de publicar
-
-- [ ] Trocar `whatsapp` em `assets/js/config.js`
-- [ ] Preencher o BLOCO 05 com prints e números reais
-- [ ] Colocar as fotos no BLOCO 09
-- [ ] Preencher os `<!-- TROCAR -->` do BLOCO 12 (cidade, Instagram, e-mail, horário)
-- [ ] Criar `assets/img/preview.jpg` (1200x630) para a prévia no WhatsApp

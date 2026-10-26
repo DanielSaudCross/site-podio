@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   /* e a última palavra de cada texto desce junto com a penúltima, para
      nunca sobrar uma palavra sozinha na última linha */
-  document.querySelectorAll('p,li,dd,summary,h1,h2,h3,h4').forEach((el) => {
+  document.querySelectorAll('p,li,dd,summary,small,h1,h2,h3,h4').forEach((el) => {
     const nos = [];
     const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     for (let n; (n = w.nextNode());) if (n.data.trim()) nos.push(n);
