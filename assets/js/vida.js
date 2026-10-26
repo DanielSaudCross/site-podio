@@ -288,21 +288,15 @@ document.addEventListener('DOMContentLoaded', () => {
         deslizar(tipo, total[tipo], tipo === 'mensal' ? '<small>/mês</small>' : '');
       });
 
-      /* para começar: só o pagamento único. A mensalidade é cobrada a partir
-         da entrega; sem nada de pagamento único, o começo é o 1º mês. */
-      deslizar('soma', total.unico || total.mensal, '');
-      est.querySelector('.est-soma-obs').textContent = total.unico && total.mensal
-        ? 'depois, ' + brl(total.mensal) + ' por mês a partir da entrega'
-        : total.mensal ? '1º mês' : 'pagamento único';
       const ecoU = soma.unico - total.unico, ecoM = soma.mensal - total.mensal;
       est.querySelector('.est-eco').textContent = ecoU || ecoM
         ? 'Você economiza ' + [ecoU && brl(ecoU), ecoM && brl(ecoM) + ' por mês'].filter(Boolean).join(' e ')
         : '';
-      const prox = { 0: 'Escolha um serviço para começar.', 1: 'Junte mais 1 serviço de pagamento único e ganhe 10% de desconto.',
+      const prox = { 0: 'Escolha um serviço para começar.', 1: 'Junte mais 1 serviço de implantação e ganhe 10% de desconto.',
         2: 'Junte mais 1 serviço e o desconto sobe para 18%.', 3: 'Junte mais 1 serviço e o desconto sobe para 20%.',
-        4: 'Desconto máximo: 20% no pagamento único.' };
+        4: 'Desconto máximo: 20% na implantação.' };
       est.querySelector('.est-dica').textContent = qtd.unico + qtd.mensal === 0 ? prox[0]
-        : qtd.unico === 0 ? 'Junte um serviço de pagamento único para montar a base.' : prox[qtd.unico];
+        : qtd.unico === 0 ? 'Escolha os serviços de implantação.' : prox[qtd.unico];
       /* site sem acompanhamento: avisa a hospedagem do 2º ano em diante */
       const aviso = est.querySelector('.est-aviso');
       aviso.hidden = !(est.querySelector('[name=site]').checked && !est.querySelector('[name=acomp]').checked);
@@ -313,16 +307,25 @@ document.addEventListener('DOMContentLoaded', () => {
       botao.setAttribute('aria-disabled', vazio);
       const texto = PODIO.mensagens.estrutura + '\n' +
         [...nomes.unico, ...nomes.mensal].map((n) => '• ' + n).join('\n') + '\n\n' +
-        'Pagamento único: ' + (total.unico ? brl(total.unico) : 'nenhum') + '\n' +
-        'Por mês: ' + (total.mensal ? brl(total.mensal) + ' (a partir da entrega)' : 'nenhum');
+        'Implantação (paga uma vez): ' + (total.unico ? brl(total.unico) : 'nenhuma') + '\n' +
+        'Mensalidade (a partir da entrega): ' + (total.mensal ? brl(total.mensal) : 'nenhuma');
       botao.href = 'https://wa.me/' + String(PODIO.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(texto);
     };
 
+    /* o acompanhamento só faz sentido com algo para acompanhar: Perfil ou Site */
+    const travarAcomp = () => {
+      const acomp = est.querySelector('[name=acomp]');
+      const pode = est.querySelector('[name=perfil]').checked || est.querySelector('[name=site]').checked;
+      acomp.disabled = !pode;
+      if (!pode) acomp.checked = false;
+    };
     caixas.forEach((c) => c.addEventListener('change', () => {
       /* implantação e mensalidade do WhatsApp andam juntas */
       if (c.dataset.par) caixas.filter((o) => o !== c && o.dataset.par === c.dataset.par).forEach((o) => { o.checked = c.checked; });
+      travarAcomp();
       calcular();
     }));
+    travarAcomp();
     calcular();
   }
 

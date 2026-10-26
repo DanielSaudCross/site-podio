@@ -704,7 +704,16 @@ span.so-pronto,b.so-pronto{display:none}
 .est-resumo .plano-tipo{margin-bottom:14px}
 .est-linha{display:grid;grid-template-columns:1fr auto;grid-template-areas:"rot de" "total off";align-items:baseline;
   gap:2px 10px;padding:12px 0;border-top:1px solid rgba(255,255,255,.08)}
-.est-rot{grid-area:rot;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.est-rot{grid-area:rot;color:var(--text);font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.est-rot small{display:block;margin-top:3px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted);font-size:12px}
+.est-linha.est-mes{border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:10px}
+.est-mes .est-total:not(.vazio){color:var(--text)}
+/* acompanhamento bloqueado até ter Perfil ou Site */
+.est-item:has(input:disabled){opacity:.45;cursor:not-allowed}
+.est-item:has(input:disabled):hover{transform:none;border-color:rgba(255,255,255,.08)}
+.est-req{color:var(--lamp)!important}
+.est-item:has(input:not(:disabled)) .est-req{display:none}
+.pl-painel li b{color:var(--lamp);font-weight:600}
 .est-de{grid-area:de;justify-self:end;color:var(--muted);font-size:13px}
 .est-total{grid-area:total;white-space:nowrap;font-variant-numeric:tabular-nums;font:var(--t-h1);font-size:clamp(28px,2.6vw,36px);color:var(--text);font-weight:400}
 .est-linha:first-of-type .est-total{color:var(--lamp)}
