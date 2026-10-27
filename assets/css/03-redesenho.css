@@ -661,6 +661,7 @@ span.so-pronto,b.so-pronto{display:none}
 .pl-cabeca h3{font:var(--t-h1);letter-spacing:var(--t-h1-ls);font-size:clamp(28px,3vw,40px)}
 .pl-frase{margin-top:12px;color:var(--muted);font-size:16px;line-height:1.55}
 .pl-acoes{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:26px}  /* "Ver a demonstração" sempre embaixo do botão */
+.pl-nota{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
 .pl-link{color:var(--text);font-weight:600;font-size:14px;border-bottom:1px solid rgba(var(--lamp-rgb),.6)}
 .pl-link:hover{color:var(--lamp)}
 button.pl-link{background:none;border:0;border-bottom:1px solid rgba(var(--lamp-rgb),.6);padding:0 0 2px;cursor:pointer;font-family:inherit}
@@ -728,7 +729,7 @@ button.pl-link[data-demo][aria-expanded="true"]::before{animation:none;backgroun
 .est-corpo{display:grid;grid-template-columns:1fr minmax(280px,310px);gap:24px;margin-top:26px;align-items:start}
 .est-andares{display:grid;gap:30px;min-width:0}
 .est-grade{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.est-grade-mais{grid-template-columns:1fr 1fr}
+.est-grade-mais{grid-template-columns:1fr}
 /* ilustração do serviço, como foto de produto */
 .est-foto{display:block;overflow:hidden;background:radial-gradient(circle at 50% 45%,rgba(var(--lamp-rgb),.14),transparent 70%),rgba(255,255,255,.025)}
 .est-foto svg{display:block;width:100%;height:100%;transition:transform .45s cubic-bezier(.2,.7,.3,1),filter .3s ease}
@@ -785,8 +786,6 @@ button.pl-link[data-demo][aria-expanded="true"]::before{animation:none;backgroun
 /* acompanhamento bloqueado até ter Perfil ou Site */
 .est-item:has(input:disabled),.est-mais:has(input:disabled):hover{opacity:.45;cursor:not-allowed}
 .est-item:has(input:disabled):hover{transform:none;border-color:rgba(255,255,255,.08)}
-.est-req{color:var(--lamp)!important}
-.est-item:has(input:not(:disabled)) .est-req{display:none}
 .pl-painel li b{color:var(--lamp);font-weight:600}
 .est-de{grid-area:de;justify-self:end;color:var(--muted);font-size:13px}
 .est-total{grid-area:total;white-space:nowrap;font-variant-numeric:tabular-nums;font:var(--t-h1);font-size:clamp(28px,2.6vw,36px);color:var(--text);font-weight:400}
@@ -815,7 +814,6 @@ button.pl-link[data-demo][aria-expanded="true"]::before{animation:none;backgroun
   .est-grade{grid-template-columns:repeat(2,1fr)}
   .est-resumo{position:relative;top:auto}
 }
-@media(max-width:760px){.est-grade-mais{grid-template-columns:1fr}}
 /* no celular os serviços também ficam deitados: ilustração à esquerda */
 @media(max-width:640px){
   .est-grade{grid-template-columns:1fr}

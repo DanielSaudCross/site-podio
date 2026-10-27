@@ -325,13 +325,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* 3c · Monte a estrutura: soma o pagamento único e o mensal separados.
      Desconto no único pela quantidade de serviços (2 = 10%, 3 = 18%,
-     4 = 20%) e 10% quando as duas mensalidades vão juntas. O WhatsApp é
-     um par: implantação e mensalidade entram e saem juntas. O botão leva
-     a escolha e os valores na mensagem. */
+     4 = 20%). O WhatsApp é um par: implantação e mensalidade entram e
+     saem juntas. O acompanhamento não entra aqui: é oferecido na reunião.
+     O botão leva a escolha e os valores na mensagem. */
   const est = document.querySelector('.est');
   if (est && typeof PODIO !== 'undefined') {
     const DESC_UNICO = { 2: 0.10, 3: 0.18, 4: 0.20 };
-    const DESC_MENSAL = { 2: 0.10 };
     const caixas = [...est.querySelectorAll('input[type="checkbox"]')];
     const botao = est.querySelector('[data-wa="estrutura"]');
     const brl = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
@@ -355,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
         qtd[c.dataset.tipo] += 1;
         nomes[c.dataset.tipo].push(c.dataset.nome);
       });
-      const pct = { unico: DESC_UNICO[qtd.unico] || 0, mensal: DESC_MENSAL[qtd.mensal] || 0 };
+      const pct = { unico: DESC_UNICO[qtd.unico] || 0, mensal: 0 };
       const total = { unico: Math.round(soma.unico * (1 - pct.unico)), mensal: Math.round(soma.mensal * (1 - pct.mensal)) };
 
       ['unico', 'mensal'].forEach((tipo) => {
@@ -385,20 +384,11 @@ document.addEventListener('DOMContentLoaded', () => {
       botao.href = 'https://wa.me/' + String(PODIO.whatsapp).replace(/\D/g, '') + '?text=' + encodeURIComponent(texto);
     };
 
-    /* o acompanhamento só faz sentido com algo para acompanhar: Perfil ou Site */
-    const travarAcomp = () => {
-      const acomp = est.querySelector('[name=acomp]');
-      const pode = est.querySelector('[name=perfil]').checked || est.querySelector('[name=site]').checked;
-      acomp.disabled = !pode;
-      if (!pode) acomp.checked = false;
-    };
     caixas.forEach((c) => c.addEventListener('change', () => {
       /* implantação e mensalidade do WhatsApp andam juntas */
       if (c.dataset.par) caixas.filter((o) => o !== c && o.dataset.par === c.dataset.par).forEach((o) => { o.checked = c.checked; });
-      travarAcomp();
       calcular();
     }));
-    travarAcomp();
     calcular();
   }
 
