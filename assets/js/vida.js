@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const digita = vida.querySelector('.g-digita');
     const qtd = vida.querySelector('.g-qtd');
     const barras = vida.querySelectorAll('.vida-progresso i');
-    const BUSCA = 'academia de jiu-jitsu perto de mim';
+    const BUSCA = 'academia perto de mim';
 
     /* O VÍDEO: cenas com duração (ms), tocadas em sequência quando a seção
        aparece na tela. p = parte do vídeo (texto da esquerda, palavra de fundo
